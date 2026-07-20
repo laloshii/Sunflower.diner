@@ -1,816 +1,592 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ashta W 3asal - Premium Delivery</title>
     
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Ashta W 3asal Identity Variables */
+        /* --- CSS Variables (Light & Dark Mode) --- */
         :root {
-            --honey-gold: #E5A937;
-            --honey-dark: #C68B22;
-            --ashta-cream: #FFFDF7;
-            --dark-choc: #2C1E16;
-            --border-color: #EFE9D9;
-            --success-green: #2E7D32;
+            --primary: #E5A937;
+            --primary-dark: #C68B22;
+            --bg-color: #FAFAFC;
+            --card-bg: #FFFFFF;
+            --text-main: #2C1E16;
             --text-muted: #8A7A6B;
-            --heading-font: 'Playfair Display', serif;
-            --body-font: 'Montserrat', sans-serif;
-            --shadow-sm: 0 4px 10px rgba(0,0,0,0.05);
-            --shadow-lg: 0 10px 30px rgba(229, 169, 55, 0.1);
+            --border-color: #EAE6DF;
+            --success: #10B981;
+            --danger: #EF4444;
+            --shadow-sm: 0 4px 15px rgba(0,0,0,0.03);
+            --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-main: 'Tajawal', sans-serif;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --card-bg: #1E1E1E;
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --border-color: #374151;
+            --shadow-sm: 0 4px 15px rgba(0,0,0,0.2);
+            --shadow-md: 0 10px 30px rgba(0,0,0,0.4);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--ashta-cream); font-family: var(--body-font); color: var(--dark-choc); padding-bottom: 90px; overflow-x: hidden;}
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); transition: var(--transition); padding-bottom: 90px;}
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-
-        /* Navbar */
+        /* --- Navbar --- */
         nav {
-            position: fixed; top: 0; width: 100%; background-color: rgba(255, 253, 247, 0.95); backdrop-filter: blur(10px);
-            display: flex; justify-content: space-between; align-items: center; padding: 10px 40px;
-            z-index: 1000; border-bottom: 1px solid var(--border-color); box-shadow: var(--shadow-sm);
+            position: fixed; top: 0; width: 100%; background: var(--card-bg); backdrop-filter: blur(10px);
+            display: flex; justify-content: space-between; align-items: center; padding: 12px 5%;
+            z-index: 1000; box-shadow: var(--shadow-sm); transition: var(--transition);
         }
-        .nav-logo { font-family: var(--heading-font); font-size: 22px; font-weight: 700; color: var(--dark-choc); text-decoration: none; cursor: pointer; display: flex; align-items: center; gap: 12px;}
-        /* Logo sizes in Navbar reduced for better fit */
-        .nav-logo img { height: 38px; width: 38px; border-radius: 50%; object-fit: contain; background: #fff; padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border: 2px solid var(--honey-gold); }
+        .nav-brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 22px; color: var(--text-main); text-decoration: none; cursor:pointer;}
+        .nav-brand img { height: 45px; width: 45px; border-radius: 50%; object-fit: contain; border: 2px solid var(--primary); padding: 2px; }
+        .nav-tools { display: flex; gap: 15px; align-items: center; }
+        .icon-btn { background: none; border: none; font-size: 20px; color: var(--text-main); cursor: pointer; transition: var(--transition); }
+        .icon-btn:hover { color: var(--primary); }
 
-        /* Hero Section */
+        /* --- Parallax Hero Section --- */
         .hero {
-            height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-            background-image: linear-gradient(rgba(44, 30, 22, 0.65), rgba(44, 30, 22, 0.8)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80');
+            height: 60vh; background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1920&q=80');
             background-size: cover; background-position: center; background-attachment: fixed;
-            color: #fff; padding: 0 20px; margin-top: 60px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            color: #fff; margin-top: 65px; padding: 20px; position: relative;
         }
-        /* Logo sizes in Hero reduced and contained to prevent cropping */
-        .hero-logo { height: 95px; width: 95px; object-fit: contain; border-radius: 50%; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.4); border: 3px solid var(--honey-gold); background: #fff; padding: 5px; animation: fadeIn 0.5s ease;}
-        .hero h1 { font-family: var(--heading-font); font-size: 3.5rem; margin-bottom: 10px; color: var(--honey-gold); animation: fadeIn 0.8s ease; }
-        .hero p { font-size: 1.1rem; margin-bottom: 25px; font-weight: 300; letter-spacing: 1px; animation: fadeIn 1s ease; }
-        .hero-info { font-size: 0.9rem; margin-bottom: 30px; opacity: 0.9; animation: fadeIn 1.2s ease; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;}
-        .hero-info span { background: rgba(0,0,0,0.4); padding: 6px 18px; border-radius: 20px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1);}
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--primary); margin-bottom: 15px; }
+        .status-badge { background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 14px; border: 1px solid rgba(255,255,255,0.2); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;}
+        .status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--success); box-shadow: 0 0 10px var(--success); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        
+        .quick-info { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;}
+        .info-card { background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 12px; font-size: 13px; backdrop-filter: blur(5px); display: flex; flex-direction: column; align-items: center;}
+        .info-card i { color: var(--primary); font-size: 20px; margin-bottom: 5px;}
 
-        /* Category Tabs */
-        .category-tabs {
-            display: flex; overflow-x: auto; background: #fff; padding: 15px 20px;
-            border-bottom: 1px solid var(--border-color); position: sticky; top: 62px; z-index: 99;
-            white-space: nowrap; scrollbar-width: none; box-shadow: var(--shadow-sm);
-        }
-        .category-tabs::-webkit-scrollbar { display: none; }
-        .tab-btn {
-            background: var(--ashta-cream); border: 1px solid var(--border-color); padding: 10px 22px; margin-right: 12px;
-            border-radius: 25px; font-family: var(--body-font); font-size: 14px; cursor: pointer;
-            color: var(--dark-choc); transition: all 0.3s ease; font-weight: 600;
-        }
-        .tab-btn:hover { border-color: var(--honey-gold); }
-        .tab-btn.active { background: var(--honey-gold); color: #fff; border-color: var(--honey-gold); box-shadow: 0 4px 10px rgba(229, 169, 55, 0.3); }
+        /* --- Floating Search & Filters --- */
+        .search-bar { max-width: 600px; margin: -25px auto 30px; position: relative; z-index: 10; padding: 0 20px;}
+        .search-bar input { width: 100%; padding: 16px 25px; border-radius: 30px; border: none; box-shadow: var(--shadow-md); font-family: var(--font-main); font-size: 15px; background: var(--card-bg); color: var(--text-main); outline: none; border: 1px solid var(--border-color);}
+        
+        .filters-wrapper { display: flex; overflow-x: auto; gap: 12px; padding: 10px 5%; margin-bottom: 30px; scrollbar-width: none; }
+        .filters-wrapper::-webkit-scrollbar { display: none; }
+        .filter-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-main); padding: 10px 20px; border-radius: 25px; font-family: var(--font-main); font-weight: 700; font-size: 14px; cursor: pointer; white-space: nowrap; transition: var(--transition); box-shadow: var(--shadow-sm);}
+        .filter-btn.active, .filter-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
 
-        /* Menu Grid */
-        .menu-container { max-width: 1250px; margin: 40px auto; padding: 0 20px; }
-        .category-section { margin-bottom: 50px; scroll-margin-top: 140px; }
-        .category-title { font-family: var(--heading-font); font-size: 26px; margin-bottom: 25px; border-bottom: 2px solid var(--honey-gold); padding-bottom: 10px; color: var(--dark-choc); display: inline-block;}
-        
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
-        .menu-card {
-            background: #fff; border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden;
-            display: flex; cursor: pointer; transition: all 0.3s ease; box-shadow: var(--shadow-sm);
-        }
-        .menu-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--honey-gold); }
-        .card-info { padding: 15px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .card-title { font-size: 15px; font-weight: 700; margin-bottom: 5px; color: var(--dark-choc); line-height: 1.3;}
-        .card-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}
-        .card-price { font-weight: 700; color: var(--honey-dark); font-size: 16px; }
-        .card-img { width: 125px; height: 125px; object-fit: cover; border-left: 1px solid var(--border-color); }
-        .add-btn { background: var(--ashta-cream); border: 1px solid var(--honey-gold); color: var(--honey-gold); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: 0.3s; }
-        .menu-card:hover .add-btn { background: var(--honey-gold); color: #fff; }
+        /* --- Menu Grid & Cards --- */
+        .menu-container { max-width: 1300px; margin: 0 auto; padding: 0 5%; }
+        .section-title { font-size: 24px; font-weight: 800; margin: 40px 0 20px; color: var(--text-main); position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; bottom: -8px; right: 0; width: 50%; height: 3px; background: var(--primary); border-radius: 5px; }
 
-        /* Modal (Item Details) */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); z-index: 2000; display: none;
-            justify-content: center; align-items: flex-end; backdrop-filter: blur(4px);
-        }
-        .modal-content {
-            background: #fff; width: 100%; max-width: 600px; height: 85vh; border-radius: 25px 25px 0 0;
-            display: flex; flex-direction: column; position: relative; animation: slideUp 0.3s ease-out;
-        }
-        .modal-img { width: 100%; height: 230px; object-fit: cover; border-radius: 25px 25px 0 0; }
-        .close-modal { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.9); color: var(--dark-choc); border: none; width: 35px; height: 35px; border-radius: 50%; font-size: 18px; cursor: pointer; box-shadow: var(--shadow-sm); z-index: 10;}
-        .modal-body { padding: 25px; overflow-y: auto; flex: 1; }
-        .modal-title { font-family: var(--heading-font); font-size: 24px; margin-bottom: 8px; color: var(--dark-choc); }
-        .modal-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 25px; line-height: 1.5; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; position: relative; box-shadow: var(--shadow-sm);}
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--primary); }
         
-        .custom-section { margin-bottom: 25px; }
-        .custom-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; background: var(--ashta-cream); padding: 10px 15px; border-radius: 8px; color: var(--dark-choc); border-left: 3px solid var(--honey-gold);}
+        .card-img-wrapper { position: relative; height: 200px; overflow: hidden; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .card:hover .card-img { transform: scale(1.05); }
+        .card-tags { position: absolute; top: 15px; right: 15px; display: flex; gap: 5px; }
+        .tag { background: rgba(0,0,0,0.7); color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; backdrop-filter: blur(4px);}
+        .tag.hot { background: #EF4444; } .tag.new { background: #3B82F6; } .tag.veg { background: #10B981; }
         
-        /* Variants & Addons */
-        .variant-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px;}
-        .variant-option { border: 1px solid #e0e0e0; padding: 12px 15px; border-radius: 10px; display: flex; justify-content: space-between; cursor: pointer; transition: 0.2s;}
-        .variant-option:hover { border-color: var(--honey-gold); background: var(--ashta-cream); }
-        .variant-option.selected { border-color: var(--honey-gold); background: var(--ashta-cream); box-shadow: 0 0 0 1px var(--honey-gold); }
-        .variant-option input[type="radio"] { accent-color: var(--honey-gold); transform: scale(1.2); margin-right: 10px;}
-        
-        .custom-option { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #f5f5f5; padding-bottom: 10px; cursor: pointer; }
-        .custom-label { font-size: 14px; display: flex; align-items: center; gap: 10px; color: var(--dark-choc); }
-        .custom-price { font-size: 14px; color: var(--honey-dark); font-weight: 600; }
-        input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--honey-gold); cursor: pointer; }
-        
-        textarea.item-note { width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-family: var(--body-font); font-size: 13px; resize: none; height: 70px; transition: 0.3s; }
-        textarea.item-note:focus { outline: none; border-color: var(--honey-gold); }
+        .fav-btn { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.9); width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #ccc; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+        .fav-btn.active { color: #EF4444; }
 
-        .modal-footer {
-            padding: 15px 25px; border-top: 1px solid var(--border-color); background: #fff;
-            display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -5px 15px rgba(0,0,0,0.03);
-        }
-        .qty-controls { display: flex; align-items: center; gap: 15px; }
-        .qty-btn { background: var(--ashta-cream); border: 1px solid var(--border-color); color: var(--dark-choc); width: 35px; height: 35px; border-radius: 50%; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .add-to-cart-btn { background: var(--honey-gold); color: #fff; border: none; padding: 14px 20px; border-radius: 25px; font-weight: 600; font-size: 15px; cursor: pointer; flex: 1; margin-left: 20px; transition: 0.3s; }
-        .add-to-cart-btn:hover { background: var(--honey-dark); }
+        .card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+        .card-title { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+        .card-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}
+        
+        .card-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-size: 13px; color: var(--text-muted); font-weight: 500;}
+        .rating { color: #F59E0B; }
+        
+        .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px dashed var(--border-color); }
+        .price { font-size: 20px; font-weight: 800; color: var(--primary-dark); }
+        .add-btn { background: var(--primary); color: #fff; border: none; padding: 10px 20px; border-radius: 12px; font-family: var(--font-main); font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; gap: 8px; align-items: center;}
+        .add-btn:hover { background: var(--primary-dark); transform: scale(1.05); }
 
-        /* Sticky Cart Bar */
-        .sticky-cart {
-            position: fixed; bottom: 0; left: 0; width: 100%; background: var(--dark-choc); color: #fff;
-            padding: 18px 30px; display: flex; justify-content: space-between; align-items: center;
-            z-index: 998; transform: translateY(100%); transition: transform 0.4s ease; cursor: pointer;
-        }
-        .sticky-cart.visible { transform: translateY(0); }
-        .cart-info { font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 12px;}
-        .cart-badge { background: var(--honey-gold); color: #fff; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+        /* --- Checkout Section (WhatsApp) --- */
+        #checkout-view { display: none; max-width: 900px; margin: 100px auto 40px; padding: 0 5%; animation: fadeUp 0.4s ease;}
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .checkout-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; }
+        .box { background: var(--card-bg); padding: 30px; border-radius: 20px; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); margin-bottom: 25px;}
+        .box-title { font-size: 20px; font-weight: 800; margin-bottom: 20px; border-bottom: 2px solid var(--border-color); padding-bottom: 15px; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+        .form-control { width: 100%; padding: 15px; border: 1px solid var(--border-color); border-radius: 12px; background: var(--bg-color); color: var(--text-main); font-family: var(--font-main); font-size: 14px; outline: none; transition: 0.3s;}
+        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(229, 169, 55, 0.2); }
 
-        /* Checkout Section */
-        #checkout-section { display: none; max-width: 1000px; margin: 100px auto 40px; padding: 0 20px; animation: fadeIn 0.4s ease;}
-        .back-btn { background: none; border: none; font-size: 15px; color: var(--dark-choc); cursor: pointer; margin-bottom: 25px; font-weight: 600; display: flex; align-items: center; gap: 8px;}
-        .checkout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        
-        .checkout-box { background: #fff; padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); margin-bottom: 25px;}
-        .checkout-box h3 { font-family: var(--heading-font); color: var(--dark-choc); font-size: 20px; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;}
-        
-        .cart-item { display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed #e0e0e0; }
-        .cart-item-details h4 { margin: 0 0 5px 0; font-size: 14px; color: var(--dark-choc); }
-        .cart-item-mods { font-size: 12px; color: var(--text-muted); margin: 0; line-height: 1.4; }
-        .cart-item-price { font-weight: 700; color: var(--dark-choc); font-size: 15px;}
-        .total-row { display: flex; justify-content: space-between; font-size: 20px; font-weight: 700; margin-top: 15px; color: var(--honey-dark); }
-        
-        .delivery-time-banner { background: var(--ashta-cream); border: 1px solid var(--honey-gold); padding: 15px; border-radius: 8px; display: flex; align-items: center; gap: 15px; color: var(--dark-choc); font-weight: 600; margin-bottom: 20px;}
-        .delivery-time-banner i { font-size: 24px; color: var(--honey-gold); }
+        .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--border-color); }
+        .qty-control { display: flex; align-items: center; gap: 10px; background: var(--bg-color); padding: 5px 10px; border-radius: 8px;}
+        .qty-btn { background: none; border: none; font-size: 16px; color: var(--primary); cursor: pointer; font-weight: bold;}
+        .del-btn { color: var(--danger); cursor: pointer; background: none; border: none; font-size: 18px; margin-right: 15px;}
 
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; color: var(--dark-choc); }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #dcdcdc; border-radius: 8px; font-family: var(--body-font); font-size: 13px; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 15px; color: var(--text-muted); font-weight: 500;}
+        .summary-total { display: flex; justify-content: space-between; font-size: 22px; font-weight: 800; color: var(--text-main); margin-top: 15px; padding-top: 15px; border-top: 2px dashed var(--border-color); }
         
-        .payment-methods { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-        .payment-option { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; cursor: pointer; transition: 0.2s; }
-        .payment-option.active { border-color: var(--honey-gold); background: var(--ashta-cream); }
-        .payment-option input[type="radio"] { accent-color: var(--honey-gold); width: 16px; height: 16px; }
-        
-        #online-payment-form { display: none; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px solid #eee; margin-top: 10px; }
-        .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .coupon-box { display: flex; gap: 10px; margin-bottom: 20px; }
+        .coupon-btn { background: var(--text-main); color: var(--card-bg); border: none; padding: 0 20px; border-radius: 12px; font-family: var(--font-main); font-weight: 700; cursor: pointer;}
 
-        .confirm-btn { width: 100%; background: var(--success-green); color: #fff; border: none; padding: 15px; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s;}
+        .wa-btn { width: 100%; background: #25D366; color: #fff; border: none; padding: 18px; border-radius: 15px; font-size: 18px; font-weight: 800; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s; font-family: var(--font-main);}
+        .wa-btn:hover { background: #128C7E; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); }
+
+        /* --- Floating Sticky Cart & Contact --- */
+        .sticky-bottom { position: fixed; bottom: 20px; left: 5%; right: 5%; display: flex; justify-content: space-between; align-items: flex-end; z-index: 990; pointer-events: none;}
         
+        .floating-contact { display: flex; flex-direction: column; gap: 15px; pointer-events: auto;}
+        .float-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #fff; font-size: 24px; text-decoration: none; box-shadow: var(--shadow-md); transition: 0.3s; cursor: pointer; border: none;}
+        .float-btn:hover { transform: scale(1.1); }
+        .btn-wa { background: #25D366; } .btn-call { background: var(--primary); }
+        
+        .main-cart-btn { background: var(--text-main); color: var(--card-bg); padding: 15px 30px; border-radius: 30px; font-weight: 800; font-size: 16px; display: flex; align-items: center; gap: 15px; cursor: pointer; pointer-events: auto; box-shadow: var(--shadow-md); transform: translateY(100px); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: none; font-family: var(--font-main);}
+        .main-cart-btn.visible { transform: translateY(0); }
+        .cart-badge { background: var(--primary); color: #fff; padding: 2px 10px; border-radius: 20px; font-size: 14px; }
+
         @media (max-width: 900px) {
             .checkout-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.5rem; }
-            .modal-content { max-width: 100%; height: 90vh; }
-            nav { padding: 10px 20px; }
+            .sticky-bottom { bottom: 15px; left: 15px; right: 15px; flex-direction: row-reverse;}
+            .floating-contact { flex-direction: row; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar with user logo -->
+    <!-- Navbar -->
     <nav>
-        <a class="nav-logo" onclick="showMenu()">
-            <img src="logo-ashta.png" alt="Ashta W 3asal Logo"> 
-            Ashta W 3asal
+        <a class="nav-brand" onclick="goHome()">
+            <img src="logo-ashta.png" alt="Logo">
+            <span>Ashta W 3asal</span>
         </a>
+        <div class="nav-tools">
+            <button class="icon-btn" onclick="toggleDarkMode()"><i class="fas fa-moon" id="theme-icon"></i></button>
+            <button class="icon-btn" onclick="filterByTag('fav')"><i class="fas fa-heart"></i></button>
+        </div>
     </nav>
 
-    <div id="menu-view">
-        <!-- Hero with user logo -->
+    <!-- Main View -->
+    <div id="main-view">
+        <!-- Hero Parallax -->
         <header class="hero">
-            <img src="logo-ashta.png" alt="Ashta W 3asal Logo" class="hero-logo">
-            <h1>Ashta W 3asal</h1>
-            <p>Authentic Taste, Premium Quality.</p>
-            <div class="hero-info">
-                <span><i class="fas fa-map-marker-alt"></i> Miniara Main Road, Near alfa, Halba</span>
-                <span><i class="fas fa-phone"></i> 76335033</span>
+            <div class="status-badge" id="rest-status">
+                <div class="status-dot"></div> مفتوح الآن - نستقبل الطلبات
+            </div>
+            <h1>طعم السعادة في كل قضمة</h1>
+            <p style="font-size: 1.1rem; margin-bottom: 25px; max-width: 600px;">أشهى المأكولات المحضرة بحب وعناية، تصلك ساخنة وطازجة إلى باب بيتك.</p>
+            
+            <div class="quick-info">
+                <div class="info-card"><i class="fas fa-motorcycle"></i> <span>30 - 45 دقيقة</span></div>
+                <div class="info-card"><i class="fas fa-wallet"></i> <span>الحد الأدنى: $5</span></div>
+                <div class="info-card"><i class="fas fa-star"></i> <span>تقييم 4.9/5</span></div>
             </div>
         </header>
 
-        <div id="menu-start"></div>
-        <div class="category-tabs" id="tabs-container"></div>
-        <div class="menu-container" id="menu-container"></div>
+        <!-- Search & Filters -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="ابحث عن وجبتك المفضلة (شاورما، بيتزا...)" onkeyup="searchMenu()">
+        </div>
+
+        <div class="filters-wrapper">
+            <button class="filter-btn active" onclick="filterMenu('all', this)">الكل</button>
+            <button class="filter-btn" onclick="filterByTag('bestseller', this)">🔥 الأكثر مبيعاً</button>
+            <button class="filter-btn" onclick="filterByTag('new', this)">✨ جديد</button>
+            <button class="filter-btn" onclick="filterByTag('spicy', this)">🌶️ حار</button>
+            <button class="filter-btn" onclick="filterByTag('veg', this)">🥬 نباتي</button>
+            <button class="filter-btn" onclick="filterMenu('Shawarma', this)">شاورما</button>
+            <button class="filter-btn" onclick="filterMenu('Pizza', this)">بيتزا</button>
+            <button class="filter-btn" onclick="filterMenu('Burger', this)">برجر</button>
+        </div>
+
+        <!-- Menu Container -->
+        <div class="menu-container" id="menu-grid-container">
+            <!-- Rendered by JS -->
+        </div>
     </div>
 
-    <!-- Checkout View -->
-    <div id="checkout-section">
-        <button class="back-btn" onclick="showMenu()"><i class="fas fa-arrow-left"></i> Back to Menu</button>
+    <!-- Checkout / Cart View (WhatsApp) -->
+    <div id="checkout-view">
+        <button class="filter-btn" onclick="goHome()" style="margin-bottom: 20px;"><i class="fas fa-arrow-right"></i> العودة للمنيو</button>
         
         <div class="checkout-grid">
+            <!-- Form Details -->
             <div>
-                <div class="delivery-time-banner">
-                    <i class="fas fa-motorcycle"></i>
-                    <div>
-                        <div style="font-size: 16px;">Estimated Delivery Time</div>
-                        <div style="color: var(--text-muted); font-size: 13px; font-weight: 400;">30 - 45 Minutes</div>
-                    </div>
-                </div>
-
-                <div class="checkout-box">
-                    <h3>Delivery Details</h3>
+                <div class="box">
+                    <h2 class="box-title"><i class="fas fa-map-marker-alt"></i> تفاصيل التوصيل</h2>
                     <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" placeholder="Your name">
+                        <label>الاسم الكامل *</label>
+                        <input type="text" id="cust-name" class="form-control" placeholder="أدخل اسمك الكريم">
                     </div>
                     <div class="form-group">
-                        <label>Full Address</label>
-                        <textarea placeholder="Street, Building, Floor..." style="height: 60px;"></textarea>
+                        <label>العنوان بالتفصيل *</label>
+                        <input type="text" id="cust-address" class="form-control" placeholder="الشارع، البناء، الطابق">
                     </div>
                     <div class="form-group">
-                        <label>Delivery Note (Optional)</label>
-                        <textarea placeholder="e.g. Ring the bell, leave at door..." style="height: 50px;"></textarea>
+                        <label>ملاحظات إضافية (اختياري)</label>
+                        <input type="text" id="cust-notes" class="form-control" placeholder="بدون ثوم، رن الجرس...">
                     </div>
-                </div>
-
-                <div class="checkout-box">
-                    <h3>Payment Method</h3>
-                    <div class="payment-methods">
-                        <label class="payment-option active" id="lbl-cash">
-                            <input type="radio" name="payment" value="cash" checked onchange="togglePayment()">
-                            <i class="fas fa-money-bill"></i> Cash at Door
-                        </label>
-                        <label class="payment-option" id="lbl-carddoor">
-                            <input type="radio" name="payment" value="card_door" onchange="togglePayment()">
-                            <i class="fas fa-credit-card"></i> Card at Door
-                        </label>
-                        <label class="payment-option" id="lbl-online">
-                            <input type="radio" name="payment" value="online" onchange="togglePayment()">
-                            <i class="fas fa-laptop"></i> Online Payment
-                        </label>
-                    </div>
-
-                    <div id="online-payment-form">
-                        <div class="form-group">
-                            <label>Card Number</label>
-                            <input type="text" placeholder="0000 0000 0000 0000">
-                        </div>
-                        <div class="card-grid">
-                            <div class="form-group">
-                                <label>Expiry</label>
-                                <input type="text" placeholder="MM/YY">
-                            </div>
-                            <div class="form-group">
-                                <label>CVV</label>
-                                <input type="text" placeholder="123">
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="confirm-btn" onclick="placeOrder()">Confirm Order</button>
                 </div>
             </div>
 
-            <div class="checkout-box" style="align-self: start; position: sticky; top: 90px;">
-                <h3>Order Summary</h3>
-                <div id="cart-items-list"></div>
-                <div class="total-row">
-                    <span>Total</span>
-                    <span id="checkout-total">$0.00</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Item Modal -->
-    <div class="modal-overlay" id="item-modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></button>
-            <img src="" alt="" class="modal-img" id="modal-img">
-            <div class="modal-body">
-                <h2 class="modal-title" id="modal-title">Item Name</h2>
-                <p class="modal-desc" id="modal-desc">Description</p>
+            <!-- Cart Summary -->
+            <div class="box" style="align-self: start; position: sticky; top: 90px;">
+                <h2 class="box-title"><i class="fas fa-shopping-basket"></i> سلة الطلبات</h2>
                 
-                <!-- Variants (Sizes) -->
-                <div class="custom-section" id="variants-section" style="display:none;">
-                    <div class="custom-title"><i class="fas fa-list-ul"></i> Size / Options</div>
-                    <div class="variant-grid" id="variants-list"></div>
+                <div id="checkout-items"></div>
+                
+                <div style="margin-top: 20px;">
+                    <div class="coupon-box">
+                        <input type="text" id="coupon-code" class="form-control" placeholder="كوبون الخصم (جرب SALE10)">
+                        <button class="coupon-btn" onclick="applyCoupon()">تطبيق</button>
+                    </div>
+                    
+                    <div class="summary-row"><span>المجموع الفرعي:</span> <span id="sub-total">$0.00</span></div>
+                    <div class="summary-row"><span>رسوم التوصيل:</span> <span id="delivery-fee">$2.00</span></div>
+                    <div class="summary-row"><span>الضريبة (11%):</span> <span id="tax-fee">$0.00</span></div>
+                    <div class="summary-row" id="discount-row" style="display:none; color: var(--success);"><span>خصم الكوبون:</span> <span id="discount-amt">-$0.00</span></div>
+                    
+                    <div class="summary-total"><span>الإجمالي:</span> <span id="grand-total" style="color: var(--primary);">$0.00</span></div>
                 </div>
 
-                <!-- Addons -->
-                <div class="custom-section" id="addons-section" style="display:none;">
-                    <div class="custom-title"><i class="fas fa-plus-circle"></i> Add-ons</div>
-                    <div id="addons-list"></div>
-                </div>
-
-                <!-- Item Note -->
-                <div class="custom-section">
-                    <div class="custom-title"><i class="fas fa-pen"></i> Item Notes</div>
-                    <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">Want to remove a basic ingredient? Write it here.</p>
-                    <textarea id="modal-note" class="item-note" placeholder="e.g. No onions, extra garlic sauce on the side..."></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="qty-controls">
-                    <button class="qty-btn" onclick="updateQty(-1)"><i class="fas fa-minus"></i></button>
-                    <span id="modal-qty" style="font-weight: 700; font-size: 18px; width: 20px; text-align: center;">1</span>
-                    <button class="qty-btn" onclick="updateQty(1)"><i class="fas fa-plus"></i></button>
-                </div>
-                <button class="add-to-cart-btn" onclick="addToCart()">Add • <span id="modal-price-btn">$0.00</span></button>
+                <button class="wa-btn" onclick="sendToWhatsApp()" style="margin-top: 25px;">
+                    <i class="fab fa-whatsapp" style="font-size: 24px;"></i> إرسال الطلب عبر واتساب
+                </button>
+                <p style="text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 10px;">الدفع نقداً عند الاستلام</p>
             </div>
         </div>
     </div>
 
-    <div class="sticky-cart" id="sticky-cart" onclick="showCheckout()">
-        <div class="cart-info">
-            <div class="cart-badge" id="cart-count">0</div>
-            <span id="cart-total">$0.00</span>
+    <!-- Floating Bottom Elements -->
+    <div class="sticky-bottom">
+        <button class="main-cart-btn" id="sticky-cart-btn" onclick="openCheckout()">
+            <span class="cart-badge" id="cart-count">0</span>
+            إكمال الطلب • <span id="cart-total-btn">$0.00</span>
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="floating-contact">
+            <a href="tel:+905376262192" class="float-btn btn-call"><i class="fas fa-phone-alt"></i></a>
+            <a href="https://wa.me/905376262192" target="_blank" class="float-btn btn-wa"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <div class="view-cart-text">Checkout <i class="fas fa-arrow-right"></i></div>
     </div>
 
     <script>
-        // Categories matching the menu perfectly
-        const categories = [
-            "Shawarma", "Rizo", "Plat Shawarma", "Shawarma on Potato", "Pizza", 
-            "Pasta", "Kids Menu", "Platters", "Sandwiches", "Special Sandwiches", 
-            "Starters", "Salads", "Breakfast", "Baguette", "Potato", "Burger"
-        ];
-
-        // Standard Add-ons by Category
-        const shawarmaAddons = [
-            {name: "Extra Toum (Garlic)", price: 0.50}, {name: "Extra Pickles", price: 0.25}, 
-            {name: "Extra Meat/Chicken", price: 1.50}, {name: "Extra Cheese", price: 1.00}
-        ];
-        const pizzaAddons = [
-            {name: "Extra Cheese", price: 1.50}, {name: "Extra Pepperoni", price: 1.50}, 
-            {name: "Extra Veggies", price: 1.00}
-        ];
-        const pastaAddons = [
-            {name: "Extra Parmesan", price: 1.00}, {name: "Extra Chicken", price: 2.00}, 
-            {name: "Extra Mushroom", price: 1.00}
-        ];
-        const burgerAddons = [
-            {name: "Extra Cheese", price: 1.00}, {name: "Extra Patty", price: 2.00}, 
-            {name: "Bacon", price: 1.50}
-        ];
-        const platterAddons = [
-            {name: "Extra Bread", price: 0.50}, {name: "Extra Garlic/Sauce", price: 0.50}
-        ];
-        const saladAddons = [
-            {name: "Extra Dressing", price: 0.50}, {name: "Grilled Chicken", price: 2.00}
-        ];
-
-        // Image Mapping (Accurate and verified Food images)
-        const imgShawarmaWrap = "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=400&q=80";
-        const imgShawarmaMeat = "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=400&q=80";
-        const imgRizoChicken = "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=400&q=80";
-        const imgRizoMeat = "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=400&q=80";
-        const imgPlatterChicken = "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=400&q=80";
-        const imgPlatterMeat = "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80";
-        const imgPotatoDish = "https://images.unsplash.com/photo-1518013431119-2ce69829f0fd?auto=format&fit=crop&w=400&q=80";
-        const imgFries = "https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=400&q=80";
-        const imgPizzaMargherita = "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=400&q=80";
-        const imgPizzaPepperoni = "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=400&q=80";
-        const imgPizzaVeggie = "https://images.unsplash.com/photo-1585238342024-78d387f4a707?auto=format&fit=crop&w=400&q=80";
-        const imgPasta = "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=400&q=80";
-        const imgCrispy = "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=400&q=80";
-        const imgBurger = "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80";
-        const imgSalad = "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80";
-        const imgBreakfast = "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=400&q=80";
-
-        // Full Menu Data
-        const menuData = [
-            // Shawarma
-            { id: 1, cat: "Shawarma", name: "Sandwich Shawarma Djej", price: 3.50, desc: "Classic chicken shawarma wrap.", img: imgShawarmaWrap, addons: shawarmaAddons },
-            { id: 2, cat: "Shawarma", name: "Sandwich Shawarma Lahme", price: 4.00, desc: "Classic meat shawarma wrap.", img: imgShawarmaMeat, addons: shawarmaAddons },
-            { id: 3, cat: "Shawarma", name: "Sand Shaw Djej w Jebne", price: 4.00, desc: "Chicken shawarma with melted cheese.", img: imgShawarmaWrap, addons: shawarmaAddons },
-            { id: 4, cat: "Shawarma", name: "Sand Shaw Lahme w Jebne", price: 4.50, desc: "Meat shawarma with melted cheese.", img: imgShawarmaMeat, addons: shawarmaAddons },
-            
-            // Rizo
-            { id: 5, cat: "Rizo", name: "Rizo Djej", price: 5.00, desc: "Rice + chicken shawarma + sauce.", img: imgRizoChicken, addons: [{name: "Extra Sauce", price: 0.50}, {name: "Extra Shawarma", price: 2.00}] },
-            { id: 6, cat: "Rizo", name: "Rizo Lahme", price: 6.00, desc: "Rice + meat shawarma + sauce.", img: imgRizoMeat, addons: [{name: "Extra Sauce", price: 0.50}, {name: "Extra Shawarma", price: 2.00}] },
-
-            // Plat Shawarma
-            { id: 7, cat: "Plat Shawarma", name: "Plat Shawarma Djej", price: 9.00, desc: "Chicken shawarma platter.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 8, cat: "Plat Shawarma", name: "Plat Shawarma Lahme", price: 10.00, desc: "Meat shawarma platter.", img: imgPlatterMeat, addons: platterAddons },
-            { id: 9, cat: "Plat Shawarma", name: "Plat Shawarma Mix", price: 7.00, desc: "Mix shawarma platter.", img: imgPlatterMeat, addons: platterAddons },
-
-            // Shawarma on Potato
-            { id: 10, cat: "Shawarma on Potato", name: "Shawarma Djej 3al Batata", price: 5.00, desc: "Chicken shawarma served over fries.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 11, cat: "Shawarma on Potato", name: "Shawarma Lahme 3al Batata", price: 6.20, desc: "Meat shawarma served over fries.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
-
-            // Pizza (Grouped by sizes using variants to save space)
-            { id: 12, cat: "Pizza", name: "Vegetarian Pizza", price: 6.00, desc: "Tomato, olive, sweet pepper, mushroom, cheese.", img: imgPizzaVeggie, addons: pizzaAddons, variants: [
-                {name: "Small (S)", price: 6.00, default: true}, {name: "Medium (M)", price: 7.50}, {name: "Large (L)", price: 10.00}, {name: "Family (F)", price: 13.00}
-            ]},
-            { id: 13, cat: "Pizza", name: "Margarita Pizza", price: 5.00, desc: "Sauce, cheese, basil.", img: imgPizzaMargherita, addons: pizzaAddons, variants: [
-                {name: "Small (S)", price: 5.00, default: true}, {name: "Medium (M)", price: 6.50}, {name: "Large (L)", price: 9.00}, {name: "Family (F)", price: 12.00}
-            ]},
-            { id: 14, cat: "Pizza", name: "Lebanese Pizza", price: 6.50, desc: "Cheese, mushroom, janbon, sweet pepper, olive.", img: imgPizzaVeggie, addons: pizzaAddons, variants: [
-                {name: "Small (S)", price: 6.50, default: true}, {name: "Medium (M)", price: 8.50}, {name: "Large (L)", price: 11.00}, {name: "Family (F)", price: 15.00}
-            ]},
-            { id: 15, cat: "Pizza", name: "Four Cheese Pizza", price: 7.00, desc: "Four kinds of cheese.", img: imgPizzaMargherita, addons: pizzaAddons, variants: [
-                {name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 11.50}, {name: "Family (F)", price: 14.50}
-            ]},
-            { id: 16, cat: "Pizza", name: "Turkey Pizza", price: 7.00, desc: "Habash, mozzarella, mushroom, sweet pepper, olive, corn.", img: imgPizzaVeggie, addons: pizzaAddons, variants: [
-                {name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 12.00}, {name: "Family (F)", price: 15.00}
-            ]},
-            { id: 17, cat: "Pizza", name: "Mortadella Pizza", price: 7.00, desc: "Sauce, mortadella, sweet pepper, olive, corn, cheese, mushroom.", img: imgPizzaPepperoni, addons: pizzaAddons, variants: [
-                {name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 12.00}, {name: "Family (F)", price: 15.00}
-            ]},
-            { id: 18, cat: "Pizza", name: "Special Fajita Pizza", price: 8.00, desc: "Chicken, sweet pepper, corn, onion, cheese.", img: imgPizzaMargherita, addons: pizzaAddons, variants: [
-                {name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}
-            ]},
-            { id: 19, cat: "Pizza", name: "Pepperoni Pizza", price: 7.00, desc: "Sauce, pepperoni, cheese.", img: imgPizzaPepperoni, addons: pizzaAddons, variants: [
-                {name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 12.00}, {name: "Family (F)", price: 15.00}
-            ]},
-            { id: 20, cat: "Pizza", name: "Barbecue Pizza", price: 8.00, desc: "BBQ sauce base.", img: imgPizzaVeggie, addons: pizzaAddons, variants: [
-                {name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}
-            ]},
-            { id: 21, cat: "Pizza", name: "Chawarma Pizza", price: 8.00, desc: "Topped with shawarma.", img: "https://images.unsplash.com/photo-1590947132387-155cc02f3212?w=400&q=80", addons: pizzaAddons, variants: [
-                {name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}
-            ]},
-            { id: 22, cat: "Pizza", name: "Meat Lovers Pizza", price: 8.00, desc: "Loaded with meat.", img: imgPizzaPepperoni, addons: pizzaAddons, variants: [
-                {name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}
-            ]},
-
-            // Pasta
-            { id: 23, cat: "Pasta", name: "Chicken Fettuccine Alfredo", price: 10.00, desc: "Cheese, spaghetti, mushroom, chicken.", img: imgPasta, addons: pastaAddons },
-            { id: 24, cat: "Pasta", name: "Fettuccine Alfredo", price: 7.50, desc: "Cheese, spaghetti, mushroom.", img: imgPasta, addons: pastaAddons },
-            { id: 25, cat: "Pasta", name: "Penne Arrabiata", price: 6.00, desc: "Basil, tomato sauce, cheese, olive.", img: imgPasta, addons: pastaAddons },
-            { id: 26, cat: "Pasta", name: "Spaghetti Bolognese", price: 8.50, desc: "Tomato sauce, meat, cheese, corn, mushroom, sweet pepper, onion.", img: imgPasta, addons: pastaAddons },
-            { id: 27, cat: "Pasta", name: "PENNE 4 CHEESE", price: 10.00, desc: "Rich 4 cheese sauce.", img: imgPasta, addons: pastaAddons },
-            { id: 28, cat: "Pasta", name: "Penne Rose", price: 8.00, desc: "Pink sauce pasta.", img: imgPasta, addons: pastaAddons },
-            { id: 29, cat: "Pasta", name: "Shrimp Broccoli", price: 12.50, desc: "Pasta with shrimp and broccoli.", img: imgPasta, addons: pastaAddons },
-            { id: 30, cat: "Pasta", name: "Barbecue Pasta", price: 8.00, desc: "Pasta with BBQ sauce.", img: imgPasta, addons: pastaAddons },
-
-            // Kids Menu
-            { id: 31, cat: "Kids Menu", name: "Crispy", price: 6.00, desc: "2 pcs crispy, fries, salad, Pepsi.", img: imgCrispy, addons: [] },
-            { id: 32, cat: "Kids Menu", name: "Nuggets", price: 6.00, desc: "4 pcs nuggets, fries, salad, Pepsi.", img: imgCrispy, addons: [] },
-            { id: 33, cat: "Kids Menu", name: "Mix Meal", price: 7.50, desc: "2 crispy + 2 nuggets + mini pizza + fries + Pepsi.", img: imgCrispy, addons: [] },
-
-            // Platters
-            { id: 34, cat: "Platters", name: "Crispy Platter", price: 11.00, desc: "Chicken, salad, potato, garlic.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 35, cat: "Platters", name: "Nuggets Platter", price: 9.00, desc: "10 pcs nuggets, fries, salad, sauce cocktail.", img: imgCrispy, addons: platterAddons },
-            { id: 36, cat: "Platters", name: "Grilled Deboned Chicken", price: 12.00, desc: "Grilled chicken, salad, potato, garlic.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 37, cat: "Platters", name: "Chicken Avocat", price: 16.00, desc: "Chicken, avocat, fresh cream, potato, vegetables.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 38, cat: "Platters", name: "Chicken Almond", price: 15.00, desc: "Chicken with almonds, fresh cream, potato.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 39, cat: "Platters", name: "Chicken Mushroom", price: 15.00, desc: "Chicken with mushrooms, potato, fresh cream.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 40, cat: "Platters", name: "Taouk Platter", price: 10.00, desc: "Coleslaw salad, taouk, potato, garlic.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 41, cat: "Platters", name: "Chicken Breast Platter", price: 12.50, desc: "Chicken breast, potato, salad.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 42, cat: "Platters", name: "Chicken Escalope", price: 13.00, desc: "Coleslaw, chicken breast, potato, sauce cocktail.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 43, cat: "Platters", name: "Fajitas Platter", price: 12.00, desc: "Coleslaw salad, fajita, potato.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 44, cat: "Platters", name: "Chicken Curry", price: 15.00, desc: "Rich chicken curry.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 45, cat: "Platters", name: "Cordon Bleu", price: 13.50, desc: "Stuffed chicken breast.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 46, cat: "Platters", name: "Crispy 1kg", price: 22.00, desc: "1 kg of crispy chicken.", img: imgCrispy, addons: platterAddons },
-            { id: 47, cat: "Platters", name: "Taouk 1kg", price: 22.00, desc: "1 kg of Taouk.", img: imgPlatterChicken, addons: platterAddons },
-
-            // Sandwiches
-            { id: 48, cat: "Sandwiches", name: "Batata", price: 2.25, desc: "French fries sandwich.", img: imgFries, addons: [] },
-            { id: 49, cat: "Sandwiches", name: "Taouk", price: 3.80, desc: "Taouk sandwich.", img: imgShawarmaWrap, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 50, cat: "Sandwiches", name: "Fransisco", price: 4.50, desc: "Francisco sandwich.", img: imgShawarmaWrap, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 51, cat: "Sandwiches", name: "Crispy", price: 4.50, desc: "Crispy chicken sandwich.", img: imgShawarmaWrap, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 52, cat: "Sandwiches", name: "Fajita", price: 5.00, desc: "Fajita sandwich.", img: imgShawarmaWrap, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 53, cat: "Sandwiches", name: "Chicken Sub", price: 4.50, desc: "Chicken sub.", img: imgShawarmaWrap, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 54, cat: "Sandwiches", name: "Makanik", price: 4.50, desc: "Makanik sausage sandwich.", img: imgShawarmaMeat, addons: [] },
-            { id: 55, cat: "Sandwiches", name: "Sejok", price: 4.50, desc: "Spicy sejok sandwich.", img: imgShawarmaMeat, addons: [] },
-            { id: 56, cat: "Sandwiches", name: "Hot Dog", price: 4.00, desc: "Hot dog sandwich.", img: imgShawarmaMeat, addons: [] },
-            { id: 57, cat: "Sandwiches", name: "Submarine", price: 4.50, desc: "Classic submarine.", img: imgShawarmaWrap, addons: [] },
-            { id: 58, cat: "Sandwiches", name: "Shrimp", price: 5.00, desc: "Shrimp sandwich.", img: imgShawarmaWrap, addons: [] },
-            { id: 59, cat: "Sandwiches", name: "Crab", price: 4.50, desc: "Crab sandwich.", img: imgShawarmaWrap, addons: [] },
-            { id: 60, cat: "Sandwiches", name: "Samke Hara", price: 5.00, desc: "Spicy fish sandwich.", img: imgShawarmaWrap, addons: [] },
-
-            // Special Sandwiches
-            { id: 61, cat: "Special Sandwiches", name: "Turkey Chawarma Chicken", price: 8.00, desc: "Special Turkey Chawarma Chicken.", img: imgShawarmaWrap, addons: [] },
-            { id: 62, cat: "Special Sandwiches", name: "Turkey Chawarma Beef", price: 8.50, desc: "Special Turkey Chawarma Beef.", img: imgShawarmaMeat, addons: [] },
-            { id: 63, cat: "Special Sandwiches", name: "Honey Mustard Chicken", price: 5.00, desc: "Chicken with honey mustard.", img: imgShawarmaWrap, addons: [] },
-
-            // Starters
-            { id: 64, cat: "Starters", name: "Nachos", price: 5.30, desc: "Crispy nachos.", img: imgPotatoDish, addons: [{name: "Extra Dip", price: 0.50}] },
-            { id: 65, cat: "Starters", name: "Chicken Quesadillas", price: 7.50, desc: "Chicken Quesadillas.", img: imgShawarmaWrap, addons: [] },
-            { id: 66, cat: "Starters", name: "Wavy Potato", price: 2.00, desc: "Wavy potato.", img: imgFries, addons: [] }, // Set price to 2.00 assuming 0.00 was a typo, adjust if needed
-            { id: 67, cat: "Starters", name: "Garlic Bread", price: 4.50, desc: "Garlic bread.", img: imgPotatoDish, addons: [] },
-            { id: 68, cat: "Starters", name: "Chicken Nuggets", price: 6.00, desc: "Chicken nuggets.", img: imgCrispy, addons: [] },
-            { id: 69, cat: "Starters", name: "French Fries Dish", price: 2.75, desc: "French fries.", img: imgFries, addons: [] },
-            { id: 70, cat: "Starters", name: "Grilled Potato", price: 3.00, desc: "Grilled potato.", img: imgPotatoDish, addons: [] },
-            { id: 71, cat: "Starters", name: "Potato Wedges", price: 3.50, desc: "Potato wedges.", img: imgFries, addons: [] },
-            { id: 72, cat: "Starters", name: "Shrimp Pane", price: 6.25, desc: "Shrimp pane.", img: imgCrispy, addons: [] },
-            { id: 73, cat: "Starters", name: "Crab Pane", price: 6.25, desc: "Crab pane.", img: imgCrispy, addons: [] },
-            { id: 74, cat: "Starters", name: "Calamar Pane", price: 5.50, desc: "Calamar pane.", img: imgCrispy, addons: [] },
-            { id: 75, cat: "Starters", name: "Chicken Barbecue Wings", price: 6.00, desc: "BBQ wings.", img: imgCrispy, addons: [] },
-            { id: 76, cat: "Starters", name: "Chicken Honey Mustard Wings", price: 6.00, desc: "New Honey Mustard Wings.", img: imgCrispy, addons: [] },
-            { id: 77, cat: "Starters", name: "Chicken Provencal Wings", price: 6.00, desc: "Provencal wings.", img: imgCrispy, addons: [] },
-            { id: 78, cat: "Starters", name: "Chicken Buffalo Wings", price: 6.00, desc: "Buffalo wings.", img: imgCrispy, addons: [] },
-            { id: 79, cat: "Starters", name: "Sandwich Halloumi", price: 3.00, desc: "Halloumi sandwich.", img: imgShawarmaWrap, addons: [] },
-            { id: 80, cat: "Starters", name: "Curly Fries", price: 6.50, desc: "Curly fries.", img: imgFries, addons: [] },
-            { id: 81, cat: "Starters", name: "Mix Platter", price: 10.00, desc: "Mix platter.", img: imgPlatterChicken, addons: [] },
-            { id: 82, cat: "Starters", name: "Mozzarella Stick", price: 6.00, desc: "Mozzarella sticks.", img: imgCrispy, addons: [] },
-            { id: 83, cat: "Starters", name: "Fish Finger", price: 5.00, desc: "Fish fingers.", img: imgCrispy, addons: [] },
-
-            // Salads
-            { id: 84, cat: "Salads", name: "Ceasar Salad", price: 4.50, desc: "Lettuce, toast, cheese.", img: imgSalad, addons: saladAddons },
-            { id: 85, cat: "Salads", name: "Chicken Ceasar Salad", price: 6.50, desc: "Lettuce, chicken, toast, cheese.", img: imgSalad, addons: saladAddons },
-            { id: 86, cat: "Salads", name: "Crab Salad", price: 6.50, desc: "Lettuce, avocat, crab, corn, cherry tomato.", img: imgSalad, addons: saladAddons },
-            { id: 87, cat: "Salads", name: "Fattouch", price: 5.00, desc: "Fattouch salad.", img: imgSalad, addons: saladAddons },
-            { id: 88, cat: "Salads", name: "Tuna Salad", price: 6.00, desc: "Lettuce, tuna, pasta, pickles cucumber, corn, cherry tomato, olive.", img: imgSalad, addons: saladAddons },
-            { id: 89, cat: "Salads", name: "Rocca Salad", price: 4.00, desc: "Rocca, mushroom, nut, cherry tomato, balsamic vinegar.", img: imgSalad, addons: saladAddons },
-            { id: 90, cat: "Salads", name: "Greek Salad", price: 5.50, desc: "Lettuce, tomato, cucumber, sweet pepper, feta cheese, olive, onion.", img: imgSalad, addons: saladAddons },
-            { id: 91, cat: "Salads", name: "Season Salad", price: 3.00, desc: "Lettuce, tomato, cucumber.", img: imgSalad, addons: saladAddons },
-            { id: 92, cat: "Salads", name: "Panache Salad", price: 8.00, desc: "Panache salad.", img: imgSalad, addons: saladAddons },
-
-            // Breakfast
-            { id: 93, cat: "Breakfast", name: "Labneh Dish", price: 3.50, desc: "Labneh dish.", img: imgBreakfast, addons: [{name: "Extra Bread", price: 0.50}] },
-            { id: 94, cat: "Breakfast", name: "Vegetables Dish", price: 1.50, desc: "Vegetables dish.", img: imgBreakfast, addons: [] },
-
-            // Baguette
-            { id: 95, cat: "Baguette", name: "Labneh + Vegetables", price: 3.50, desc: "Baguette labneh and veg.", img: imgBreakfast, addons: [{name: "Toasted", price: 0.00}] },
-            { id: 96, cat: "Baguette", name: "Labneh + Mortadella", price: 4.00, desc: "Baguette labneh and mortadella.", img: imgBreakfast, addons: [{name: "Toasted", price: 0.00}] },
-            { id: 97, cat: "Baguette", name: "Halloum", price: 3.00, desc: "Baguette halloum.", img: imgBreakfast, addons: [{name: "Toasted", price: 0.00}] },
-            { id: 98, cat: "Baguette", name: "Banana & Chocolate", price: 3.00, desc: "Sweet baguette.", img: imgBreakfast, addons: [{name: "Toasted", price: 0.00}] },
-            { id: 99, cat: "Baguette", name: "Jebne w Habash", price: 3.25, desc: "Baguette jebne and habash.", img: imgBreakfast, addons: [{name: "Toasted", price: 0.00}] },
-            { id: 100, cat: "Baguette", name: "Ach2awan w Habach", price: 4.00, desc: "Baguette achkawan and habach.", img: imgBreakfast, addons: [{name: "Toasted", price: 0.00}] },
-
-            // Potato (Meals)
-            { id: 101, cat: "Potato", name: "Potato + Vegetables", price: 7.50, desc: "Baked potato with veg.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 102, cat: "Potato", name: "Potato + Habash", price: 8.00, desc: "Baked potato with habash.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 103, cat: "Potato", name: "Potato + Janbon", price: 8.00, desc: "Baked potato with janbon.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 104, cat: "Potato", name: "Potato + Hotdog", price: 8.00, desc: "Baked potato with hotdog.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 105, cat: "Potato", name: "Potato + Mortadella", price: 8.00, desc: "Baked potato with mortadella.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
-
-            // Burger
-            { id: 106, cat: "Burger", name: "Cheese Burger", price: 8.00, desc: "Cheese burger.", img: imgBurger, addons: burgerAddons },
-            { id: 107, cat: "Burger", name: "Cheesy Burger", price: 8.50, desc: "Cheesy burger.", img: imgBurger, addons: burgerAddons },
-            { id: 108, cat: "Burger", name: "Hamburger", price: 7.00, desc: "Classic hamburger.", img: imgBurger, addons: burgerAddons },
-            { id: 109, cat: "Burger", name: "Chicken Burger", price: 6.50, desc: "Chicken burger.", img: imgBurger, addons: burgerAddons },
-            { id: 110, cat: "Burger", name: "Cheese & Chicken Burger", price: 7.00, desc: "Cheese and chicken.", img: imgBurger, addons: burgerAddons },
-            { id: 111, cat: "Burger", name: "Fish Burger", price: 7.00, desc: "Fish burger.", img: imgBurger, addons: [{name: "Extra Tartar Sauce", price: 0.50}] },
-            { id: 112, cat: "Burger", name: "Shawarma Burger", price: 7.50, desc: "Shawarma burger.", img: imgBurger, addons: burgerAddons },
-            { id: 113, cat: "Burger", name: "Crispy Burger", price: 7.00, desc: "Crispy burger.", img: imgBurger, addons: burgerAddons }
-        ];
-
-        // System Variables
+        // --- 1. System Variables & Smart Data ---
         let cart = [];
-        let currentItem = null;
-        let currentQty = 1;
-        let currentVariantPrice = 0;
-        let currentVariantName = "";
-        let selectedAddons = [];
+        let favorites = JSON.parse(localStorage.getItem('ashta_favs')) || [];
+        let discountPercent = 0;
+        const taxRate = 0.11; // 11% Tax
+        const deliveryCost = 2.00;
+        const WA_NUMBER = "905376262192";
 
-        // Initialization
+        // Highly optimized data structure with tags and ratings
+        const menuData = [
+            { id: 1, c: "Shawarma", n: "شاورما دجاج بخبز الصاج", p: 3.50, d: "شاورما دجاج متبلة بالبهارات الخاصة مع كريم الثوم والمخلل.", i: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=600&q=80", tg: ['bestseller'], r: 4.9, t: "15 د" },
+            { id: 2, c: "Shawarma", n: "شاورما لحم اكسترا", p: 4.50, d: "شاورما لحم عجل طازج مع البصل، البقدونس، الطماطم وصلصة الطرطور.", i: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", tg: ['bestseller', 'new'], r: 4.8, t: "15 د" },
+            { id: 3, c: "Shawarma", n: "شاورما دجاج سبايسي", p: 3.75, d: "دجاج مبهر بخلطة حارة مع صوص الجبنة السايحة.", i: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=600&q=80", tg: ['spicy'], r: 4.7, t: "15 د" },
+            
+            { id: 4, c: "Pizza", n: "بيتزا مارغريتا", p: 6.00, d: "عجينة إيطالية هشة، صلصة الطماطم الطازجة، وجبنة الموزاريلا والريحان.", i: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80", tg: ['veg'], r: 4.6, t: "20 د" },
+            { id: 5, c: "Pizza", n: "بيتزا بيبروني", p: 8.00, d: "طبقة غنية من البيبروني البقري وجبنة الموزاريلا الذائبة.", i: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=600&q=80", tg: ['bestseller'], r: 4.9, t: "25 د" },
+            { id: 6, c: "Pizza", n: "بيتزا الخضار", p: 7.00, d: "مشروم، فلفل حلو، زيتون، بصل، وذرة مع الجبنة.", i: "https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=600&q=80", tg: ['veg'], r: 4.5, t: "20 د" },
+            
+            { id: 7, c: "Burger", n: "كلاسيك تشيز برجر", p: 7.50, d: "شريحة لحم بقر صافي، جبنة شيدر، خس، طماطم، وصوص البرجر الخاص.", i: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80", tg: ['bestseller'], r: 4.8, t: "20 د" },
+            { id: 8, c: "Burger", n: "كريسبي تشيكن حار", p: 7.00, d: "صدر دجاج مقرمش حار، خس، صوص المايونيز الحار.", i: "https://images.unsplash.com/photo-1562967914-608f82629710?w=600&q=80", tg: ['spicy', 'new'], r: 4.9, t: "20 د" },
+            
+            { id: 9, c: "Pasta", n: "فيتوتشيني ألفريدو", p: 8.50, d: "باستا مع صلصة الكريمة الغنية، فطر، وقطع الدجاج وجبنة البارميزان.", i: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=600&q=80", tg: [], r: 4.7, t: "25 د" },
+            { id: 10, c: "Salads", n: "سلطة سيزر دجاج", p: 6.50, d: "خس رومين، دجاج مشوي، خبز محمص، وصوص السيزر.", i: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80", tg: [], r: 4.8, t: "10 د" },
+            
+            { id: 11, c: "Starters", n: "بطاطا مقلية (فرايز)", p: 3.00, d: "بطاطا مقلية ذهبية ومقرمشة.", i: "https://images.unsplash.com/photo-1576107232684-1279f390859f?w=600&q=80", tg: ['veg'], r: 4.5, t: "10 د" },
+            { id: 12, c: "Starters", n: "أصابع الموزاريلا", p: 5.50, d: "5 قطع من أصابع الجبنة المقلية مع صوص المارينارا.", i: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&q=80", tg: ['veg', 'new'], r: 4.6, t: "12 د" }
+        ];
+
+        // --- 2. Core Functions (Render & Filters) ---
         window.onload = () => {
-            renderTabs();
-            renderMenu();
+            checkRestaurantStatus();
+            renderMenu('all');
+            updateCartUI();
         };
 
-        function getSafeId(name) { return name.replace(/\s+/g, '-').toLowerCase(); }
-
-        function renderTabs() {
-            const tabsContainer = document.getElementById('tabs-container');
-            let html = '';
-            categories.forEach((cat, index) => {
-                html += `<button class="tab-btn ${index === 0 ? 'active' : ''}" onclick="scrollToCategory('${cat}', this)">${cat}</button>`;
-            });
-            tabsContainer.innerHTML = html;
-        }
-
-        function scrollToCategory(cat, btn) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const target = document.getElementById(`cat-${getSafeId(cat)}`);
-            if(target) {
-                const y = target.getBoundingClientRect().top + window.scrollY - 130;
-                window.scrollTo({top: y, behavior: 'smooth'});
+        function renderMenu(filter, btnElement) {
+            if(btnElement) {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btnElement.classList.add('active');
             }
-        }
 
-        function renderMenu() {
-            const container = document.getElementById('menu-container');
-            let html = '';
-            categories.forEach(cat => {
-                const items = menuData.filter(i => i.cat === cat);
+            const container = document.getElementById('menu-grid-container');
+            container.innerHTML = '';
+            
+            let categoriesToRender = filter === 'all' ? [...new Set(menuData.map(i => i.c))] : [filter];
+            
+            categoriesToRender.forEach(cat => {
+                let items = menuData.filter(i => i.c === cat);
                 if(items.length > 0) {
-                    html += `<div class="category-section" id="cat-${getSafeId(cat)}">
-                                <h2 class="category-title">${cat}</h2>
-                                <div class="menu-grid">`;
-                    items.forEach(item => {
-                        let displayPrice = item.variants ? `From $${item.variants[0].price.toFixed(2)}` : `$${item.price.toFixed(2)}`;
-                        html += `
-                            <div class="menu-card" onclick="openModal(${item.id})">
-                                <div class="card-info">
-                                    <div>
-                                        <div class="card-title">${item.name}</div>
-                                        <div class="card-desc">${item.desc}</div>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                                        <span class="card-price">${displayPrice}</span>
-                                        <div class="add-btn"><i class="fas fa-plus"></i></div>
-                                    </div>
-                                </div>
-                                <img src="${item.img}" class="card-img" alt="${item.name}">
-                            </div>`;
-                    });
-                    html += `</div></div>`;
+                    let html = `<h2 class="section-title">${getArabicCat(cat)}</h2><div class="grid">`;
+                    items.forEach(item => html += createCardHTML(item));
+                    html += `</div>`;
+                    container.innerHTML += html;
                 }
             });
-            container.innerHTML = html;
         }
 
-        function openModal(id) {
-            currentItem = menuData.find(i => i.id === id);
-            if (!currentItem) return;
+        function filterByTag(tag, btnElement) {
+            if(btnElement) {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btnElement.classList.add('active');
+            }
+            const container = document.getElementById('menu-grid-container');
+            let items = tag === 'fav' ? menuData.filter(i => favorites.includes(i.id)) : menuData.filter(i => i.tg && i.tg.includes(tag));
             
-            currentQty = 1;
-            selectedAddons = [];
-            document.getElementById('modal-note').value = '';
+            if(items.length > 0) {
+                let title = tag === 'fav' ? '❤️ مفضلاتي' : (tag==='bestseller' ? '🔥 الأكثر مبيعاً' : '✨ نتائج الفلتر');
+                let html = `<h2 class="section-title">${title}</h2><div class="grid">`;
+                items.forEach(item => html += createCardHTML(item));
+                container.innerHTML = html + `</div>`;
+            } else {
+                container.innerHTML = `<div style="text-align:center; padding: 50px; color: var(--text-muted);">لا توجد عناصر مطابقة حالياً.</div>`;
+            }
+        }
+
+        function searchMenu() {
+            let q = document.getElementById('searchInput').value.toLowerCase();
+            const container = document.getElementById('menu-grid-container');
+            let items = menuData.filter(i => i.n.toLowerCase().includes(q) || i.d.toLowerCase().includes(q));
             
-            document.getElementById('modal-img').src = currentItem.img;
-            document.getElementById('modal-title').innerText = currentItem.name;
-            document.getElementById('modal-desc').innerText = currentItem.desc;
+            if(items.length > 0) {
+                let html = `<h2 class="section-title">🔍 نتائج البحث</h2><div class="grid">`;
+                items.forEach(item => html += createCardHTML(item));
+                container.innerHTML = html + `</div>`;
+            } else {
+                container.innerHTML = `<div style="text-align:center; padding: 50px; color: var(--text-muted);">عذراً، لم نجد "${q}"</div>`;
+            }
+        }
 
-            // Handle Variants (e.g. Pizza Sizes)
-            const varSec = document.getElementById('variants-section');
-            const varList = document.getElementById('variants-list');
-            if (currentItem.variants) {
-                varSec.style.display = 'block';
-                let defaultVar = currentItem.variants.find(v => v.default) || currentItem.variants[0];
-                currentVariantPrice = defaultVar.price;
-                currentVariantName = defaultVar.name;
+        function createCardHTML(item) {
+            const isFav = favorites.includes(item.id) ? 'active' : '';
+            let tagsHtml = item.tg ? item.tg.map(t => {
+                if(t==='bestseller') return `<span class="tag hot">🔥 مبيعاً</span>`;
+                if(t==='new') return `<span class="tag new">جديد</span>`;
+                if(t==='spicy') return `<span class="tag hot">🌶️ حار</span>`;
+                if(t==='veg') return `<span class="tag veg">🥬 نباتي</span>`;
+                return '';
+            }).join('') : '';
 
-                varList.innerHTML = currentItem.variants.map((v, idx) => `
-                    <label class="variant-option ${v.name === currentVariantName ? 'selected' : ''}" onclick="selectVariant(this, ${v.price}, '${v.name}')">
-                        <div style="display:flex; align-items:center;">
-                            <input type="radio" name="variant" value="${v.price}" ${v.name === currentVariantName ? 'checked' : ''}>
-                            <span style="font-weight:600; font-size:14px;">${v.name}</span>
+            return `
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="${item.i}" class="card-img" alt="${item.n}">
+                        <div class="card-tags">${tagsHtml}</div>
+                        <div class="fav-btn ${isFav}" onclick="toggleFav(${item.id}, this)"><i class="fas fa-heart"></i></div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">${item.n}</h3>
+                        <p class="card-desc">${item.d}</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-star rating"></i> ${item.r}</span>
+                            <span><i class="far fa-clock"></i> ${item.t}</span>
                         </div>
-                        <span style="color:var(--honey-dark); font-weight:700;">$${v.price.toFixed(2)}</span>
-                    </label>
-                `).join('');
-            } else {
-                varSec.style.display = 'none';
-                currentVariantPrice = currentItem.price;
-                currentVariantName = "";
-            }
-
-            // Handle Addons
-            const addSec = document.getElementById('addons-section');
-            const addList = document.getElementById('addons-list');
-            if (currentItem.addons && currentItem.addons.length > 0) {
-                addSec.style.display = 'block';
-                addList.innerHTML = currentItem.addons.map((add, idx) => `
-                    <label class="custom-option">
-                        <div class="custom-label">
-                            <input type="checkbox" value="${add.price}" onchange="updateModalPrice(this, '${add.name}')"> ${add.name}
+                        <div class="card-footer">
+                            <span class="price">$${item.p.toFixed(2)}</span>
+                            <button class="add-btn" onclick="addToCart(${item.id})"><i class="fas fa-plus"></i> إضافة</button>
                         </div>
-                        <span class="custom-price">+$${add.price.toFixed(2)}</span>
-                    </label>
-                `).join('');
+                    </div>
+                </div>`;
+        }
+
+        function getArabicCat(engCat) {
+            const cats = { "Shawarma": "شاورما", "Pizza": "بيتزا", "Burger": "برجر", "Pasta": "باستا", "Salads": "سلطات", "Starters": "مقبلات" };
+            return cats[engCat] || engCat;
+        }
+
+        // --- 3. Interactive Features ---
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.getElementById('theme-icon');
+            icon.className = document.body.classList.contains('dark-mode') ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        function toggleFav(id, btn) {
+            if(favorites.includes(id)) {
+                favorites = favorites.filter(f => f !== id);
+                btn.classList.remove('active');
             } else {
-                addSec.style.display = 'none';
+                favorites.push(id);
+                btn.classList.add('active');
             }
-
-            updateModalPriceUI();
-            document.getElementById('item-modal').style.display = 'flex';
-            document.body.style.overflow = 'hidden'; 
+            localStorage.setItem('ashta_favs', JSON.stringify(favorites));
         }
 
-        function selectVariant(labelElement, price, name) {
-            document.querySelectorAll('.variant-option').forEach(el => el.classList.remove('selected'));
-            labelElement.classList.add('selected');
-            labelElement.querySelector('input').checked = true;
-            currentVariantPrice = price;
-            currentVariantName = name;
-            updateModalPriceUI();
-        }
-
-        function closeModal() {
-            document.getElementById('item-modal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        function updateQty(change) {
-            if(currentQty + change > 0) {
-                currentQty += change;
-                updateModalPriceUI();
-            }
-        }
-
-        function updateModalPrice(checkbox, name) {
-            if(checkbox.checked) {
-                selectedAddons.push({name: name, price: parseFloat(checkbox.value)});
+        function checkRestaurantStatus() {
+            const hour = new Date().getHours();
+            const badge = document.getElementById('rest-status');
+            // Assume open from 10 AM to 11 PM (23:00)
+            if(hour >= 10 && hour < 23) {
+                badge.innerHTML = `<div class="status-dot"></div> مفتوح الآن - يغلق 11:00 م`;
             } else {
-                selectedAddons = selectedAddons.filter(a => a.name !== name);
+                badge.innerHTML = `<div class="status-dot" style="background:var(--danger); box-shadow:none;"></div> مغلق الآن - نفتح 10:00 ص`;
+                badge.style.color = "var(--danger)";
             }
-            updateModalPriceUI();
         }
 
-        function updateModalPriceUI() {
-            document.getElementById('modal-qty').innerText = currentQty;
-            let addonsTotal = selectedAddons.reduce((sum, item) => sum + item.price, 0);
-            let total = (currentVariantPrice + addonsTotal) * currentQty;
-            document.getElementById('modal-price-btn').innerText = `$${total.toFixed(2)}`;
-        }
-
-        function addToCart() {
-            if (!currentItem) return;
-
-            let itemNote = document.getElementById('modal-note').value.trim();
-            let addonsTotal = selectedAddons.reduce((sum, item) => sum + item.price, 0);
-            let unitPrice = currentVariantPrice + addonsTotal;
-            let displayName = currentVariantName ? `${currentItem.name} (${currentVariantName})` : currentItem.name;
+        // --- 4. Cart & Checkout System ---
+        function addToCart(id) {
+            let item = menuData.find(i => i.id === id);
+            let exist = cart.find(c => c.id === id);
+            if(exist) { exist.qty++; }
+            else { cart.push({ ...item, qty: 1 }); }
+            updateCartUI();
             
-            cart.push({
-                id: Date.now(),
-                name: displayName,
-                qty: currentQty,
-                unitPrice: unitPrice,
-                totalPrice: unitPrice * currentQty,
-                mods: selectedAddons.map(a => `+ ${a.name}`).join(', '),
-                note: itemNote
-            });
-
-            closeModal();
-            updateCartBar();
+            // Animation for sticky button
+            const btn = document.getElementById('sticky-cart-btn');
+            btn.style.transform = 'scale(1.1)';
+            setTimeout(() => btn.style.transform = 'scale(1)', 200);
         }
 
-        function updateCartBar() {
-            const bar = document.getElementById('sticky-cart');
+        function updateCartQty(id, change) {
+            let item = cart.find(c => c.id === id);
+            if(item) {
+                item.qty += change;
+                if(item.qty <= 0) { cart = cart.filter(c => c.id !== id); }
+            }
+            updateCartUI();
+            renderCheckoutItems(); // Update view if open
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(c => c.id !== id);
+            updateCartUI();
+            renderCheckoutItems();
+        }
+
+        function updateCartUI() {
+            const btn = document.getElementById('sticky-cart-btn');
             if(cart.length > 0) {
-                let totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-                let totalPrice = cart.reduce((sum, item) => sum + item.totalPrice, 0);
-                
+                let totalItems = cart.reduce((s, i) => s + i.qty, 0);
+                let totalPrice = cart.reduce((s, i) => s + (i.p * i.qty), 0);
                 document.getElementById('cart-count').innerText = totalItems;
-                document.getElementById('cart-total').innerText = `$${totalPrice.toFixed(2)}`;
-                bar.classList.add('visible');
+                document.getElementById('cart-total-btn').innerText = `$${totalPrice.toFixed(2)}`;
+                btn.classList.add('visible');
             } else {
-                bar.classList.remove('visible');
+                btn.classList.remove('visible');
+                if(document.getElementById('checkout-view').style.display === 'block') goHome();
             }
         }
 
-        function showCheckout() {
-            document.getElementById('menu-view').style.display = 'none';
-            document.getElementById('sticky-cart').classList.remove('visible');
-            document.getElementById('checkout-section').style.display = 'block';
-            window.scrollTo(0,0);
-            renderCheckoutList();
+        function applyCoupon() {
+            const code = document.getElementById('coupon-code').value.toUpperCase();
+            if(code === 'SALE10') {
+                discountPercent = 0.10; // 10% discount
+                alert('تم تطبيق كود الخصم بنجاح! 🎊');
+                renderCheckoutItems();
+            } else {
+                alert('كود الخصم غير صحيح أو منتهي الصلاحية.');
+            }
         }
 
-        function showMenu() {
-            document.getElementById('checkout-section').style.display = 'none';
-            document.getElementById('menu-view').style.display = 'block';
-            updateCartBar();
+        // --- 5. Navigation & WhatsApp Integration ---
+        function openCheckout() {
+            document.getElementById('main-view').style.display = 'none';
+            document.getElementById('checkout-view').style.display = 'block';
+            document.getElementById('sticky-cart-btn').classList.remove('visible');
+            window.scrollTo(0,0);
+            renderCheckoutItems();
+        }
+
+        function goHome() {
+            document.getElementById('checkout-view').style.display = 'none';
+            document.getElementById('main-view').style.display = 'block';
+            updateCartUI();
             window.scrollTo(0,0);
         }
 
-        function renderCheckoutList() {
-            const list = document.getElementById('cart-items-list');
+        function renderCheckoutItems() {
+            const container = document.getElementById('checkout-items');
             let html = '';
-            let grandTotal = 0;
+            let subTotal = 0;
+
+            cart.forEach(item => {
+                let itemTotal = item.p * item.qty;
+                subTotal += itemTotal;
+                html += `
+                    <div class="cart-item-row">
+                        <div>
+                            <div style="font-weight: 700; margin-bottom: 5px;">${item.n}</div>
+                            <div style="color: var(--primary-dark); font-weight: bold;">$${item.p.toFixed(2)}</div>
+                        </div>
+                        <div style="display:flex; align-items:center;">
+                            <button class="del-btn" onclick="removeFromCart(${item.id})"><i class="fas fa-trash-alt"></i></button>
+                            <div class="qty-control">
+                                <button class="qty-btn" onclick="updateCartQty(${item.id}, 1)">+</button>
+                                <span style="font-weight:bold; width:20px; text-align:center;">${item.qty}</span>
+                                <button class="qty-btn" onclick="updateCartQty(${item.id}, -1)">-</button>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+            container.innerHTML = html;
+
+            let discountAmt = subTotal * discountPercent;
+            let taxAmt = (subTotal - discountAmt) * taxRate;
+            let grandTotal = (subTotal - discountAmt) + taxAmt + deliveryCost;
+
+            document.getElementById('sub-total').innerText = `$${subTotal.toFixed(2)}`;
+            document.getElementById('tax-fee').innerText = `$${taxAmt.toFixed(2)}`;
+            
+            if(discountPercent > 0) {
+                document.getElementById('discount-row').style.display = 'flex';
+                document.getElementById('discount-amt').innerText = `-$${discountAmt.toFixed(2)}`;
+            }
+            
+            document.getElementById('grand-total').innerText = `$${grandTotal.toFixed(2)}`;
+        }
+
+        function sendToWhatsApp() {
+            if(cart.length === 0) return;
+            
+            const name = document.getElementById('cust-name').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+            const notes = document.getElementById('cust-notes').value.trim();
+
+            if(!name || !address) {
+                alert("يرجى إدخال الاسم والعنوان لإتمام الطلب!");
+                return;
+            }
+
+            // Calculate Math for Invoice
+            let subTotal = cart.reduce((s, i) => s + (i.p * i.qty), 0);
+            let discountAmt = subTotal * discountPercent;
+            let taxAmt = (subTotal - discountAmt) * taxRate;
+            let grandTotal = (subTotal - discountAmt) + taxAmt + deliveryCost;
+
+            // Format WhatsApp Message
+            let msg = `*طلب جديد! (Ashta W 3asal)* 🍽️\n`;
+            msg += `------------------------\n`;
+            msg += `👤 *الاسم:* ${name}\n`;
+            msg += `📍 *العنوان:* ${address}\n`;
+            if(notes) msg += `📝 *ملاحظات:* ${notes}\n`;
+            msg += `------------------------\n`;
+            msg += `*الطلبات:*\n`;
             
             cart.forEach(item => {
-                grandTotal += item.totalPrice;
-                html += `
-                    <div class="cart-item">
-                        <div style="flex: 1; padding-right: 15px;">
-                            <h4 class="cart-item-details">${item.qty}x ${item.name}</h4>
-                            ${item.mods ? `<p class="cart-item-mods">${item.mods}</p>` : ''}
-                            ${item.note ? `<p style="font-size: 12px; color: #d9534f; margin-top: 5px; font-style: italic;">Note: ${item.note}</p>` : ''}
-                        </div>
-                        <div class="cart-item-price">$${item.totalPrice.toFixed(2)}</div>
-                    </div>
-                `;
+                msg += `▪️ ${item.qty}x ${item.n} ($${(item.p * item.qty).toFixed(2)})\n`;
             });
-            list.innerHTML = html;
-            document.getElementById('checkout-total').innerText = `$${grandTotal.toFixed(2)}`;
-        }
+            
+            msg += `------------------------\n`;
+            msg += `المجموع الفرعي: $${subTotal.toFixed(2)}\n`;
+            msg += `رسوم التوصيل: $${deliveryCost.toFixed(2)}\n`;
+            msg += `الضريبة (11%): $${taxAmt.toFixed(2)}\n`;
+            if(discountPercent > 0) msg += `الخصم: -$${discountAmt.toFixed(2)}\n`;
+            msg += `*الإجمالي المطلوب: $${grandTotal.toFixed(2)}*\n`;
+            msg += `------------------------\n`;
+            msg += `(الدفع نقداً عند الاستلام 💵)`;
 
-        function togglePayment() {
-            document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('active'));
-            const selectedRadio = document.querySelector('input[name="payment"]:checked');
-            selectedRadio.closest('.payment-option').classList.add('active');
-            
-            const isOnline = selectedRadio.value === 'online';
-            document.getElementById('online-payment-form').style.display = isOnline ? 'block' : 'none';
-        }
-
-        function placeOrder() {
-            if(cart.length === 0) return;
-            const isOnline = document.querySelector('input[name="payment"]:checked').value === 'online';
-            
-            if(isOnline) {
-                alert("Processing Payment... Order Confirmed! 🍯 Estimated Delivery: 30-45 mins.");
-            } else {
-                alert("Order Confirmed! 🍯 Your food will arrive in 30-45 mins.");
-            }
-            
-            cart = [];
-            showMenu();
+            // Open WhatsApp
+            const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+            window.open(waUrl, '_blank');
         }
     </script>
 </body>
