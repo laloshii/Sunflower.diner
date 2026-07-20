@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ashta W 3asal - Premium Delivery</title>
     
-    <!-- Fonts -->
+    <!-- الخطوط المستخدمة -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome for Icons -->
+    <!-- مكتبة الأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* =========================================
-           Variables & Theming
+           المتغيرات والألوان (الوضع العادي والليلي)
            ========================================= */
         :root {
             --primary: #E5A937;
@@ -45,9 +45,6 @@
         [dir="rtl"] { font-family: var(--font-ar); }
         [dir="ltr"] { font-family: var(--font-en); }
 
-        /* =========================================
-           General Reset
-           ========================================= */
         * { 
             box-sizing: border-box; 
             margin: 0; 
@@ -64,13 +61,13 @@
             padding-bottom: 100px; 
         }
 
-        /* Custom Scrollbar */
+        /* شريط التمرير */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
         /* =========================================
-           Navbar
+           شريط التنقل العلوي (Navbar)
            ========================================= */
         nav {
             position: fixed; 
@@ -80,7 +77,7 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            padding: 15px 5%;
+            padding: 10px 5%;
             z-index: 1000; 
             box-shadow: var(--shadow-sm); 
             backdrop-filter: blur(10px);
@@ -99,6 +96,7 @@
             text-decoration: none;
         }
 
+        /* الشعار هنا كملف منفصل */
         .nav-logo img { 
             width: 45px; 
             height: 45px; 
@@ -106,6 +104,7 @@
             border-radius: 50%; 
             border: 2px solid var(--primary); 
             background: #fff;
+            padding: 2px;
         }
 
         .nav-actions { display: flex; gap: 15px; align-items: center; }
@@ -128,13 +127,13 @@
         .lang-toggle { font-weight: 700; font-size: 14px; }
 
         /* =========================================
-           Hero Section (Parallax)
+           الواجهة الرئيسية (Hero Section)
            ========================================= */
         .hero {
-            height: 60vh; 
-            margin-top: 75px; 
+            height: 65vh; 
+            margin-top: 65px; 
             position: relative;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed; 
             background-size: cover; 
             background-position: center;
@@ -146,9 +145,22 @@
             text-align: center;
         }
 
+        /* شعار كبير في الواجهة */
+        .hero-logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            background: #fff;
+            padding: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+
         .hero-title { 
             font-family: var(--font-head); 
-            font-size: 4rem; 
+            font-size: 3.5rem; 
             color: var(--primary); 
             margin-bottom: 10px; 
             text-shadow: 2px 2px 10px rgba(0,0,0,0.5); 
@@ -163,7 +175,7 @@
         
         .info-bar { 
             display: flex; 
-            gap: 20px; 
+            gap: 15px; 
             flex-wrap: wrap; 
             justify-content: center; 
             margin-bottom: 25px; 
@@ -171,7 +183,7 @@
 
         .info-card { 
             background: rgba(255,255,255,0.15); 
-            backdrop-filter: blur(10px); 
+            backdrop-filter: blur(5px); 
             padding: 10px 20px; 
             border-radius: 30px; 
             border: 1px solid rgba(255,255,255,0.2); 
@@ -206,12 +218,12 @@
         .contact-btn:hover { background: var(--primary); color: #fff; transform: translateY(-3px); }
 
         /* =========================================
-           Offers Banner
+           شريط العروض المتحرك
            ========================================= */
         .offers-banner { 
             background: var(--primary); 
             color: #fff; 
-            padding: 12px; 
+            padding: 10px; 
             text-align: center; 
             font-weight: 600; 
             overflow: hidden; 
@@ -229,14 +241,14 @@
         }
 
         /* =========================================
-           Search & Filters
+           البحث والفلاتر
            ========================================= */
         .controls-section { 
             position: sticky; 
-            top: 75px; 
+            top: 65px; 
             background: var(--bg-color); 
             z-index: 99; 
-            padding: 20px 5%; 
+            padding: 15px 5%; 
             border-bottom: 1px solid var(--border); 
             box-shadow: var(--shadow-sm); 
         }
@@ -271,7 +283,7 @@
         .filter-chip { 
             background: var(--surface); 
             border: 1px solid var(--border); 
-            padding: 10px 20px; 
+            padding: 8px 18px; 
             border-radius: 25px; 
             font-size: 14px; 
             font-weight: 600; 
@@ -287,7 +299,7 @@
         }
 
         /* =========================================
-           Categories Tabs
+           أقسام المنيو (التبويبات العلوية)
            ========================================= */
         .categories-wrapper { 
             padding: 15px 5%; 
@@ -301,12 +313,12 @@
         .cat-btn { 
             background: none; 
             border: none; 
-            font-size: 16px; 
+            font-size: 15px; 
             font-weight: 700; 
             color: var(--text-muted); 
             cursor: pointer; 
             white-space: nowrap; 
-            padding-bottom: 10px; 
+            padding-bottom: 8px; 
             position: relative;
         }
 
@@ -323,7 +335,7 @@
         }
 
         /* =========================================
-           Menu Grid & Cards
+           شبكة المنتجات (Menu Grid)
            ========================================= */
         .menu-container { 
             max-width: 1300px; 
@@ -331,27 +343,27 @@
             padding: 0 5%; 
         }
 
-        .category-section { margin-bottom: 60px; scroll-margin-top: 180px; }
+        .category-section { margin-bottom: 60px; scroll-margin-top: 200px; }
         
         .cat-title { 
             font-family: var(--font-head); 
-            font-size: 32px; 
+            font-size: 28px; 
             margin-bottom: 25px; 
             color: var(--text-main); 
             border-bottom: 2px solid var(--primary); 
             display: inline-block;
-            padding-bottom: 10px;
+            padding-bottom: 5px;
         }
 
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
             gap: 25px; 
         }
         
         .card { 
             background: var(--surface); 
-            border-radius: 20px; 
+            border-radius: 16px; 
             border: 1px solid var(--border); 
             overflow: hidden; 
             box-shadow: var(--shadow-sm); 
@@ -367,7 +379,7 @@
             border-color: var(--primary); 
         }
 
-        .card-img-wrap { position: relative; height: 220px; overflow: hidden; }
+        .card-img-wrap { position: relative; height: 200px; overflow: hidden; }
         .card-img { width: 100%; height: 100%; object-fit: cover; }
         .card:hover .card-img { transform: scale(1.05); }
 
@@ -383,7 +395,7 @@
             align-items: center; 
             justify-content: center; 
             color: var(--text-muted); 
-            font-size: 18px; 
+            font-size: 16px; 
             border: none; 
             cursor: pointer; 
             backdrop-filter: blur(5px); 
@@ -405,8 +417,8 @@
         .badge { 
             background: var(--primary); 
             color: #fff; 
-            font-size: 11px; 
-            padding: 5px 10px; 
+            font-size: 10px; 
+            padding: 4px 8px; 
             border-radius: 12px; 
             font-weight: 700; 
             text-transform: uppercase; 
@@ -414,24 +426,24 @@
         .badge.spicy { background: var(--danger); }
         .badge.veg { background: var(--success); }
 
-        .card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+        .card-body { padding: 15px; display: flex; flex-direction: column; flex: 1; }
         
         .card-meta { 
             display: flex; 
             justify-content: space-between; 
-            font-size: 13px; 
+            font-size: 12px; 
             color: var(--text-muted); 
-            margin-bottom: 10px; 
+            margin-bottom: 8px; 
         }
         
-        .rating { color: #FFD700; font-weight: 600; display: flex; align-items: center; gap: 5px;}
+        .rating { color: #FFD700; font-weight: 600; display: flex; align-items: center; gap: 4px;}
         
-        .card-title { font-size: 19px; font-weight: 700; margin-bottom: 10px; color: var(--text-main); line-height: 1.3;}
+        .card-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--text-main); line-height: 1.3;}
         
         .card-desc { 
-            font-size: 14px; 
+            font-size: 13px; 
             color: var(--text-muted); 
-            line-height: 1.5; 
+            line-height: 1.4; 
             margin-bottom: 15px; 
             display: -webkit-box; 
             -webkit-line-clamp: 2; 
@@ -445,28 +457,28 @@
             justify-content: space-between; 
             align-items: center; 
             border-top: 1px solid var(--border); 
-            padding-top: 15px; 
+            padding-top: 12px; 
         }
         
-        .card-price { font-size: 20px; font-weight: 700; color: var(--primary); }
+        .card-price { font-size: 18px; font-weight: 700; color: var(--primary); }
         
         .add-btn { 
             background: var(--bg-color); 
             border: 1px solid var(--primary); 
             color: var(--primary); 
-            width: 40px; 
-            height: 40px; 
+            width: 35px; 
+            height: 35px; 
             border-radius: 50%; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            font-size: 16px; 
+            font-size: 14px; 
         }
         
         .card:hover .add-btn { background: var(--primary); color: #fff; }
 
         /* =========================================
-           Modal (Item Details & Reviews)
+           النافذة المنبثقة للمنتج (Modal)
            ========================================= */
         .modal { 
             position: fixed; 
@@ -487,11 +499,11 @@
             width: 100%; 
             max-width: 600px; 
             height: 90vh; 
-            border-radius: 30px 30px 0 0; 
+            border-radius: 25px 25px 0 0; 
             display: flex; 
             flex-direction: column; 
             position: relative; 
-            animation: slideUp 0.4s ease; 
+            animation: slideUp 0.3s ease; 
         }
         
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
@@ -499,21 +511,21 @@
         .close-modal { 
             position: absolute; 
             top: 15px; 
-            right: 20px; 
-            background: rgba(255,255,255,0.8); 
+            right: 15px; 
+            background: rgba(255,255,255,0.9); 
             color: var(--text-main); 
             border: none; 
             width: 35px; 
             height: 35px; 
             border-radius: 50%; 
-            font-size: 18px; 
+            font-size: 16px; 
             cursor: pointer; 
             z-index: 10;
         }
         
         .modal-scroll { overflow-y: auto; flex: 1; padding: 0 0 20px 0; }
-        .modal-img { width: 100%; height: 250px; object-fit: cover; border-radius: 30px 30px 0 0;}
-        .modal-info { padding: 25px; }
+        .modal-img { width: 100%; height: 230px; object-fit: cover; border-radius: 25px 25px 0 0;}
+        .modal-info { padding: 20px; }
         
         /* Tabs inside Modal */
         .tabs { 
@@ -525,10 +537,10 @@
         .tab { 
             flex: 1; 
             text-align: center; 
-            padding: 15px; 
+            padding: 12px; 
             cursor: pointer; 
             font-weight: 700; 
-            font-size: 16px;
+            font-size: 15px;
             color: var(--text-muted); 
         }
         
@@ -538,58 +550,58 @@
         }
         
         /* Options & Reviews sections */
-        .custom-section { margin-bottom: 25px; }
-        .custom-title { font-size: 18px; font-weight: 700; margin-bottom: 15px; color: var(--text-main); display: flex; align-items: center; gap: 10px;}
+        .custom-section { margin-bottom: 20px; }
+        .custom-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--text-main); display: flex; align-items: center; gap: 8px;}
         
         .option-row { 
             display: flex; 
             justify-content: space-between; 
-            padding: 15px; 
+            padding: 12px; 
             border: 1px solid var(--border); 
-            border-radius: 12px; 
-            margin-bottom: 10px; 
+            border-radius: 10px; 
+            margin-bottom: 8px; 
             cursor: pointer; 
         }
         .option-row.active { border-color: var(--primary); background: rgba(229, 169, 55, 0.05); }
 
-        #tab-reviews { display: none; padding: 0 25px; }
+        #tab-reviews { display: none; padding: 0 20px; }
         
         .review-box { 
             border: 1px solid var(--border); 
-            border-radius: 15px; 
-            padding: 20px; 
-            margin-bottom: 15px; 
+            border-radius: 12px; 
+            padding: 15px; 
+            margin-bottom: 12px; 
             background: var(--bg-color); 
         }
         
-        .review-head { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .review-head { display: flex; justify-content: space-between; margin-bottom: 5px; }
         
-        .review-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        .review-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
         .review-form input, .review-form textarea { 
-            padding: 15px; 
+            padding: 12px; 
             border: 1px solid var(--border); 
-            border-radius: 12px; 
+            border-radius: 10px; 
             background: var(--bg-color); 
             color: var(--text-main); 
             font-family: inherit;
         }
         
-        .star-select { font-size: 28px; color: #ccc; cursor: pointer; text-align: center; margin-bottom: 10px;}
+        .star-select { font-size: 24px; color: #ccc; cursor: pointer; text-align: center; margin-bottom: 5px;}
         .star-select .fas { color: #FFD700; }
         
         .btn-submit { 
             background: var(--primary); 
             color: #fff; 
             border: none; 
-            padding: 15px; 
-            border-radius: 12px; 
+            padding: 12px; 
+            border-radius: 10px; 
             font-weight: 700; 
-            font-size: 16px;
+            font-size: 15px;
             cursor: pointer; 
         }
 
         .modal-footer { 
-            padding: 20px 25px; 
+            padding: 15px 20px; 
             background: var(--surface); 
             border-top: 1px solid var(--border); 
             display: flex; 
@@ -604,18 +616,18 @@
             gap: 15px; 
             background: var(--bg-color); 
             padding: 5px; 
-            border-radius: 30px; 
+            border-radius: 25px; 
             border: 1px solid var(--border);
         }
         
         .qty-btn { 
-            width: 40px; 
-            height: 40px; 
+            width: 35px; 
+            height: 35px; 
             border-radius: 50%; 
             border: none; 
             background: var(--surface); 
             color: var(--text-main); 
-            font-size: 18px; 
+            font-size: 16px; 
             cursor: pointer; 
             box-shadow: var(--shadow-sm);
         }
@@ -624,19 +636,19 @@
             background: var(--primary); 
             color: #fff; 
             border: none; 
-            padding: 15px 30px; 
-            border-radius: 30px; 
-            font-size: 18px; 
+            padding: 15px 20px; 
+            border-radius: 25px; 
+            font-size: 16px; 
             font-weight: 700; 
             flex: 1; 
-            margin-left: 20px; 
+            margin-left: 15px; 
             cursor: pointer; 
             display: flex; 
             justify-content: space-between;
         }
 
         /* =========================================
-           Cart Sidebar & Checkout
+           السلة الجانبية (Cart Sidebar) والدفع
            ========================================= */
         .cart-sidebar { 
             position: fixed; 
@@ -658,27 +670,27 @@
         [dir="rtl"] .cart-sidebar.open { left: 0; right: auto; }
         
         .cart-header { 
-            padding: 20px 25px; 
+            padding: 20px; 
             border-bottom: 1px solid var(--border); 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             font-family: var(--font-head); 
-            font-size: 24px; 
+            font-size: 22px; 
         }
         
-        .cart-body { flex: 1; overflow-y: auto; padding: 25px; }
+        .cart-body { flex: 1; overflow-y: auto; padding: 20px; }
         
         .cart-item { 
             display: flex; 
             justify-content: space-between; 
-            margin-bottom: 20px; 
-            padding-bottom: 20px; 
+            margin-bottom: 15px; 
+            padding-bottom: 15px; 
             border-bottom: 1px dashed var(--border); 
         }
         
-        .cart-item-info h4 { margin-bottom: 5px; font-size: 16px; color: var(--text-main);}
-        .cart-item-mods { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+        .cart-item-info h4 { margin-bottom: 5px; font-size: 15px; color: var(--text-main);}
+        .cart-item-mods { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
         
         .cart-price-col { 
             text-align: right; 
@@ -692,45 +704,45 @@
             color: var(--danger); 
             background: none; 
             border: none; 
-            font-size: 14px; 
+            font-size: 12px; 
             cursor: pointer; 
-            margin-top: 10px; 
+            margin-top: 5px; 
             font-weight: 700;
         }
         
         .checkout-form { 
-            margin-top: 30px; 
+            margin-top: 20px; 
             background: var(--bg-color); 
-            padding: 20px; 
-            border-radius: 15px; 
+            padding: 15px; 
+            border-radius: 12px; 
             border: 1px solid var(--border); 
         }
         
-        .input-group { margin-bottom: 15px; }
-        .input-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--text-muted); }
+        .input-group { margin-bottom: 12px; }
+        .input-group label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 5px; color: var(--text-muted); }
         .input-group input, .input-group textarea { 
             width: 100%; 
-            padding: 15px; 
+            padding: 12px; 
             border: 1px solid var(--border); 
-            border-radius: 10px; 
+            border-radius: 8px; 
             background: var(--surface); 
             color: var(--text-main); 
             font-family: inherit;
         }
         
-        .totals { padding: 20px 25px; background: var(--bg-color); border-top: 1px solid var(--border); }
+        .totals { padding: 20px; background: var(--bg-color); border-top: 1px solid var(--border); }
         
         .tot-row { 
             display: flex; 
             justify-content: space-between; 
-            margin-bottom: 12px; 
-            font-size: 15px; 
+            margin-bottom: 10px; 
+            font-size: 14px; 
             color: var(--text-muted); 
             font-weight: 600;
         }
         
         .tot-row.grand { 
-            font-size: 22px; 
+            font-size: 20px; 
             font-weight: 700; 
             color: var(--text-main); 
             margin-top: 15px; 
@@ -743,37 +755,37 @@
             background: #25D366; 
             color: #fff; 
             border: none; 
-            padding: 20px; 
-            border-radius: 15px; 
-            font-size: 18px; 
+            padding: 15px; 
+            border-radius: 12px; 
+            font-size: 16px; 
             font-weight: 700; 
             cursor: pointer; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            gap: 12px; 
-            margin-top: 20px;
+            gap: 10px; 
+            margin-top: 15px;
         }
 
         /* =========================================
-           Floating Cart & Toast
+           زر السلة العائم و إشعار الإضافة (Toast)
            ========================================= */
         .float-cart { 
             position: fixed; 
-            bottom: 30px; 
+            bottom: 25px; 
             left: 50%; 
             transform: translateX(-50%) translateY(150%); 
             background: var(--primary); 
             color: #fff; 
-            padding: 15px 30px; 
+            padding: 15px 25px; 
             border-radius: 30px; 
             display: flex; 
             align-items: center; 
-            gap: 20px; 
+            gap: 15px; 
             z-index: 900; 
             cursor: pointer; 
             font-weight: 700; 
-            font-size: 16px;
+            font-size: 15px;
             transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             box-shadow: 0 10px 20px rgba(229, 169, 55, 0.4); 
             white-space: nowrap;
@@ -783,24 +795,24 @@
         .badge-count { 
             background: #fff; 
             color: var(--primary); 
-            width: 28px; 
-            height: 28px; 
+            width: 25px; 
+            height: 25px; 
             border-radius: 50%; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            font-size: 14px; 
+            font-size: 13px; 
         }
 
-        /* Toast Notification */
+        /* إشعار (تمت الإضافة للسلة) */
         #toast {
             visibility: hidden; 
             min-width: 250px; 
             background-color: var(--success); 
             color: #fff;
             text-align: center; 
-            border-radius: 10px; 
-            padding: 16px; 
+            border-radius: 8px; 
+            padding: 15px; 
             position: fixed;
             z-index: 3000; 
             left: 50%; 
@@ -823,7 +835,7 @@
 </head>
 <body>
 
-    <!-- Dictionary for Translations -->
+    <!-- قاموس اللغات -->
     <script>
         const i18n = {
             en: {
@@ -840,7 +852,7 @@
                 name: "Full Name", phone: "Phone Number", address: "Full Address",
                 subtotal: "Subtotal", delivery: "Delivery Fee", total: "Total",
                 checkoutWa: "Checkout via WhatsApp",
-                cat: { "Shawarma": "Shawarma", "Rizo": "Rizo", "Plat Shawarma": "Shawarma Platters", "Shawarma on Potato": "Shawarma on Potato", "Pizza": "Pizza", "Pasta": "Pasta", "Kids Menu": "Kids Menu", "Platters": "Platters", "Sandwiches": "Sandwiches", "Special Sandwiches": "Special Sandwiches", "Starters": "Starters", "Salads": "Salads", "Breakfast": "Breakfast", "Baguette": "Baguette", "Potato": "Potato", "Burger": "Burger" }
+                cat: { "Shawarma": "Shawarma", "Pizza": "Pizza", "Pasta": "Pasta", "Kids Menu": "Kids Menu", "Platters": "Platters", "Sandwiches": "Sandwiches", "Special Sandwiches": "Special Sandwiches", "Starters": "Starters", "Salads": "Salads", "Breakfast & Baguettes": "Breakfast & Baguettes", "Potato Sandwiches": "Potato Sandwiches", "Burger": "Burger" }
             },
             ar: {
                 subtitle: "جودة استثنائية، ومذاق أصيل",
@@ -856,16 +868,16 @@
                 name: "الاسم الكامل", phone: "رقم الهاتف", address: "العنوان بالتفصيل",
                 subtotal: "المجموع الفرعي", delivery: "رسوم التوصيل", total: "الإجمالي",
                 checkoutWa: "إتمام الطلب عبر واتساب",
-                cat: { "Shawarma": "شاورما", "Rizo": "ريزو", "Plat Shawarma": "صحون شاورما", "Shawarma on Potato": "شاورما على بطاطا", "Pizza": "بيتزا", "Pasta": "باستا", "Kids Menu": "وجبات أطفال", "Platters": "أطباق", "Sandwiches": "سندويشات", "Special Sandwiches": "سندويشات سبيشال", "Starters": "مقبلات", "Salads": "سلطات", "Breakfast": "فطور", "Baguette": "باغيت", "Potato": "بطاطا", "Burger": "برغر" }
+                cat: { "Shawarma": "شاورما", "Pizza": "بيتزا", "Pasta": "باستا", "Kids Menu": "وجبات أطفال", "Platters": "أطباق", "Sandwiches": "سندويشات", "Special Sandwiches": "سندويشات سبيشال", "Starters": "مقبلات", "Salads": "سلطات", "Breakfast & Baguettes": "فطور وباغيت", "Potato Sandwiches": "سندويشات بطاطا", "Burger": "برغر" }
             }
         };
         let currentLang = 'en';
     </script>
 
-    <!-- Navbar -->
+    <!-- شريط التنقل (Navbar) -->
     <nav>
-        <a href="#" class="nav-logo">
-            <img src="https://images.unsplash.com/photo-1590947132387-155cc02f3212?w=100&q=80" alt="Logo">
+        <a href="#" class="nav-logo" onclick="window.scrollTo(0,0)">
+            <img src="logo-ashta.png" alt="Ashta W 3asal Logo">
             Ashta W 3asal
         </a>
         <div class="nav-actions">
@@ -875,8 +887,9 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- الواجهة الرئيسية (Hero) -->
     <section class="hero" id="hero-bg">
+        <img src="logo-ashta.png" alt="Ashta W 3asal Logo" class="hero-logo">
         <h1 class="hero-title">Ashta W 3asal</h1>
         <p class="hero-subtitle" id="t-subtitle">Premium Quality, Authentic Taste</p>
         
@@ -894,12 +907,12 @@
         </div>
     </section>
 
-    <!-- Offers Marquee -->
+    <!-- شريط العروض المتحرك -->
     <div class="offers-banner">
         <div class="offers-marquee">🍯 Free Delivery on orders above $20! Use code: ASHTA20 | 🔥 10% Off on all Platters this weekend!</div>
     </div>
 
-    <!-- Search & Filters -->
+    <!-- أزرار التحكم (البحث والفلاتر) -->
     <div class="controls-section">
         <div class="search-bar">
             <i class="fas fa-search" style="color: var(--text-muted); margin-top: 3px;"></i>
@@ -915,13 +928,13 @@
         </div>
     </div>
 
-    <!-- Categories Tabs Container -->
+    <!-- حاوية التبويبات (الأقسام) -->
     <div class="categories-wrapper" id="cat-container"></div>
     
-    <!-- Menu Output Container -->
+    <!-- حاوية عرض المنيو بالكامل -->
     <div class="menu-container" id="menu-container"></div>
 
-    <!-- Item Details & Review Modal -->
+    <!-- النافذة المنبثقة لعرض تفاصيل وتقييمات المنتج -->
     <div class="modal" id="item-modal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></button>
@@ -930,20 +943,20 @@
             <div class="modal-scroll">
                 <div class="modal-info">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <h2 style="font-family: var(--font-head); font-size:28px; color:var(--text-main);" id="m-title">Title</h2>
+                        <h2 style="font-family: var(--font-head); font-size:24px; color:var(--text-main);" id="m-title">Title</h2>
                         <div class="rating"><i class="fas fa-star"></i> <span id="m-rate">4.5</span> (<span id="m-rate-cnt">20</span>)</div>
                     </div>
-                    <p style="font-size:15px; color:var(--text-muted); margin-top:10px; line-height: 1.6;" id="m-desc">Desc</p>
+                    <p style="font-size:14px; color:var(--text-muted); margin-top:10px; line-height: 1.5;" id="m-desc">Desc</p>
                 </div>
                 
-                <!-- Explicit Tabs for Details vs Reviews -->
+                <!-- تبويبات التقييم والتفاصيل -->
                 <div class="tabs">
                     <div class="tab active" onclick="switchTab('details')" id="t-tabDetails">Details</div>
                     <div class="tab" onclick="switchTab('reviews')" id="t-tabReviews">Reviews</div>
                 </div>
 
-                <!-- Tab Content: Details -->
-                <div id="tab-details" style="padding: 0 25px;">
+                <!-- محتوى تبويب: التفاصيل -->
+                <div id="tab-details" style="padding: 0 20px;">
                     <div id="m-variants-sec" class="custom-section" style="display:none;">
                         <div class="custom-title"><i class="fas fa-list"></i> <span id="t-size">Size / Variants</span></div>
                         <div id="m-variants-list"></div>
@@ -954,14 +967,14 @@
                     </div>
                     <div class="custom-section">
                         <div class="custom-title"><i class="fas fa-pen"></i> <span id="t-notes">Special Instructions</span></div>
-                        <textarea id="m-note" class="input-group" style="width:100%; padding:15px; border-radius:12px; border:1px solid var(--border); background:var(--bg-color); color:var(--text-main);" placeholder="e.g., No onions..."></textarea>
+                        <textarea id="m-note" class="input-group" style="width:100%; padding:15px; border-radius:10px; border:1px solid var(--border); background:var(--bg-color); color:var(--text-main);" placeholder="e.g., No onions..."></textarea>
                     </div>
                 </div>
 
-                <!-- Tab Content: Reviews -->
+                <!-- محتوى تبويب: التقييمات -->
                 <div id="tab-reviews">
                     <div class="review-form">
-                        <h3 id="t-addReview" style="color: var(--text-main);">Write a Review</h3>
+                        <h3 id="t-addReview" style="color: var(--text-main); margin-bottom:5px;">Write a Review</h3>
                         <div class="star-select" id="star-selector">
                             <i class="fas fa-star" data-val="1"></i>
                             <i class="fas fa-star" data-val="2"></i>
@@ -970,10 +983,9 @@
                             <i class="fas fa-star" data-val="5"></i>
                         </div>
                         <input type="text" id="rev-name" placeholder="Your Name">
-                        <textarea id="rev-text" placeholder="Your review..." rows="3"></textarea>
+                        <textarea id="rev-text" placeholder="Your review..." rows="2"></textarea>
                         <button class="btn-submit" onclick="submitReview()" id="t-subReview">Submit</button>
                     </div>
-                    <!-- Reviews List Output -->
                     <div id="reviews-list"></div>
                 </div>
             </div>
@@ -981,7 +993,7 @@
             <div class="modal-footer">
                 <div class="qty-box">
                     <button class="qty-btn" onclick="chgQty(-1)"><i class="fas fa-minus"></i></button>
-                    <span id="m-qty" style="font-weight:700; width:25px; text-align:center; font-size:18px;">1</span>
+                    <span id="m-qty" style="font-weight:700; width:25px; text-align:center; font-size:16px;">1</span>
                     <button class="qty-btn" onclick="chgQty(1)"><i class="fas fa-plus"></i></button>
                 </div>
                 <button class="add-cart-main" onclick="addToCart()">
@@ -991,7 +1003,7 @@
         </div>
     </div>
 
-    <!-- Cart Sidebar -->
+    <!-- السلة الجانبية -->
     <div class="cart-sidebar" id="cart-side">
         <div class="cart-header">
             <span id="t-cartTitle">Your Order</span>
@@ -1003,7 +1015,7 @@
             <div class="checkout-form">
                 <div class="input-group">
                     <label id="t-name">Full Name</label>
-                    <input type="text" id="c-name" placeholder="John Doe">
+                    <input type="text" id="c-name" placeholder="Name">
                 </div>
                 <div class="input-group">
                     <label id="t-phone">Phone Number</label>
@@ -1017,7 +1029,7 @@
                     <label>Discount Code (Try ASHTA20)</label>
                     <div style="display:flex; gap:10px;">
                         <input type="text" id="c-coupon" placeholder="Code">
-                        <button onclick="applyCoupon()" style="background:var(--primary); color:#fff; border:none; padding:0 20px; border-radius:10px; cursor:pointer; font-weight:bold;">Apply</button>
+                        <button onclick="applyCoupon()" style="background:var(--primary); color:#fff; border:none; padding:0 20px; border-radius:8px; cursor:pointer; font-weight:bold;">Apply</button>
                     </div>
                 </div>
             </div>
@@ -1036,12 +1048,12 @@
                 <span id="t-tot">Total</span> <span id="cart-tot">$0.00</span>
             </div>
             <button class="btn-whatsapp" onclick="checkoutWA()">
-                <i class="fab fa-whatsapp" style="font-size:24px;"></i> <span id="t-checkWa">Checkout via WhatsApp</span>
+                <i class="fab fa-whatsapp" style="font-size:20px;"></i> <span id="t-checkWa">Checkout via WhatsApp</span>
             </button>
         </div>
     </div>
 
-    <!-- Floating Cart Button -->
+    <!-- زر السلة العائم -->
     <div class="float-cart" id="float-cart" onclick="toggleCart()">
         <i class="fas fa-shopping-bag"></i>
         <div style="flex:1;">View Cart</div>
@@ -1049,36 +1061,18 @@
         <div id="float-tot">$0.00</div>
     </div>
 
-    <!-- Toast Notification -->
+    <!-- إشعار تمت الإضافة -->
     <div id="toast">Item added to cart successfully!</div>
 
-    <!-- MAIN SCRIPT -->
+    <!-- أكواد الجافاسكربت (JavaScript) -->
     <script>
         // =========================================
-        // Precise Image Mapping & Data Construction
+        // قاعدة البيانات (113 صنف + توليد صور LoremFlickr)
         // =========================================
         
-        // Accurate and verified Food images corresponding to exact categories
-        const imgShawarmaWrap = "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=400&q=80";
-        const imgShawarmaMeat = "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=400&q=80";
-        const imgRizoChicken = "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=400&q=80";
-        const imgRizoMeat = "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=400&q=80";
-        const imgPlatterChicken = "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=400&q=80";
-        const imgPlatterMeat = "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80";
-        const imgPotatoDish = "https://images.unsplash.com/photo-1518013431119-2ce69829f0fd?auto=format&fit=crop&w=400&q=80";
-        const imgFries = "https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=400&q=80";
-        const imgPizzaMargherita = "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=400&q=80";
-        const imgPizzaPepperoni = "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=400&q=80";
-        const imgPizzaVeggie = "https://images.unsplash.com/photo-1585238342024-78d387f4a707?auto=format&fit=crop&w=400&q=80";
-        const imgPasta = "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=400&q=80";
-        const imgCrispy = "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=400&q=80";
-        const imgBurger = "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80";
-        const imgSalad = "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80";
-        const imgBreakfast = "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=400&q=80";
-
-        const categories = ["Shawarma", "Rizo", "Plat Shawarma", "Shawarma on Potato", "Pizza", "Pasta", "Kids Menu", "Platters", "Sandwiches", "Special Sandwiches", "Starters", "Salads", "Breakfast", "Baguette", "Potato", "Burger"];
+        const categories = ["Shawarma", "Pizza", "Pasta", "Kids Menu", "Platters", "Sandwiches", "Special Sandwiches", "Starters", "Salads", "Breakfast & Baguettes", "Potato Sandwiches", "Burger"];
         
-        // Add-ons Definition
+        // الإضافات
         const shawarmaAddons = [{name: "Extra Toum (Garlic)", price: 0.50}, {name: "Extra Pickles", price: 0.25}, {name: "Extra Meat/Chicken", price: 1.50}, {name: "Extra Cheese", price: 1.00}];
         const pizzaAddons = [{name: "Extra Cheese", price: 1.50}, {name: "Extra Pepperoni", price: 1.50}, {name: "Extra Veggies", price: 1.00}];
         const pastaAddons = [{name: "Extra Parmesan", price: 1.00}, {name: "Extra Chicken", price: 2.00}, {name: "Extra Mushroom", price: 1.00}];
@@ -1086,141 +1080,137 @@
         const platterAddons = [{name: "Extra Bread", price: 0.50}, {name: "Extra Garlic/Sauce", price: 0.50}];
         const saladAddons = [{name: "Extra Dressing", price: 0.50}, {name: "Grilled Chicken", price: 2.00}];
 
-        // Full Exact 113 Menu Items with Correct Images & Arrays
-        const rawMenuData = [
+        // مصفوفة الأصناف الخام (بدون صور)
+        const rawItems = [
             // Shawarma
-            { id: 1, cat: "Shawarma", name: "Sandwich Shawarma Djej", price: 3.50, desc: "Classic chicken shawarma wrap.", img: imgShawarmaWrap, addons: shawarmaAddons },
-            { id: 2, cat: "Shawarma", name: "Sandwich Shawarma Lahme", price: 4.00, desc: "Classic meat shawarma wrap.", img: imgShawarmaMeat, addons: shawarmaAddons },
-            { id: 3, cat: "Shawarma", name: "Sand Shaw Djej w Jebne", price: 4.00, desc: "Chicken shawarma with melted cheese.", img: imgShawarmaWrap, addons: shawarmaAddons },
-            { id: 4, cat: "Shawarma", name: "Sand Shaw Lahme w Jebne", price: 4.50, desc: "Meat shawarma with melted cheese.", img: imgShawarmaMeat, addons: shawarmaAddons },
-            // Rizo
-            { id: 5, cat: "Rizo", name: "Rizo Djej", price: 5.00, desc: "Rice + chicken shawarma + sauce.", img: imgRizoChicken, addons: [{name: "Extra Sauce", price: 0.50}, {name: "Extra Shawarma", price: 2.00}] },
-            { id: 6, cat: "Rizo", name: "Rizo Lahme", price: 6.00, desc: "Rice + meat shawarma + sauce.", img: imgRizoMeat, addons: [{name: "Extra Sauce", price: 0.50}, {name: "Extra Shawarma", price: 2.00}] },
-            // Plat Shawarma
-            { id: 7, cat: "Plat Shawarma", name: "Plat Shawarma Djej", price: 9.00, desc: "Chicken shawarma platter.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 8, cat: "Plat Shawarma", name: "Plat Shawarma Lahme", price: 10.00, desc: "Meat shawarma platter.", img: imgPlatterMeat, addons: platterAddons },
-            { id: 9, cat: "Plat Shawarma", name: "Plat Shawarma Mix", price: 7.00, desc: "Mix shawarma platter.", img: imgPlatterMeat, addons: platterAddons },
-            // Shawarma on Potato
-            { id: 10, cat: "Shawarma on Potato", name: "Shawarma Djej 3al Batata", price: 5.00, desc: "Chicken shawarma served over fries.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 11, cat: "Shawarma on Potato", name: "Shawarma Lahme 3al Batata", price: 6.20, desc: "Meat shawarma served over fries.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
-            // Pizza (Using variants accurately)
-            { id: 12, cat: "Pizza", name: "Vegetarian Pizza", price: 6.00, desc: "Tomato, olive, sweet pepper, mushroom, cheese.", img: imgPizzaVeggie, addons: pizzaAddons, variants: [{name: "Small (S)", price: 6.00, default: true}, {name: "Medium (M)", price: 7.50}, {name: "Large (L)", price: 10.00}, {name: "Family (F)", price: 13.00}] },
-            { id: 13, cat: "Pizza", name: "Margarita Pizza", price: 5.00, desc: "Sauce, cheese, basil.", img: imgPizzaMargherita, addons: pizzaAddons, variants: [{name: "Small (S)", price: 5.00, default: true}, {name: "Medium (M)", price: 6.50}, {name: "Large (L)", price: 9.00}, {name: "Family (F)", price: 12.00}] },
-            { id: 14, cat: "Pizza", name: "Lebanese Pizza", price: 6.50, desc: "Cheese, mushroom, janbon, sweet pepper, olive.", img: imgPizzaVeggie, addons: pizzaAddons, variants: [{name: "Small (S)", price: 6.50, default: true}, {name: "Medium (M)", price: 8.50}, {name: "Large (L)", price: 11.00}, {name: "Family (F)", price: 15.00}] },
-            { id: 15, cat: "Pizza", name: "Four Cheese Pizza", price: 7.00, desc: "Four kinds of cheese.", img: imgPizzaMargherita, addons: pizzaAddons, variants: [{name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 11.50}, {name: "Family (F)", price: 14.50}] },
-            { id: 16, cat: "Pizza", name: "Turkey Pizza", price: 7.00, desc: "Habash, mozzarella, mushroom, sweet pepper, olive, corn.", img: imgPizzaVeggie, addons: pizzaAddons, variants: [{name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 12.00}, {name: "Family (F)", price: 15.00}] },
-            { id: 17, cat: "Pizza", name: "Mortadella Pizza", price: 7.00, desc: "Sauce, mortadella, sweet pepper, olive, corn, cheese, mushroom.", img: imgPizzaPepperoni, addons: pizzaAddons, variants: [{name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 12.00}, {name: "Family (F)", price: 15.00}] },
-            { id: 18, cat: "Pizza", name: "Special Fajita Pizza", price: 8.00, desc: "Chicken, sweet pepper, corn, onion, cheese.", img: imgPizzaMargherita, addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
-            { id: 19, cat: "Pizza", name: "Pepperoni Pizza", price: 7.00, desc: "Sauce, pepperoni, cheese.", img: imgPizzaPepperoni, addons: pizzaAddons, variants: [{name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 12.00}, {name: "Family (F)", price: 15.00}] },
-            { id: 20, cat: "Pizza", name: "Barbecue Pizza", price: 8.00, desc: "BBQ sauce base.", img: imgPizzaVeggie, addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
-            { id: 21, cat: "Pizza", name: "Chawarma Pizza", price: 8.00, desc: "Topped with shawarma.", img: "https://images.unsplash.com/photo-1590947132387-155cc02f3212?w=400&q=80", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
-            { id: 22, cat: "Pizza", name: "Meat Lovers Pizza", price: 8.00, desc: "Loaded with meat.", img: imgPizzaPepperoni, addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
+            { id: 1, cat: "Shawarma", name: "Sandwich Shawarma Djej", price: 3.50, desc: "Classic chicken shawarma wrap.", addons: shawarmaAddons },
+            { id: 2, cat: "Shawarma", name: "Sandwich Shawarma Lahme", price: 4.00, desc: "Classic meat shawarma wrap.", addons: shawarmaAddons },
+            { id: 3, cat: "Shawarma", name: "Sand Shaw Djej w Jebne", price: 4.00, desc: "Chicken shawarma with melted cheese.", addons: shawarmaAddons },
+            { id: 4, cat: "Shawarma", name: "Sand Shaw Lahme w Jebne", price: 4.50, desc: "Meat shawarma with melted cheese.", addons: shawarmaAddons },
+            { id: 5, cat: "Shawarma", name: "Rizo Djej", price: 5.00, desc: "Rice + chicken shawarma + sauce.", addons: [{name: "Extra Sauce", price: 0.50}, {name: "Extra Shawarma", price: 2.00}] },
+            { id: 6, cat: "Shawarma", name: "Rizo Lahme", price: 6.00, desc: "Rice + meat shawarma + sauce.", addons: [{name: "Extra Sauce", price: 0.50}, {name: "Extra Shawarma", price: 2.00}] },
+            { id: 7, cat: "Shawarma", name: "Plat Shawarma Djej", price: 9.00, desc: "Chicken shawarma platter.", addons: platterAddons },
+            { id: 8, cat: "Shawarma", name: "Plat Shawarma Lahme", price: 10.00, desc: "Meat shawarma platter.", addons: platterAddons },
+            { id: 9, cat: "Shawarma", name: "Plat Shawarma Mix", price: 7.00, desc: "Mix shawarma platter.", addons: platterAddons },
+            { id: 10, cat: "Shawarma", name: "Shawarma Djej 3al Batata", price: 5.00, desc: "Chicken shawarma served over fries.", addons: [{name: "Extra Cheese", price: 1.00}] },
+            { id: 11, cat: "Shawarma", name: "Shawarma Lahme 3al Batata", price: 6.20, desc: "Meat shawarma served over fries.", addons: [{name: "Extra Cheese", price: 1.00}] },
+            // Pizza
+            { id: 12, cat: "Pizza", name: "Vegetarian Pizza", price: 6.00, desc: "Tomato, olive, sweet pepper, mushroom, cheese.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 6.00, default: true}, {name: "Medium (M)", price: 7.50}, {name: "Large (L)", price: 10.00}, {name: "Family (F)", price: 13.00}] },
+            { id: 13, cat: "Pizza", name: "Margarita Pizza", price: 5.00, desc: "Sauce, cheese, basil.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 5.00, default: true}, {name: "Medium (M)", price: 6.50}, {name: "Large (L)", price: 9.00}, {name: "Family (F)", price: 12.00}] },
+            { id: 14, cat: "Pizza", name: "Lebanese Pizza", price: 6.50, desc: "Cheese, mushroom, janbon, sweet pepper, olive.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 6.50, default: true}, {name: "Medium (M)", price: 8.50}, {name: "Large (L)", price: 11.00}, {name: "Family (F)", price: 15.00}] },
+            { id: 15, cat: "Pizza", name: "Four Cheese Pizza", price: 7.00, desc: "Four kinds of cheese.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 11.50}, {name: "Family (F)", price: 14.50}] },
+            { id: 16, cat: "Pizza", name: "Turkey Pizza", price: 7.00, desc: "Habash, mozzarella, mushroom, sweet pepper, olive, corn.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 12.00}, {name: "Family (F)", price: 15.00}] },
+            { id: 17, cat: "Pizza", name: "Mortadella Pizza", price: 7.00, desc: "Sauce, mortadella, sweet pepper, olive, corn, cheese, mushroom.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 12.00}, {name: "Family (F)", price: 15.00}] },
+            { id: 18, cat: "Pizza", name: "Special Fajita Pizza", price: 8.00, desc: "Chicken, sweet pepper, corn, onion, cheese.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
+            { id: 19, cat: "Pizza", name: "Pepperoni Pizza", price: 7.00, desc: "Sauce, pepperoni, cheese.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 12.00}, {name: "Family (F)", price: 15.00}] },
+            { id: 20, cat: "Pizza", name: "Barbecue Pizza", price: 8.00, desc: "BBQ sauce base.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
+            { id: 21, cat: "Pizza", name: "Chawarma Pizza", price: 8.00, desc: "Topped with shawarma.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
+            { id: 22, cat: "Pizza", name: "Meat Lovers Pizza", price: 8.00, desc: "Loaded with meat.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
             // Pasta
-            { id: 23, cat: "Pasta", name: "Chicken Fettuccine Alfredo", price: 10.00, desc: "Cheese, spaghetti, mushroom, chicken.", img: imgPasta, addons: pastaAddons },
-            { id: 24, cat: "Pasta", name: "Fettuccine Alfredo", price: 7.50, desc: "Cheese, spaghetti, mushroom.", img: imgPasta, addons: pastaAddons },
-            { id: 25, cat: "Pasta", name: "Penne Arrabiata", price: 6.00, desc: "Basil, tomato sauce, cheese, olive.", img: imgPasta, addons: pastaAddons },
-            { id: 26, cat: "Pasta", name: "Spaghetti Bolognese", price: 8.50, desc: "Tomato sauce, meat, cheese, corn, mushroom, sweet pepper, onion.", img: imgPasta, addons: pastaAddons },
-            { id: 27, cat: "Pasta", name: "PENNE 4 CHEESE", price: 10.00, desc: "Rich 4 cheese sauce.", img: imgPasta, addons: pastaAddons },
-            { id: 28, cat: "Pasta", name: "Penne Rose", price: 8.00, desc: "Pink sauce pasta.", img: imgPasta, addons: pastaAddons },
-            { id: 29, cat: "Pasta", name: "Shrimp Broccoli", price: 12.50, desc: "Pasta with shrimp and broccoli.", img: imgPasta, addons: pastaAddons },
-            { id: 30, cat: "Pasta", name: "Barbecue Pasta", price: 8.00, desc: "Pasta with BBQ sauce.", img: imgPasta, addons: pastaAddons },
+            { id: 23, cat: "Pasta", name: "Chicken Fettuccine Alfredo", price: 10.00, desc: "Cheese, spaghetti, mushroom, chicken.", addons: pastaAddons },
+            { id: 24, cat: "Pasta", name: "Fettuccine Alfredo", price: 7.50, desc: "Cheese, spaghetti, mushroom.", addons: pastaAddons },
+            { id: 25, cat: "Pasta", name: "Penne Arrabiata", price: 6.00, desc: "Basil, tomato sauce, cheese, olive.", addons: pastaAddons },
+            { id: 26, cat: "Pasta", name: "Spaghetti Bolognese", price: 8.50, desc: "Tomato sauce, meat, cheese, corn, mushroom, sweet pepper, onion.", addons: pastaAddons },
+            { id: 27, cat: "Pasta", name: "PENNE 4 CHEESE", price: 10.00, desc: "Rich 4 cheese sauce.", addons: pastaAddons },
+            { id: 28, cat: "Pasta", name: "Penne Rose", price: 8.00, desc: "Pink sauce pasta.", addons: pastaAddons },
+            { id: 29, cat: "Pasta", name: "Shrimp Broccoli", price: 12.50, desc: "Pasta with shrimp and broccoli.", addons: pastaAddons },
+            { id: 30, cat: "Pasta", name: "Barbecue Pasta", price: 8.00, desc: "Pasta with BBQ sauce.", addons: pastaAddons },
             // Kids Menu
-            { id: 31, cat: "Kids Menu", name: "Crispy", price: 6.00, desc: "2 pcs crispy, fries, salad, Pepsi.", img: imgCrispy, addons: [] },
-            { id: 32, cat: "Kids Menu", name: "Nuggets", price: 6.00, desc: "4 pcs nuggets, fries, salad, Pepsi.", img: imgCrispy, addons: [] },
-            { id: 33, cat: "Kids Menu", name: "Mix Meal", price: 7.50, desc: "2 crispy + 2 nuggets + mini pizza + fries + Pepsi.", img: imgCrispy, addons: [] },
+            { id: 31, cat: "Kids Menu", name: "Crispy", price: 6.00, desc: "2 pcs crispy, fries, salad, Pepsi.", addons: [] },
+            { id: 32, cat: "Kids Menu", name: "Nuggets", price: 6.00, desc: "4 pcs nuggets, fries, salad, Pepsi.", addons: [] },
+            { id: 33, cat: "Kids Menu", name: "Mix Meal", price: 7.50, desc: "2 crispy + 2 nuggets + mini pizza + fries + Pepsi.", addons: [] },
             // Platters
-            { id: 34, cat: "Platters", name: "Crispy Platter", price: 11.00, desc: "Chicken, salad, potato, garlic.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 35, cat: "Platters", name: "Nuggets Platter", price: 9.00, desc: "10 pcs nuggets, fries, salad, sauce cocktail.", img: imgCrispy, addons: platterAddons },
-            { id: 36, cat: "Platters", name: "Grilled Deboned Chicken", price: 12.00, desc: "Grilled chicken, salad, potato, garlic.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 37, cat: "Platters", name: "Chicken Avocat", price: 16.00, desc: "Chicken, avocat, fresh cream, potato, vegetables.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 38, cat: "Platters", name: "Chicken Almond", price: 15.00, desc: "Chicken with almonds, fresh cream, potato.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 39, cat: "Platters", name: "Chicken Mushroom", price: 15.00, desc: "Chicken with mushrooms, potato, fresh cream.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 40, cat: "Platters", name: "Taouk Platter", price: 10.00, desc: "Coleslaw salad, taouk, potato, garlic.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 41, cat: "Platters", name: "Chicken Breast Platter", price: 12.50, desc: "Chicken breast, potato, salad.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 42, cat: "Platters", name: "Chicken Escalope", price: 13.00, desc: "Coleslaw, chicken breast, potato, sauce cocktail.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 43, cat: "Platters", name: "Fajitas Platter", price: 12.00, desc: "Coleslaw salad, fajita, potato.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 44, cat: "Platters", name: "Chicken Curry", price: 15.00, desc: "Rich chicken curry.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 45, cat: "Platters", name: "Cordon Bleu", price: 13.50, desc: "Stuffed chicken breast.", img: imgPlatterChicken, addons: platterAddons },
-            { id: 46, cat: "Platters", name: "Crispy 1kg", price: 22.00, desc: "1 kg of crispy chicken.", img: imgCrispy, addons: platterAddons },
-            { id: 47, cat: "Platters", name: "Taouk 1kg", price: 22.00, desc: "1 kg of Taouk.", img: imgPlatterChicken, addons: platterAddons },
+            { id: 34, cat: "Platters", name: "Crispy Platter", price: 11.00, desc: "Chicken, salad, potato, garlic.", addons: platterAddons },
+            { id: 35, cat: "Platters", name: "Nuggets Platter", price: 9.00, desc: "10 pcs nuggets, fries, salad, sauce cocktail.", addons: platterAddons },
+            { id: 36, cat: "Platters", name: "Grilled Deboned Chicken", price: 12.00, desc: "Grilled chicken, salad, potato, garlic.", addons: platterAddons },
+            { id: 37, cat: "Platters", name: "Chicken Avocat", price: 16.00, desc: "Chicken, avocat, fresh cream, potato, vegetables.", addons: platterAddons },
+            { id: 38, cat: "Platters", name: "Chicken Almond", price: 15.00, desc: "Chicken with almonds, fresh cream, potato.", addons: platterAddons },
+            { id: 39, cat: "Platters", name: "Chicken Mushroom", price: 15.00, desc: "Chicken with mushrooms, potato, fresh cream.", addons: platterAddons },
+            { id: 40, cat: "Platters", name: "Taouk Platter", price: 10.00, desc: "Coleslaw salad, taouk, potato, garlic.", addons: platterAddons },
+            { id: 41, cat: "Platters", name: "Chicken Breast Platter", price: 12.50, desc: "Chicken breast, potato, salad.", addons: platterAddons },
+            { id: 42, cat: "Platters", name: "Chicken Escalope", price: 13.00, desc: "Coleslaw, chicken breast, potato, sauce cocktail.", addons: platterAddons },
+            { id: 43, cat: "Platters", name: "Fajitas Platter", price: 12.00, desc: "Coleslaw salad, fajita, potato.", addons: platterAddons },
+            { id: 44, cat: "Platters", name: "Chicken Curry", price: 15.00, desc: "Rich chicken curry.", addons: platterAddons },
+            { id: 45, cat: "Platters", name: "Cordon Bleu", price: 13.50, desc: "Stuffed chicken breast.", addons: platterAddons },
+            { id: 46, cat: "Platters", name: "Crispy 1kg", price: 22.00, desc: "1 kg of crispy chicken.", addons: platterAddons },
+            { id: 47, cat: "Platters", name: "Taouk 1kg", price: 22.00, desc: "1 kg of Taouk.", addons: platterAddons },
             // Sandwiches
-            { id: 48, cat: "Sandwiches", name: "Batata", price: 2.25, desc: "French fries sandwich.", img: imgFries, addons: [] },
-            { id: 49, cat: "Sandwiches", name: "Taouk", price: 3.80, desc: "Taouk sandwich.", img: imgShawarmaWrap, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 50, cat: "Sandwiches", name: "Fransisco", price: 4.50, desc: "Francisco sandwich.", img: imgShawarmaWrap, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 51, cat: "Sandwiches", name: "Crispy", price: 4.50, desc: "Crispy chicken sandwich.", img: imgShawarmaWrap, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 52, cat: "Sandwiches", name: "Fajita", price: 5.00, desc: "Fajita sandwich.", img: imgShawarmaWrap, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 53, cat: "Sandwiches", name: "Chicken Sub", price: 4.50, desc: "Chicken sub.", img: imgShawarmaWrap, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 54, cat: "Sandwiches", name: "Makanik", price: 4.50, desc: "Makanik sausage sandwich.", img: imgShawarmaMeat, addons: [] },
-            { id: 55, cat: "Sandwiches", name: "Sejok", price: 4.50, desc: "Spicy sejok sandwich.", img: imgShawarmaMeat, addons: [] },
-            { id: 56, cat: "Sandwiches", name: "Hot Dog", price: 4.00, desc: "Hot dog sandwich.", img: imgShawarmaMeat, addons: [] },
-            { id: 57, cat: "Sandwiches", name: "Submarine", price: 4.50, desc: "Classic submarine.", img: imgShawarmaWrap, addons: [] },
-            { id: 58, cat: "Sandwiches", name: "Shrimp", price: 5.00, desc: "Shrimp sandwich.", img: imgShawarmaWrap, addons: [] },
-            { id: 59, cat: "Sandwiches", name: "Crab", price: 4.50, desc: "Crab sandwich.", img: imgShawarmaWrap, addons: [] },
-            { id: 60, cat: "Sandwiches", name: "Samke Hara", price: 5.00, desc: "Spicy fish sandwich.", img: imgShawarmaWrap, addons: [] },
+            { id: 48, cat: "Sandwiches", name: "Batata", price: 2.25, desc: "French fries sandwich.", addons: [] },
+            { id: 49, cat: "Sandwiches", name: "Taouk", price: 3.80, desc: "Taouk sandwich.", addons: [{name: "Extra Cheese", price: 1.00}] },
+            { id: 50, cat: "Sandwiches", name: "Fransisco", price: 4.50, desc: "Francisco sandwich.", addons: [{name: "Extra Cheese", price: 1.00}] },
+            { id: 51, cat: "Sandwiches", name: "Crispy", price: 4.50, desc: "Crispy chicken sandwich.", addons: [{name: "Extra Cheese", price: 1.00}] },
+            { id: 52, cat: "Sandwiches", name: "Fajita", price: 5.00, desc: "Fajita sandwich.", addons: [{name: "Extra Cheese", price: 1.00}] },
+            { id: 53, cat: "Sandwiches", name: "Chicken Sub", price: 4.50, desc: "Chicken sub.", addons: [{name: "Extra Cheese", price: 1.00}] },
+            { id: 54, cat: "Sandwiches", name: "Makanik", price: 4.50, desc: "Makanik sausage sandwich.", addons: [] },
+            { id: 55, cat: "Sandwiches", name: "Sejok", price: 4.50, desc: "Spicy sejok sandwich.", addons: [] },
+            { id: 56, cat: "Sandwiches", name: "Hot Dog", price: 4.00, desc: "Hot dog sandwich.", addons: [] },
+            { id: 57, cat: "Sandwiches", name: "Submarine", price: 4.50, desc: "Classic submarine.", addons: [] },
+            { id: 58, cat: "Sandwiches", name: "Shrimp", price: 5.00, desc: "Shrimp sandwich.", addons: [] },
+            { id: 59, cat: "Sandwiches", name: "Crab", price: 4.50, desc: "Crab sandwich.", addons: [] },
+            { id: 60, cat: "Sandwiches", name: "Samke Hara", price: 5.00, desc: "Spicy fish sandwich.", addons: [] },
             // Special Sandwiches
-            { id: 61, cat: "Special Sandwiches", name: "Turkey Chawarma Chicken", price: 8.00, desc: "Special Turkey Chawarma Chicken.", img: imgShawarmaWrap, addons: [] },
-            { id: 62, cat: "Special Sandwiches", name: "Turkey Chawarma Beef", price: 8.50, desc: "Special Turkey Chawarma Beef.", img: imgShawarmaMeat, addons: [] },
-            { id: 63, cat: "Special Sandwiches", name: "Honey Mustard Chicken", price: 5.00, desc: "Chicken with honey mustard.", img: imgShawarmaWrap, addons: [] },
+            { id: 61, cat: "Special Sandwiches", name: "Turkey Chawarma Chicken", price: 8.00, desc: "Special Turkey Chawarma Chicken.", addons: [] },
+            { id: 62, cat: "Special Sandwiches", name: "Turkey Chawarma Beef", price: 8.50, desc: "Special Turkey Chawarma Beef.", addons: [] },
+            { id: 63, cat: "Special Sandwiches", name: "Honey Mustard Chicken", price: 5.00, desc: "Chicken with honey mustard.", addons: [] },
             // Starters
-            { id: 64, cat: "Starters", name: "Nachos", price: 5.30, desc: "Crispy nachos.", img: imgPotatoDish, addons: [{name: "Extra Dip", price: 0.50}] },
-            { id: 65, cat: "Starters", name: "Chicken Quesadillas", price: 7.50, desc: "Chicken Quesadillas.", img: imgShawarmaWrap, addons: [] },
-            { id: 66, cat: "Starters", name: "Wavy Potato", price: 2.00, desc: "Wavy potato.", img: imgFries, addons: [] },
-            { id: 67, cat: "Starters", name: "Garlic Bread", price: 4.50, desc: "Garlic bread.", img: imgPotatoDish, addons: [] },
-            { id: 68, cat: "Starters", name: "Chicken Nuggets", price: 6.00, desc: "Chicken nuggets.", img: imgCrispy, addons: [] },
-            { id: 69, cat: "Starters", name: "French Fries Dish", price: 2.75, desc: "French fries.", img: imgFries, addons: [] },
-            { id: 70, cat: "Starters", name: "Grilled Potato", price: 3.00, desc: "Grilled potato.", img: imgPotatoDish, addons: [] },
-            { id: 71, cat: "Starters", name: "Potato Wedges", price: 3.50, desc: "Potato wedges.", img: imgFries, addons: [] },
-            { id: 72, cat: "Starters", name: "Shrimp Pane", price: 6.25, desc: "Shrimp pane.", img: imgCrispy, addons: [] },
-            { id: 73, cat: "Starters", name: "Crab Pane", price: 6.25, desc: "Crab pane.", img: imgCrispy, addons: [] },
-            { id: 74, cat: "Starters", name: "Calamar Pane", price: 5.50, desc: "Calamar pane.", img: imgCrispy, addons: [] },
-            { id: 75, cat: "Starters", name: "Chicken Barbecue Wings", price: 6.00, desc: "BBQ wings.", img: imgCrispy, addons: [] },
-            { id: 76, cat: "Starters", name: "Chicken Honey Mustard Wings", price: 6.00, desc: "New Honey Mustard Wings.", img: imgCrispy, addons: [] },
-            { id: 77, cat: "Starters", name: "Chicken Provencal Wings", price: 6.00, desc: "Provencal wings.", img: imgCrispy, addons: [] },
-            { id: 78, cat: "Starters", name: "Chicken Buffalo Wings", price: 6.00, desc: "Buffalo wings.", img: imgCrispy, addons: [] },
-            { id: 79, cat: "Starters", name: "Sandwich Halloumi", price: 3.00, desc: "Halloumi sandwich.", img: imgShawarmaWrap, addons: [] },
-            { id: 80, cat: "Starters", name: "Curly Fries", price: 6.50, desc: "Curly fries.", img: imgFries, addons: [] },
-            { id: 81, cat: "Starters", name: "Mix Platter", price: 10.00, desc: "Mix platter.", img: imgPlatterChicken, addons: [] },
-            { id: 82, cat: "Starters", name: "Mozzarella Stick", price: 6.00, desc: "Mozzarella sticks.", img: imgCrispy, addons: [] },
-            { id: 83, cat: "Starters", name: "Fish Finger", price: 5.00, desc: "Fish fingers.", img: imgCrispy, addons: [] },
+            { id: 64, cat: "Starters", name: "Nachos", price: 5.30, desc: "Crispy nachos.", addons: [{name: "Extra Dip", price: 0.50}] },
+            { id: 65, cat: "Starters", name: "Chicken Quesadillas", price: 7.50, desc: "Chicken Quesadillas.", addons: [] },
+            { id: 66, cat: "Starters", name: "Wavy Potato", price: 2.00, desc: "Wavy potato.", addons: [] },
+            { id: 67, cat: "Starters", name: "Garlic Bread", price: 4.50, desc: "Garlic bread.", addons: [] },
+            { id: 68, cat: "Starters", name: "Chicken Nuggets", price: 6.00, desc: "Chicken nuggets.", addons: [] },
+            { id: 69, cat: "Starters", name: "French Fries Dish", price: 2.75, desc: "French fries.", addons: [] },
+            { id: 70, cat: "Starters", name: "Grilled Potato", price: 3.00, desc: "Grilled potato.", addons: [] },
+            { id: 71, cat: "Starters", name: "Potato Wedges", price: 3.50, desc: "Potato wedges.", addons: [] },
+            { id: 72, cat: "Starters", name: "Shrimp Pane", price: 6.25, desc: "Shrimp pane.", addons: [] },
+            { id: 73, cat: "Starters", name: "Crab Pane", price: 6.25, desc: "Crab pane.", addons: [] },
+            { id: 74, cat: "Starters", name: "Calamar Pane", price: 5.50, desc: "Calamar pane.", addons: [] },
+            { id: 75, cat: "Starters", name: "Chicken Barbecue Wings", price: 6.00, desc: "BBQ wings.", addons: [] },
+            { id: 76, cat: "Starters", name: "Chicken Honey Mustard Wings", price: 6.00, desc: "New Honey Mustard Wings.", addons: [] },
+            { id: 77, cat: "Starters", name: "Chicken Provencal Wings", price: 6.00, desc: "Provencal wings.", addons: [] },
+            { id: 78, cat: "Starters", name: "Chicken Buffalo Wings", price: 6.00, desc: "Buffalo wings.", addons: [] },
+            { id: 79, cat: "Starters", name: "Sandwich Halloumi", price: 3.00, desc: "Halloumi sandwich.", addons: [] },
+            { id: 80, cat: "Starters", name: "Curly Fries", price: 6.50, desc: "Curly fries.", addons: [] },
+            { id: 81, cat: "Starters", name: "Mix Platter", price: 10.00, desc: "Mix platter.", addons: [] },
+            { id: 82, cat: "Starters", name: "Mozzarella Stick", price: 6.00, desc: "Mozzarella sticks.", addons: [] },
+            { id: 83, cat: "Starters", name: "Fish Finger", price: 5.00, desc: "Fish fingers.", addons: [] },
             // Salads
-            { id: 84, cat: "Salads", name: "Ceasar Salad", price: 4.50, desc: "Lettuce, toast, cheese.", img: imgSalad, addons: saladAddons },
-            { id: 85, cat: "Salads", name: "Chicken Ceasar Salad", price: 6.50, desc: "Lettuce, chicken, toast, cheese.", img: imgSalad, addons: saladAddons },
-            { id: 86, cat: "Salads", name: "Crab Salad", price: 6.50, desc: "Lettuce, avocat, crab, corn, cherry tomato.", img: imgSalad, addons: saladAddons },
-            { id: 87, cat: "Salads", name: "Fattouch", price: 5.00, desc: "Fattouch salad.", img: imgSalad, addons: saladAddons },
-            { id: 88, cat: "Salads", name: "Tuna Salad", price: 6.00, desc: "Lettuce, tuna, pasta, pickles cucumber, corn, cherry tomato, olive.", img: imgSalad, addons: saladAddons },
-            { id: 89, cat: "Salads", name: "Rocca Salad", price: 4.00, desc: "Rocca, mushroom, nut, cherry tomato, balsamic vinegar.", img: imgSalad, addons: saladAddons },
-            { id: 90, cat: "Salads", name: "Greek Salad", price: 5.50, desc: "Lettuce, tomato, cucumber, sweet pepper, feta cheese, olive, onion.", img: imgSalad, addons: saladAddons },
-            { id: 91, cat: "Salads", name: "Season Salad", price: 3.00, desc: "Lettuce, tomato, cucumber.", img: imgSalad, addons: saladAddons },
-            { id: 92, cat: "Salads", name: "Panache Salad", price: 8.00, desc: "Panache salad.", img: imgSalad, addons: saladAddons },
-            // Breakfast
-            { id: 93, cat: "Breakfast", name: "Labneh Dish", price: 3.50, desc: "Labneh dish.", img: imgBreakfast, addons: [{name: "Extra Bread", price: 0.50}] },
-            { id: 94, cat: "Breakfast", name: "Vegetables Dish", price: 1.50, desc: "Vegetables dish.", img: imgBreakfast, addons: [] },
-            // Baguette
-            { id: 95, cat: "Baguette", name: "Labneh + Vegetables", price: 3.50, desc: "Baguette labneh and veg.", img: imgBreakfast, addons: [{name: "Toasted", price: 0.00}] },
-            { id: 96, cat: "Baguette", name: "Labneh + Mortadella", price: 4.00, desc: "Baguette labneh and mortadella.", img: imgBreakfast, addons: [{name: "Toasted", price: 0.00}] },
-            { id: 97, cat: "Baguette", name: "Halloum", price: 3.00, desc: "Baguette halloum.", img: imgBreakfast, addons: [{name: "Toasted", price: 0.00}] },
-            { id: 98, cat: "Baguette", name: "Banana & Chocolate", price: 3.00, desc: "Sweet baguette.", img: imgBreakfast, addons: [{name: "Toasted", price: 0.00}] },
-            { id: 99, cat: "Baguette", name: "Jebne w Habash", price: 3.25, desc: "Baguette jebne and habash.", img: imgBreakfast, addons: [{name: "Toasted", price: 0.00}] },
-            { id: 100, cat: "Baguette", name: "Ach2awan w Habach", price: 4.00, desc: "Baguette achkawan and habach.", img: imgBreakfast, addons: [{name: "Toasted", price: 0.00}] },
-            // Potato
-            { id: 101, cat: "Potato", name: "Potato + Vegetables", price: 7.50, desc: "Baked potato with veg.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 102, cat: "Potato", name: "Potato + Habash", price: 8.00, desc: "Baked potato with habash.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 103, cat: "Potato", name: "Potato + Janbon", price: 8.00, desc: "Baked potato with janbon.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 104, cat: "Potato", name: "Potato + Hotdog", price: 8.00, desc: "Baked potato with hotdog.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 105, cat: "Potato", name: "Potato + Mortadella", price: 8.00, desc: "Baked potato with mortadella.", img: imgPotatoDish, addons: [{name: "Extra Cheese", price: 1.00}] },
+            { id: 84, cat: "Salads", name: "Ceasar Salad", price: 4.50, desc: "Lettuce, toast, cheese.", addons: saladAddons },
+            { id: 85, cat: "Salads", name: "Chicken Ceasar Salad", price: 6.50, desc: "Lettuce, chicken, toast, cheese.", addons: saladAddons },
+            { id: 86, cat: "Salads", name: "Crab Salad", price: 6.50, desc: "Lettuce, avocat, crab, corn, cherry tomato.", addons: saladAddons },
+            { id: 87, cat: "Salads", name: "Fattouch", price: 5.00, desc: "Fattouch salad.", addons: saladAddons },
+            { id: 88, cat: "Salads", name: "Tuna Salad", price: 6.00, desc: "Lettuce, tuna, pasta, pickles cucumber, corn, cherry tomato, olive.", addons: saladAddons },
+            { id: 89, cat: "Salads", name: "Rocca Salad", price: 4.00, desc: "Rocca, mushroom, nut, cherry tomato, balsamic vinegar.", addons: saladAddons },
+            { id: 90, cat: "Salads", name: "Greek Salad", price: 5.50, desc: "Lettuce, tomato, cucumber, sweet pepper, feta cheese, olive, onion.", addons: saladAddons },
+            { id: 91, cat: "Salads", name: "Season Salad", price: 3.00, desc: "Lettuce, tomato, cucumber.", addons: saladAddons },
+            { id: 92, cat: "Salads", name: "Panache Salad", price: 8.00, desc: "Panache salad.", addons: saladAddons },
+            // Breakfast & Baguettes
+            { id: 93, cat: "Breakfast & Baguettes", name: "Labneh Dish", price: 3.50, desc: "Labneh dish.", addons: [{name: "Extra Bread", price: 0.50}] },
+            { id: 94, cat: "Breakfast & Baguettes", name: "Vegetables Dish", price: 1.50, desc: "Vegetables dish.", addons: [] },
+            { id: 95, cat: "Breakfast & Baguettes", name: "Labneh + Vegetables", price: 3.50, desc: "Baguette labneh and veg.", addons: [{name: "Toasted", price: 0.00}] },
+            { id: 96, cat: "Breakfast & Baguettes", name: "Labneh + Mortadella", price: 4.00, desc: "Baguette labneh and mortadella.", addons: [{name: "Toasted", price: 0.00}] },
+            { id: 97, cat: "Breakfast & Baguettes", name: "Halloum", price: 3.00, desc: "Baguette halloum.", addons: [{name: "Toasted", price: 0.00}] },
+            { id: 98, cat: "Breakfast & Baguettes", name: "Banana & Chocolate", price: 3.00, desc: "Sweet baguette.", addons: [{name: "Toasted", price: 0.00}] },
+            { id: 99, cat: "Breakfast & Baguettes", name: "Jebne w Habash", price: 3.25, desc: "Baguette jebne and habash.", addons: [{name: "Toasted", price: 0.00}] },
+            { id: 100, cat: "Breakfast & Baguettes", name: "Ach2awan w Habach", price: 4.00, desc: "Baguette achkawan and habach.", addons: [{name: "Toasted", price: 0.00}] },
+            // Potato Sandwiches
+            { id: 101, cat: "Potato Sandwiches", name: "Potato + Vegetables", price: 7.50, desc: "Baked potato with veg.", addons: [{name: "Extra Cheese", price: 1.00}] },
+            { id: 102, cat: "Potato Sandwiches", name: "Potato + Habash", price: 8.00, desc: "Baked potato with habash.", addons: [{name: "Extra Cheese", price: 1.00}] },
+            { id: 103, cat: "Potato Sandwiches", name: "Potato + Janbon", price: 8.00, desc: "Baked potato with janbon.", addons: [{name: "Extra Cheese", price: 1.00}] },
+            { id: 104, cat: "Potato Sandwiches", name: "Potato + Hotdog", price: 8.00, desc: "Baked potato with hotdog.", addons: [{name: "Extra Cheese", price: 1.00}] },
+            { id: 105, cat: "Potato Sandwiches", name: "Potato + Mortadella", price: 8.00, desc: "Baked potato with mortadella.", addons: [{name: "Extra Cheese", price: 1.00}] },
             // Burger
-            { id: 106, cat: "Burger", name: "Cheese Burger", price: 8.00, desc: "Cheese burger.", img: imgBurger, addons: burgerAddons },
-            { id: 107, cat: "Burger", name: "Cheesy Burger", price: 8.50, desc: "Cheesy burger.", img: imgBurger, addons: burgerAddons },
-            { id: 108, cat: "Burger", name: "Hamburger", price: 7.00, desc: "Classic hamburger.", img: imgBurger, addons: burgerAddons },
-            { id: 109, cat: "Burger", name: "Chicken Burger", price: 6.50, desc: "Chicken burger.", img: imgBurger, addons: burgerAddons },
-            { id: 110, cat: "Burger", name: "Cheese & Chicken Burger", price: 7.00, desc: "Cheese and chicken.", img: imgBurger, addons: burgerAddons },
-            { id: 111, cat: "Burger", name: "Fish Burger", price: 7.00, desc: "Fish burger.", img: imgBurger, addons: [{name: "Extra Tartar Sauce", price: 0.50}] },
-            { id: 112, cat: "Burger", name: "Shawarma Burger", price: 7.50, desc: "Shawarma burger.", img: imgBurger, addons: burgerAddons },
-            { id: 113, cat: "Burger", name: "Crispy Burger", price: 7.00, desc: "Crispy burger.", img: imgBurger, addons: burgerAddons }
+            { id: 106, cat: "Burger", name: "Cheese Burger", price: 8.00, desc: "Cheese burger.", addons: burgerAddons },
+            { id: 107, cat: "Burger", name: "Cheesy Burger", price: 8.50, desc: "Cheesy burger.", addons: burgerAddons },
+            { id: 108, cat: "Burger", name: "Hamburger", price: 7.00, desc: "Classic hamburger.", addons: burgerAddons },
+            { id: 109, cat: "Burger", name: "Chicken Burger", price: 6.50, desc: "Chicken burger.", addons: burgerAddons },
+            { id: 110, cat: "Burger", name: "Cheese & Chicken Burger", price: 7.00, desc: "Cheese and chicken.", addons: burgerAddons },
+            { id: 111, cat: "Burger", name: "Fish Burger", price: 7.00, desc: "Fish burger.", addons: [{name: "Extra Tartar Sauce", price: 0.50}] },
+            { id: 112, cat: "Burger", name: "Shawarma Burger", price: 7.50, desc: "Shawarma burger.", addons: burgerAddons },
+            { id: 113, cat: "Burger", name: "Crispy Burger", price: 7.00, desc: "Crispy burger.", addons: burgerAddons }
         ];
 
-        // Enriching data with UI logic (tags, dynamic rating generation for demo)
-        const menuData = rawMenuData.map(item => {
+        // توليد الصور الديناميكية لكل عنصر (LoremFlickr) وإضافة التاجات والتقييم الوهمي
+        const menuData = rawItems.map(item => {
             let tags = [];
             if([1, 7, 12, 106, 34, 48].includes(item.id)) tags.push('bestseller');
             if([95, 96, 76].includes(item.id)) tags.push('new');
@@ -1228,8 +1218,13 @@
             if([55, 60, 78].includes(item.id)) tags.push('spicy');
             if([46, 47, 9].includes(item.id)) tags.push('offer');
             
+            // توليد رابط LoremFlickr مبني على اسم القسم وكلمة طعام (مع lock لتثبيت الصورة لكل ID)
+            let categoryKeyword = item.cat.toLowerCase().replace(/[^a-z]/g, '');
+            let imgUrl = `https://loremflickr.com/600/400/food,${categoryKeyword}?lock=${item.id}`;
+
             return {
                 ...item,
+                img: imgUrl,
                 tags: tags,
                 prep: "15-20m",
                 rate: (Math.random() * 0.8 + 4.2).toFixed(1), 
@@ -1238,7 +1233,7 @@
         });
 
         // =========================================
-        // Application State
+        // متغيرات وحالة التطبيق
         // =========================================
         let cart = JSON.parse(localStorage.getItem('ashta_cart')) || [];
         let favs = JSON.parse(localStorage.getItem('ashta_favs')) || [];
@@ -1252,9 +1247,7 @@
         let cAddons = [];
         let discountVal = 0;
 
-        // =========================================
-        // Initialization
-        // =========================================
+        // تهيئة التطبيق عند فتح الصفحة
         window.onload = () => {
             if(localStorage.getItem('theme') === 'dark') toggleTheme(true);
             if(localStorage.getItem('lang') === 'ar') toggleLang(true);
@@ -1263,13 +1256,13 @@
 
         function renderUI() {
             renderCategories();
-            filterMenu(); // Show all items grouped correctly by default
+            filterMenu(); 
             updateCartUI();
             updateTexts();
         }
 
         // =========================================
-        // Localization & Theming
+        // الترجمة وتغيير الثيم
         // =========================================
         function updateTexts() {
             const dict = i18n[currentLang];
@@ -1331,7 +1324,7 @@
         }
 
         // =========================================
-        // Layout & Rendering (Fixing the layout issue)
+        // عرض القوائم والفلاتر
         // =========================================
         function renderCategories() {
             const wrap = document.getElementById('cat-container');
@@ -1345,7 +1338,7 @@
             btn.classList.add('active');
             const target = document.getElementById(`cat-${cat.replace(/\s+/g, '-')}`);
             if(target) {
-                const y = target.getBoundingClientRect().top + window.scrollY - 180;
+                const y = target.getBoundingClientRect().top + window.scrollY - 150;
                 window.scrollTo({top: y, behavior: 'smooth'});
             }
         }
@@ -1357,7 +1350,6 @@
             filterMenu();
         }
 
-        // Fix: "All" now truly shows all items correctly grouped by category!
         function filterMenu() {
             const term = document.getElementById('searchInput').value.toLowerCase();
             const container = document.getElementById('menu-container');
@@ -1417,7 +1409,7 @@
         }
 
         // =========================================
-        // Modal Handling & Reviews (Fixing the tabs)
+        // النوافذ المنبثقة (Modal) والتقييمات
         // =========================================
         function openItem(id) {
             currentItem = menuData.find(i => i.id === id);
@@ -1425,7 +1417,6 @@
             cAddons = []; 
             document.getElementById('m-note').value = "";
             
-            // Always open on details tab by default
             switchTab('details');
 
             document.getElementById('m-img').src = currentItem.img;
@@ -1434,7 +1425,6 @@
             document.getElementById('m-rate-cnt').innerText = currentItem.rateCnt;
             document.getElementById('m-desc').innerText = currentItem.desc;
 
-            // Handle Variants (Pizza sizes)
             const vSec = document.getElementById('m-variants-sec');
             if(currentItem.variants) {
                 vSec.style.display = 'block';
@@ -1452,7 +1442,6 @@
                 cVarName = ""; 
             }
 
-            // Handle Addons
             const aSec = document.getElementById('m-addons-sec');
             if(currentItem.addons && currentItem.addons.length > 0) {
                 aSec.style.display = 'block';
@@ -1480,7 +1469,6 @@
             document.body.style.overflow = 'auto';
         }
         
-        // This makes the Review/Details tabs work perfectly
         function switchTab(t) {
             document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
             
@@ -1539,7 +1527,7 @@
         }
 
         // =========================================
-        // Reviews System
+        // التقييمات
         // =========================================
         let selStar = 5;
         document.querySelectorAll('.star-select i').forEach(star => {
@@ -1554,7 +1542,7 @@
         function submitReview() {
             const name = document.getElementById('rev-name').value || "Guest";
             const text = document.getElementById('rev-text').value;
-            if(!text) return; // Prevent empty reviews
+            if(!text) return; 
             
             if(!reviews[currentItem.id]) reviews[currentItem.id] = [];
             
@@ -1568,7 +1556,7 @@
             localStorage.setItem('ashta_reviews', JSON.stringify(reviews));
             document.getElementById('rev-text').value = '';
             
-            loadReviews(); // Refresh the list
+            loadReviews(); 
         }
 
         function loadReviews() {
@@ -1591,7 +1579,7 @@
         }
 
         // =========================================
-        // Cart System & Checkout (Fixing the instant checkout)
+        // السلة وإتمام الطلب عبر الواتساب
         // =========================================
         function showToast() {
             const toast = document.getElementById("toast");
@@ -1616,8 +1604,6 @@
             
             saveCart(); 
             closeModal();
-            
-            // Fix: Show toast instead of opening the cart directly!
             showToast(); 
         }
 
@@ -1673,7 +1659,7 @@
             const code = document.getElementById('c-coupon').value.toUpperCase();
             if(code === "ASHTA20" && cart.length > 0) {
                 const sub = cart.reduce((sum, c) => sum + c.tot, 0);
-                discountVal = sub * 0.2; // 20% off
+                discountVal = sub * 0.2; 
                 document.getElementById('disc-row').style.display = 'flex';
                 document.getElementById('cart-disc').innerText = `-$${discountVal.toFixed(2)}`;
                 updateCartUI();
@@ -1682,7 +1668,6 @@
             }
         }
 
-        // WhatsApp Invoice Generation
         function checkoutWA() {
             if(cart.length === 0) return alert(currentLang === 'ar' ? "السلة فارغة!" : "Cart is empty!");
             
