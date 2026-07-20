@@ -379,7 +379,7 @@
             border-color: var(--primary); 
         }
 
-        .card-img-wrap { position: relative; height: 200px; overflow: hidden; }
+        .card-img-wrap { position: relative; height: 200px; overflow: hidden; background: #f0f0f0; }
         .card-img { width: 100%; height: 100%; object-fit: cover; }
         .card:hover .card-img { transform: scale(1.05); }
 
@@ -634,1070 +634,1648 @@
         
         .add-cart-main { 
             background: var(--primary); 
-            color: #fff; 
-            border: none; 
-            padding: 15px 20px; 
-            border-radius: 25px; 
-            font-size: 16px; 
-            font-weight: 700; 
-            flex: 1; 
-            margin-left: 15px; 
-            cursor: pointer; 
-            display: flex; 
-            justify-content: space-between;
-        }
-
-        /* =========================================
-           السلة الجانبية (Cart Sidebar) والدفع
-           ========================================= */
-        .cart-sidebar { 
-            position: fixed; 
-            top: 0; 
-            right: -100%; 
-            width: 100%; 
-            max-width: 450px; 
-            height: 100vh; 
-            background: var(--surface); 
-            z-index: 2001; 
-            box-shadow: -5px 0 30px rgba(0,0,0,0.1); 
-            transition: right 0.4s ease, left 0.4s ease; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        
-        .cart-sidebar.open { right: 0; }
-        [dir="rtl"] .cart-sidebar { right: auto; left: -100%; box-shadow: 5px 0 30px rgba(0,0,0,0.1); }
-        [dir="rtl"] .cart-sidebar.open { left: 0; right: auto; }
-        
-        .cart-header { 
-            padding: 20px; 
-            border-bottom: 1px solid var(--border); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            font-family: var(--font-head); 
-            font-size: 22px; 
-        }
-        
-        .cart-body { flex: 1; overflow-y: auto; padding: 20px; }
-        
-        .cart-item { 
-            display: flex; 
-            justify-content: space-between; 
-            margin-bottom: 15px; 
-            padding-bottom: 15px; 
-            border-bottom: 1px dashed var(--border); 
-        }
-        
-        .cart-item-info h4 { margin-bottom: 5px; font-size: 15px; color: var(--text-main);}
-        .cart-item-mods { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
-        
-        .cart-price-col { 
-            text-align: right; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between; 
-            align-items: flex-end;
-        }
-        
-        .remove-btn { 
-            color: var(--danger); 
-            background: none; 
-            border: none; 
-            font-size: 12px; 
-            cursor: pointer; 
-            margin-top: 5px; 
-            font-weight: 700;
-        }
-        
-        .checkout-form { 
-            margin-top: 20px; 
-            background: var(--bg-color); 
-            padding: 15px; 
-            border-radius: 12px; 
-            border: 1px solid var(--border); 
-        }
-        
-        .input-group { margin-bottom: 12px; }
-        .input-group label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 5px; color: var(--text-muted); }
-        .input-group input, .input-group textarea { 
-            width: 100%; 
-            padding: 12px; 
-            border: 1px solid var(--border); 
-            border-radius: 8px; 
-            background: var(--surface); 
-            color: var(--text-main); 
-            font-family: inherit;
-        }
-        
-        .totals { padding: 20px; background: var(--bg-color); border-top: 1px solid var(--border); }
-        
-        .tot-row { 
-            display: flex; 
-            justify-content: space-between; 
-            margin-bottom: 10px; 
-            font-size: 14px; 
-            color: var(--text-muted); 
-            font-weight: 600;
-        }
-        
-        .tot-row.grand { 
-            font-size: 20px; 
-            font-weight: 700; 
-            color: var(--text-main); 
-            margin-top: 15px; 
-            border-top: 1px solid var(--border); 
-            padding-top: 15px; 
-        }
-        
-        .btn-whatsapp { 
-            width: 100%; 
-            background: #25D366; 
-            color: #fff; 
-            border: none; 
-            padding: 15px; 
-            border-radius: 12px; 
-            font-size: 16px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 10px; 
-            margin-top: 15px;
-        }
-
-        /* =========================================
-           زر السلة العائم و إشعار الإضافة (Toast)
-           ========================================= */
-        .float-cart { 
-            position: fixed; 
-            bottom: 25px; 
-            left: 50%; 
-            transform: translateX(-50%) translateY(150%); 
-            background: var(--primary); 
-            color: #fff; 
-            padding: 15px 25px; 
-            border-radius: 30px; 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            z-index: 900; 
-            cursor: pointer; 
-            font-weight: 700; 
-            font-size: 15px;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            box-shadow: 0 10px 20px rgba(229, 169, 55, 0.4); 
-            white-space: nowrap;
-        }
-        .float-cart.visible { transform: translateX(-50%) translateY(0); }
-        
-        .badge-count { 
-            background: #fff; 
-            color: var(--primary); 
-            width: 25px; 
-            height: 25px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 13px; 
-        }
-
-        /* إشعار (تمت الإضافة للسلة) */
-        #toast {
-            visibility: hidden; 
-            min-width: 250px; 
-            background-color: var(--success); 
             color: #fff;
-            text-align: center; 
-            border-radius: 8px; 
-            padding: 15px; 
-            position: fixed;
-            z-index: 3000; 
-            left: 50%; 
-            bottom: 30px; 
-            transform: translateX(-50%); 
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
             font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
-        
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 90px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 90px; opacity: 1;} to {bottom: 0; opacity: 0;} }
-
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.8rem; }
-            .info-bar { flex-direction: column; gap: 10px; }
-            .nav-logo { font-size: 20px; }
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <!-- قاموس اللغات -->
-    <script>
-        const i18n = {
-            en: {
-                subtitle: "Premium Quality, Authentic Taste",
-                statusOpen: "OPEN NOW", statusClosed: "CLOSED",
-                time: "30-45 Mins", minOrder: "Min: $5", fee: "Fee: $1",
-                search: "Search menu...",
-                filterAll: "All", filterBest: "Bestseller", filterNew: "New", filterVeg: "Vegetarian", filterSpicy: "Spicy", filterOffer: "Offers",
-                tabDetails: "Details", tabReviews: "Reviews",
-                addReview: "Write a Review", submitReview: "Submit",
-                size: "Size / Variants", addons: "Add-ons", notes: "Special Instructions", notesPlc: "e.g., No onions...",
-                addBtn: "Add to Cart", toastMsg: "Item added to cart successfully!",
-                cartTitle: "Your Order", emptyCart: "Cart is empty.",
-                name: "Full Name", phone: "Phone Number", address: "Full Address",
-                subtotal: "Subtotal", delivery: "Delivery Fee", total: "Total",
-                checkoutWa: "Checkout via WhatsApp",
-                cat: { "Shawarma": "Shawarma", "Pizza": "Pizza", "Pasta": "Pasta", "Kids Menu": "Kids Menu", "Platters": "Platters", "Sandwiches": "Sandwiches", "Special Sandwiches": "Special Sandwiches", "Starters": "Starters", "Salads": "Salads", "Breakfast & Baguettes": "Breakfast & Baguettes", "Potato Sandwiches": "Potato Sandwiches", "Burger": "Burger" }
-            },
-            ar: {
-                subtitle: "جودة استثنائية، ومذاق أصيل",
-                statusOpen: "مفتوح الآن", statusClosed: "مغلق",
-                time: "30-45 دقيقة", minOrder: "الحد الأدنى: 5$", fee: "التوصيل: 1$",
-                search: "ابحث في القائمة...",
-                filterAll: "الكل", filterBest: "الأكثر مبيعاً", filterNew: "جديد", filterVeg: "نباتي", filterSpicy: "حار", filterOffer: "عروض",
-                tabDetails: "التفاصيل", tabReviews: "التقييمات",
-                addReview: "أضف تقييمك", submitReview: "إرسال",
-                size: "الحجم / الخيارات", addons: "الإضافات", notes: "ملاحظات خاصة", notesPlc: "مثال: بدون بصل...",
-                addBtn: "إضافة للسلة", toastMsg: "تمت إضافة المنتج للسلة بنجاح!",
-                cartTitle: "طلبك", emptyCart: "السلة فارغة.",
-                name: "الاسم الكامل", phone: "رقم الهاتف", address: "العنوان بالتفصيل",
-                subtotal: "المجموع الفرعي", delivery: "رسوم التوصيل", total: "الإجمالي",
-                checkoutWa: "إتمام الطلب عبر واتساب",
-                cat: { "Shawarma": "شاورما", "Pizza": "بيتزا", "Pasta": "باستا", "Kids Menu": "وجبات أطفال", "Platters": "أطباق", "Sandwiches": "سندويشات", "Special Sandwiches": "سندويشات سبيشال", "Starters": "مقبلات", "Salads": "سلطات", "Breakfast & Baguettes": "فطور وباغيت", "Potato Sandwiches": "سندويشات بطاطا", "Burger": "برغر" }
-            }
-        };
-        let currentLang = 'en';
-    </script>
-
-    <!-- شريط التنقل (Navbar) -->
+    <!-- Navbar -->
     <nav>
-        <a href="#" class="nav-logo" onclick="window.scrollTo(0,0)">
-            <img src="logo-ashta.png" alt="Ashta W 3asal Logo">
+        <a href="#" class="nav-logo">
+            <img src="ashta-logo.jpg" alt="Ashta W 3asal Logo">
             Ashta W 3asal
         </a>
         <div class="nav-actions">
-            <button class="icon-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="theme-icon"></i></button>
-            <button class="icon-btn lang-toggle" onclick="toggleLang()" id="lang-btn">AR</button>
-            <button class="icon-btn" onclick="toggleCart()"><i class="fas fa-shopping-bag"></i></button>
+            <button class="icon-btn"><i class="fas fa-search"></i></button>
+            <button class="icon-btn"><i class="fas fa-shopping-cart"></i></button>
         </div>
     </nav>
 
-    <!-- الواجهة الرئيسية (Hero) -->
-    <section class="hero" id="hero-bg">
-        <img src="logo-ashta.png" alt="Ashta W 3asal Logo" class="hero-logo">
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="ashta-logo.jpg" alt="Hero Logo" class="hero-logo">
         <h1 class="hero-title">Ashta W 3asal</h1>
-        <p class="hero-subtitle" id="t-subtitle">Premium Quality, Authentic Taste</p>
-        
-        <div class="info-bar">
-            <div class="info-card"><div class="status-dot"></div> <span id="t-status">OPEN NOW</span> (10 AM - 11 PM)</div>
-            <div class="info-card"><i class="fas fa-motorcycle text-primary"></i> <span id="t-time">30-45 Mins</span></div>
-            <div class="info-card"><i class="fas fa-wallet text-primary"></i> <span id="t-minOrder">Min: $5</span></div>
-            <div class="info-card"><i class="fas fa-receipt text-primary"></i> <span id="t-fee">Fee: $1</span></div>
-        </div>
-        
-        <div class="contact-links">
-            <a href="https://wa.me/905376262192" target="_blank" class="contact-btn" style="color: #25D366;"><i class="fab fa-whatsapp"></i></a>
-            <a href="tel:+905376262192" class="contact-btn" style="color: var(--primary);"><i class="fas fa-phone"></i></a>
-            <a href="#" class="contact-btn" style="color: #4285F4;"><i class="fas fa-map-marker-alt"></i></a>
-        </div>
+        <p class="hero-subtitle">Premium Delivery - All Your Favorites</p>
     </section>
 
-    <!-- شريط العروض المتحرك -->
-    <div class="offers-banner">
-        <div class="offers-marquee">🍯 Free Delivery on orders above $20! Use code: ASHTA20 | 🔥 10% Off on all Platters this weekend!</div>
+    <!-- Menu Grid -->
+    <div class="menu-container">
+        <h2 class="cat-title">Our Menu (Items 1 - 146)</h2>
+        <div class="grid">
+
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="1.jpg" alt="Sandwich Shawarma Djej" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">1. Sandwich Shawarma Djej</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="2.jpg" alt="Sandwich Shawarma Lahme" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">2. Sandwich Shawarma Lahme</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="3.jpg" alt="Sand Shaw Djej w Jebne" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">3. Sand Shaw Djej w Jebne</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="4.jpg" alt="Sand Shaw Lahme w Jebne" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">4. Sand Shaw Lahme w Jebne</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="5.jpg" alt="Rizo Djej" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">5. Rizo Djej</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="6.jpg" alt="Rizo Lahme" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">6. Rizo Lahme</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="7.jpg" alt="Plat Shawarma Djej" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">7. Plat Shawarma Djej</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="8.jpg" alt="Plat Shawarma Lahme" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">8. Plat Shawarma Lahme</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="9.jpg" alt="Plat Shawarma Mix" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">9. Plat Shawarma Mix</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="10.jpg" alt="Shawarma Djej 3al Batata" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">10. Shawarma Djej 3al Batata</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="11.jpg" alt="Shawarma Lahme 3al Batata" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">11. Shawarma Lahme 3al Batata</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="12.jpg" alt="Vegetarian Pizza S" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">12. Vegetarian Pizza S</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="13.jpg" alt="Vegetarian Pizza M" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">13. Vegetarian Pizza M</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="14.jpg" alt="Vegetarian Pizza L" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">14. Vegetarian Pizza L</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="15.jpg" alt="Vegetarian Pizza F" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">15. Vegetarian Pizza F</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="16.jpg" alt="Margarita Pizza S" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">16. Margarita Pizza S</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="17.jpg" alt="Margarita Pizza M" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">17. Margarita Pizza M</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="18.jpg" alt="Margarita Pizza L" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">18. Margarita Pizza L</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="19.jpg" alt="Margarita Pizza F" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">19. Margarita Pizza F</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="20.jpg" alt="Lebanese Pizza S" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">20. Lebanese Pizza S</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="21.jpg" alt="Lebanese Pizza M" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">21. Lebanese Pizza M</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="22.jpg" alt="Lebanese Pizza L" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">22. Lebanese Pizza L</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="23.jpg" alt="Lebanese Pizza F" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">23. Lebanese Pizza F</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="24.jpg" alt="Four Cheese Pizza S" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">24. Four Cheese Pizza S</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="25.jpg" alt="Four Cheese Pizza M" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">25. Four Cheese Pizza M</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="26.jpg" alt="Four Cheese Pizza L" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">26. Four Cheese Pizza L</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="27.jpg" alt="Four Cheese Pizza F" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">27. Four Cheese Pizza F</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="28.jpg" alt="Turkey Pizza S" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">28. Turkey Pizza S</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="29.jpg" alt="Turkey Pizza M" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">29. Turkey Pizza M</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="30.jpg" alt="Turkey Pizza L" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">30. Turkey Pizza L</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="31.jpg" alt="Turkey Pizza F" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">31. Turkey Pizza F</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="32.jpg" alt="Mortadella Pizza S" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">32. Mortadella Pizza S</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="33.jpg" alt="Mortadella Pizza M" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">33. Mortadella Pizza M</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="34.jpg" alt="Mortadella Pizza L" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">34. Mortadella Pizza L</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="35.jpg" alt="Mortadella Pizza F" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">35. Mortadella Pizza F</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="36.jpg" alt="Special Fajita Pizza S" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">36. Special Fajita Pizza S</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="37.jpg" alt="Special Fajita Pizza M" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">37. Special Fajita Pizza M</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="38.jpg" alt="Special Fajita Pizza L" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">38. Special Fajita Pizza L</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="39.jpg" alt="Special Fajita Pizza F" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">39. Special Fajita Pizza F</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="40.jpg" alt="Pepperoni Pizza S" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">40. Pepperoni Pizza S</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="41.jpg" alt="Pepperoni Pizza M" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">41. Pepperoni Pizza M</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="42.jpg" alt="Pepperoni Pizza L" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">42. Pepperoni Pizza L</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="43.jpg" alt="Pepperoni Pizza F" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">43. Pepperoni Pizza F</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="44.jpg" alt="Barbecue Pizza S" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">44. Barbecue Pizza S</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="45.jpg" alt="Barbecue Pizza M" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">45. Barbecue Pizza M</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="46.jpg" alt="Barbecue Pizza L" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">46. Barbecue Pizza L</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="47.jpg" alt="Barbecue Pizza F" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">47. Barbecue Pizza F</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="48.jpg" alt="Chawarma Pizza S" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">48. Chawarma Pizza S</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="49.jpg" alt="Chawarma Pizza M" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">49. Chawarma Pizza M</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="50.jpg" alt="Chawarma Pizza L" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">50. Chawarma Pizza L</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="51.jpg" alt="Chawarma Pizza F" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">51. Chawarma Pizza F</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="52.jpg" alt="Meat Lovers Pizza S" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">52. Meat Lovers Pizza S</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="53.jpg" alt="Meat Lovers Pizza M" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">53. Meat Lovers Pizza M</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="54.jpg" alt="Meat Lovers Pizza L" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">54. Meat Lovers Pizza L</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="55.jpg" alt="Meat Lovers Pizza F" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">55. Meat Lovers Pizza F</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="56.jpg" alt="Chicken Fettuccine Alfredo" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">56. Chicken Fettuccine Alfredo</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="57.jpg" alt="Fettuccine Alfredo" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">57. Fettuccine Alfredo</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="58.jpg" alt="Penne Arrabiata" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">58. Penne Arrabiata</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="59.jpg" alt="Spaghetti Bolognese" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">59. Spaghetti Bolognese</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="60.jpg" alt="PENNE 4 CHEESE" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">60. PENNE 4 CHEESE</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="61.jpg" alt="Penne Rose" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">61. Penne Rose</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="62.jpg" alt="Shrimp Broccoli" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">62. Shrimp Broccoli</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="63.jpg" alt="Barbecue Pasta" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">63. Barbecue Pasta</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="64.jpg" alt="Crispy" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">64. Crispy</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="65.jpg" alt="Nuggets" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">65. Nuggets</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="66.jpg" alt="Mix Meal" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">66. Mix Meal</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="67.jpg" alt="Crispy" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">67. Crispy</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="68.jpg" alt="Nuggets" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">68. Nuggets</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="69.jpg" alt="Grilled Deboned Chicken" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">69. Grilled Deboned Chicken</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="70.jpg" alt="Chicken Avocat" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">70. Chicken Avocat</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="71.jpg" alt="Chicken Almond" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">71. Chicken Almond</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="72.jpg" alt="Chicken Mushroom" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">72. Chicken Mushroom</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="73.jpg" alt="Taouk" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">73. Taouk</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="74.jpg" alt="Chicken Breast" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">74. Chicken Breast</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="75.jpg" alt="Chicken Escalope" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">75. Chicken Escalope</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="76.jpg" alt="Fajitas" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">76. Fajitas</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="77.jpg" alt="Chicken Curry" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">77. Chicken Curry</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="78.jpg" alt="Cordon Bleu" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">78. Cordon Bleu</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="79.jpg" alt="Crispy 1kg" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">79. Crispy 1kg</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="80.jpg" alt="Taouk 1kg" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">80. Taouk 1kg</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="81.jpg" alt="Batata" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">81. Batata</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="82.jpg" alt="Taouk" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">82. Taouk</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="83.jpg" alt="Fransisco" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">83. Fransisco</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="84.jpg" alt="Crispy" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">84. Crispy</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="85.jpg" alt="Fajita" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">85. Fajita</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="86.jpg" alt="Chicken Sub" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">86. Chicken Sub</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="87.jpg" alt="Makanik" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">87. Makanik</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="88.jpg" alt="Sejok" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">88. Sejok</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="89.jpg" alt="Hot Dog" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">89. Hot Dog</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="90.jpg" alt="Submarine" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">90. Submarine</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="91.jpg" alt="Shrimp" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">91. Shrimp</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="92.jpg" alt="Crab" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">92. Crab</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="93.jpg" alt="Samke Hara" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">93. Samke Hara</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="94.jpg" alt="Turkey Chawarma Chicken" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">94. Turkey Chawarma Chicken</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="95.jpg" alt="Turkey Chawarma Beef" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">95. Turkey Chawarma Beef</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="96.jpg" alt="Honey Mustard Chicken" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">96. Honey Mustard Chicken</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="97.jpg" alt="Nachos" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">97. Nachos</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="98.jpg" alt="Chicken Quesadillas" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">98. Chicken Quesadillas</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="99.jpg" alt="Wavy Potato" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">99. Wavy Potato</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="100.jpg" alt="Garlic Bread" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">100. Garlic Bread</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="101.jpg" alt="Chicken Nuggets" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">101. Chicken Nuggets</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="102.jpg" alt="French Fries Dish" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">102. French Fries Dish</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="103.jpg" alt="Grilled Potato" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">103. Grilled Potato</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="104.jpg" alt="Potato Wedges" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">104. Potato Wedges</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="105.jpg" alt="Shrimp Pane" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">105. Shrimp Pane</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="106.jpg" alt="Crab Pane" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">106. Crab Pane</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="107.jpg" alt="Calamar Pane" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">107. Calamar Pane</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="108.jpg" alt="Chicken Barbecue Wings" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">108. Chicken Barbecue Wings</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="109.jpg" alt="Chicken Honey Mustard Wings" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">109. Chicken Honey Mustard Wings</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="110.jpg" alt="Chicken Provencal Wings" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">110. Chicken Provencal Wings</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="111.jpg" alt="Chicken Buffalo Wings" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">111. Chicken Buffalo Wings</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="112.jpg" alt="Sandwich Halloumi" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">112. Sandwich Halloumi</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="113.jpg" alt="Curly Fries" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">113. Curly Fries</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="114.jpg" alt="Mix Platter" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">114. Mix Platter</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="115.jpg" alt="Mozzarella Stick" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">115. Mozzarella Stick</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="116.jpg" alt="Fish Finger" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">116. Fish Finger</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="117.jpg" alt="Ceasar Salad" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">117. Ceasar Salad</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="118.jpg" alt="Chicken Ceasar Salad" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">118. Chicken Ceasar Salad</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="119.jpg" alt="Crab Salad" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">119. Crab Salad</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="120.jpg" alt="Fattouch" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">120. Fattouch</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="121.jpg" alt="Tuna Salad" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">121. Tuna Salad</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="122.jpg" alt="Rocca Salad" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">122. Rocca Salad</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="123.jpg" alt="Greek Salad" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">123. Greek Salad</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="124.jpg" alt="Season Salad" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">124. Season Salad</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="125.jpg" alt="Panache Salad" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">125. Panache Salad</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="126.jpg" alt="Labneh Dish" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">126. Labneh Dish</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="127.jpg" alt="Vegetables Dish" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">127. Vegetables Dish</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="128.jpg" alt="Labneh + Vegetables" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">128. Labneh + Vegetables</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="129.jpg" alt="Labneh + Mortadella" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">129. Labneh + Mortadella</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="130.jpg" alt="Halloum" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">130. Halloum</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="131.jpg" alt="Banana & Chocolate" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">131. Banana & Chocolate</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="132.jpg" alt="Jebne w Habash" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">132. Jebne w Habash</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="133.jpg" alt="Ach2awan w Habach" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">133. Ach2awan w Habach</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="134.jpg" alt="Potato + Vegetables" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">134. Potato + Vegetables</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="135.jpg" alt="Potato + Habash" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">135. Potato + Habash</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="136.jpg" alt="Potato + Janbon" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">136. Potato + Janbon</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="137.jpg" alt="Potato + Hotdog" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">137. Potato + Hotdog</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="138.jpg" alt="Potato + Mortbottom" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">138. Potato + Mortbottom</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="139.jpg" alt="Cheese Burger" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">139. Cheese Burger</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="140.jpg" alt="Cheesy Burger" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">140. Cheesy Burger</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="141.jpg" alt="Hamburger" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">141. Hamburger</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="142.jpg" alt="Chicken Burger" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">142. Chicken Burger</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="143.jpg" alt="Cheese & Chicken Burger" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">143. Cheese & Chicken Burger</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="144.jpg" alt="Fish Burger" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">144. Fish Burger</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="145.jpg" alt="Shawarma Burger" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">145. Shawarma Burger</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="146.jpg" alt="Crispy Burger" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">146. Crispy Burger</h3>
+                    <div class="card-footer">
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- أزرار التحكم (البحث والفلاتر) -->
-    <div class="controls-section">
-        <div class="search-bar">
-            <i class="fas fa-search" style="color: var(--text-muted); margin-top: 3px;"></i>
-            <input type="text" id="searchInput" placeholder="Search menu..." onkeyup="filterMenu()">
-        </div>
-        <div class="filters">
-            <div class="filter-chip active" onclick="applyTag('all', this)" id="t-fAll">All</div>
-            <div class="filter-chip" onclick="applyTag('bestseller', this)" id="t-fBest">Bestseller 🔥</div>
-            <div class="filter-chip" onclick="applyTag('new', this)" id="t-fNew">New ✨</div>
-            <div class="filter-chip" onclick="applyTag('veg', this)" id="t-fVeg">Vegetarian 🥗</div>
-            <div class="filter-chip" onclick="applyTag('spicy', this)" id="t-fSpicy">Spicy 🌶️</div>
-            <div class="filter-chip" onclick="applyTag('offer', this)" id="t-fOffer">Offers 💰</div>
-        </div>
-    </div>
-
-    <!-- حاوية التبويبات (الأقسام) -->
-    <div class="categories-wrapper" id="cat-container"></div>
-    
-    <!-- حاوية عرض المنيو بالكامل -->
-    <div class="menu-container" id="menu-container"></div>
-
-    <!-- النافذة المنبثقة لعرض تفاصيل وتقييمات المنتج -->
-    <div class="modal" id="item-modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></button>
-            <img src="" id="m-img" class="modal-img">
-            
-            <div class="modal-scroll">
-                <div class="modal-info">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <h2 style="font-family: var(--font-head); font-size:24px; color:var(--text-main);" id="m-title">Title</h2>
-                        <div class="rating"><i class="fas fa-star"></i> <span id="m-rate">4.5</span> (<span id="m-rate-cnt">20</span>)</div>
-                    </div>
-                    <p style="font-size:14px; color:var(--text-muted); margin-top:10px; line-height: 1.5;" id="m-desc">Desc</p>
-                </div>
-                
-                <!-- تبويبات التقييم والتفاصيل -->
-                <div class="tabs">
-                    <div class="tab active" onclick="switchTab('details')" id="t-tabDetails">Details</div>
-                    <div class="tab" onclick="switchTab('reviews')" id="t-tabReviews">Reviews</div>
-                </div>
-
-                <!-- محتوى تبويب: التفاصيل -->
-                <div id="tab-details" style="padding: 0 20px;">
-                    <div id="m-variants-sec" class="custom-section" style="display:none;">
-                        <div class="custom-title"><i class="fas fa-list"></i> <span id="t-size">Size / Variants</span></div>
-                        <div id="m-variants-list"></div>
-                    </div>
-                    <div id="m-addons-sec" class="custom-section" style="display:none;">
-                        <div class="custom-title"><i class="fas fa-plus-circle"></i> <span id="t-addons">Add-ons</span></div>
-                        <div id="m-addons-list"></div>
-                    </div>
-                    <div class="custom-section">
-                        <div class="custom-title"><i class="fas fa-pen"></i> <span id="t-notes">Special Instructions</span></div>
-                        <textarea id="m-note" class="input-group" style="width:100%; padding:15px; border-radius:10px; border:1px solid var(--border); background:var(--bg-color); color:var(--text-main);" placeholder="e.g., No onions..."></textarea>
-                    </div>
-                </div>
-
-                <!-- محتوى تبويب: التقييمات -->
-                <div id="tab-reviews">
-                    <div class="review-form">
-                        <h3 id="t-addReview" style="color: var(--text-main); margin-bottom:5px;">Write a Review</h3>
-                        <div class="star-select" id="star-selector">
-                            <i class="fas fa-star" data-val="1"></i>
-                            <i class="fas fa-star" data-val="2"></i>
-                            <i class="fas fa-star" data-val="3"></i>
-                            <i class="fas fa-star" data-val="4"></i>
-                            <i class="fas fa-star" data-val="5"></i>
-                        </div>
-                        <input type="text" id="rev-name" placeholder="Your Name">
-                        <textarea id="rev-text" placeholder="Your review..." rows="2"></textarea>
-                        <button class="btn-submit" onclick="submitReview()" id="t-subReview">Submit</button>
-                    </div>
-                    <div id="reviews-list"></div>
-                </div>
-            </div>
-            
-            <div class="modal-footer">
-                <div class="qty-box">
-                    <button class="qty-btn" onclick="chgQty(-1)"><i class="fas fa-minus"></i></button>
-                    <span id="m-qty" style="font-weight:700; width:25px; text-align:center; font-size:16px;">1</span>
-                    <button class="qty-btn" onclick="chgQty(1)"><i class="fas fa-plus"></i></button>
-                </div>
-                <button class="add-cart-main" onclick="addToCart()">
-                    <span id="t-addBtn">Add to Cart</span> <span id="m-total-price">$0.00</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- السلة الجانبية -->
-    <div class="cart-sidebar" id="cart-side">
-        <div class="cart-header">
-            <span id="t-cartTitle">Your Order</span>
-            <button class="icon-btn" onclick="toggleCart()"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="cart-body">
-            <div id="cart-items"></div>
-            
-            <div class="checkout-form">
-                <div class="input-group">
-                    <label id="t-name">Full Name</label>
-                    <input type="text" id="c-name" placeholder="Name">
-                </div>
-                <div class="input-group">
-                    <label id="t-phone">Phone Number</label>
-                    <input type="text" id="c-phone" placeholder="+90 555 000 0000">
-                </div>
-                <div class="input-group">
-                    <label id="t-address">Full Address</label>
-                    <textarea id="c-address" rows="2" placeholder="Street, Building, Door..."></textarea>
-                </div>
-                <div class="input-group">
-                    <label>Discount Code (Try ASHTA20)</label>
-                    <div style="display:flex; gap:10px;">
-                        <input type="text" id="c-coupon" placeholder="Code">
-                        <button onclick="applyCoupon()" style="background:var(--primary); color:#fff; border:none; padding:0 20px; border-radius:8px; cursor:pointer; font-weight:bold;">Apply</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="totals">
-            <div class="tot-row">
-                <span id="t-subtot">Subtotal</span> <span id="cart-sub">$0.00</span>
-            </div>
-            <div class="tot-row">
-                <span id="t-deliv">Delivery Fee</span> <span>$1.00</span>
-            </div>
-            <div class="tot-row" id="disc-row" style="display:none; color:var(--success);">
-                <span>Discount</span> <span id="cart-disc">-$0.00</span>
-            </div>
-            <div class="tot-row grand">
-                <span id="t-tot">Total</span> <span id="cart-tot">$0.00</span>
-            </div>
-            <button class="btn-whatsapp" onclick="checkoutWA()">
-                <i class="fab fa-whatsapp" style="font-size:20px;"></i> <span id="t-checkWa">Checkout via WhatsApp</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- زر السلة العائم -->
-    <div class="float-cart" id="float-cart" onclick="toggleCart()">
-        <i class="fas fa-shopping-bag"></i>
-        <div style="flex:1;">View Cart</div>
-        <div class="badge-count" id="float-cnt">0</div>
-        <div id="float-tot">$0.00</div>
-    </div>
-
-    <!-- إشعار تمت الإضافة -->
-    <div id="toast">Item added to cart successfully!</div>
-
-    <!-- أكواد الجافاسكربت (JavaScript) -->
-    <script>
-        // =========================================
-        // قاعدة البيانات (113 صنف + توليد صور LoremFlickr)
-        // =========================================
-        
-        const categories = ["Shawarma", "Pizza", "Pasta", "Kids Menu", "Platters", "Sandwiches", "Special Sandwiches", "Starters", "Salads", "Breakfast & Baguettes", "Potato Sandwiches", "Burger"];
-        
-        // الإضافات
-        const shawarmaAddons = [{name: "Extra Toum (Garlic)", price: 0.50}, {name: "Extra Pickles", price: 0.25}, {name: "Extra Meat/Chicken", price: 1.50}, {name: "Extra Cheese", price: 1.00}];
-        const pizzaAddons = [{name: "Extra Cheese", price: 1.50}, {name: "Extra Pepperoni", price: 1.50}, {name: "Extra Veggies", price: 1.00}];
-        const pastaAddons = [{name: "Extra Parmesan", price: 1.00}, {name: "Extra Chicken", price: 2.00}, {name: "Extra Mushroom", price: 1.00}];
-        const burgerAddons = [{name: "Extra Cheese", price: 1.00}, {name: "Extra Patty", price: 2.00}, {name: "Bacon", price: 1.50}];
-        const platterAddons = [{name: "Extra Bread", price: 0.50}, {name: "Extra Garlic/Sauce", price: 0.50}];
-        const saladAddons = [{name: "Extra Dressing", price: 0.50}, {name: "Grilled Chicken", price: 2.00}];
-
-        // مصفوفة الأصناف الخام (بدون صور)
-        const rawItems = [
-            // Shawarma
-            { id: 1, cat: "Shawarma", name: "Sandwich Shawarma Djej", price: 3.50, desc: "Classic chicken shawarma wrap.", addons: shawarmaAddons },
-            { id: 2, cat: "Shawarma", name: "Sandwich Shawarma Lahme", price: 4.00, desc: "Classic meat shawarma wrap.", addons: shawarmaAddons },
-            { id: 3, cat: "Shawarma", name: "Sand Shaw Djej w Jebne", price: 4.00, desc: "Chicken shawarma with melted cheese.", addons: shawarmaAddons },
-            { id: 4, cat: "Shawarma", name: "Sand Shaw Lahme w Jebne", price: 4.50, desc: "Meat shawarma with melted cheese.", addons: shawarmaAddons },
-            { id: 5, cat: "Shawarma", name: "Rizo Djej", price: 5.00, desc: "Rice + chicken shawarma + sauce.", addons: [{name: "Extra Sauce", price: 0.50}, {name: "Extra Shawarma", price: 2.00}] },
-            { id: 6, cat: "Shawarma", name: "Rizo Lahme", price: 6.00, desc: "Rice + meat shawarma + sauce.", addons: [{name: "Extra Sauce", price: 0.50}, {name: "Extra Shawarma", price: 2.00}] },
-            { id: 7, cat: "Shawarma", name: "Plat Shawarma Djej", price: 9.00, desc: "Chicken shawarma platter.", addons: platterAddons },
-            { id: 8, cat: "Shawarma", name: "Plat Shawarma Lahme", price: 10.00, desc: "Meat shawarma platter.", addons: platterAddons },
-            { id: 9, cat: "Shawarma", name: "Plat Shawarma Mix", price: 7.00, desc: "Mix shawarma platter.", addons: platterAddons },
-            { id: 10, cat: "Shawarma", name: "Shawarma Djej 3al Batata", price: 5.00, desc: "Chicken shawarma served over fries.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 11, cat: "Shawarma", name: "Shawarma Lahme 3al Batata", price: 6.20, desc: "Meat shawarma served over fries.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            // Pizza
-            { id: 12, cat: "Pizza", name: "Vegetarian Pizza", price: 6.00, desc: "Tomato, olive, sweet pepper, mushroom, cheese.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 6.00, default: true}, {name: "Medium (M)", price: 7.50}, {name: "Large (L)", price: 10.00}, {name: "Family (F)", price: 13.00}] },
-            { id: 13, cat: "Pizza", name: "Margarita Pizza", price: 5.00, desc: "Sauce, cheese, basil.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 5.00, default: true}, {name: "Medium (M)", price: 6.50}, {name: "Large (L)", price: 9.00}, {name: "Family (F)", price: 12.00}] },
-            { id: 14, cat: "Pizza", name: "Lebanese Pizza", price: 6.50, desc: "Cheese, mushroom, janbon, sweet pepper, olive.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 6.50, default: true}, {name: "Medium (M)", price: 8.50}, {name: "Large (L)", price: 11.00}, {name: "Family (F)", price: 15.00}] },
-            { id: 15, cat: "Pizza", name: "Four Cheese Pizza", price: 7.00, desc: "Four kinds of cheese.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 11.50}, {name: "Family (F)", price: 14.50}] },
-            { id: 16, cat: "Pizza", name: "Turkey Pizza", price: 7.00, desc: "Habash, mozzarella, mushroom, sweet pepper, olive, corn.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 12.00}, {name: "Family (F)", price: 15.00}] },
-            { id: 17, cat: "Pizza", name: "Mortadella Pizza", price: 7.00, desc: "Sauce, mortadella, sweet pepper, olive, corn, cheese, mushroom.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 12.00}, {name: "Family (F)", price: 15.00}] },
-            { id: 18, cat: "Pizza", name: "Special Fajita Pizza", price: 8.00, desc: "Chicken, sweet pepper, corn, onion, cheese.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
-            { id: 19, cat: "Pizza", name: "Pepperoni Pizza", price: 7.00, desc: "Sauce, pepperoni, cheese.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 7.00, default: true}, {name: "Medium (M)", price: 9.00}, {name: "Large (L)", price: 12.00}, {name: "Family (F)", price: 15.00}] },
-            { id: 20, cat: "Pizza", name: "Barbecue Pizza", price: 8.00, desc: "BBQ sauce base.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
-            { id: 21, cat: "Pizza", name: "Chawarma Pizza", price: 8.00, desc: "Topped with shawarma.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
-            { id: 22, cat: "Pizza", name: "Meat Lovers Pizza", price: 8.00, desc: "Loaded with meat.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
-            // Pasta
-            { id: 23, cat: "Pasta", name: "Chicken Fettuccine Alfredo", price: 10.00, desc: "Cheese, spaghetti, mushroom, chicken.", addons: pastaAddons },
-            { id: 24, cat: "Pasta", name: "Fettuccine Alfredo", price: 7.50, desc: "Cheese, spaghetti, mushroom.", addons: pastaAddons },
-            { id: 25, cat: "Pasta", name: "Penne Arrabiata", price: 6.00, desc: "Basil, tomato sauce, cheese, olive.", addons: pastaAddons },
-            { id: 26, cat: "Pasta", name: "Spaghetti Bolognese", price: 8.50, desc: "Tomato sauce, meat, cheese, corn, mushroom, sweet pepper, onion.", addons: pastaAddons },
-            { id: 27, cat: "Pasta", name: "PENNE 4 CHEESE", price: 10.00, desc: "Rich 4 cheese sauce.", addons: pastaAddons },
-            { id: 28, cat: "Pasta", name: "Penne Rose", price: 8.00, desc: "Pink sauce pasta.", addons: pastaAddons },
-            { id: 29, cat: "Pasta", name: "Shrimp Broccoli", price: 12.50, desc: "Pasta with shrimp and broccoli.", addons: pastaAddons },
-            { id: 30, cat: "Pasta", name: "Barbecue Pasta", price: 8.00, desc: "Pasta with BBQ sauce.", addons: pastaAddons },
-            // Kids Menu
-            { id: 31, cat: "Kids Menu", name: "Crispy", price: 6.00, desc: "2 pcs crispy, fries, salad, Pepsi.", addons: [] },
-            { id: 32, cat: "Kids Menu", name: "Nuggets", price: 6.00, desc: "4 pcs nuggets, fries, salad, Pepsi.", addons: [] },
-            { id: 33, cat: "Kids Menu", name: "Mix Meal", price: 7.50, desc: "2 crispy + 2 nuggets + mini pizza + fries + Pepsi.", addons: [] },
-            // Platters
-            { id: 34, cat: "Platters", name: "Crispy Platter", price: 11.00, desc: "Chicken, salad, potato, garlic.", addons: platterAddons },
-            { id: 35, cat: "Platters", name: "Nuggets Platter", price: 9.00, desc: "10 pcs nuggets, fries, salad, sauce cocktail.", addons: platterAddons },
-            { id: 36, cat: "Platters", name: "Grilled Deboned Chicken", price: 12.00, desc: "Grilled chicken, salad, potato, garlic.", addons: platterAddons },
-            { id: 37, cat: "Platters", name: "Chicken Avocat", price: 16.00, desc: "Chicken, avocat, fresh cream, potato, vegetables.", addons: platterAddons },
-            { id: 38, cat: "Platters", name: "Chicken Almond", price: 15.00, desc: "Chicken with almonds, fresh cream, potato.", addons: platterAddons },
-            { id: 39, cat: "Platters", name: "Chicken Mushroom", price: 15.00, desc: "Chicken with mushrooms, potato, fresh cream.", addons: platterAddons },
-            { id: 40, cat: "Platters", name: "Taouk Platter", price: 10.00, desc: "Coleslaw salad, taouk, potato, garlic.", addons: platterAddons },
-            { id: 41, cat: "Platters", name: "Chicken Breast Platter", price: 12.50, desc: "Chicken breast, potato, salad.", addons: platterAddons },
-            { id: 42, cat: "Platters", name: "Chicken Escalope", price: 13.00, desc: "Coleslaw, chicken breast, potato, sauce cocktail.", addons: platterAddons },
-            { id: 43, cat: "Platters", name: "Fajitas Platter", price: 12.00, desc: "Coleslaw salad, fajita, potato.", addons: platterAddons },
-            { id: 44, cat: "Platters", name: "Chicken Curry", price: 15.00, desc: "Rich chicken curry.", addons: platterAddons },
-            { id: 45, cat: "Platters", name: "Cordon Bleu", price: 13.50, desc: "Stuffed chicken breast.", addons: platterAddons },
-            { id: 46, cat: "Platters", name: "Crispy 1kg", price: 22.00, desc: "1 kg of crispy chicken.", addons: platterAddons },
-            { id: 47, cat: "Platters", name: "Taouk 1kg", price: 22.00, desc: "1 kg of Taouk.", addons: platterAddons },
-            // Sandwiches
-            { id: 48, cat: "Sandwiches", name: "Batata", price: 2.25, desc: "French fries sandwich.", addons: [] },
-            { id: 49, cat: "Sandwiches", name: "Taouk", price: 3.80, desc: "Taouk sandwich.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 50, cat: "Sandwiches", name: "Fransisco", price: 4.50, desc: "Francisco sandwich.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 51, cat: "Sandwiches", name: "Crispy", price: 4.50, desc: "Crispy chicken sandwich.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 52, cat: "Sandwiches", name: "Fajita", price: 5.00, desc: "Fajita sandwich.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 53, cat: "Sandwiches", name: "Chicken Sub", price: 4.50, desc: "Chicken sub.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 54, cat: "Sandwiches", name: "Makanik", price: 4.50, desc: "Makanik sausage sandwich.", addons: [] },
-            { id: 55, cat: "Sandwiches", name: "Sejok", price: 4.50, desc: "Spicy sejok sandwich.", addons: [] },
-            { id: 56, cat: "Sandwiches", name: "Hot Dog", price: 4.00, desc: "Hot dog sandwich.", addons: [] },
-            { id: 57, cat: "Sandwiches", name: "Submarine", price: 4.50, desc: "Classic submarine.", addons: [] },
-            { id: 58, cat: "Sandwiches", name: "Shrimp", price: 5.00, desc: "Shrimp sandwich.", addons: [] },
-            { id: 59, cat: "Sandwiches", name: "Crab", price: 4.50, desc: "Crab sandwich.", addons: [] },
-            { id: 60, cat: "Sandwiches", name: "Samke Hara", price: 5.00, desc: "Spicy fish sandwich.", addons: [] },
-            // Special Sandwiches
-            { id: 61, cat: "Special Sandwiches", name: "Turkey Chawarma Chicken", price: 8.00, desc: "Special Turkey Chawarma Chicken.", addons: [] },
-            { id: 62, cat: "Special Sandwiches", name: "Turkey Chawarma Beef", price: 8.50, desc: "Special Turkey Chawarma Beef.", addons: [] },
-            { id: 63, cat: "Special Sandwiches", name: "Honey Mustard Chicken", price: 5.00, desc: "Chicken with honey mustard.", addons: [] },
-            // Starters
-            { id: 64, cat: "Starters", name: "Nachos", price: 5.30, desc: "Crispy nachos.", addons: [{name: "Extra Dip", price: 0.50}] },
-            { id: 65, cat: "Starters", name: "Chicken Quesadillas", price: 7.50, desc: "Chicken Quesadillas.", addons: [] },
-            { id: 66, cat: "Starters", name: "Wavy Potato", price: 2.00, desc: "Wavy potato.", addons: [] },
-            { id: 67, cat: "Starters", name: "Garlic Bread", price: 4.50, desc: "Garlic bread.", addons: [] },
-            { id: 68, cat: "Starters", name: "Chicken Nuggets", price: 6.00, desc: "Chicken nuggets.", addons: [] },
-            { id: 69, cat: "Starters", name: "French Fries Dish", price: 2.75, desc: "French fries.", addons: [] },
-            { id: 70, cat: "Starters", name: "Grilled Potato", price: 3.00, desc: "Grilled potato.", addons: [] },
-            { id: 71, cat: "Starters", name: "Potato Wedges", price: 3.50, desc: "Potato wedges.", addons: [] },
-            { id: 72, cat: "Starters", name: "Shrimp Pane", price: 6.25, desc: "Shrimp pane.", addons: [] },
-            { id: 73, cat: "Starters", name: "Crab Pane", price: 6.25, desc: "Crab pane.", addons: [] },
-            { id: 74, cat: "Starters", name: "Calamar Pane", price: 5.50, desc: "Calamar pane.", addons: [] },
-            { id: 75, cat: "Starters", name: "Chicken Barbecue Wings", price: 6.00, desc: "BBQ wings.", addons: [] },
-            { id: 76, cat: "Starters", name: "Chicken Honey Mustard Wings", price: 6.00, desc: "New Honey Mustard Wings.", addons: [] },
-            { id: 77, cat: "Starters", name: "Chicken Provencal Wings", price: 6.00, desc: "Provencal wings.", addons: [] },
-            { id: 78, cat: "Starters", name: "Chicken Buffalo Wings", price: 6.00, desc: "Buffalo wings.", addons: [] },
-            { id: 79, cat: "Starters", name: "Sandwich Halloumi", price: 3.00, desc: "Halloumi sandwich.", addons: [] },
-            { id: 80, cat: "Starters", name: "Curly Fries", price: 6.50, desc: "Curly fries.", addons: [] },
-            { id: 81, cat: "Starters", name: "Mix Platter", price: 10.00, desc: "Mix platter.", addons: [] },
-            { id: 82, cat: "Starters", name: "Mozzarella Stick", price: 6.00, desc: "Mozzarella sticks.", addons: [] },
-            { id: 83, cat: "Starters", name: "Fish Finger", price: 5.00, desc: "Fish fingers.", addons: [] },
-            // Salads
-            { id: 84, cat: "Salads", name: "Ceasar Salad", price: 4.50, desc: "Lettuce, toast, cheese.", addons: saladAddons },
-            { id: 85, cat: "Salads", name: "Chicken Ceasar Salad", price: 6.50, desc: "Lettuce, chicken, toast, cheese.", addons: saladAddons },
-            { id: 86, cat: "Salads", name: "Crab Salad", price: 6.50, desc: "Lettuce, avocat, crab, corn, cherry tomato.", addons: saladAddons },
-            { id: 87, cat: "Salads", name: "Fattouch", price: 5.00, desc: "Fattouch salad.", addons: saladAddons },
-            { id: 88, cat: "Salads", name: "Tuna Salad", price: 6.00, desc: "Lettuce, tuna, pasta, pickles cucumber, corn, cherry tomato, olive.", addons: saladAddons },
-            { id: 89, cat: "Salads", name: "Rocca Salad", price: 4.00, desc: "Rocca, mushroom, nut, cherry tomato, balsamic vinegar.", addons: saladAddons },
-            { id: 90, cat: "Salads", name: "Greek Salad", price: 5.50, desc: "Lettuce, tomato, cucumber, sweet pepper, feta cheese, olive, onion.", addons: saladAddons },
-            { id: 91, cat: "Salads", name: "Season Salad", price: 3.00, desc: "Lettuce, tomato, cucumber.", addons: saladAddons },
-            { id: 92, cat: "Salads", name: "Panache Salad", price: 8.00, desc: "Panache salad.", addons: saladAddons },
-            // Breakfast & Baguettes
-            { id: 93, cat: "Breakfast & Baguettes", name: "Labneh Dish", price: 3.50, desc: "Labneh dish.", addons: [{name: "Extra Bread", price: 0.50}] },
-            { id: 94, cat: "Breakfast & Baguettes", name: "Vegetables Dish", price: 1.50, desc: "Vegetables dish.", addons: [] },
-            { id: 95, cat: "Breakfast & Baguettes", name: "Labneh + Vegetables", price: 3.50, desc: "Baguette labneh and veg.", addons: [{name: "Toasted", price: 0.00}] },
-            { id: 96, cat: "Breakfast & Baguettes", name: "Labneh + Mortadella", price: 4.00, desc: "Baguette labneh and mortadella.", addons: [{name: "Toasted", price: 0.00}] },
-            { id: 97, cat: "Breakfast & Baguettes", name: "Halloum", price: 3.00, desc: "Baguette halloum.", addons: [{name: "Toasted", price: 0.00}] },
-            { id: 98, cat: "Breakfast & Baguettes", name: "Banana & Chocolate", price: 3.00, desc: "Sweet baguette.", addons: [{name: "Toasted", price: 0.00}] },
-            { id: 99, cat: "Breakfast & Baguettes", name: "Jebne w Habash", price: 3.25, desc: "Baguette jebne and habash.", addons: [{name: "Toasted", price: 0.00}] },
-            { id: 100, cat: "Breakfast & Baguettes", name: "Ach2awan w Habach", price: 4.00, desc: "Baguette achkawan and habach.", addons: [{name: "Toasted", price: 0.00}] },
-            // Potato Sandwiches
-            { id: 101, cat: "Potato Sandwiches", name: "Potato + Vegetables", price: 7.50, desc: "Baked potato with veg.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 102, cat: "Potato Sandwiches", name: "Potato + Habash", price: 8.00, desc: "Baked potato with habash.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 103, cat: "Potato Sandwiches", name: "Potato + Janbon", price: 8.00, desc: "Baked potato with janbon.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 104, cat: "Potato Sandwiches", name: "Potato + Hotdog", price: 8.00, desc: "Baked potato with hotdog.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            { id: 105, cat: "Potato Sandwiches", name: "Potato + Mortadella", price: 8.00, desc: "Baked potato with mortadella.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            // Burger
-            { id: 106, cat: "Burger", name: "Cheese Burger", price: 8.00, desc: "Cheese burger.", addons: burgerAddons },
-            { id: 107, cat: "Burger", name: "Cheesy Burger", price: 8.50, desc: "Cheesy burger.", addons: burgerAddons },
-            { id: 108, cat: "Burger", name: "Hamburger", price: 7.00, desc: "Classic hamburger.", addons: burgerAddons },
-            { id: 109, cat: "Burger", name: "Chicken Burger", price: 6.50, desc: "Chicken burger.", addons: burgerAddons },
-            { id: 110, cat: "Burger", name: "Cheese & Chicken Burger", price: 7.00, desc: "Cheese and chicken.", addons: burgerAddons },
-            { id: 111, cat: "Burger", name: "Fish Burger", price: 7.00, desc: "Fish burger.", addons: [{name: "Extra Tartar Sauce", price: 0.50}] },
-            { id: 112, cat: "Burger", name: "Shawarma Burger", price: 7.50, desc: "Shawarma burger.", addons: burgerAddons },
-            { id: 113, cat: "Burger", name: "Crispy Burger", price: 7.00, desc: "Crispy burger.", addons: burgerAddons }
-        ];
-
-        // توليد الصور الديناميكية لكل عنصر (LoremFlickr) وإضافة التاجات والتقييم الوهمي
-        const menuData = rawItems.map(item => {
-            let tags = [];
-            if([1, 7, 12, 106, 34, 48].includes(item.id)) tags.push('bestseller');
-            if([95, 96, 76].includes(item.id)) tags.push('new');
-            if([12, 13, 87, 89, 94].includes(item.id)) tags.push('veg');
-            if([55, 60, 78].includes(item.id)) tags.push('spicy');
-            if([46, 47, 9].includes(item.id)) tags.push('offer');
-            
-            // توليد رابط LoremFlickr مبني على اسم القسم وكلمة طعام (مع lock لتثبيت الصورة لكل ID)
-            let categoryKeyword = item.cat.toLowerCase().replace(/[^a-z]/g, '');
-            let imgUrl = `https://loremflickr.com/600/400/food,${categoryKeyword}?lock=${item.id}`;
-
-            return {
-                ...item,
-                img: imgUrl,
-                tags: tags,
-                prep: "15-20m",
-                rate: (Math.random() * 0.8 + 4.2).toFixed(1), 
-                rateCnt: Math.floor(Math.random() * 100) + 10
-            };
-        });
-
-        // =========================================
-        // متغيرات وحالة التطبيق
-        // =========================================
-        let cart = JSON.parse(localStorage.getItem('ashta_cart')) || [];
-        let favs = JSON.parse(localStorage.getItem('ashta_favs')) || [];
-        let reviews = JSON.parse(localStorage.getItem('ashta_reviews')) || {};
-        
-        let activeTag = 'all';
-        let currentItem = null;
-        let cQty = 1;
-        let cVarPrice = 0;
-        let cVarName = "";
-        let cAddons = [];
-        let discountVal = 0;
-
-        // تهيئة التطبيق عند فتح الصفحة
-        window.onload = () => {
-            if(localStorage.getItem('theme') === 'dark') toggleTheme(true);
-            if(localStorage.getItem('lang') === 'ar') toggleLang(true);
-            renderUI();
-        };
-
-        function renderUI() {
-            renderCategories();
-            filterMenu(); 
-            updateCartUI();
-            updateTexts();
-        }
-
-        // =========================================
-        // الترجمة وتغيير الثيم
-        // =========================================
-        function updateTexts() {
-            const dict = i18n[currentLang];
-            document.getElementById('t-subtitle').innerText = dict.subtitle;
-            document.getElementById('t-status').innerText = dict.statusOpen;
-            document.getElementById('t-time').innerText = dict.time;
-            document.getElementById('t-minOrder').innerText = dict.minOrder;
-            document.getElementById('t-fee').innerText = dict.fee;
-            document.getElementById('searchInput').placeholder = dict.search;
-            document.getElementById('t-fAll').innerText = dict.filterAll;
-            document.getElementById('t-fBest').innerText = dict.filterBest + " 🔥";
-            document.getElementById('t-fNew').innerText = dict.filterNew + " ✨";
-            document.getElementById('t-fVeg').innerText = dict.filterVeg + " 🥗";
-            document.getElementById('t-fSpicy').innerText = dict.filterSpicy + " 🌶️";
-            document.getElementById('t-fOffer').innerText = dict.filterOffer + " 💰";
-            
-            document.getElementById('t-tabDetails').innerText = dict.tabDetails;
-            document.getElementById('t-tabReviews').innerText = dict.tabReviews;
-            document.getElementById('t-addReview').innerText = dict.addReview;
-            document.getElementById('t-subReview').innerText = dict.submitReview;
-            document.getElementById('t-size').innerText = dict.size;
-            document.getElementById('t-addons').innerText = dict.addons;
-            document.getElementById('t-notes').innerText = dict.notes;
-            document.getElementById('m-note').placeholder = dict.notesPlc;
-            document.getElementById('t-addBtn').innerText = dict.addBtn;
-            
-            document.getElementById('t-cartTitle').innerText = dict.cartTitle;
-            document.getElementById('t-name').innerText = dict.name;
-            document.getElementById('t-phone').innerText = dict.phone;
-            document.getElementById('t-address').innerText = dict.address;
-            document.getElementById('t-subtot').innerText = dict.subtotal;
-            document.getElementById('t-deliv').innerText = dict.delivery;
-            document.getElementById('t-tot').innerText = dict.total;
-            document.getElementById('t-checkWa').innerText = dict.checkoutWa;
-
-            document.querySelectorAll('.cat-title').forEach(el => {
-                const engCat = el.getAttribute('data-cat');
-                el.innerText = dict.cat[engCat] || engCat;
-            });
-            document.querySelectorAll('.cat-btn').forEach(el => {
-                const engCat = el.getAttribute('data-cat');
-                el.innerText = dict.cat[engCat] || engCat;
-            });
-        }
-
-        function toggleTheme(forceDark = false) {
-            const isDark = forceDark || document.body.getAttribute('data-theme') !== 'dark';
-            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
-            document.getElementById('theme-icon').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        }
-
-        function toggleLang(forceAr = false) {
-            currentLang = forceAr || currentLang === 'en' ? 'ar' : 'en';
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('lang-btn').innerText = currentLang === 'ar' ? 'EN' : 'AR';
-            localStorage.setItem('lang', currentLang);
-            updateTexts();
-        }
-
-        // =========================================
-        // عرض القوائم والفلاتر
-        // =========================================
-        function renderCategories() {
-            const wrap = document.getElementById('cat-container');
-            wrap.innerHTML = categories.map((c, i) => 
-                `<button class="cat-btn ${i===0?'active':''}" data-cat="${c}" onclick="scrollToCat('${c}', this)">${i18n[currentLang].cat[c]}</button>`
-            ).join('');
-        }
-
-        function scrollToCat(cat, btn) {
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const target = document.getElementById(`cat-${cat.replace(/\s+/g, '-')}`);
-            if(target) {
-                const y = target.getBoundingClientRect().top + window.scrollY - 150;
-                window.scrollTo({top: y, behavior: 'smooth'});
-            }
-        }
-
-        function applyTag(tag, el) {
-            document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-            activeTag = tag;
-            filterMenu();
-        }
-
-        function filterMenu() {
-            const term = document.getElementById('searchInput').value.toLowerCase();
-            const container = document.getElementById('menu-container');
-            container.innerHTML = '';
-
-            categories.forEach(cat => {
-                let items = menuData.filter(i => i.cat === cat);
-                
-                if (activeTag !== 'all') {
-                    items = items.filter(i => i.tags && i.tags.includes(activeTag));
-                }
-                
-                if (term) {
-                    items = items.filter(i => i.name.toLowerCase().includes(term));
-                }
-                
-                if(items.length > 0) {
-                    let html = `<div class="category-section" id="cat-${cat.replace(/\s+/g, '-')}">
-                                    <h2 class="cat-title" data-cat="${cat}">${i18n[currentLang].cat[cat]}</h2>
-                                    <div class="grid">`;
-                    
-                    items.forEach(item => {
-                        const isFav = favs.includes(item.id);
-                        const priceTxt = item.variants ? `From $${item.variants[0].price.toFixed(2)}` : `$${item.price.toFixed(2)}`;
-                        
-                        html += `
-                        <div class="card" onclick="openItem(${item.id})">
-                            <div class="badges">
-                                ${item.tags.includes('bestseller') ? '<span class="badge" style="background:var(--primary)">Bestseller</span>' : ''}
-                                ${item.tags.includes('spicy') ? '<span class="badge spicy">Spicy</span>' : ''}
-                                ${item.tags.includes('veg') ? '<span class="badge veg">Veg</span>' : ''}
-                            </div>
-                            <button class="fav-btn ${isFav?'active':''}" onclick="event.stopPropagation(); toggleFav(${item.id}, this)"><i class="fas fa-heart"></i></button>
-                            
-                            <div class="card-img-wrap">
-                                <img src="${item.img}" class="card-img" loading="lazy">
-                            </div>
-                            
-                            <div class="card-body">
-                                <div class="card-meta">
-                                    <span class="rating"><i class="fas fa-star"></i> ${item.rate} (${item.rateCnt})</span>
-                                    <span><i class="far fa-clock"></i> ${item.prep}</span>
-                                </div>
-                                <h3 class="card-title">${item.name}</h3>
-                                <p class="card-desc">${item.desc}</p>
-                                <div class="card-footer">
-                                    <span class="card-price">${priceTxt}</span>
-                                    <div class="add-btn"><i class="fas fa-plus"></i></div>
-                                </div>
-                            </div>
-                        </div>`;
-                    });
-                    html += `</div></div>`;
-                    container.innerHTML += html;
-                }
-            });
-        }
-
-        // =========================================
-        // النوافذ المنبثقة (Modal) والتقييمات
-        // =========================================
-        function openItem(id) {
-            currentItem = menuData.find(i => i.id === id);
-            cQty = 1; 
-            cAddons = []; 
-            document.getElementById('m-note').value = "";
-            
-            switchTab('details');
-
-            document.getElementById('m-img').src = currentItem.img;
-            document.getElementById('m-title').innerText = currentItem.name;
-            document.getElementById('m-rate').innerText = currentItem.rate;
-            document.getElementById('m-rate-cnt').innerText = currentItem.rateCnt;
-            document.getElementById('m-desc').innerText = currentItem.desc;
-
-            const vSec = document.getElementById('m-variants-sec');
-            if(currentItem.variants) {
-                vSec.style.display = 'block';
-                cVarPrice = currentItem.variants[0].price; 
-                cVarName = currentItem.variants[0].name;
-                
-                document.getElementById('m-variants-list').innerHTML = currentItem.variants.map((v, i) => `
-                    <div class="option-row ${i===0?'active':''}" onclick="selVar(this, ${v.price}, '${v.name}')">
-                        <span style="font-weight:700; color:var(--text-main);">${v.name}</span>
-                        <span style="color:var(--primary); font-weight:700;">+$${v.price.toFixed(2)}</span>
-                    </div>`).join('');
-            } else { 
-                vSec.style.display = 'none'; 
-                cVarPrice = currentItem.price; 
-                cVarName = ""; 
-            }
-
-            const aSec = document.getElementById('m-addons-sec');
-            if(currentItem.addons && currentItem.addons.length > 0) {
-                aSec.style.display = 'block';
-                document.getElementById('m-addons-list').innerHTML = currentItem.addons.map(a => `
-                    <label class="option-row" style="display:flex; align-items:center;">
-                        <div>
-                            <input type="checkbox" onchange="updAddon(this, '${a.name}', ${a.price})" style="transform: scale(1.3); accent-color: var(--primary);"> 
-                            <span style="margin-left:12px; color:var(--text-main); font-weight:600;">${a.name}</span>
-                        </div>
-                        <span style="color:var(--primary); font-weight:700;">+$${a.price.toFixed(2)}</span>
-                    </label>`).join('');
-            } else { 
-                aSec.style.display = 'none'; 
-            }
-
-            loadReviews();
-            updModPrice();
-            
-            document.getElementById('item-modal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() { 
-            document.getElementById('item-modal').style.display = 'none'; 
-            document.body.style.overflow = 'auto';
-        }
-        
-        function switchTab(t) {
-            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
-            
-            if(t === 'details') {
-                document.getElementById('t-tabDetails').classList.add('active');
-                document.getElementById('tab-details').style.display = 'block';
-                document.getElementById('tab-reviews').style.display = 'none';
-            } else {
-                document.getElementById('t-tabReviews').classList.add('active');
-                document.getElementById('tab-details').style.display = 'none';
-                document.getElementById('tab-reviews').style.display = 'block';
-            }
-        }
-
-        function selVar(el, price, name) {
-            document.querySelectorAll('#m-variants-list .option-row').forEach(e => e.classList.remove('active'));
-            el.classList.add('active');
-            cVarPrice = price; 
-            cVarName = name; 
-            updModPrice();
-        }
-
-        function updAddon(cb, name, price) {
-            if(cb.checked) {
-                cAddons.push({name: name, price: price});
-            } else {
-                cAddons = cAddons.filter(a => a.name !== name);
-            }
-            updModPrice();
-        }
-
-        function chgQty(val) { 
-            if(cQty + val > 0) { 
-                cQty += val; 
-                updModPrice(); 
-            } 
-        }
-        
-        function updModPrice() {
-            document.getElementById('m-qty').innerText = cQty;
-            const addTot = cAddons.reduce((sum, a) => sum + a.price, 0);
-            const total = (cVarPrice + addTot) * cQty;
-            document.getElementById('m-total-price').innerText = `$${total.toFixed(2)}`;
-        }
-
-        function toggleFav(id, btn) {
-            const idx = favs.indexOf(id);
-            if(idx > -1) { 
-                favs.splice(idx, 1); 
-                btn.classList.remove('active'); 
-            } else { 
-                favs.push(id); 
-                btn.classList.add('active'); 
-            }
-            localStorage.setItem('ashta_favs', JSON.stringify(favs));
-        }
-
-        // =========================================
-        // التقييمات
-        // =========================================
-        let selStar = 5;
-        document.querySelectorAll('.star-select i').forEach(star => {
-            star.onclick = function() {
-                selStar = parseInt(this.getAttribute('data-val'));
-                document.querySelectorAll('.star-select i').forEach(s => {
-                    s.className = parseInt(s.getAttribute('data-val')) <= selStar ? 'fas fa-star' : 'far fa-star';
-                });
-            }
-        });
-
-        function submitReview() {
-            const name = document.getElementById('rev-name').value || "Guest";
-            const text = document.getElementById('rev-text').value;
-            if(!text) return; 
-            
-            if(!reviews[currentItem.id]) reviews[currentItem.id] = [];
-            
-            reviews[currentItem.id].unshift({ 
-                name: name, 
-                text: text, 
-                star: selStar, 
-                date: new Date().toLocaleDateString() 
-            });
-            
-            localStorage.setItem('ashta_reviews', JSON.stringify(reviews));
-            document.getElementById('rev-text').value = '';
-            
-            loadReviews(); 
-        }
-
-        function loadReviews() {
-            const list = document.getElementById('reviews-list');
-            const revs = reviews[currentItem.id] || [];
-            
-            if(revs.length === 0) {
-                list.innerHTML = `<p style="color:var(--text-muted); text-align:center; padding:30px; font-weight:600;">No reviews yet. Be the first!</p>`;
-            } else {
-                list.innerHTML = revs.map(r => `
-                    <div class="review-box">
-                        <div class="review-head">
-                            <strong style="color:var(--text-main); font-size:15px;">${r.name}</strong> 
-                            <span style="color:var(--text-muted); font-size:12px;">${r.date}</span>
-                        </div>
-                        <div class="rating" style="font-size:12px; margin-bottom:10px;">${'<i class="fas fa-star"></i>'.repeat(r.star)}</div>
-                        <p style="font-size:14px; color:var(--text-main); line-height:1.5;">${r.text}</p>
-                    </div>`).join('');
-            }
-        }
-
-        // =========================================
-        // السلة وإتمام الطلب عبر الواتساب
-        // =========================================
-        function showToast() {
-            const toast = document.getElementById("toast");
-            toast.innerText = i18n[currentLang].toastMsg;
-            toast.className = "show";
-            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
-        }
-
-        function addToCart() {
-            const unitPrice = cVarPrice + cAddons.reduce((sum, a) => sum + a.price, 0);
-            
-            cart.push({
-                id: Date.now(),
-                pid: currentItem.id,
-                name: cVarName ? `${currentItem.name} (${cVarName})` : currentItem.name,
-                qty: cQty,
-                unit: unitPrice,
-                tot: unitPrice * cQty,
-                mods: cAddons.map(a => "+ " + a.name).join(', '),
-                note: document.getElementById('m-note').value.trim()
-            });
-            
-            saveCart(); 
-            closeModal();
-            showToast(); 
-        }
-
-        function saveCart() { 
-            localStorage.setItem('ashta_cart', JSON.stringify(cart)); 
-            updateCartUI(); 
-        }
-
-        function remCart(id) { 
-            cart = cart.filter(c => c.id !== id); 
-            saveCart(); 
-        }
-
-        function toggleCart() { 
-            document.getElementById('cart-side').classList.toggle('open'); 
-        }
-
-        function updateCartUI() {
-            const list = document.getElementById('cart-items');
-            const sub = cart.reduce((sum, c) => sum + c.tot, 0);
-            const cnt = cart.reduce((sum, c) => sum + c.qty, 0);
-            
-            document.getElementById('float-cnt').innerText = cnt;
-            document.getElementById('float-tot').innerText = `$${sub.toFixed(2)}`;
-            
-            const floatBtn = document.getElementById('float-cart');
-            if(cnt > 0) floatBtn.classList.add('visible'); 
-            else floatBtn.classList.remove('visible');
-
-            if(cart.length === 0) { 
-                list.innerHTML = `<p style="color:var(--text-muted); font-size:16px; text-align:center; padding:30px;">${i18n[currentLang].emptyCart}</p>`; 
-            } else {
-                list.innerHTML = cart.map(c => `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <h4>${c.qty}x ${c.name}</h4>
-                            ${c.mods ? `<div class="cart-item-mods">${c.mods}</div>` : ''}
-                            ${c.note ? `<div class="cart-item-mods" style="color:var(--danger); font-weight:600;">Note: ${c.note}</div>` : ''}
-                        </div>
-                        <div class="cart-price-col">
-                            <strong style="color:var(--primary); font-size:16px;">$${c.tot.toFixed(2)}</strong>
-                            <button class="remove-btn" onclick="remCart(${c.id})"><i class="fas fa-trash"></i> Remove</button>
-                        </div>
-                    </div>`).join('');
-            }
-            
-            document.getElementById('cart-sub').innerText = `$${sub.toFixed(2)}`;
-            const tot = sub > 0 ? (sub + 1 - discountVal) : 0;
-            document.getElementById('cart-tot').innerText = `$${tot.toFixed(2)}`;
-        }
-
-        function applyCoupon() {
-            const code = document.getElementById('c-coupon').value.toUpperCase();
-            if(code === "ASHTA20" && cart.length > 0) {
-                const sub = cart.reduce((sum, c) => sum + c.tot, 0);
-                discountVal = sub * 0.2; 
-                document.getElementById('disc-row').style.display = 'flex';
-                document.getElementById('cart-disc').innerText = `-$${discountVal.toFixed(2)}`;
-                updateCartUI();
-            } else { 
-                alert(currentLang === 'ar' ? "كود غير صالح أو السلة فارغة" : "Invalid code or empty cart"); 
-            }
-        }
-
-        function checkoutWA() {
-            if(cart.length === 0) return alert(currentLang === 'ar' ? "السلة فارغة!" : "Cart is empty!");
-            
-            const name = document.getElementById('c-name').value.trim();
-            const phone = document.getElementById('c-phone').value.trim();
-            const addr = document.getElementById('c-address').value.trim();
-            
-            if(!name || !addr) return alert(currentLang === 'ar' ? "يرجى ملء الاسم والعنوان!" : "Please fill Name and Address");
-
-            let msg = `*New Order - Ashta W 3asal* 🍯\n\n`;
-            msg += `*Name:* ${name}\n*Phone:* ${phone}\n*Address:* ${addr}\n\n*Items:*\n`;
-            
-            cart.forEach(c => {
-                msg += `🔸 ${c.qty}x ${c.name} ($${c.unit.toFixed(2)})\n`;
-                if(c.mods) msg += `   ↳ ${c.mods}\n`;
-                if(c.note) msg += `   ↳ 📝 ${c.note}\n`;
-            });
-
-            const sub = cart.reduce((sum, c) => sum + c.tot, 0);
-            msg += `\n----------------\n`;
-            msg += `Subtotal: $${sub.toFixed(2)}\nDelivery: $1.00\n`;
-            
-            if(discountVal > 0) msg += `Discount: -$${discountVal.toFixed(2)}\n`;
-            
-            msg += `*Total Due: $${(sub + 1 - discountVal).toFixed(2)}*\n`;
-            msg += `----------------\nPayment: Cash on Delivery.`;
-
-            const url = `https://wa.me/905376262192?text=${encodeURIComponent(msg)}`;
-            window.open(url, '_blank');
-        }
-    </script>
 </body>
 </html>
