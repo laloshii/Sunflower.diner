@@ -1,592 +1,952 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ashta W 3asal - Premium Delivery</title>
     
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CSS Variables (Light & Dark Mode) --- */
+        /* CSS Variables - Light/Dark Theme Support */
         :root {
-            --primary: #E5A937;
-            --primary-dark: #C68B22;
-            --bg-color: #FAFAFC;
+            --honey-gold: #E5A937;
+            --honey-dark: #C68B22;
+            --bg-color: #FFFDF7;
             --card-bg: #FFFFFF;
             --text-main: #2C1E16;
             --text-muted: #8A7A6B;
-            --border-color: #EAE6DF;
-            --success: #10B981;
-            --danger: #EF4444;
-            --shadow-sm: 0 4px 15px rgba(0,0,0,0.03);
-            --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --font-main: 'Tajawal', sans-serif;
+            --border-color: #EFE9D9;
+            --success-green: #2E7D32;
+            --danger-red: #D32F2F;
+            --heading-font: 'Playfair Display', serif;
+            --body-font: 'Montserrat', sans-serif;
+            --arabic-font: 'Tajawal', sans-serif;
+            --shadow-sm: 0 4px 10px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 30px rgba(229, 169, 55, 0.1);
         }
 
-        body.dark-mode {
+        [data-theme="dark"] {
             --bg-color: #121212;
             --card-bg: #1E1E1E;
-            --text-main: #F3F4F6;
-            --text-muted: #9CA3AF;
-            --border-color: #374151;
-            --shadow-sm: 0 4px 15px rgba(0,0,0,0.2);
-            --shadow-md: 0 10px 30px rgba(0,0,0,0.4);
+            --text-main: #F5F5F5;
+            --text-muted: #AAAAAA;
+            --border-color: #333333;
+            --shadow-sm: 0 4px 10px rgba(0,0,0,0.3);
+            --shadow-lg: 0 10px 30px rgba(229, 169, 55, 0.05);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); transition: var(--transition); padding-bottom: 90px;}
+        body { background-color: var(--bg-color); font-family: var(--body-font); color: var(--text-main); padding-bottom: 90px; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
+        body.rtl { font-family: var(--arabic-font); direction: rtl; }
+        body.rtl .heading-font { font-family: var(--arabic-font); font-weight: 700; }
 
-        /* --- Navbar --- */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+
+        /* Navbar */
         nav {
-            position: fixed; top: 0; width: 100%; background: var(--card-bg); backdrop-filter: blur(10px);
-            display: flex; justify-content: space-between; align-items: center; padding: 12px 5%;
-            z-index: 1000; box-shadow: var(--shadow-sm); transition: var(--transition);
+            position: fixed; top: 0; width: 100%; background-color: var(--card-bg); backdrop-filter: blur(10px);
+            display: flex; justify-content: space-between; align-items: center; padding: 12px 40px;
+            z-index: 1000; border-bottom: 1px solid var(--border-color); box-shadow: var(--shadow-sm); transition: all 0.3s;
         }
-        .nav-brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 22px; color: var(--text-main); text-decoration: none; cursor:pointer;}
-        .nav-brand img { height: 45px; width: 45px; border-radius: 50%; object-fit: contain; border: 2px solid var(--primary); padding: 2px; }
+        .nav-logo { font-family: var(--heading-font); font-size: 22px; font-weight: 700; color: var(--text-main); text-decoration: none; cursor: pointer; display: flex; align-items: center; gap: 12px;}
+        .nav-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: contain; background: #fff; padding: 2px; border: 2px solid var(--honey-gold); }
         .nav-tools { display: flex; gap: 15px; align-items: center; }
-        .icon-btn { background: none; border: none; font-size: 20px; color: var(--text-main); cursor: pointer; transition: var(--transition); }
-        .icon-btn:hover { color: var(--primary); }
+        .icon-btn { background: none; border: none; font-size: 20px; color: var(--text-main); cursor: pointer; position: relative; transition: 0.3s; }
+        .icon-btn:hover { color: var(--honey-gold); }
 
-        /* --- Parallax Hero Section --- */
+        /* Floating Search */
+        .search-container { position: relative; display: flex; align-items: center; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 25px; padding: 5px 15px; }
+        .search-container input { border: none; background: transparent; color: var(--text-main); outline: none; padding: 5px; font-family: var(--body-font); width: 200px; }
+        
+        /* Hero Section (Parallax & Moving Banner) */
         .hero {
-            height: 60vh; background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1920&q=80');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-            color: #fff; margin-top: 65px; padding: 20px; position: relative;
+            height: 55vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center; background-attachment: fixed; /* Parallax */
+            color: #fff; padding: 0 20px; margin-top: 65px; position: relative; overflow: hidden;
         }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--primary); margin-bottom: 15px; }
-        .status-badge { background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 14px; border: 1px solid rgba(255,255,255,0.2); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;}
-        .status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--success); box-shadow: 0 0 10px var(--success); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        .hero h1 { font-family: var(--heading-font); font-size: 3.5rem; margin-bottom: 10px; color: var(--honey-gold); animation: fadeIn 0.8s ease; }
+        .hero p { font-size: 1.1rem; font-weight: 300; letter-spacing: 1px; animation: fadeIn 1s ease; margin-bottom: 20px; }
         
-        .quick-info { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;}
-        .info-card { background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 12px; font-size: 13px; backdrop-filter: blur(5px); display: flex; flex-direction: column; align-items: center;}
-        .info-card i { color: var(--primary); font-size: 20px; margin-bottom: 5px;}
+        /* Quick Info Bar */
+        .quick-info-bar { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; animation: fadeIn 1.2s ease; }
+        .info-pill { background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); padding: 8px 20px; border-radius: 30px; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.2);}
+        .status-dot { width: 10px; height: 10px; background: var(--success-green); border-radius: 50%; display: inline-block; box-shadow: 0 0 10px var(--success-green);}
+        .status-dot.closed { background: var(--danger-red); box-shadow: 0 0 10px var(--danger-red); }
 
-        /* --- Floating Search & Filters --- */
-        .search-bar { max-width: 600px; margin: -25px auto 30px; position: relative; z-index: 10; padding: 0 20px;}
-        .search-bar input { width: 100%; padding: 16px 25px; border-radius: 30px; border: none; box-shadow: var(--shadow-md); font-family: var(--font-main); font-size: 15px; background: var(--card-bg); color: var(--text-main); outline: none; border: 1px solid var(--border-color);}
-        
-        .filters-wrapper { display: flex; overflow-x: auto; gap: 12px; padding: 10px 5%; margin-bottom: 30px; scrollbar-width: none; }
-        .filters-wrapper::-webkit-scrollbar { display: none; }
-        .filter-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-main); padding: 10px 20px; border-radius: 25px; font-family: var(--font-main); font-weight: 700; font-size: 14px; cursor: pointer; white-space: nowrap; transition: var(--transition); box-shadow: var(--shadow-sm);}
-        .filter-btn.active, .filter-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+        /* Moving Banner (Offers) */
+        .marquee-container { background: var(--honey-gold); color: #fff; padding: 10px 0; overflow: hidden; white-space: nowrap; font-weight: 600; font-size: 14px; }
+        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
+        .marquee-content span { margin: 0 40px; }
 
-        /* --- Menu Grid & Cards --- */
-        .menu-container { max-width: 1300px; margin: 0 auto; padding: 0 5%; }
-        .section-title { font-size: 24px; font-weight: 800; margin: 40px 0 20px; color: var(--text-main); position: relative; display: inline-block; }
-        .section-title::after { content: ''; position: absolute; bottom: -8px; right: 0; width: 50%; height: 3px; background: var(--primary); border-radius: 5px; }
+        /* Sticky Filters & Categories */
+        .nav-sections { position: sticky; top: 65px; z-index: 99; background: var(--card-bg); box-shadow: var(--shadow-sm); border-bottom: 1px solid var(--border-color); }
+        .filters-row { display: flex; overflow-x: auto; padding: 12px 20px; gap: 10px; scrollbar-width: none; border-bottom: 1px solid var(--border-color); }
+        .filters-row::-webkit-scrollbar { display: none; }
+        .filter-tag { background: var(--bg-color); border: 1px solid var(--border-color); padding: 6px 15px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--text-main); white-space: nowrap; transition: 0.3s; display: flex; align-items: center; gap: 5px;}
+        .filter-tag:hover, .filter-tag.active { background: var(--honey-gold); color: #fff; border-color: var(--honey-gold); }
+        
+        .category-tabs { display: flex; overflow-x: auto; padding: 15px 20px; scrollbar-width: none; }
+        .category-tabs::-webkit-scrollbar { display: none; }
+        .tab-btn { background: transparent; border: none; padding: 5px 15px; margin-right: 15px; font-family: var(--body-font); font-size: 15px; font-weight: 600; cursor: pointer; color: var(--text-muted); transition: 0.3s; white-space: nowrap; position: relative;}
+        .tab-btn.active { color: var(--honey-gold); }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: var(--honey-gold); border-radius: 2px; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; position: relative; box-shadow: var(--shadow-sm);}
-        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--primary); }
+        /* Menu Grid */
+        .menu-container { max-width: 1300px; margin: 40px auto; padding: 0 20px; }
+        .category-section { margin-bottom: 60px; scroll-margin-top: 180px; }
+        .category-title { font-family: var(--heading-font); font-size: 28px; margin-bottom: 30px; color: var(--text-main); }
         
-        .card-img-wrapper { position: relative; height: 200px; overflow: hidden; }
-        .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-        .card:hover .card-img { transform: scale(1.05); }
-        .card-tags { position: absolute; top: 15px; right: 15px; display: flex; gap: 5px; }
-        .tag { background: rgba(0,0,0,0.7); color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; backdrop-filter: blur(4px);}
-        .tag.hot { background: #EF4444; } .tag.new { background: #3B82F6; } .tag.veg { background: #10B981; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 25px; }
+        .menu-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; display: flex; cursor: pointer; transition: all 0.3s ease; box-shadow: var(--shadow-sm); position: relative; padding: 15px; gap: 15px;}
+        .menu-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--honey-gold); }
         
-        .fav-btn { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.9); width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #ccc; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
-        .fav-btn.active { color: #EF4444; }
+        .card-img-container { position: relative; width: 130px; height: 130px; flex-shrink: 0; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .fav-btn { position: absolute; top: 8px; left: 8px; background: rgba(255,255,255,0.9); width: 28px; height: 28px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #ccc; font-size: 14px; transition: 0.3s; z-index: 2; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+        .fav-btn.active { color: var(--danger-red); }
+        .fav-btn:hover { transform: scale(1.1); }
+        
+        .card-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .item-tags { display: flex; gap: 5px; margin-bottom: 5px; flex-wrap: wrap; }
+        .badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 700; text-transform: uppercase; }
+        .badge.best { background: #FFEB3B; color: #F57F17; }
+        .badge.spicy { background: #FFCDD2; color: #C62828; }
+        .badge.veg { background: #C8E6C9; color: #2E7D32; }
+        .badge.new { background: #E1BEE7; color: #6A1B9A; }
 
-        .card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
-        .card-title { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
-        .card-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}
+        .card-title { font-size: 16px; font-weight: 700; color: var(--text-main); line-height: 1.3; margin-bottom: 4px;}
+        .card-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px;}
         
-        .card-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-size: 13px; color: var(--text-muted); font-weight: 500;}
-        .rating { color: #F59E0B; }
-        
-        .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px dashed var(--border-color); }
-        .price { font-size: 20px; font-weight: 800; color: var(--primary-dark); }
-        .add-btn { background: var(--primary); color: #fff; border: none; padding: 10px 20px; border-radius: 12px; font-family: var(--font-main); font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; gap: 8px; align-items: center;}
-        .add-btn:hover { background: var(--primary-dark); transform: scale(1.05); }
+        .card-meta { display: flex; gap: 12px; font-size: 11px; color: var(--text-muted); margin-bottom: 10px; font-weight: 600;}
+        .card-meta span { display: flex; align-items: center; gap: 4px; }
+        .rating-star { color: #FFC107; }
 
-        /* --- Checkout Section (WhatsApp) --- */
-        #checkout-view { display: none; max-width: 900px; margin: 100px auto 40px; padding: 0 5%; animation: fadeUp 0.4s ease;}
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .checkout-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; }
-        .box { background: var(--card-bg); padding: 30px; border-radius: 20px; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); margin-bottom: 25px;}
-        .box-title { font-size: 20px; font-weight: 800; margin-bottom: 20px; border-bottom: 2px solid var(--border-color); padding-bottom: 15px; }
-        
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px; }
-        .form-control { width: 100%; padding: 15px; border: 1px solid var(--border-color); border-radius: 12px; background: var(--bg-color); color: var(--text-main); font-family: var(--font-main); font-size: 14px; outline: none; transition: 0.3s;}
-        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(229, 169, 55, 0.2); }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; }
+        .card-price { font-weight: 700; color: var(--honey-dark); font-size: 18px; }
+        .add-btn { background: var(--honey-gold); color: #fff; border: none; padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 5px;}
+        .add-btn:hover { background: var(--honey-dark); transform: scale(1.05); }
 
-        .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--border-color); }
-        .qty-control { display: flex; align-items: center; gap: 10px; background: var(--bg-color); padding: 5px 10px; border-radius: 8px;}
-        .qty-btn { background: none; border: none; font-size: 16px; color: var(--primary); cursor: pointer; font-weight: bold;}
-        .del-btn { color: var(--danger); cursor: pointer; background: none; border: none; font-size: 18px; margin-right: 15px;}
+        /* Floating Action Buttons */
+        .fab-container { position: fixed; bottom: 90px; right: 20px; display: flex; flex-direction: column; gap: 15px; z-index: 999; }
+        .fab { width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; transition: 0.3s; text-decoration: none;}
+        .fab:hover { transform: translateY(-5px) scale(1.05); }
+        .fab-wa { background: #25D366; }
+        .fab-call { background: #007BFF; }
 
-        .summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 15px; color: var(--text-muted); font-weight: 500;}
-        .summary-total { display: flex; justify-content: space-between; font-size: 22px; font-weight: 800; color: var(--text-main); margin-top: 15px; padding-top: 15px; border-top: 2px dashed var(--border-color); }
+        /* Sidebar Cart */
+        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; display: none; backdrop-filter: blur(3px); }
+        .cart-sidebar { position: fixed; top: 0; right: -400px; width: 100%; max-width: 400px; height: 100%; background: var(--card-bg); z-index: 2001; transition: 0.4s ease; display: flex; flex-direction: column; box-shadow: -5px 0 20px rgba(0,0,0,0.1); }
+        body.rtl .cart-sidebar { right: auto; left: -400px; }
+        .cart-sidebar.open { right: 0; }
+        body.rtl .cart-sidebar.open { left: 0; right: auto; }
+        
+        .cart-header { padding: 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+        .cart-header h2 { font-size: 20px; color: var(--text-main); }
+        .close-cart { background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; }
+        
+        .cart-body { flex: 1; overflow-y: auto; padding: 20px; }
+        .empty-cart { text-align: center; color: var(--text-muted); margin-top: 50px; }
+        .empty-cart i { font-size: 50px; margin-bottom: 15px; color: var(--border-color); }
+        
+        .cart-item { display: flex; gap: 15px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-color); }
+        .cart-item img { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; }
+        .cart-item-details { flex: 1; }
+        .cart-item-title { font-weight: 700; font-size: 14px; margin-bottom: 5px; color: var(--text-main); }
+        .cart-item-price { font-weight: 700; color: var(--honey-dark); font-size: 14px; margin-bottom: 10px;}
+        .cart-qty-controls { display: flex; align-items: center; gap: 10px; background: var(--bg-color); padding: 5px; border-radius: 20px; width: fit-content; border: 1px solid var(--border-color);}
+        .cart-qty-btn { background: none; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; color: var(--text-main); font-weight: bold; }
+        .cart-remove { color: var(--danger-red); cursor: pointer; font-size: 14px; background: none; border: none; }
+
+        .cart-footer { padding: 20px; border-top: 1px solid var(--border-color); background: var(--bg-color); }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; color: var(--text-muted); }
+        .summary-row.total { font-size: 18px; font-weight: 700; color: var(--text-main); margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 15px;}
         
         .coupon-box { display: flex; gap: 10px; margin-bottom: 20px; }
-        .coupon-btn { background: var(--text-main); color: var(--card-bg); border: none; padding: 0 20px; border-radius: 12px; font-family: var(--font-main); font-weight: 700; cursor: pointer;}
+        .coupon-box input { flex: 1; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg); color: var(--text-main); outline: none;}
+        .coupon-box button { background: var(--text-main); color: var(--card-bg); border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; font-weight: 600;}
 
-        .wa-btn { width: 100%; background: #25D366; color: #fff; border: none; padding: 18px; border-radius: 15px; font-size: 18px; font-weight: 800; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s; font-family: var(--font-main);}
-        .wa-btn:hover { background: #128C7E; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); }
+        .checkout-btn { width: 100%; background: var(--success-green); color: #fff; border: none; padding: 15px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px;}
+        .checkout-btn:hover { background: #1B5E20; }
 
-        /* --- Floating Sticky Cart & Contact --- */
-        .sticky-bottom { position: fixed; bottom: 20px; left: 5%; right: 5%; display: flex; justify-content: space-between; align-items: flex-end; z-index: 990; pointer-events: none;}
+        /* Reviews Section */
+        .reviews-section { max-width: 1300px; margin: 60px auto; padding: 40px 20px; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border-color);}
+        .reviews-header { text-align: center; margin-bottom: 40px; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .review-card { padding: 20px; border: 1px solid var(--border-color); border-radius: 15px; background: var(--bg-color); }
+        .reviewer-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .reviewer-info img { width: 50px; height: 50px; border-radius: 50%; }
+        .review-text { font-size: 14px; color: var(--text-muted); line-height: 1.6; font-style: italic;}
+
+        /* Checkout Modal */
+        #checkout-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:var(--bg-color); z-index: 3000; overflow-y: auto; padding: 20px; }
+        .checkout-container { max-width: 600px; margin: 40px auto; background: var(--card-bg); padding: 30px; border-radius: 20px; border: 1px solid var(--border-color); box-shadow: var(--shadow-lg); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--bg-color); color: var(--text-main); font-family: var(--body-font); }
+        .payment-alert { background: rgba(229, 169, 55, 0.1); border-left: 4px solid var(--honey-gold); padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; display: flex; gap: 10px; align-items: center;}
         
-        .floating-contact { display: flex; flex-direction: column; gap: 15px; pointer-events: auto;}
-        .float-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #fff; font-size: 24px; text-decoration: none; box-shadow: var(--shadow-md); transition: 0.3s; cursor: pointer; border: none;}
-        .float-btn:hover { transform: scale(1.1); }
-        .btn-wa { background: #25D366; } .btn-call { background: var(--primary); }
-        
-        .main-cart-btn { background: var(--text-main); color: var(--card-bg); padding: 15px 30px; border-radius: 30px; font-weight: 800; font-size: 16px; display: flex; align-items: center; gap: 15px; cursor: pointer; pointer-events: auto; box-shadow: var(--shadow-md); transform: translateY(100px); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: none; font-family: var(--font-main);}
-        .main-cart-btn.visible { transform: translateY(0); }
-        .cart-badge { background: var(--primary); color: #fff; padding: 2px 10px; border-radius: 20px; font-size: 14px; }
+        .animated-badge { position: absolute; top: -5px; right: -5px; background: var(--danger-red); color: white; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; transition: 0.3s;}
+        .animated-badge.bump { animation: pulse 0.3s; }
 
-        @media (max-width: 900px) {
-            .checkout-grid { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+            .menu-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.5rem; }
-            .sticky-bottom { bottom: 15px; left: 15px; right: 15px; flex-direction: row-reverse;}
-            .floating-contact { flex-direction: row; }
+            nav { padding: 12px 20px; }
+            .search-container input { width: 120px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Marquee Offers -->
+    <div class="marquee-container" id="marquee-text">
+        <div class="marquee-content">
+            <span>🔥 Free Delivery on orders over $20!</span>
+            <span>⭐ Try our new Honey Mustard Wings!</span>
+            <span>🌶️ Spicy Fajita is back in stock!</span>
+            <span>🔥 Free Delivery on orders over $20!</span>
+            <span>⭐ Try our new Honey Mustard Wings!</span>
+        </div>
+    </div>
+
     <!-- Navbar -->
-    <nav>
-        <a class="nav-brand" onclick="goHome()">
-            <img src="logo-ashta.png" alt="Logo">
-            <span>Ashta W 3asal</span>
+    <nav id="navbar">
+        <a class="nav-logo" href="#" onclick="window.scrollTo(0,0)">
+            <img src="logo-ashta.png" alt="Logo"> 
+            <span id="brand-name">Ashta W 3asal</span>
         </a>
+        <div class="search-container">
+            <i class="fas fa-search" style="color:var(--text-muted)"></i>
+            <input type="text" id="searchInput" placeholder="Search menu..." onkeyup="filterMenu()">
+        </div>
         <div class="nav-tools">
-            <button class="icon-btn" onclick="toggleDarkMode()"><i class="fas fa-moon" id="theme-icon"></i></button>
-            <button class="icon-btn" onclick="filterByTag('fav')"><i class="fas fa-heart"></i></button>
+            <button class="icon-btn" onclick="toggleLang()" title="Language">
+                <i class="fas fa-globe"></i>
+            </button>
+            <button class="icon-btn" onclick="toggleTheme()" title="Dark Mode">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+            <button class="icon-btn" onclick="toggleFavoritesSidebar()" title="Favorites">
+                <i class="fas fa-heart"></i>
+                <span class="animated-badge" id="fav-count" style="display:none">0</span>
+            </button>
+            <button class="icon-btn" onclick="openCart()" title="Cart">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="animated-badge" id="cart-count">0</span>
+            </button>
         </div>
     </nav>
 
-    <!-- Main View -->
-    <div id="main-view">
-        <!-- Hero Parallax -->
-        <header class="hero">
-            <div class="status-badge" id="rest-status">
-                <div class="status-dot"></div> مفتوح الآن - نستقبل الطلبات
-            </div>
-            <h1>طعم السعادة في كل قضمة</h1>
-            <p style="font-size: 1.1rem; margin-bottom: 25px; max-width: 600px;">أشهى المأكولات المحضرة بحب وعناية، تصلك ساخنة وطازجة إلى باب بيتك.</p>
-            
-            <div class="quick-info">
-                <div class="info-card"><i class="fas fa-motorcycle"></i> <span>30 - 45 دقيقة</span></div>
-                <div class="info-card"><i class="fas fa-wallet"></i> <span>الحد الأدنى: $5</span></div>
-                <div class="info-card"><i class="fas fa-star"></i> <span>تقييم 4.9/5</span></div>
-            </div>
-        </header>
-
-        <!-- Search & Filters -->
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="ابحث عن وجبتك المفضلة (شاورما، بيتزا...)" onkeyup="searchMenu()">
-        </div>
-
-        <div class="filters-wrapper">
-            <button class="filter-btn active" onclick="filterMenu('all', this)">الكل</button>
-            <button class="filter-btn" onclick="filterByTag('bestseller', this)">🔥 الأكثر مبيعاً</button>
-            <button class="filter-btn" onclick="filterByTag('new', this)">✨ جديد</button>
-            <button class="filter-btn" onclick="filterByTag('spicy', this)">🌶️ حار</button>
-            <button class="filter-btn" onclick="filterByTag('veg', this)">🥬 نباتي</button>
-            <button class="filter-btn" onclick="filterMenu('Shawarma', this)">شاورما</button>
-            <button class="filter-btn" onclick="filterMenu('Pizza', this)">بيتزا</button>
-            <button class="filter-btn" onclick="filterMenu('Burger', this)">برجر</button>
-        </div>
-
-        <!-- Menu Container -->
-        <div class="menu-container" id="menu-grid-container">
-            <!-- Rendered by JS -->
-        </div>
-    </div>
-
-    <!-- Checkout / Cart View (WhatsApp) -->
-    <div id="checkout-view">
-        <button class="filter-btn" onclick="goHome()" style="margin-bottom: 20px;"><i class="fas fa-arrow-right"></i> العودة للمنيو</button>
+    <!-- Hero Parallax -->
+    <header class="hero">
+        <h1 id="hero-title" class="heading-font">Authentic Taste</h1>
+        <p id="hero-subtitle">Premium Quality Delivery in Halba</p>
         
-        <div class="checkout-grid">
-            <!-- Form Details -->
-            <div>
-                <div class="box">
-                    <h2 class="box-title"><i class="fas fa-map-marker-alt"></i> تفاصيل التوصيل</h2>
-                    <div class="form-group">
-                        <label>الاسم الكامل *</label>
-                        <input type="text" id="cust-name" class="form-control" placeholder="أدخل اسمك الكريم">
-                    </div>
-                    <div class="form-group">
-                        <label>العنوان بالتفصيل *</label>
-                        <input type="text" id="cust-address" class="form-control" placeholder="الشارع، البناء، الطابق">
-                    </div>
-                    <div class="form-group">
-                        <label>ملاحظات إضافية (اختياري)</label>
-                        <input type="text" id="cust-notes" class="form-control" placeholder="بدون ثوم، رن الجرس...">
-                    </div>
-                </div>
+        <div class="quick-info-bar">
+            <div class="info-pill">
+                <span class="status-dot" id="status-dot"></span> <span id="status-text">Open Now (Closes 11:00 PM)</span>
             </div>
+            <div class="info-pill"><i class="fas fa-motorcycle"></i> <span id="lbl-del-time">30-45 Mins</span></div>
+            <div class="info-pill"><i class="fas fa-money-bill-wave"></i> <span id="lbl-min-order">Min Order: $5</span></div>
+            <div class="info-pill"><i class="fas fa-truck"></i> <span id="lbl-del-fee">Delivery: $1.50</span></div>
+        </div>
+    </header>
 
-            <!-- Cart Summary -->
-            <div class="box" style="align-self: start; position: sticky; top: 90px;">
-                <h2 class="box-title"><i class="fas fa-shopping-basket"></i> سلة الطلبات</h2>
-                
-                <div id="checkout-items"></div>
-                
-                <div style="margin-top: 20px;">
-                    <div class="coupon-box">
-                        <input type="text" id="coupon-code" class="form-control" placeholder="كوبون الخصم (جرب SALE10)">
-                        <button class="coupon-btn" onclick="applyCoupon()">تطبيق</button>
+    <!-- Sticky Navigation & Filters -->
+    <div class="nav-sections">
+        <div class="filters-row" id="filters-container">
+            <div class="filter-tag active" onclick="applyTagFilter('all', this)" id="flt-all">All</div>
+            <div class="filter-tag" onclick="applyTagFilter('best', this)"><i class="fas fa-fire" style="color:#FF9800"></i> <span id="flt-best">Best Seller</span></div>
+            <div class="filter-tag" onclick="applyTagFilter('new', this)"><i class="fas fa-star" style="color:#9C27B0"></i> <span id="flt-new">New</span></div>
+            <div class="filter-tag" onclick="applyTagFilter('veg', this)"><i class="fas fa-leaf" style="color:#4CAF50"></i> <span id="flt-veg">Vegetarian</span></div>
+            <div class="filter-tag" onclick="applyTagFilter('spicy', this)"><i class="fas fa-pepper-hot" style="color:#F44336"></i> <span id="flt-spicy">Spicy</span></div>
+        </div>
+        <div class="category-tabs" id="tabs-container"></div>
+    </div>
+
+    <!-- Main Menu -->
+    <div class="menu-container" id="menu-container"></div>
+
+    <!-- Reviews Section -->
+    <div class="reviews-section">
+        <div class="reviews-header">
+            <h2 class="category-title heading-font" id="lbl-reviews">Customer Reviews</h2>
+            <div style="font-size: 32px; font-weight: 700; color: var(--text-main);">
+                4.9 <i class="fas fa-star rating-star"></i>
+            </div>
+            <p style="color: var(--text-muted); font-size: 14px;">Based on 500+ orders</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <img src="https://ui-avatars.com/api/?name=Ahmad+M&background=E5A937&color=fff" alt="User">
+                    <div>
+                        <div style="font-weight: 700; font-size: 14px;">Ahmad M.</div>
+                        <div class="rating-star" style="font-size: 12px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
-                    
-                    <div class="summary-row"><span>المجموع الفرعي:</span> <span id="sub-total">$0.00</span></div>
-                    <div class="summary-row"><span>رسوم التوصيل:</span> <span id="delivery-fee">$2.00</span></div>
-                    <div class="summary-row"><span>الضريبة (11%):</span> <span id="tax-fee">$0.00</span></div>
-                    <div class="summary-row" id="discount-row" style="display:none; color: var(--success);"><span>خصم الكوبون:</span> <span id="discount-amt">-$0.00</span></div>
-                    
-                    <div class="summary-total"><span>الإجمالي:</span> <span id="grand-total" style="color: var(--primary);">$0.00</span></div>
                 </div>
-
-                <button class="wa-btn" onclick="sendToWhatsApp()" style="margin-top: 25px;">
-                    <i class="fab fa-whatsapp" style="font-size: 24px;"></i> إرسال الطلب عبر واتساب
-                </button>
-                <p style="text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 10px;">الدفع نقداً عند الاستلام</p>
+                <p class="review-text">"Best Shawarma in Halba! The chicken is always juicy and the garlic sauce is perfect. Arrived hot in 30 minutes."</p>
+            </div>
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <img src="https://ui-avatars.com/api/?name=Sara+K&background=2C1E16&color=fff" alt="User">
+                    <div>
+                        <div style="font-weight: 700; font-size: 14px;">Sara K.</div>
+                        <div class="rating-star" style="font-size: 12px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                    </div>
+                </div>
+                <p class="review-text">"The crispy platter is huge and delicious. Ordered for the kids and they loved it. Highly recommended."</p>
+            </div>
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <img src="https://ui-avatars.com/api/?name=Fadi+H&background=2E7D32&color=fff" alt="User">
+                    <div>
+                        <div style="font-weight: 700; font-size: 14px;">Fadi H.</div>
+                        <div class="rating-star" style="font-size: 12px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    </div>
+                </div>
+                <p class="review-text">"Vegetarian Pizza is my go-to. Dough is fresh and ingredients are premium. Great packaging too."</p>
             </div>
         </div>
     </div>
 
-    <!-- Floating Bottom Elements -->
-    <div class="sticky-bottom">
-        <button class="main-cart-btn" id="sticky-cart-btn" onclick="openCheckout()">
-            <span class="cart-badge" id="cart-count">0</span>
-            إكمال الطلب • <span id="cart-total-btn">$0.00</span>
-            <i class="fas fa-chevron-left"></i>
-        </button>
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <a href="https://wa.me/905376262192" target="_blank" class="fab fab-wa"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+905376262192" class="fab fab-call"><i class="fas fa-phone"></i></a>
+    </div>
 
-        <div class="floating-contact">
-            <a href="tel:+905376262192" class="float-btn btn-call"><i class="fas fa-phone-alt"></i></a>
-            <a href="https://wa.me/905376262192" target="_blank" class="float-btn btn-wa"><i class="fab fa-whatsapp"></i></a>
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2 id="cart-title" class="heading-font">Your Cart</h2>
+            <button class="close-cart" onclick="closeCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-body" id="cart-items">
+            <!-- Items injected by JS -->
+        </div>
+        <div class="cart-footer">
+            <div class="coupon-box">
+                <input type="text" id="coupon-code" placeholder="Promo Code (Try ASHTA10)">
+                <button onclick="applyCoupon()" id="btn-apply">Apply</button>
+            </div>
+            <div class="summary-row"><span id="lbl-sub">Subtotal</span> <span id="cart-subtotal">$0.00</span></div>
+            <div class="summary-row"><span id="lbl-del">Delivery Fee</span> <span id="cart-delivery">$1.50</span></div>
+            <div class="summary-row"><span id="lbl-tax">Tax (5%)</span> <span id="cart-tax">$0.00</span></div>
+            <div class="summary-row" id="discount-row" style="display:none; color: var(--success-green);"><span id="lbl-disc">Discount</span> <span id="cart-discount">-$0.00</span></div>
+            <div class="summary-row total"><span id="lbl-tot">Total</span> <span id="cart-total-final">$0.00</span></div>
+            
+            <button class="checkout-btn" onclick="openCheckout()">
+                <span id="btn-checkout">Checkout</span> <i class="fab fa-whatsapp"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Checkout Form (WhatsApp Routing) -->
+    <div id="checkout-modal">
+        <div class="checkout-container">
+            <button class="icon-btn" onclick="closeCheckout()" style="margin-bottom: 20px;"><i class="fas fa-arrow-left"></i> <span id="lbl-back">Back</span></button>
+            <h2 class="category-title heading-font" id="lbl-checkout-title">Complete Order</h2>
+            
+            <div class="payment-alert">
+                <i class="fas fa-info-circle" style="font-size:24px; color:var(--honey-gold)"></i>
+                <div id="lbl-payment-info">Online payment is currently disabled. All orders are processed as <b>Cash on Delivery</b>. Your order will be sent to our WhatsApp for fast confirmation.</div>
+            </div>
+
+            <div class="form-group">
+                <label id="lbl-name">Full Name *</label>
+                <input type="text" id="cust-name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label id="lbl-phone">Phone Number *</label>
+                <input type="tel" id="cust-phone" placeholder="+961 70 123 456" required>
+            </div>
+            <div class="form-group">
+                <label id="lbl-address">Full Delivery Address *</label>
+                <textarea id="cust-address" rows="3" placeholder="Halba, Main Street, Building 4..." required></textarea>
+            </div>
+            <div class="form-group">
+                <label id="lbl-notes">Order Notes (Optional)</label>
+                <textarea id="cust-notes" rows="2" placeholder="e.g. No onions, bring change for $50..."></textarea>
+            </div>
+
+            <button class="checkout-btn" onclick="sendWhatsAppOrder()" style="margin-top: 10px; padding: 18px;">
+                <i class="fab fa-whatsapp" style="font-size: 20px;"></i> <span id="btn-confirm-wa">Send Order to WhatsApp</span>
+            </button>
         </div>
     </div>
 
     <script>
-        // --- 1. System Variables & Smart Data ---
-        let cart = [];
-        let favorites = JSON.parse(localStorage.getItem('ashta_favs')) || [];
-        let discountPercent = 0;
-        const taxRate = 0.11; // 11% Tax
-        const deliveryCost = 2.00;
-        const WA_NUMBER = "905376262192";
-
-        // Highly optimized data structure with tags and ratings
-        const menuData = [
-            { id: 1, c: "Shawarma", n: "شاورما دجاج بخبز الصاج", p: 3.50, d: "شاورما دجاج متبلة بالبهارات الخاصة مع كريم الثوم والمخلل.", i: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=600&q=80", tg: ['bestseller'], r: 4.9, t: "15 د" },
-            { id: 2, c: "Shawarma", n: "شاورما لحم اكسترا", p: 4.50, d: "شاورما لحم عجل طازج مع البصل، البقدونس، الطماطم وصلصة الطرطور.", i: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", tg: ['bestseller', 'new'], r: 4.8, t: "15 د" },
-            { id: 3, c: "Shawarma", n: "شاورما دجاج سبايسي", p: 3.75, d: "دجاج مبهر بخلطة حارة مع صوص الجبنة السايحة.", i: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=600&q=80", tg: ['spicy'], r: 4.7, t: "15 د" },
-            
-            { id: 4, c: "Pizza", n: "بيتزا مارغريتا", p: 6.00, d: "عجينة إيطالية هشة، صلصة الطماطم الطازجة، وجبنة الموزاريلا والريحان.", i: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80", tg: ['veg'], r: 4.6, t: "20 د" },
-            { id: 5, c: "Pizza", n: "بيتزا بيبروني", p: 8.00, d: "طبقة غنية من البيبروني البقري وجبنة الموزاريلا الذائبة.", i: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=600&q=80", tg: ['bestseller'], r: 4.9, t: "25 د" },
-            { id: 6, c: "Pizza", n: "بيتزا الخضار", p: 7.00, d: "مشروم، فلفل حلو، زيتون، بصل، وذرة مع الجبنة.", i: "https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=600&q=80", tg: ['veg'], r: 4.5, t: "20 د" },
-            
-            { id: 7, c: "Burger", n: "كلاسيك تشيز برجر", p: 7.50, d: "شريحة لحم بقر صافي، جبنة شيدر، خس، طماطم، وصوص البرجر الخاص.", i: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80", tg: ['bestseller'], r: 4.8, t: "20 د" },
-            { id: 8, c: "Burger", n: "كريسبي تشيكن حار", p: 7.00, d: "صدر دجاج مقرمش حار، خس، صوص المايونيز الحار.", i: "https://images.unsplash.com/photo-1562967914-608f82629710?w=600&q=80", tg: ['spicy', 'new'], r: 4.9, t: "20 د" },
-            
-            { id: 9, c: "Pasta", n: "فيتوتشيني ألفريدو", p: 8.50, d: "باستا مع صلصة الكريمة الغنية، فطر، وقطع الدجاج وجبنة البارميزان.", i: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=600&q=80", tg: [], r: 4.7, t: "25 د" },
-            { id: 10, c: "Salads", n: "سلطة سيزر دجاج", p: 6.50, d: "خس رومين، دجاج مشوي، خبز محمص، وصوص السيزر.", i: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80", tg: [], r: 4.8, t: "10 د" },
-            
-            { id: 11, c: "Starters", n: "بطاطا مقلية (فرايز)", p: 3.00, d: "بطاطا مقلية ذهبية ومقرمشة.", i: "https://images.unsplash.com/photo-1576107232684-1279f390859f?w=600&q=80", tg: ['veg'], r: 4.5, t: "10 د" },
-            { id: 12, c: "Starters", n: "أصابع الموزاريلا", p: 5.50, d: "5 قطع من أصابع الجبنة المقلية مع صوص المارينارا.", i: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&q=80", tg: ['veg', 'new'], r: 4.6, t: "12 د" }
+        // --- DATA ---
+        // Complete menu mapping from previous code, augmented with tags, ratings, and prep time for professional UI.
+        const categories = [
+            "Shawarma", "Rizo", "Plat Shawarma", "Shawarma on Potato", "Pizza", 
+            "Pasta", "Kids Menu", "Platters", "Sandwiches", "Special Sandwiches", 
+            "Starters", "Salads", "Breakfast", "Baguette", "Potato", "Burger"
         ];
 
-        // --- 2. Core Functions (Render & Filters) ---
-        window.onload = () => {
-            checkRestaurantStatus();
-            renderMenu('all');
-            updateCartUI();
+        // Images mapping
+        const imgs = {
+            shawarma: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=400&q=80",
+            shawarmaMeat: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=400&q=80",
+            rizo: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=400&q=80",
+            platter: "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=400&q=80",
+            potato: "https://images.unsplash.com/photo-1518013431119-2ce69829f0fd?auto=format&fit=crop&w=400&q=80",
+            pizza: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=400&q=80",
+            pasta: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=400&q=80",
+            crispy: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=400&q=80",
+            burger: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80",
+            salad: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80",
+            breakfast: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=400&q=80",
+            fries: "https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=400&q=80"
         };
 
-        function renderMenu(filter, btnElement) {
-            if(btnElement) {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btnElement.classList.add('active');
-            }
+        const menuData = [
+            // Shawarma
+            { id: 1, cat: "Shawarma", name: "Sandwich Shawarma Djej", price: 3.50, desc: "Classic chicken shawarma wrap.", img: imgs.shawarma, tags: ['best'], rating: 4.9, prep: "15 min" },
+            { id: 2, cat: "Shawarma", name: "Sandwich Shawarma Lahme", price: 4.00, desc: "Classic meat shawarma wrap.", img: imgs.shawarmaMeat, tags: [], rating: 4.7, prep: "15 min" },
+            { id: 3, cat: "Shawarma", name: "Sand Shaw Djej w Jebne", price: 4.00, desc: "Chicken shawarma with melted cheese.", img: imgs.shawarma, tags: ['best'], rating: 4.8, prep: "15 min" },
+            { id: 4, cat: "Shawarma", name: "Sand Shaw Lahme w Jebne", price: 4.50, desc: "Meat shawarma with melted cheese.", img: imgs.shawarmaMeat, tags: [], rating: 4.6, prep: "15 min" },
+            // Rizo
+            { id: 5, cat: "Rizo", name: "Rizo Djej", price: 5.00, desc: "Rice + chicken shawarma + sauce.", img: imgs.rizo, tags: [], rating: 4.5, prep: "20 min" },
+            { id: 6, cat: "Rizo", name: "Rizo Lahme", price: 6.00, desc: "Rice + meat shawarma + sauce.", img: imgs.rizo, tags: [], rating: 4.4, prep: "20 min" },
+            // Plat Shawarma
+            { id: 7, cat: "Plat Shawarma", name: "Plat Shawarma Djej", price: 9.00, desc: "Chicken shawarma platter.", img: imgs.platter, tags: ['best'], rating: 4.9, prep: "25 min" },
+            { id: 8, cat: "Plat Shawarma", name: "Plat Shawarma Lahme", price: 10.00, desc: "Meat shawarma platter.", img: imgs.platter, tags: [], rating: 4.7, prep: "25 min" },
+            { id: 9, cat: "Plat Shawarma", name: "Plat Shawarma Mix", price: 7.00, desc: "Mix shawarma platter.", img: imgs.platter, tags: ['new'], rating: 4.8, prep: "25 min" },
+            // Shawarma on Potato
+            { id: 10, cat: "Shawarma on Potato", name: "Shawarma Djej 3al Batata", price: 5.00, desc: "Chicken shawarma served over fries.", img: imgs.potato, tags: [], rating: 4.6, prep: "20 min" },
+            { id: 11, cat: "Shawarma on Potato", name: "Shawarma Lahme 3al Batata", price: 6.20, desc: "Meat shawarma served over fries.", img: imgs.potato, tags: [], rating: 4.5, prep: "20 min" },
+            // Pizza (Condensed variants to base price to fit standard UI for this prompt)
+            { id: 12, cat: "Pizza", name: "Vegetarian Pizza", price: 6.00, desc: "Tomato, olive, sweet pepper, mushroom, cheese.", img: imgs.pizza, tags: ['veg'], rating: 4.7, prep: "30 min" },
+            { id: 13, cat: "Pizza", name: "Margarita Pizza", price: 5.00, desc: "Sauce, cheese, basil.", img: imgs.pizza, tags: ['veg', 'best'], rating: 4.8, prep: "25 min" },
+            { id: 14, cat: "Pizza", name: "Lebanese Pizza", price: 6.50, desc: "Cheese, mushroom, janbon, sweet pepper, olive.", img: imgs.pizza, tags: [], rating: 4.5, prep: "30 min" },
+            { id: 15, cat: "Pizza", name: "Four Cheese Pizza", price: 7.00, desc: "Four kinds of cheese.", img: imgs.pizza, tags: ['veg'], rating: 4.9, prep: "30 min" },
+            { id: 16, cat: "Pizza", name: "Turkey Pizza", price: 7.00, desc: "Habash, mozzarella, mushroom, sweet pepper, olive.", img: imgs.pizza, tags: [], rating: 4.4, prep: "30 min" },
+            { id: 17, cat: "Pizza", name: "Mortadella Pizza", price: 7.00, desc: "Sauce, mortadella, sweet pepper, olive, corn, cheese.", img: imgs.pizza, tags: [], rating: 4.3, prep: "30 min" },
+            { id: 18, cat: "Pizza", name: "Special Fajita Pizza", price: 8.00, desc: "Chicken, sweet pepper, corn, onion, cheese.", img: imgs.pizza, tags: ['spicy'], rating: 4.8, prep: "30 min" },
+            { id: 19, cat: "Pizza", name: "Pepperoni Pizza", price: 7.00, desc: "Sauce, pepperoni, cheese.", img: imgs.pizza, tags: ['best'], rating: 4.9, prep: "25 min" },
+            { id: 20, cat: "Pizza", name: "Barbecue Pizza", price: 8.00, desc: "BBQ sauce base.", img: imgs.pizza, tags: [], rating: 4.6, prep: "30 min" },
+            { id: 21, cat: "Pizza", name: "Chawarma Pizza", price: 8.00, desc: "Topped with shawarma.", img: imgs.pizza, tags: ['new'], rating: 4.7, prep: "35 min" },
+            { id: 22, cat: "Pizza", name: "Meat Lovers Pizza", price: 8.00, desc: "Loaded with meat.", img: imgs.pizza, tags: [], rating: 4.8, prep: "30 min" },
+            // Pasta
+            { id: 23, cat: "Pasta", name: "Chicken Fettuccine Alfredo", price: 10.00, desc: "Cheese, spaghetti, mushroom, chicken.", img: imgs.pasta, tags: ['best'], rating: 4.9, prep: "25 min" },
+            { id: 24, cat: "Pasta", name: "Fettuccine Alfredo", price: 7.50, desc: "Cheese, spaghetti, mushroom.", img: imgs.pasta, tags: ['veg'], rating: 4.6, prep: "20 min" },
+            { id: 25, cat: "Pasta", name: "Penne Arrabiata", price: 6.00, desc: "Basil, tomato sauce, cheese, olive.", img: imgs.pasta, tags: ['veg', 'spicy'], rating: 4.7, prep: "20 min" },
+            { id: 26, cat: "Pasta", name: "Spaghetti Bolognese", price: 8.50, desc: "Tomato sauce, meat, cheese.", img: imgs.pasta, tags: [], rating: 4.5, prep: "25 min" },
+            { id: 27, cat: "Pasta", name: "PENNE 4 CHEESE", price: 10.00, desc: "Rich 4 cheese sauce.", img: imgs.pasta, tags: ['veg'], rating: 4.8, prep: "25 min" },
+            { id: 28, cat: "Pasta", name: "Penne Rose", price: 8.00, desc: "Pink sauce pasta.", img: imgs.pasta, tags: [], rating: 4.4, prep: "20 min" },
+            { id: 29, cat: "Pasta", name: "Shrimp Broccoli", price: 12.50, desc: "Pasta with shrimp and broccoli.", img: imgs.pasta, tags: ['new'], rating: 4.7, prep: "30 min" },
+            { id: 30, cat: "Pasta", name: "Barbecue Pasta", price: 8.00, desc: "Pasta with BBQ sauce.", img: imgs.pasta, tags: [], rating: 4.3, prep: "25 min" },
+            // Kids Menu
+            { id: 31, cat: "Kids Menu", name: "Crispy", price: 6.00, desc: "2 pcs crispy, fries, salad, Pepsi.", img: imgs.crispy, tags: [], rating: 4.8, prep: "15 min" },
+            { id: 32, cat: "Kids Menu", name: "Nuggets", price: 6.00, desc: "4 pcs nuggets, fries, salad, Pepsi.", img: imgs.crispy, tags: [], rating: 4.7, prep: "15 min" },
+            { id: 33, cat: "Kids Menu", name: "Mix Meal", price: 7.50, desc: "2 crispy + 2 nuggets + mini pizza + fries + Pepsi.", img: imgs.crispy, tags: ['best'], rating: 4.9, prep: "20 min" },
+            // Platters
+            { id: 34, cat: "Platters", name: "Crispy Platter", price: 11.00, desc: "Chicken, salad, potato, garlic.", img: imgs.platter, tags: ['best'], rating: 4.9, prep: "25 min" },
+            { id: 35, cat: "Platters", name: "Nuggets Platter", price: 9.00, desc: "10 pcs nuggets, fries, salad.", img: imgs.crispy, tags: [], rating: 4.5, prep: "20 min" },
+            { id: 36, cat: "Platters", name: "Grilled Deboned Chicken", price: 12.00, desc: "Grilled chicken, salad, potato, garlic.", img: imgs.platter, tags: [], rating: 4.8, prep: "30 min" },
+            { id: 37, cat: "Platters", name: "Chicken Avocat", price: 16.00, desc: "Chicken, avocat, fresh cream, potato.", img: imgs.platter, tags: ['new'], rating: 4.7, prep: "30 min" },
+            { id: 38, cat: "Platters", name: "Chicken Almond", price: 15.00, desc: "Chicken with almonds, fresh cream, potato.", img: imgs.platter, tags: [], rating: 4.6, prep: "30 min" },
+            { id: 39, cat: "Platters", name: "Chicken Mushroom", price: 15.00, desc: "Chicken with mushrooms, potato, fresh cream.", img: imgs.platter, tags: [], rating: 4.7, prep: "30 min" },
+            { id: 40, cat: "Platters", name: "Taouk Platter", price: 10.00, desc: "Coleslaw salad, taouk, potato, garlic.", img: imgs.platter, tags: ['best'], rating: 4.8, prep: "25 min" },
+            { id: 41, cat: "Platters", name: "Chicken Breast Platter", price: 12.50, desc: "Chicken breast, potato, salad.", img: imgs.platter, tags: [], rating: 4.6, prep: "25 min" },
+            { id: 42, cat: "Platters", name: "Chicken Escalope", price: 13.00, desc: "Coleslaw, chicken breast, potato.", img: imgs.platter, tags: [], rating: 4.7, prep: "25 min" },
+            { id: 43, cat: "Platters", name: "Fajitas Platter", price: 12.00, desc: "Coleslaw salad, fajita, potato.", img: imgs.platter, tags: ['spicy'], rating: 4.8, prep: "25 min" },
+            { id: 44, cat: "Platters", name: "Chicken Curry", price: 15.00, desc: "Rich chicken curry.", img: imgs.platter, tags: ['spicy'], rating: 4.5, prep: "30 min" },
+            { id: 45, cat: "Platters", name: "Cordon Bleu", price: 13.50, desc: "Stuffed chicken breast.", img: imgs.platter, tags: [], rating: 4.8, prep: "30 min" },
+            { id: 46, cat: "Platters", name: "Crispy 1kg", price: 22.00, desc: "1 kg of crispy chicken.", img: imgs.crispy, tags: [], rating: 4.9, prep: "35 min" },
+            { id: 47, cat: "Platters", name: "Taouk 1kg", price: 22.00, desc: "1 kg of Taouk.", img: imgs.platter, tags: [], rating: 4.8, prep: "35 min" },
+            // Sandwiches
+            { id: 48, cat: "Sandwiches", name: "Batata", price: 2.25, desc: "French fries sandwich.", img: imgs.fries, tags: ['veg'], rating: 4.6, prep: "10 min" },
+            { id: 49, cat: "Sandwiches", name: "Taouk", price: 3.80, desc: "Taouk sandwich.", img: imgs.shawarma, tags: ['best'], rating: 4.8, prep: "15 min" },
+            { id: 50, cat: "Sandwiches", name: "Fransisco", price: 4.50, desc: "Francisco sandwich.", img: imgs.shawarma, tags: [], rating: 4.5, prep: "15 min" },
+            { id: 51, cat: "Sandwiches", name: "Crispy", price: 4.50, desc: "Crispy chicken sandwich.", img: imgs.shawarma, tags: [], rating: 4.7, prep: "15 min" },
+            { id: 52, cat: "Sandwiches", name: "Fajita", price: 5.00, desc: "Fajita sandwich.", img: imgs.shawarma, tags: ['spicy'], rating: 4.8, prep: "15 min" },
+            { id: 53, cat: "Sandwiches", name: "Chicken Sub", price: 4.50, desc: "Chicken sub.", img: imgs.shawarma, tags: [], rating: 4.4, prep: "15 min" },
+            { id: 54, cat: "Sandwiches", name: "Makanik", price: 4.50, desc: "Makanik sausage sandwich.", img: imgs.shawarmaMeat, tags: [], rating: 4.6, prep: "15 min" },
+            { id: 55, cat: "Sandwiches", name: "Sejok", price: 4.50, desc: "Spicy sejok sandwich.", img: imgs.shawarmaMeat, tags: ['spicy'], rating: 4.7, prep: "15 min" },
+            { id: 56, cat: "Sandwiches", name: "Hot Dog", price: 4.00, desc: "Hot dog sandwich.", img: imgs.shawarmaMeat, tags: [], rating: 4.3, prep: "10 min" },
+            { id: 57, cat: "Sandwiches", name: "Submarine", price: 4.50, desc: "Classic submarine.", img: imgs.shawarma, tags: [], rating: 4.5, prep: "15 min" },
+            { id: 58, cat: "Sandwiches", name: "Shrimp", price: 5.00, desc: "Shrimp sandwich.", img: imgs.shawarma, tags: [], rating: 4.6, prep: "20 min" },
+            { id: 59, cat: "Sandwiches", name: "Crab", price: 4.50, desc: "Crab sandwich.", img: imgs.shawarma, tags: [], rating: 4.2, prep: "15 min" },
+            { id: 60, cat: "Sandwiches", name: "Samke Hara", price: 5.00, desc: "Spicy fish sandwich.", img: imgs.shawarma, tags: ['spicy'], rating: 4.5, prep: "20 min" },
+            // Special Sandwiches
+            { id: 61, cat: "Special Sandwiches", name: "Turkey Chawarma Chicken", price: 8.00, desc: "Special Turkey Chawarma Chicken.", img: imgs.shawarma, tags: ['new'], rating: 4.8, prep: "20 min" },
+            { id: 62, cat: "Special Sandwiches", name: "Turkey Chawarma Beef", price: 8.50, desc: "Special Turkey Chawarma Beef.", img: imgs.shawarmaMeat, tags: [], rating: 4.7, prep: "20 min" },
+            { id: 63, cat: "Special Sandwiches", name: "Honey Mustard Chicken", price: 5.00, desc: "Chicken with honey mustard.", img: imgs.shawarma, tags: ['new'], rating: 4.9, prep: "15 min" },
+            // Starters
+            { id: 64, cat: "Starters", name: "Nachos", price: 5.30, desc: "Crispy nachos.", img: imgs.potato, tags: ['veg'], rating: 4.5, prep: "10 min" },
+            { id: 65, cat: "Starters", name: "Chicken Quesadillas", price: 7.50, desc: "Chicken Quesadillas.", img: imgs.shawarma, tags: [], rating: 4.7, prep: "15 min" },
+            { id: 66, cat: "Starters", name: "Wavy Potato", price: 2.00, desc: "Wavy potato.", img: imgs.fries, tags: ['veg'], rating: 4.6, prep: "10 min" },
+            { id: 67, cat: "Starters", name: "Garlic Bread", price: 4.50, desc: "Garlic bread.", img: imgs.potato, tags: ['veg'], rating: 4.8, prep: "10 min" },
+            { id: 68, cat: "Starters", name: "Chicken Nuggets", price: 6.00, desc: "Chicken nuggets.", img: imgs.crispy, tags: [], rating: 4.7, prep: "15 min" },
+            { id: 69, cat: "Starters", name: "French Fries Dish", price: 2.75, desc: "French fries.", img: imgs.fries, tags: ['veg'], rating: 4.9, prep: "10 min" },
+            { id: 70, cat: "Starters", name: "Grilled Potato", price: 3.00, desc: "Grilled potato.", img: imgs.potato, tags: ['veg'], rating: 4.5, prep: "15 min" },
+            { id: 71, cat: "Starters", name: "Potato Wedges", price: 3.50, desc: "Potato wedges.", img: imgs.fries, tags: ['veg'], rating: 4.6, prep: "15 min" },
+            { id: 72, cat: "Starters", name: "Shrimp Pane", price: 6.25, desc: "Shrimp pane.", img: imgs.crispy, tags: [], rating: 4.4, prep: "15 min" },
+            { id: 73, cat: "Starters", name: "Crab Pane", price: 6.25, desc: "Crab pane.", img: imgs.crispy, tags: [], rating: 4.3, prep: "15 min" },
+            { id: 74, cat: "Starters", name: "Calamar Pane", price: 5.50, desc: "Calamar pane.", img: imgs.crispy, tags: [], rating: 4.5, prep: "15 min" },
+            { id: 75, cat: "Starters", name: "Chicken Barbecue Wings", price: 6.00, desc: "BBQ wings.", img: imgs.crispy, tags: [], rating: 4.8, prep: "20 min" },
+            { id: 76, cat: "Starters", name: "Chicken Honey Mustard Wings", price: 6.00, desc: "New Honey Mustard Wings.", img: imgs.crispy, tags: ['new'], rating: 4.9, prep: "20 min" },
+            { id: 77, cat: "Starters", name: "Chicken Provencal Wings", price: 6.00, desc: "Provencal wings.", img: imgs.crispy, tags: [], rating: 4.6, prep: "20 min" },
+            { id: 78, cat: "Starters", name: "Chicken Buffalo Wings", price: 6.00, desc: "Buffalo wings.", img: imgs.crispy, tags: ['spicy'], rating: 4.8, prep: "20 min" },
+            { id: 79, cat: "Starters", name: "Sandwich Halloumi", price: 3.00, desc: "Halloumi sandwich.", img: imgs.shawarma, tags: ['veg'], rating: 4.5, prep: "10 min" },
+            { id: 80, cat: "Starters", name: "Curly Fries", price: 6.50, desc: "Curly fries.", img: imgs.fries, tags: ['veg'], rating: 4.7, prep: "10 min" },
+            { id: 81, cat: "Starters", name: "Mix Platter", price: 10.00, desc: "Mix platter.", img: imgs.platter, tags: [], rating: 4.8, prep: "20 min" },
+            { id: 82, cat: "Starters", name: "Mozzarella Stick", price: 6.00, desc: "Mozzarella sticks.", img: imgs.crispy, tags: ['veg'], rating: 4.9, prep: "10 min" },
+            { id: 83, cat: "Starters", name: "Fish Finger", price: 5.00, desc: "Fish fingers.", img: imgs.crispy, tags: [], rating: 4.4, prep: "15 min" },
+            // Salads
+            { id: 84, cat: "Salads", name: "Ceasar Salad", price: 4.50, desc: "Lettuce, toast, cheese.", img: imgs.salad, tags: ['veg'], rating: 4.8, prep: "10 min" },
+            { id: 85, cat: "Salads", name: "Chicken Ceasar Salad", price: 6.50, desc: "Lettuce, chicken, toast, cheese.", img: imgs.salad, tags: ['best'], rating: 4.9, prep: "15 min" },
+            { id: 86, cat: "Salads", name: "Crab Salad", price: 6.50, desc: "Lettuce, avocat, crab, corn.", img: imgs.salad, tags: [], rating: 4.6, prep: "10 min" },
+            { id: 87, cat: "Salads", name: "Fattouch", price: 5.00, desc: "Fattouch salad.", img: imgs.salad, tags: ['veg'], rating: 4.8, prep: "10 min" },
+            { id: 88, cat: "Salads", name: "Tuna Salad", price: 6.00, desc: "Lettuce, tuna, pasta, pickles.", img: imgs.salad, tags: [], rating: 4.5, prep: "10 min" },
+            { id: 89, cat: "Salads", name: "Rocca Salad", price: 4.00, desc: "Rocca, mushroom, nut, cherry tomato.", img: imgs.salad, tags: ['veg'], rating: 4.7, prep: "10 min" },
+            { id: 90, cat: "Salads", name: "Greek Salad", price: 5.50, desc: "Lettuce, tomato, cucumber, feta cheese.", img: imgs.salad, tags: ['veg'], rating: 4.8, prep: "10 min" },
+            { id: 91, cat: "Salads", name: "Season Salad", price: 3.00, desc: "Lettuce, tomato, cucumber.", img: imgs.salad, tags: ['veg'], rating: 4.4, prep: "10 min" },
+            { id: 92, cat: "Salads", name: "Panache Salad", price: 8.00, desc: "Panache salad.", img: imgs.salad, tags: ['veg'], rating: 4.5, prep: "10 min" },
+            // Breakfast & Baguette
+            { id: 93, cat: "Breakfast", name: "Labneh Dish", price: 3.50, desc: "Labneh dish.", img: imgs.breakfast, tags: ['veg'], rating: 4.6, prep: "10 min" },
+            { id: 94, cat: "Breakfast", name: "Vegetables Dish", price: 1.50, desc: "Vegetables dish.", img: imgs.breakfast, tags: ['veg'], rating: 4.5, prep: "5 min" },
+            { id: 95, cat: "Baguette", name: "Labneh + Vegetables", price: 3.50, desc: "Baguette labneh and veg.", img: imgs.breakfast, tags: ['veg'], rating: 4.7, prep: "10 min" },
+            { id: 96, cat: "Baguette", name: "Labneh + Mortadella", price: 4.00, desc: "Baguette labneh and mortadella.", img: imgs.breakfast, tags: [], rating: 4.5, prep: "10 min" },
+            { id: 97, cat: "Baguette", name: "Halloum", price: 3.00, desc: "Baguette halloum.", img: imgs.breakfast, tags: ['veg'], rating: 4.8, prep: "10 min" },
+            { id: 98, cat: "Baguette", name: "Banana & Chocolate", price: 3.00, desc: "Sweet baguette.", img: imgs.breakfast, tags: ['veg'], rating: 4.9, prep: "10 min" },
+            { id: 99, cat: "Baguette", name: "Jebne w Habash", price: 3.25, desc: "Baguette jebne and habash.", img: imgs.breakfast, tags: [], rating: 4.6, prep: "10 min" },
+            { id: 100, cat: "Baguette", name: "Ach2awan w Habach", price: 4.00, desc: "Baguette achkawan and habach.", img: imgs.breakfast, tags: [], rating: 4.7, prep: "10 min" },
+            // Potato
+            { id: 101, cat: "Potato", name: "Potato + Vegetables", price: 7.50, desc: "Baked potato with veg.", img: imgs.potato, tags: ['veg'], rating: 4.6, prep: "20 min" },
+            { id: 102, cat: "Potato", name: "Potato + Habash", price: 8.00, desc: "Baked potato with habash.", img: imgs.potato, tags: [], rating: 4.7, prep: "20 min" },
+            { id: 103, cat: "Potato", name: "Potato + Janbon", price: 8.00, desc: "Baked potato with janbon.", img: imgs.potato, tags: [], rating: 4.5, prep: "20 min" },
+            { id: 104, cat: "Potato", name: "Potato + Hotdog", price: 8.00, desc: "Baked potato with hotdog.", img: imgs.potato, tags: [], rating: 4.4, prep: "20 min" },
+            { id: 105, cat: "Potato", name: "Potato + Mortadella", price: 8.00, desc: "Baked potato with mortadella.", img: imgs.potato, tags: [], rating: 4.5, prep: "20 min" },
+            // Burger
+            { id: 106, cat: "Burger", name: "Cheese Burger", price: 8.00, desc: "Cheese burger.", img: imgs.burger, tags: ['best'], rating: 4.8, prep: "20 min" },
+            { id: 107, cat: "Burger", name: "Cheesy Burger", price: 8.50, desc: "Cheesy burger.", img: imgs.burger, tags: [], rating: 4.9, prep: "20 min" },
+            { id: 108, cat: "Burger", name: "Hamburger", price: 7.00, desc: "Classic hamburger.", img: imgs.burger, tags: [], rating: 4.6, prep: "20 min" },
+            { id: 109, cat: "Burger", name: "Chicken Burger", price: 6.50, desc: "Chicken burger.", img: imgs.burger, tags: [], rating: 4.7, prep: "20 min" },
+            { id: 110, cat: "Burger", name: "Cheese & Chicken Burger", price: 7.00, desc: "Cheese and chicken.", img: imgs.burger, tags: [], rating: 4.8, prep: "20 min" },
+            { id: 111, cat: "Burger", name: "Fish Burger", price: 7.00, desc: "Fish burger.", img: imgs.burger, tags: [], rating: 4.3, prep: "20 min" },
+            { id: 112, cat: "Burger", name: "Shawarma Burger", price: 7.50, desc: "Shawarma burger.", img: imgs.burger, tags: ['new'], rating: 4.7, prep: "20 min" },
+            { id: 113, cat: "Burger", name: "Crispy Burger", price: 7.00, desc: "Crispy burger.", img: imgs.burger, tags: [], rating: 4.8, prep: "20 min" }
+        ];
 
-            const container = document.getElementById('menu-grid-container');
-            container.innerHTML = '';
+        // --- STATE & TRANSLATIONS ---
+        let cart = JSON.parse(localStorage.getItem('ashta_cart')) || [];
+        let favorites = JSON.parse(localStorage.getItem('ashta_favs')) || [];
+        let activeFilter = 'all';
+        let currentLang = 'en'; // 'en' or 'ar'
+        const DEL_FEE = 1.50;
+        const TAX_RATE = 0.05; // 5%
+        let discount = 0;
+
+        const translations = {
+            en: {
+                brand: "Ashta W 3asal", search: "Search menu...", heroTitle: "Authentic Taste", heroSub: "Premium Quality Delivery in Halba",
+                statusOpen: "Open Now (Closes 11:00 PM)", statusClosed: "Closed Now (Opens 10:00 AM)",
+                delTime: "30-45 Mins", minOrder: "Min Order: $5", delFee: "Delivery: $1.50",
+                fltAll: "All", fltBest: "Best Seller", fltNew: "New", fltVeg: "Vegetarian", fltSpicy: "Spicy",
+                cartTitle: "Your Cart", add: "Add to Cart", subtotal: "Subtotal", tax: "Tax (5%)", total: "Total",
+                checkout: "Checkout", emptyCart: "Your cart is empty", reviews: "Customer Reviews",
+                lblCheckoutTitle: "Complete Order", lblName: "Full Name *", lblPhone: "Phone Number *", 
+                lblAddress: "Full Delivery Address *", lblNotes: "Order Notes (Optional)", btnConfirmWa: "Send Order to WhatsApp",
+                back: "Back", paymentInfo: "Online payment is currently disabled. All orders are processed as <b>Cash on Delivery</b>. Your order will be sent to our WhatsApp for fast confirmation."
+            },
+            ar: {
+                brand: "قشطة وعسل", search: "ابحث في المنيو...", heroTitle: "المذاق الأصيل", heroSub: "توصيل بجودة عالية في حلبا",
+                statusOpen: "مفتوح الآن (يغلق 11:00 م)", statusClosed: "مغلق الآن (يفتح 10:00 ص)",
+                delTime: "30-45 دقيقة", minOrder: "الحد الأدنى: $5", delFee: "التوصيل: $1.50",
+                fltAll: "الكل", fltBest: "الأكثر مبيعاً", fltNew: "جديد", fltVeg: "نباتي", fltSpicy: "حار",
+                cartTitle: "سلة المشتريات", add: "إضافة", subtotal: "المجموع", tax: "الضريبة (5%)", total: "الإجمالي",
+                checkout: "إتمام الطلب", emptyCart: "السلة فارغة", reviews: "تقييمات العملاء",
+                lblCheckoutTitle: "تأكيد الطلب", lblName: "الاسم الكامل *", lblPhone: "رقم الهاتف *", 
+                lblAddress: "العنوان بالتفصيل *", lblNotes: "ملاحظات الطلب (اختياري)", btnConfirmWa: "إرسال الطلب عبر الواتساب",
+                back: "رجوع", paymentInfo: "الدفع الإلكتروني غير متاح حالياً. جميع الطلبات تتم بنظام <b>الدفع نقداً عند الاستلام</b>. سيتم إرسال طلبك للواتساب لتأكيده بسرعة."
+            }
+        };
+
+        // --- INIT ---
+        window.onload = () => {
+            checkStatus();
+            renderTabs();
+            renderMenu();
+            updateCartBadge();
+            updateFavBadge();
             
-            let categoriesToRender = filter === 'all' ? [...new Set(menuData.map(i => i.c))] : [filter];
+            // Highlight nav on scroll
+            window.addEventListener('scroll', () => {
+                let sections = document.querySelectorAll('.category-section');
+                let scrollPos = window.scrollY + 200;
+                sections.forEach(sec => {
+                    if(scrollPos >= sec.offsetTop && scrollPos < (sec.offsetTop + sec.offsetHeight)) {
+                        let id = sec.getAttribute('id').replace('cat-', '');
+                        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                        let activeBtn = document.getElementById('tab-' + id);
+                        if(activeBtn) {
+                            activeBtn.classList.add('active');
+                            activeBtn.scrollIntoView({behavior: "smooth", block: "nearest", inline: "center"});
+                        }
+                    }
+                });
+            });
+        };
+
+        function checkStatus() {
+            let hour = new Date().getHours();
+            let dot = document.getElementById('status-dot');
+            let txt = document.getElementById('status-text');
+            // Assuming open from 10 AM (10) to 11 PM (23)
+            if(hour >= 10 && hour < 23) {
+                dot.className = 'status-dot';
+                txt.innerText = translations[currentLang].statusOpen;
+            } else {
+                dot.className = 'status-dot closed';
+                txt.innerText = translations[currentLang].statusClosed;
+            }
+        }
+
+        function getSafeId(name) { return name.replace(/\s+/g, '-').toLowerCase(); }
+
+        function toggleTheme() {
+            let body = document.body;
+            let icon = document.getElementById('theme-icon');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+            }
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            document.body.classList.toggle('rtl');
+            applyTranslations();
+            renderTabs();
+            renderMenu(); // Re-render to update 'Add' buttons
+            checkStatus();
+        }
+
+        function applyTranslations() {
+            const t = translations[currentLang];
+            document.getElementById('brand-name').innerText = t.brand;
+            document.getElementById('searchInput').placeholder = t.search;
+            document.getElementById('hero-title').innerText = t.heroTitle;
+            document.getElementById('hero-subtitle').innerText = t.heroSub;
+            document.getElementById('lbl-del-time').innerText = t.delTime;
+            document.getElementById('lbl-min-order').innerText = t.minOrder;
+            document.getElementById('lbl-del-fee').innerText = t.delFee;
+            document.getElementById('flt-all').innerText = t.fltAll;
+            document.getElementById('flt-best').innerText = t.fltBest;
+            document.getElementById('flt-new').innerText = t.fltNew;
+            document.getElementById('flt-veg').innerText = t.fltVeg;
+            document.getElementById('flt-spicy').innerText = t.fltSpicy;
+            document.getElementById('cart-title').innerText = t.cartTitle;
+            document.getElementById('btn-checkout').innerText = t.checkout;
+            document.getElementById('lbl-reviews').innerText = t.reviews;
+            document.getElementById('lbl-sub').innerText = t.subtotal;
+            document.getElementById('lbl-tax').innerText = t.tax;
+            document.getElementById('lbl-tot').innerText = t.total;
             
-            categoriesToRender.forEach(cat => {
-                let items = menuData.filter(i => i.c === cat);
-                if(items.length > 0) {
-                    let html = `<h2 class="section-title">${getArabicCat(cat)}</h2><div class="grid">`;
-                    items.forEach(item => html += createCardHTML(item));
-                    html += `</div>`;
-                    container.innerHTML += html;
-                }
+            // Checkout Form
+            document.getElementById('lbl-checkout-title').innerText = t.lblCheckoutTitle;
+            document.getElementById('lbl-name').innerText = t.lblName;
+            document.getElementById('lbl-phone').innerText = t.lblPhone;
+            document.getElementById('lbl-address').innerText = t.lblAddress;
+            document.getElementById('lbl-notes').innerText = t.lblNotes;
+            document.getElementById('btn-confirm-wa').innerText = t.btnConfirmWa;
+            document.getElementById('lbl-back').innerText = t.back;
+            document.getElementById('lbl-payment-info').innerHTML = t.paymentInfo;
+        }
+
+        function renderTabs() {
+            const container = document.getElementById('tabs-container');
+            container.innerHTML = categories.map((cat, i) => 
+                `<button class="tab-btn ${i===0?'active':''}" id="tab-${getSafeId(cat)}" onclick="scrollToCat('${cat}')">${cat}</button>`
+            ).join('');
+        }
+
+        function scrollToCat(cat) {
+            const el = document.getElementById(`cat-${getSafeId(cat)}`);
+            if(el) {
+                let y = el.getBoundingClientRect().top + window.scrollY - 140;
+                window.scrollTo({top: y, behavior: 'smooth'});
+            }
+        }
+
+        function applyTagFilter(tag, btnElement) {
+            activeFilter = tag;
+            document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+            renderMenu();
+        }
+
+        function filterMenu() {
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.menu-card');
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title').innerText.toLowerCase();
+                if(title.includes(q)) card.style.display = 'flex';
+                else card.style.display = 'none';
             });
         }
 
-        function filterByTag(tag, btnElement) {
-            if(btnElement) {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btnElement.classList.add('active');
-            }
-            const container = document.getElementById('menu-grid-container');
-            let items = tag === 'fav' ? menuData.filter(i => favorites.includes(i.id)) : menuData.filter(i => i.tg && i.tg.includes(tag));
-            
-            if(items.length > 0) {
-                let title = tag === 'fav' ? '❤️ مفضلاتي' : (tag==='bestseller' ? '🔥 الأكثر مبيعاً' : '✨ نتائج الفلتر');
-                let html = `<h2 class="section-title">${title}</h2><div class="grid">`;
-                items.forEach(item => html += createCardHTML(item));
-                container.innerHTML = html + `</div>`;
-            } else {
-                container.innerHTML = `<div style="text-align:center; padding: 50px; color: var(--text-muted);">لا توجد عناصر مطابقة حالياً.</div>`;
-            }
+        function getBadges(tags) {
+            let html = '';
+            if(tags.includes('best')) html += `<span class="badge best">🔥 ${translations[currentLang].fltBest}</span>`;
+            if(tags.includes('new')) html += `<span class="badge new">⭐ ${translations[currentLang].fltNew}</span>`;
+            if(tags.includes('veg')) html += `<span class="badge veg">🥬 ${translations[currentLang].fltVeg}</span>`;
+            if(tags.includes('spicy')) html += `<span class="badge spicy">🌶️ ${translations[currentLang].fltSpicy}</span>`;
+            return html;
         }
 
-        function searchMenu() {
-            let q = document.getElementById('searchInput').value.toLowerCase();
-            const container = document.getElementById('menu-grid-container');
-            let items = menuData.filter(i => i.n.toLowerCase().includes(q) || i.d.toLowerCase().includes(q));
-            
-            if(items.length > 0) {
-                let html = `<h2 class="section-title">🔍 نتائج البحث</h2><div class="grid">`;
-                items.forEach(item => html += createCardHTML(item));
-                container.innerHTML = html + `</div>`;
-            } else {
-                container.innerHTML = `<div style="text-align:center; padding: 50px; color: var(--text-muted);">عذراً، لم نجد "${q}"</div>`;
-            }
-        }
-
-        function createCardHTML(item) {
-            const isFav = favorites.includes(item.id) ? 'active' : '';
-            let tagsHtml = item.tg ? item.tg.map(t => {
-                if(t==='bestseller') return `<span class="tag hot">🔥 مبيعاً</span>`;
-                if(t==='new') return `<span class="tag new">جديد</span>`;
-                if(t==='spicy') return `<span class="tag hot">🌶️ حار</span>`;
-                if(t==='veg') return `<span class="tag veg">🥬 نباتي</span>`;
-                return '';
-            }).join('') : '';
-
-            return `
-                <div class="card">
-                    <div class="card-img-wrapper">
-                        <img src="${item.i}" class="card-img" alt="${item.n}">
-                        <div class="card-tags">${tagsHtml}</div>
-                        <div class="fav-btn ${isFav}" onclick="toggleFav(${item.id}, this)"><i class="fas fa-heart"></i></div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">${item.n}</h3>
-                        <p class="card-desc">${item.d}</p>
-                        <div class="card-meta">
-                            <span><i class="fas fa-star rating"></i> ${item.r}</span>
-                            <span><i class="far fa-clock"></i> ${item.t}</span>
-                        </div>
-                        <div class="card-footer">
-                            <span class="price">$${item.p.toFixed(2)}</span>
-                            <button class="add-btn" onclick="addToCart(${item.id})"><i class="fas fa-plus"></i> إضافة</button>
-                        </div>
-                    </div>
-                </div>`;
-        }
-
-        function getArabicCat(engCat) {
-            const cats = { "Shawarma": "شاورما", "Pizza": "بيتزا", "Burger": "برجر", "Pasta": "باستا", "Salads": "سلطات", "Starters": "مقبلات" };
-            return cats[engCat] || engCat;
-        }
-
-        // --- 3. Interactive Features ---
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const icon = document.getElementById('theme-icon');
-            icon.className = document.body.classList.contains('dark-mode') ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        function toggleFav(id, btn) {
-            if(favorites.includes(id)) {
-                favorites = favorites.filter(f => f !== id);
-                btn.classList.remove('active');
-            } else {
-                favorites.push(id);
-                btn.classList.add('active');
-            }
+        function toggleFav(id, event) {
+            event.stopPropagation();
+            const idx = favorites.indexOf(id);
+            if(idx > -1) favorites.splice(idx, 1);
+            else favorites.push(id);
             localStorage.setItem('ashta_favs', JSON.stringify(favorites));
+            updateFavBadge();
+            renderMenu();
         }
 
-        function checkRestaurantStatus() {
-            const hour = new Date().getHours();
-            const badge = document.getElementById('rest-status');
-            // Assume open from 10 AM to 11 PM (23:00)
-            if(hour >= 10 && hour < 23) {
-                badge.innerHTML = `<div class="status-dot"></div> مفتوح الآن - يغلق 11:00 م`;
-            } else {
-                badge.innerHTML = `<div class="status-dot" style="background:var(--danger); box-shadow:none;"></div> مغلق الآن - نفتح 10:00 ص`;
-                badge.style.color = "var(--danger)";
-            }
+        function updateFavBadge() {
+            const el = document.getElementById('fav-count');
+            el.innerText = favorites.length;
+            el.style.display = favorites.length > 0 ? 'flex' : 'none';
+        }
+        
+        function toggleFavoritesSidebar() {
+            // For simplicity in this prompt, just filter the view
+            if(favorites.length === 0) return alert(currentLang === 'en' ? "No favorites yet!" : "لا يوجد مفضلة بعد!");
+            activeFilter = 'favs';
+            renderMenu();
         }
 
-        // --- 4. Cart & Checkout System ---
+        function renderMenu() {
+            const container = document.getElementById('menu-container');
+            let html = '';
+            
+            categories.forEach(cat => {
+                let items = menuData.filter(i => i.cat === cat);
+                
+                // Apply filters
+                if (activeFilter === 'favs') items = items.filter(i => favorites.includes(i.id));
+                else if (activeFilter !== 'all') items = items.filter(i => i.tags.includes(activeFilter));
+
+                if(items.length > 0) {
+                    html += `<div class="category-section" id="cat-${getSafeId(cat)}">
+                                <h2 class="category-title">${cat}</h2>
+                                <div class="menu-grid">`;
+                    items.forEach(item => {
+                        let isFav = favorites.includes(item.id) ? 'active' : '';
+                        html += `
+                            <div class="menu-card">
+                                <div class="card-img-container">
+                                    <div class="fav-btn ${isFav}" onclick="toggleFav(${item.id}, event)"><i class="fas fa-heart"></i></div>
+                                    <img src="${item.img}" class="card-img" alt="${item.name}" loading="lazy">
+                                </div>
+                                <div class="card-info">
+                                    <div>
+                                        <div class="item-tags">${getBadges(item.tags)}</div>
+                                        <div class="card-title">${item.name}</div>
+                                        <div class="card-desc">${item.desc}</div>
+                                        <div class="card-meta">
+                                            <span><i class="fas fa-star rating-star"></i> ${item.rating}</span>
+                                            <span><i class="far fa-clock"></i> ${item.prep}</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="card-price">$${item.price.toFixed(2)}</div>
+                                        <button class="add-btn" onclick="addToCart(${item.id})">
+                                            <i class="fas fa-plus"></i> ${translations[currentLang].add}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>`;
+                    });
+                    html += `</div></div>`;
+                }
+            });
+            container.innerHTML = html;
+        }
+
+        // --- CART LOGIC ---
         function addToCart(id) {
             let item = menuData.find(i => i.id === id);
-            let exist = cart.find(c => c.id === id);
-            if(exist) { exist.qty++; }
-            else { cart.push({ ...item, qty: 1 }); }
-            updateCartUI();
+            let existing = cart.find(c => c.id === id);
+            if(existing) existing.qty++;
+            else cart.push({...item, qty: 1});
             
-            // Animation for sticky button
-            const btn = document.getElementById('sticky-cart-btn');
-            btn.style.transform = 'scale(1.1)';
-            setTimeout(() => btn.style.transform = 'scale(1)', 200);
+            saveCart();
+            bumpBadge('cart-count');
         }
 
-        function updateCartQty(id, change) {
+        function saveCart() {
+            localStorage.setItem('ashta_cart', JSON.stringify(cart));
+            updateCartBadge();
+            if(document.getElementById('cart-sidebar').classList.contains('open')) renderCartItems();
+        }
+
+        function updateCartBadge() {
+            let qty = cart.reduce((sum, i) => sum + i.qty, 0);
+            const el = document.getElementById('cart-count');
+            el.innerText = qty;
+            el.style.display = qty > 0 ? 'flex' : 'none';
+        }
+
+        function bumpBadge(id) {
+            let b = document.getElementById(id);
+            b.classList.remove('bump');
+            void b.offsetWidth; // trigger reflow
+            b.classList.add('bump');
+        }
+
+        function changeQty(id, delta) {
             let item = cart.find(c => c.id === id);
             if(item) {
-                item.qty += change;
-                if(item.qty <= 0) { cart = cart.filter(c => c.id !== id); }
-            }
-            updateCartUI();
-            renderCheckoutItems(); // Update view if open
-        }
-
-        function removeFromCart(id) {
-            cart = cart.filter(c => c.id !== id);
-            updateCartUI();
-            renderCheckoutItems();
-        }
-
-        function updateCartUI() {
-            const btn = document.getElementById('sticky-cart-btn');
-            if(cart.length > 0) {
-                let totalItems = cart.reduce((s, i) => s + i.qty, 0);
-                let totalPrice = cart.reduce((s, i) => s + (i.p * i.qty), 0);
-                document.getElementById('cart-count').innerText = totalItems;
-                document.getElementById('cart-total-btn').innerText = `$${totalPrice.toFixed(2)}`;
-                btn.classList.add('visible');
-            } else {
-                btn.classList.remove('visible');
-                if(document.getElementById('checkout-view').style.display === 'block') goHome();
+                item.qty += delta;
+                if(item.qty <= 0) cart = cart.filter(c => c.id !== id);
+                saveCart();
             }
         }
 
         function applyCoupon() {
-            const code = document.getElementById('coupon-code').value.toUpperCase();
-            if(code === 'SALE10') {
-                discountPercent = 0.10; // 10% discount
-                alert('تم تطبيق كود الخصم بنجاح! 🎊');
-                renderCheckoutItems();
-            } else {
-                alert('كود الخصم غير صحيح أو منتهي الصلاحية.');
-            }
-        }
-
-        // --- 5. Navigation & WhatsApp Integration ---
-        function openCheckout() {
-            document.getElementById('main-view').style.display = 'none';
-            document.getElementById('checkout-view').style.display = 'block';
-            document.getElementById('sticky-cart-btn').classList.remove('visible');
-            window.scrollTo(0,0);
-            renderCheckoutItems();
-        }
-
-        function goHome() {
-            document.getElementById('checkout-view').style.display = 'none';
-            document.getElementById('main-view').style.display = 'block';
-            updateCartUI();
-            window.scrollTo(0,0);
-        }
-
-        function renderCheckoutItems() {
-            const container = document.getElementById('checkout-items');
-            let html = '';
-            let subTotal = 0;
-
-            cart.forEach(item => {
-                let itemTotal = item.p * item.qty;
-                subTotal += itemTotal;
-                html += `
-                    <div class="cart-item-row">
-                        <div>
-                            <div style="font-weight: 700; margin-bottom: 5px;">${item.n}</div>
-                            <div style="color: var(--primary-dark); font-weight: bold;">$${item.p.toFixed(2)}</div>
-                        </div>
-                        <div style="display:flex; align-items:center;">
-                            <button class="del-btn" onclick="removeFromCart(${item.id})"><i class="fas fa-trash-alt"></i></button>
-                            <div class="qty-control">
-                                <button class="qty-btn" onclick="updateCartQty(${item.id}, 1)">+</button>
-                                <span style="font-weight:bold; width:20px; text-align:center;">${item.qty}</span>
-                                <button class="qty-btn" onclick="updateCartQty(${item.id}, -1)">-</button>
-                            </div>
-                        </div>
-                    </div>`;
-            });
-            container.innerHTML = html;
-
-            let discountAmt = subTotal * discountPercent;
-            let taxAmt = (subTotal - discountAmt) * taxRate;
-            let grandTotal = (subTotal - discountAmt) + taxAmt + deliveryCost;
-
-            document.getElementById('sub-total').innerText = `$${subTotal.toFixed(2)}`;
-            document.getElementById('tax-fee').innerText = `$${taxAmt.toFixed(2)}`;
-            
-            if(discountPercent > 0) {
+            let code = document.getElementById('coupon-code').value.toUpperCase();
+            if(code === 'ASHTA10') {
+                discount = 0.10; // 10%
                 document.getElementById('discount-row').style.display = 'flex';
-                document.getElementById('discount-amt').innerText = `-$${discountAmt.toFixed(2)}`;
+                renderCartItems();
+                alert(currentLang === 'en' ? "10% Discount Applied!" : "تم تطبيق خصم 10%!");
+            } else {
+                alert(currentLang === 'en' ? "Invalid Code" : "كود غير صالح");
             }
-            
-            document.getElementById('grand-total').innerText = `$${grandTotal.toFixed(2)}`;
         }
 
-        function sendToWhatsApp() {
-            if(cart.length === 0) return;
-            
-            const name = document.getElementById('cust-name').value.trim();
-            const address = document.getElementById('cust-address').value.trim();
-            const notes = document.getElementById('cust-notes').value.trim();
+        function openCart() {
+            renderCartItems();
+            document.getElementById('cart-sidebar').classList.add('open');
+            document.getElementById('cart-overlay').style.display = 'block';
+        }
 
-            if(!name || !address) {
-                alert("يرجى إدخال الاسم والعنوان لإتمام الطلب!");
+        function closeCart() {
+            document.getElementById('cart-sidebar').classList.remove('open');
+            document.getElementById('cart-overlay').style.display = 'none';
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items');
+            if(cart.length === 0) {
+                container.innerHTML = `<div class="empty-cart"><i class="fas fa-shopping-basket"></i><p>${translations[currentLang].emptyCart}</p></div>`;
+                document.getElementById('cart-subtotal').innerText = "$0.00";
+                document.getElementById('cart-tax').innerText = "$0.00";
+                document.getElementById('cart-total-final').innerText = "$0.00";
                 return;
             }
 
-            // Calculate Math for Invoice
-            let subTotal = cart.reduce((s, i) => s + (i.p * i.qty), 0);
-            let discountAmt = subTotal * discountPercent;
-            let taxAmt = (subTotal - discountAmt) * taxRate;
-            let grandTotal = (subTotal - discountAmt) + taxAmt + deliveryCost;
+            let subtotal = 0;
+            container.innerHTML = cart.map(item => {
+                let itemTotal = item.price * item.qty;
+                subtotal += itemTotal;
+                return `
+                <div class="cart-item">
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                        <div class="cart-qty-controls">
+                            <button class="cart-qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                            <span>${item.qty}</span>
+                            <button class="cart-qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                            <button class="cart-remove" onclick="changeQty(${item.id}, -${item.qty})" style="margin-left:auto"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
 
-            // Format WhatsApp Message
-            let msg = `*طلب جديد! (Ashta W 3asal)* 🍽️\n`;
-            msg += `------------------------\n`;
-            msg += `👤 *الاسم:* ${name}\n`;
-            msg += `📍 *العنوان:* ${address}\n`;
-            if(notes) msg += `📝 *ملاحظات:* ${notes}\n`;
-            msg += `------------------------\n`;
-            msg += `*الطلبات:*\n`;
-            
-            cart.forEach(item => {
-                msg += `▪️ ${item.qty}x ${item.n} ($${(item.p * item.qty).toFixed(2)})\n`;
-            });
-            
-            msg += `------------------------\n`;
-            msg += `المجموع الفرعي: $${subTotal.toFixed(2)}\n`;
-            msg += `رسوم التوصيل: $${deliveryCost.toFixed(2)}\n`;
-            msg += `الضريبة (11%): $${taxAmt.toFixed(2)}\n`;
-            if(discountPercent > 0) msg += `الخصم: -$${discountAmt.toFixed(2)}\n`;
-            msg += `*الإجمالي المطلوب: $${grandTotal.toFixed(2)}*\n`;
-            msg += `------------------------\n`;
-            msg += `(الدفع نقداً عند الاستلام 💵)`;
+            let discAmount = subtotal * discount;
+            let afterDisc = subtotal - discAmount;
+            let tax = afterDisc * TAX_RATE;
+            let total = afterDisc + tax + DEL_FEE;
 
-            // Open WhatsApp
-            const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-            window.open(waUrl, '_blank');
+            document.getElementById('cart-subtotal').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('cart-discount').innerText = `-$${discAmount.toFixed(2)}`;
+            document.getElementById('cart-tax').innerText = `$${tax.toFixed(2)}`;
+            document.getElementById('cart-total-final').innerText = `$${total.toFixed(2)}`;
+        }
+
+        // --- CHECKOUT & WHATSAPP ---
+        function openCheckout() {
+            if(cart.length === 0) return alert(currentLang === 'en' ? "Cart is empty!" : "السلة فارغة!");
+            closeCart();
+            document.getElementById('checkout-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkout-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            openCart();
+        }
+
+        function sendWhatsAppOrder() {
+            let name = document.getElementById('cust-name').value.trim();
+            let phone = document.getElementById('cust-phone').value.trim();
+            let address = document.getElementById('cust-address').value.trim();
+            let notes = document.getElementById('cust-notes').value.trim();
+
+            if(!name || !phone || !address) {
+                alert(currentLang === 'en' ? "Please fill all required fields." : "يرجى تعبئة الحقول المطلوبة.");
+                return;
+            }
+
+            let subtotal = 0;
+            let itemsText = cart.map(item => {
+                let total = item.price * item.qty;
+                subtotal += total;
+                return `▪️ ${item.qty}x ${item.name} - $${total.toFixed(2)}`;
+            }).join('\n');
+
+            let discAmount = subtotal * discount;
+            let afterDisc = subtotal - discAmount;
+            let tax = afterDisc * TAX_RATE;
+            let totalFinal = afterDisc + tax + DEL_FEE;
+
+            let msg = `*🆕 NEW ORDER - Ashta W 3asal*\n`;
+            msg += `--------------------------\n`;
+            msg += `*👤 Name:* ${name}\n`;
+            msg += `*📱 Phone:* ${phone}\n`;
+            msg += `*📍 Address:* ${address}\n`;
+            if(notes) msg += `*📝 Notes:* ${notes}\n`;
+            msg += `--------------------------\n`;
+            msg += `*🛒 ITEMS:*\n${itemsText}\n`;
+            msg += `--------------------------\n`;
+            msg += `*Subtotal:* $${subtotal.toFixed(2)}\n`;
+            if(discount > 0) msg += `*Discount:* -$${discAmount.toFixed(2)}\n`;
+            msg += `*Tax (5%):* $${tax.toFixed(2)}\n`;
+            msg += `*Delivery:* $${DEL_FEE.toFixed(2)}\n`;
+            msg += `*🧾 TOTAL TO PAY: $${totalFinal.toFixed(2)}*\n`;
+            msg += `*(Payment Method: Cash on Delivery)*\n`;
+            
+            // The Target WhatsApp number
+            let waNumber = "905376262192";
+            let url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+            
+            // Clear cart & Redirect
+            localStorage.removeItem('ashta_cart');
+            cart = [];
+            window.open(url, '_blank');
+            window.location.reload();
         }
     </script>
 </body>
