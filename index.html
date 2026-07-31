@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ashta W 3asal - Premium Delivery</title>
     
-    <!-- الخطوط -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- الخطوط المستخدمة -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- الأيقونات -->
+    <!-- مكتبة الأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* =========================================
-           المتغيرات والألوان (Variables)
+           المتغيرات والألوان (الوضع العادي والليلي)
            ========================================= */
         :root {
             --primary: #E5A937;
@@ -58,15 +58,16 @@
             background-color: var(--bg-color); 
             color: var(--text-main); 
             overflow-x: hidden; 
-            padding-bottom: 120px; /* لضمان عدم تغطية السلة العائمة للعناصر */
+            padding-bottom: 120px; /* مساحة إضافية كي لا تغطي السلة العائمة المحتوى */
         }
 
+        /* شريط التمرير */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
         /* =========================================
-           شريط التنقل (Navbar)
+           شريط التنقل العلوي (Navbar)
            ========================================= */
         nav {
             position: fixed; 
@@ -102,37 +103,37 @@
             height: 40px; 
             object-fit: contain; 
             border-radius: 50%; 
-            border: 1px solid var(--border); 
+            border: 1px solid var(--primary); 
             background: #fff;
+            padding: 2px;
         }
 
-        .nav-actions { display: flex; gap: 12px; align-items: center; }
+        .nav-actions { display: flex; gap: 15px; align-items: center; }
         
         .icon-btn { 
             background: var(--bg-color); 
             border: 1px solid var(--border); 
-            font-size: 16px; 
+            font-size: 18px; 
             color: var(--text-main); 
             cursor: pointer; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            width: 40px; 
-            height: 40px; 
+            width: 42px; 
+            height: 42px; 
             border-radius: 50%; 
         }
         
         .icon-btn:hover { color: var(--primary); border-color: var(--primary); }
-        .lang-toggle { font-weight: 700; font-size: 13px; }
+        .lang-toggle { font-weight: 700; font-size: 14px; }
 
         /* =========================================
-           الواجهة الرئيسية الاحترافية (Professional UI Hero)
+           الواجهة الرئيسية (Sleek Hero Section)
            ========================================= */
         .hero {
             position: relative;
             margin-top: 60px; 
             padding: 50px 5% 40px;
-            /* الصورة الخارجية الوحيدة المتبقية كخلفية فاخرة */
             background-image: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed; 
             background-size: cover; 
@@ -145,7 +146,7 @@
             text-align: center;
         }
 
-        /* الشعار المستدير الأنيق */
+        /* الشعار المستدير الأنيق في الواجهة */
         .hero-logo-circle {
             width: 90px;
             height: 90px;
@@ -157,6 +158,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 2px solid var(--primary);
         }
         .hero-logo-circle img {
             width: 100%;
@@ -165,7 +167,7 @@
             border-radius: 50%;
         }
 
-        /* حالة المطعم النابضة */
+        /* شارة الحالة النابضة (مفتوح الآن) */
         .status-badge {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -213,7 +215,7 @@
             text-transform: uppercase;
         }
 
-        /* شريط المعلومات المدمج (بديل المربعات الضخمة) */
+        /* شريط المعلومات المدمج والمريح للعين */
         .hero-info-glass {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
@@ -245,7 +247,7 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* أزرار التواصل الأنيقة (تم تحديث الأرقام للرقم اللبناني) */
+        /* أزرار التواصل - مدمجة للرقم اللبناني */
         .hero-contact-row {
             display: flex;
             gap: 15px;
@@ -263,24 +265,28 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: 0.3s ease;
+            box-shadow: var(--shadow-sm);
         }
         .h-btn:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-3px);}
 
-        /* شريط العروض */
+        /* =========================================
+           شريط العروض المتحرك
+           ========================================= */
         .offers-banner { 
             background: var(--primary); 
             color: #fff; 
             padding: 10px; 
             text-align: center; 
-            font-size: 14px;
             font-weight: 600; 
             overflow: hidden; 
             white-space: nowrap; 
         }
+
         .offers-marquee { 
             display: inline-block; 
-            animation: marquee 20s linear infinite; 
+            animation: marquee 15s linear infinite; 
         }
+
         @keyframes marquee { 
             0% { transform: translateX(100%); } 
             100% { transform: translateX(-100%); } 
@@ -302,11 +308,12 @@
         .search-bar { 
             display: flex; 
             background: var(--surface); 
-            border-radius: 12px; 
+            border-radius: 30px; 
             padding: 12px 20px; 
             border: 1px solid var(--border); 
             margin-bottom: 15px; 
         }
+
         .search-bar input { 
             border: none; 
             background: transparent; 
@@ -319,22 +326,24 @@
 
         .filters { 
             display: flex; 
-            gap: 10px; 
+            gap: 12px; 
             overflow-x: auto; 
             padding-bottom: 5px; 
             scrollbar-width: none; 
         }
+
         .filter-chip { 
             background: var(--surface); 
             border: 1px solid var(--border); 
-            padding: 8px 16px; 
-            border-radius: 20px; 
-            font-size: 13px; 
+            padding: 8px 18px; 
+            border-radius: 25px; 
+            font-size: 14px; 
             font-weight: 600; 
             cursor: pointer; 
             color: var(--text-muted); 
             white-space: nowrap; 
         }
+
         .filter-chip.active, .filter-chip:hover { 
             background: var(--primary); 
             color: #fff; 
@@ -342,7 +351,7 @@
         }
 
         /* =========================================
-           أقسام المنيو
+           أقسام المنيو (التبويبات العلوية)
            ========================================= */
         .categories-wrapper { 
             padding: 15px 5%; 
@@ -353,6 +362,7 @@
             border-bottom: 1px solid var(--border); 
             scrollbar-width: none;
         }
+
         .cat-btn { 
             background: none; 
             border: none; 
@@ -364,6 +374,7 @@
             padding-bottom: 8px; 
             position: relative;
         }
+
         .cat-btn.active { color: var(--primary); }
         .cat-btn.active::after { 
             content: ''; 
@@ -380,16 +391,17 @@
            شبكة المنتجات (Menu Grid)
            ========================================= */
         .menu-container { 
-            max-width: 1200px; 
-            margin: 30px auto; 
+            max-width: 1300px; 
+            margin: 40px auto; 
             padding: 0 5%; 
         }
-        .category-section { margin-bottom: 50px; scroll-margin-top: 180px; }
+
+        .category-section { margin-bottom: 60px; scroll-margin-top: 180px; }
         
         .cat-title { 
             font-family: var(--font-head); 
-            font-size: 24px; 
-            margin-bottom: 20px; 
+            font-size: 28px; 
+            margin-bottom: 25px; 
             color: var(--text-main); 
             border-bottom: 2px solid var(--primary); 
             display: inline-block;
@@ -398,8 +410,8 @@
 
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
-            gap: 20px; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 25px; 
         }
         
         .card { 
@@ -413,47 +425,54 @@
             flex-direction: column; 
             cursor: pointer;
         }
-        .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--primary); }
 
-        .card-img-wrap { position: relative; height: 180px; overflow: hidden; background: var(--border); }
+        .card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: var(--shadow-md); 
+            border-color: var(--primary); 
+        }
+
+        .card-img-wrap { position: relative; height: 200px; overflow: hidden; background: var(--border); }
         .card-img { width: 100%; height: 100%; object-fit: cover; }
         .card:hover .card-img { transform: scale(1.05); }
 
         .fav-btn { 
             position: absolute; 
-            top: 12px; 
-            right: 12px; 
+            top: 15px; 
+            right: 15px; 
             background: rgba(255,255,255,0.9); 
-            width: 32px; 
-            height: 32px; 
+            width: 35px; 
+            height: 35px; 
             border-radius: 50%; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             color: var(--text-muted); 
-            font-size: 14px; 
+            font-size: 16px; 
             border: none; 
             cursor: pointer; 
             backdrop-filter: blur(5px); 
             z-index: 2;
         }
+
         .fav-btn.active { color: var(--danger); }
 
         .badges { 
             position: absolute; 
-            top: 12px; 
-            left: 12px; 
+            top: 15px; 
+            left: 15px; 
             display: flex; 
             flex-direction: column; 
             gap: 5px; 
             z-index: 2;
         }
+        
         .badge { 
             background: var(--primary); 
             color: #fff; 
             font-size: 10px; 
             padding: 4px 8px; 
-            border-radius: 8px; 
+            border-radius: 12px; 
             font-weight: 700; 
             text-transform: uppercase; 
         }
@@ -469,15 +488,16 @@
             color: var(--text-muted); 
             margin-bottom: 8px; 
         }
+        
         .rating { color: #FFD700; font-weight: 600; display: flex; align-items: center; gap: 4px;}
         
-        .card-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--text-main); line-height: 1.3;}
+        .card-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--text-main); line-height: 1.3;}
         
         .card-desc { 
             font-size: 13px; 
             color: var(--text-muted); 
             line-height: 1.4; 
-            margin-bottom: 12px; 
+            margin-bottom: 15px; 
             display: -webkit-box; 
             -webkit-line-clamp: 2; 
             -webkit-box-orient: vertical; 
@@ -493,24 +513,25 @@
             padding-top: 12px; 
         }
         
-        .card-price { font-size: 17px; font-weight: 700; color: var(--primary); }
+        .card-price { font-size: 18px; font-weight: 700; color: var(--primary); }
         
         .add-btn { 
             background: var(--bg-color); 
             border: 1px solid var(--primary); 
             color: var(--primary); 
-            width: 32px; 
-            height: 32px; 
+            width: 35px; 
+            height: 35px; 
             border-radius: 50%; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             font-size: 14px; 
         }
+        
         .card:hover .add-btn { background: var(--primary); color: #fff; }
 
         /* =========================================
-           النافذة المنبثقة (Modal)
+           النافذة المنبثقة للمنتج (Modal)
            ========================================= */
         .modal { 
             position: fixed; 
@@ -525,28 +546,30 @@
             align-items: flex-end; 
             backdrop-filter: blur(5px); 
         }
+        
         .modal-content { 
             background: var(--surface); 
             width: 100%; 
             max-width: 600px; 
-            height: 85vh; 
-            border-radius: 20px 20px 0 0; 
+            height: 90vh; 
+            border-radius: 25px 25px 0 0; 
             display: flex; 
             flex-direction: column; 
             position: relative; 
             animation: slideUp 0.3s ease; 
         }
+        
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
         
         .close-modal { 
             position: absolute; 
-            top: 12px; 
-            right: 12px; 
+            top: 15px; 
+            right: 15px; 
             background: rgba(255,255,255,0.9); 
             color: var(--text-main); 
             border: none; 
-            width: 32px; 
-            height: 32px; 
+            width: 35px; 
+            height: 35px; 
             border-radius: 50%; 
             font-size: 16px; 
             cursor: pointer; 
@@ -554,36 +577,79 @@
         }
         
         .modal-scroll { overflow-y: auto; flex: 1; padding: 0 0 20px 0; }
-        .modal-img { width: 100%; height: 220px; object-fit: cover; border-radius: 20px 20px 0 0; background: var(--border);}
+        .modal-img { width: 100%; height: 230px; object-fit: cover; border-radius: 25px 25px 0 0; background: var(--border);}
         .modal-info { padding: 20px; }
         
-        .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 15px; }
-        .tab { flex: 1; text-align: center; padding: 12px; cursor: pointer; font-weight: 700; font-size: 14px; color: var(--text-muted); }
-        .tab.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
+        .tabs { 
+            display: flex; 
+            border-bottom: 2px solid var(--border); 
+            margin-bottom: 20px; 
+        }
         
-        .custom-section { margin-bottom: 15px; }
-        .custom-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--text-main); display: flex; align-items: center; gap: 8px;}
+        .tab { 
+            flex: 1; 
+            text-align: center; 
+            padding: 12px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            font-size: 15px;
+            color: var(--text-muted); 
+        }
+        
+        .tab.active { 
+            color: var(--primary); 
+            border-bottom: 3px solid var(--primary); 
+        }
+        
+        .custom-section { margin-bottom: 20px; }
+        .custom-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--text-main); display: flex; align-items: center; gap: 8px;}
         
         .option-row { 
             display: flex; 
             justify-content: space-between; 
             padding: 12px; 
             border: 1px solid var(--border); 
-            border-radius: 8px; 
+            border-radius: 10px; 
             margin-bottom: 8px; 
             cursor: pointer; 
-            font-size: 14px;
         }
         .option-row.active { border-color: var(--primary); background: rgba(229, 169, 55, 0.05); }
 
         #tab-reviews { display: none; padding: 0 20px; }
-        .review-box { border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px; background: var(--bg-color); }
+        
+        .review-box { 
+            border: 1px solid var(--border); 
+            border-radius: 12px; 
+            padding: 15px; 
+            margin-bottom: 12px; 
+            background: var(--bg-color); 
+        }
+        
         .review-head { display: flex; justify-content: space-between; margin-bottom: 5px; }
-        .review-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-        .review-form input, .review-form textarea { padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-color); color: var(--text-main); font-family: inherit;}
-        .star-select { font-size: 22px; color: #ccc; cursor: pointer; text-align: center; margin-bottom: 5px;}
+        
+        .review-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
+        .review-form input, .review-form textarea { 
+            padding: 12px; 
+            border: 1px solid var(--border); 
+            border-radius: 10px; 
+            background: var(--bg-color); 
+            color: var(--text-main); 
+            font-family: inherit;
+        }
+        
+        .star-select { font-size: 24px; color: #ccc; cursor: pointer; text-align: center; margin-bottom: 5px;}
         .star-select .fas { color: #FFD700; }
-        .btn-submit { background: var(--primary); color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+        
+        .btn-submit { 
+            background: var(--primary); 
+            color: #fff; 
+            border: none; 
+            padding: 12px; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            font-size: 15px;
+            cursor: pointer; 
+        }
 
         .modal-footer { 
             padding: 15px 20px; 
@@ -592,52 +658,177 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
         }
+        
         .qty-box { 
-            display: flex; align-items: center; gap: 12px; background: var(--bg-color); padding: 5px; border-radius: 20px; border: 1px solid var(--border);
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            background: var(--bg-color); 
+            padding: 5px; 
+            border-radius: 25px; 
+            border: 1px solid var(--border);
         }
-        .qty-btn { width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--surface); color: var(--text-main); font-size: 14px; cursor: pointer; box-shadow: var(--shadow-sm);}
-        .add-cart-main { background: var(--primary); color: #fff; border: none; padding: 12px 20px; border-radius: 20px; font-size: 15px; font-weight: 700; flex: 1; margin-left: 15px; cursor: pointer; display: flex; justify-content: space-between;}
+        
+        .qty-btn { 
+            width: 35px; 
+            height: 35px; 
+            border-radius: 50%; 
+            border: none; 
+            background: var(--surface); 
+            color: var(--text-main); 
+            font-size: 16px; 
+            cursor: pointer; 
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .add-cart-main { 
+            background: var(--primary); 
+            color: #fff; 
+            border: none; 
+            padding: 15px 20px; 
+            border-radius: 25px; 
+            font-size: 16px; 
+            font-weight: 700; 
+            flex: 1; 
+            margin-left: 15px; 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between;
+        }
 
         /* =========================================
-           السلة الجانبية والدفع (Cart & Checkout)
+           السلة الجانبية (Cart Sidebar) والدفع
            ========================================= */
         .cart-sidebar { 
-            position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh; background: var(--surface); z-index: 2001; box-shadow: -5px 0 30px rgba(0,0,0,0.1); transition: right 0.4s ease, left 0.4s ease; display: flex; flex-direction: column; 
+            position: fixed; 
+            top: 0; 
+            right: -100%; 
+            width: 100%; 
+            max-width: 450px; 
+            height: 100vh; 
+            background: var(--surface); 
+            z-index: 2001; 
+            box-shadow: -5px 0 30px rgba(0,0,0,0.1); 
+            transition: right 0.4s ease, left 0.4s ease; 
+            display: flex; 
+            flex-direction: column; 
         }
+        
         .cart-sidebar.open { right: 0; }
         [dir="rtl"] .cart-sidebar { right: auto; left: -100%; box-shadow: 5px 0 30px rgba(0,0,0,0.1); }
         [dir="rtl"] .cart-sidebar.open { left: 0; right: auto; }
         
-        .cart-header { padding: 15px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: var(--font-head); font-size: 20px; }
-        .cart-body { flex: 1; overflow-y: auto; padding: 20px; }
-        .cart-item { display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed var(--border); }
-        .cart-item-info h4 { margin-bottom: 5px; font-size: 14px; color: var(--text-main);}
-        .cart-item-mods { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
-        .cart-price-col { text-align: right; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end;}
-        .remove-btn { color: var(--danger); background: none; border: none; font-size: 12px; cursor: pointer; margin-top: 5px; font-weight: 700;}
+        .cart-header { 
+            padding: 20px; 
+            border-bottom: 1px solid var(--border); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-family: var(--font-head); 
+            font-size: 22px; 
+        }
         
-        .checkout-form { margin-top: 20px; background: var(--bg-color); padding: 15px; border-radius: 12px; border: 1px solid var(--border); }
+        .cart-body { flex: 1; overflow-y: auto; padding: 20px; }
+        
+        .cart-item { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 15px; 
+            padding-bottom: 15px; 
+            border-bottom: 1px dashed var(--border); 
+        }
+        
+        .cart-item-info h4 { margin-bottom: 5px; font-size: 15px; color: var(--text-main);}
+        .cart-item-mods { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+        
+        .cart-price-col { 
+            text-align: right; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            align-items: flex-end;
+        }
+        
+        .remove-btn { 
+            color: var(--danger); 
+            background: none; 
+            border: none; 
+            font-size: 12px; 
+            cursor: pointer; 
+            margin-top: 5px; 
+            font-weight: 700;
+        }
+        
+        .checkout-form { 
+            margin-top: 20px; 
+            background: var(--bg-color); 
+            padding: 15px; 
+            border-radius: 12px; 
+            border: 1px solid var(--border); 
+        }
+        
         .input-group { margin-bottom: 12px; }
         .input-group label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 5px; color: var(--text-muted); }
-        .input-group input, .input-group textarea { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text-main); font-family: inherit;}
+        .input-group input, .input-group textarea { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid var(--border); 
+            border-radius: 8px; 
+            background: var(--surface); 
+            color: var(--text-main); 
+            font-family: inherit;
+        }
         
-        .totals { padding: 15px 20px; background: var(--bg-color); border-top: 1px solid var(--border); }
-        .tot-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; color: var(--text-muted); font-weight: 600;}
-        .tot-row.grand { font-size: 18px; font-weight: 700; color: var(--text-main); margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px; }
-        .btn-whatsapp { width: 100%; background: #25D366; color: #fff; border: none; padding: 15px; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px;}
+        .totals { padding: 20px; background: var(--bg-color); border-top: 1px solid var(--border); }
+        
+        .tot-row { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 10px; 
+            font-size: 14px; 
+            color: var(--text-muted); 
+            font-weight: 600;
+        }
+        
+        .tot-row.grand { 
+            font-size: 20px; 
+            font-weight: 700; 
+            color: var(--text-main); 
+            margin-top: 15px; 
+            border-top: 1px solid var(--border); 
+            padding-top: 15px; 
+        }
+        
+        .btn-whatsapp { 
+            width: 100%; 
+            background: #25D366; 
+            color: #fff; 
+            border: none; 
+            padding: 15px; 
+            border-radius: 12px; 
+            font-size: 16px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px; 
+            margin-top: 15px;
+        }
 
         /* =========================================
            زر السلة العائم و إشعار الإضافة (Toast)
            ========================================= */
         .float-cart { 
             position: fixed; 
-            bottom: 20px; 
+            bottom: 25px; 
             left: 50%; 
             transform: translateX(-50%) translateY(150%); 
             background: var(--primary); 
             color: #fff; 
-            padding: 12px 25px; 
+            padding: 15px 25px; 
             border-radius: 30px; 
             display: flex; 
             align-items: center; 
@@ -647,24 +838,49 @@
             font-weight: 700; 
             font-size: 15px;
             transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            box-shadow: 0 5px 20px rgba(229, 169, 55, 0.4); 
+            box-shadow: 0 10px 20px rgba(229, 169, 55, 0.4); 
             white-space: nowrap;
         }
         .float-cart.visible { transform: translateX(-50%) translateY(0); }
         
-        .badge-count { background: #fff; color: var(--primary); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+        .badge-count { 
+            background: #fff; 
+            color: var(--primary); 
+            width: 25px; 
+            height: 25px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 13px; 
+        }
 
-        #toast { visibility: hidden; min-width: 250px; background-color: var(--success); color: #fff; text-align: center; border-radius: 8px; padding: 12px; position: fixed; z-index: 3000; left: 50%; bottom: 30px; transform: translateX(-50%); font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.2); font-size: 14px;}
+        #toast {
+            visibility: hidden; 
+            min-width: 250px; 
+            background-color: var(--success); 
+            color: #fff;
+            text-align: center; 
+            border-radius: 8px; 
+            padding: 15px; 
+            position: fixed;
+            z-index: 3000; 
+            left: 50%; 
+            bottom: 30px; 
+            transform: translateX(-50%); 
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
         #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 80px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 80px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+        
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 90px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 90px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 
-        /* Media Query للتجاوب مع الجوالات */
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.2rem; }
-            .hero-subtitle { font-size: 0.9rem; }
-            .hero-info-glass { flex-direction: column; gap: 10px; padding: 15px; max-width: 250px;}
+            .hero-title { font-size: 2.5rem; }
+            .hero-info-glass { flex-direction: column; gap: 10px; padding: 15px; max-width: 250px; }
             .info-divider { width: 100%; height: 1px; margin: 2px 0; }
+            .nav-logo { font-size: 20px; }
         }
     </style>
 </head>
@@ -675,7 +891,7 @@
         const i18n = {
             en: {
                 subtitle: "Premium Quality, Authentic Taste",
-                statusOpen: "OPEN NOW",
+                statusOpen: "OPEN NOW", statusClosed: "CLOSED",
                 time: "30-45 Mins", minOrder: "Min: $5", fee: "Fee: $1",
                 search: "Search menu...",
                 filterAll: "All", filterBest: "Bestseller", filterNew: "New", filterVeg: "Vegetarian", filterSpicy: "Spicy", filterOffer: "Offers",
@@ -691,7 +907,7 @@
             },
             ar: {
                 subtitle: "جودة استثنائية، ومذاق أصيل",
-                statusOpen: "مفتوح الآن",
+                statusOpen: "مفتوح الآن", statusClosed: "مغلق",
                 time: "30-45 دقيقة", minOrder: "الحد الأدنى: 5$", fee: "التوصيل: 1$",
                 search: "ابحث في القائمة...",
                 filterAll: "الكل", filterBest: "الأكثر مبيعاً", filterNew: "جديد", filterVeg: "نباتي", filterSpicy: "حار", filterOffer: "عروض",
@@ -712,7 +928,7 @@
     <!-- شريط التنقل (Navbar) -->
     <nav>
         <a href="#" class="nav-logo" onclick="window.scrollTo(0,0)">
-            <img src="logo-ashta.png" alt="Logo">
+            <img src="logo-ashta.png" alt="Ashta W 3asal Logo">
             Ashta W 3asal
         </a>
         <div class="nav-actions">
@@ -722,25 +938,20 @@
         </div>
     </nav>
 
-    <!-- الواجهة الرئيسية الاحترافية (Sleek Hero Section) -->
+    <!-- الواجهة الرئيسية المحسنة (Sleek Hero) -->
     <section class="hero" id="hero-bg">
-        
-        <!-- شعار المطعم بتصميم دائري أنيق -->
         <div class="hero-logo-circle">
             <img src="logo-ashta.png" alt="Ashta W 3asal Logo">
         </div>
-
-        <!-- شارة الحالة النابضة -->
+        
         <div class="status-badge">
             <div class="pulse-dot"></div>
             <span id="t-status">OPEN NOW</span> <span>(10 AM - 11 PM)</span>
         </div>
 
-        <!-- العناوين -->
         <h1 class="hero-title"><span>Ashta</span> W 3asal</h1>
         <p class="hero-subtitle" id="t-subtitle">Premium Quality, Authentic Taste</p>
         
-        <!-- شريط المعلومات الزجاجي المدمج -->
         <div class="hero-info-glass">
             <div class="info-stat"><i class="fas fa-motorcycle"></i> <span id="t-time">30-45 Mins</span></div>
             <div class="info-divider"></div>
@@ -749,11 +960,11 @@
             <div class="info-stat"><i class="fas fa-receipt"></i> <span id="t-fee">Fee: $1</span></div>
         </div>
         
-        <!-- أزرار التواصل (تم تحديثها جميعاً للرقم اللبناني) -->
+        <!-- أزرار التواصل للرقم اللبناني -->
         <div class="hero-contact-row">
-            <a href="https://wa.me/96181488315" target="_blank" class="h-btn"><i class="fab fa-whatsapp"></i></a>
-            <a href="tel:+96181488315" class="h-btn"><i class="fas fa-phone"></i></a>
-            <a href="#" class="h-btn"><i class="fas fa-map-marker-alt"></i></a>
+            <a href="https://wa.me/96181488315" target="_blank" class="h-btn" style="color: #25D366; border-color: rgba(37, 211, 102, 0.4);"><i class="fab fa-whatsapp"></i></a>
+            <a href="tel:+96181488315" class="h-btn" style="color: var(--primary); border-color: rgba(229, 169, 55, 0.4);"><i class="fas fa-phone"></i></a>
+            <a href="#" class="h-btn" style="color: #4285F4; border-color: rgba(66, 133, 244, 0.4);"><i class="fas fa-map-marker-alt"></i></a>
         </div>
     </section>
 
@@ -793,17 +1004,19 @@
             <div class="modal-scroll">
                 <div class="modal-info">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <h2 style="font-family: var(--font-head); font-size:22px; color:var(--text-main);" id="m-title">Title</h2>
+                        <h2 style="font-family: var(--font-head); font-size:24px; color:var(--text-main);" id="m-title">Title</h2>
                         <div class="rating"><i class="fas fa-star"></i> <span id="m-rate">4.5</span> (<span id="m-rate-cnt">20</span>)</div>
                     </div>
                     <p style="font-size:14px; color:var(--text-muted); margin-top:10px; line-height: 1.5;" id="m-desc">Desc</p>
                 </div>
                 
+                <!-- تبويبات التقييم والتفاصيل -->
                 <div class="tabs">
                     <div class="tab active" onclick="switchTab('details')" id="t-tabDetails">Details</div>
                     <div class="tab" onclick="switchTab('reviews')" id="t-tabReviews">Reviews</div>
                 </div>
 
+                <!-- محتوى تبويب: التفاصيل -->
                 <div id="tab-details" style="padding: 0 20px;">
                     <div id="m-variants-sec" class="custom-section" style="display:none;">
                         <div class="custom-title"><i class="fas fa-list"></i> <span id="t-size">Size / Variants</span></div>
@@ -819,6 +1032,7 @@
                     </div>
                 </div>
 
+                <!-- محتوى تبويب: التقييمات -->
                 <div id="tab-reviews">
                     <div class="review-form">
                         <h3 id="t-addReview" style="color: var(--text-main); margin-bottom:5px;">Write a Review</h3>
@@ -840,7 +1054,7 @@
             <div class="modal-footer">
                 <div class="qty-box">
                     <button class="qty-btn" onclick="chgQty(-1)"><i class="fas fa-minus"></i></button>
-                    <span id="m-qty" style="font-weight:700; width:20px; text-align:center; font-size:16px;">1</span>
+                    <span id="m-qty" style="font-weight:700; width:25px; text-align:center; font-size:16px;">1</span>
                     <button class="qty-btn" onclick="chgQty(1)"><i class="fas fa-plus"></i></button>
                 </div>
                 <button class="add-cart-main" onclick="addToCart()">
@@ -850,7 +1064,7 @@
         </div>
     </div>
 
-    <!-- السلة الجانبية والدفع -->
+    <!-- السلة الجانبية -->
     <div class="cart-sidebar" id="cart-side">
         <div class="cart-header">
             <span id="t-cartTitle">Your Order</span>
@@ -865,7 +1079,7 @@
                     <input type="text" id="c-name" placeholder="Name">
                 </div>
                 <div class="input-group">
-                    <!-- تم التحديث للرقم اللبناني كعنصر نائب -->
+                    <!-- تم تعديل الرقم في صندوق السلة للرقم اللبناني -->
                     <label id="t-phone">Phone Number</label>
                     <input type="text" id="c-phone" placeholder="+961 81 488 315">
                 </div>
@@ -877,7 +1091,7 @@
                     <label>Discount Code (Try ASHTA20)</label>
                     <div style="display:flex; gap:10px;">
                         <input type="text" id="c-coupon" placeholder="Code">
-                        <button onclick="applyCoupon()" style="background:var(--primary); color:#fff; border:none; padding:0 15px; border-radius:8px; cursor:pointer; font-weight:bold;">Apply</button>
+                        <button onclick="applyCoupon()" style="background:var(--primary); color:#fff; border:none; padding:0 20px; border-radius:8px; cursor:pointer; font-weight:bold;">Apply</button>
                     </div>
                 </div>
             </div>
@@ -924,6 +1138,7 @@
         const saladAddons = [{name: "Extra Dressing", price: 0.50}, {name: "Grilled Chicken", price: 2.00}];
 
         const rawItems = [
+            // Shawarma
             { id: 1, cat: "Shawarma", name: "Sandwich Shawarma Djej", price: 3.50, desc: "Classic chicken shawarma wrap.", addons: shawarmaAddons },
             { id: 2, cat: "Shawarma", name: "Sandwich Shawarma Lahme", price: 4.00, desc: "Classic meat shawarma wrap.", addons: shawarmaAddons },
             { id: 3, cat: "Shawarma", name: "Sand Shaw Djej w Jebne", price: 4.00, desc: "Chicken shawarma with melted cheese.", addons: shawarmaAddons },
@@ -935,6 +1150,7 @@
             { id: 9, cat: "Shawarma", name: "Plat Shawarma Mix", price: 7.00, desc: "Mix shawarma platter.", addons: platterAddons },
             { id: 10, cat: "Shawarma", name: "Shawarma Djej 3al Batata", price: 5.00, desc: "Chicken shawarma served over fries.", addons: [{name: "Extra Cheese", price: 1.00}] },
             { id: 11, cat: "Shawarma", name: "Shawarma Lahme 3al Batata", price: 6.20, desc: "Meat shawarma served over fries.", addons: [{name: "Extra Cheese", price: 1.00}] },
+            // Pizza
             { id: 12, cat: "Pizza", name: "Vegetarian Pizza", price: 6.00, desc: "Tomato, olive, sweet pepper, mushroom, cheese.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 6.00, default: true}, {name: "Medium (M)", price: 7.50}, {name: "Large (L)", price: 10.00}, {name: "Family (F)", price: 13.00}] },
             { id: 13, cat: "Pizza", name: "Margarita Pizza", price: 5.00, desc: "Sauce, cheese, basil.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 5.00, default: true}, {name: "Medium (M)", price: 6.50}, {name: "Large (L)", price: 9.00}, {name: "Family (F)", price: 12.00}] },
             { id: 14, cat: "Pizza", name: "Lebanese Pizza", price: 6.50, desc: "Cheese, mushroom, janbon, sweet pepper, olive.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 6.50, default: true}, {name: "Medium (M)", price: 8.50}, {name: "Large (L)", price: 11.00}, {name: "Family (F)", price: 15.00}] },
@@ -946,6 +1162,7 @@
             { id: 20, cat: "Pizza", name: "Barbecue Pizza", price: 8.00, desc: "BBQ sauce base.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
             { id: 21, cat: "Pizza", name: "Chawarma Pizza", price: 8.00, desc: "Topped with shawarma.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
             { id: 22, cat: "Pizza", name: "Meat Lovers Pizza", price: 8.00, desc: "Loaded with meat.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
+            // Pasta
             { id: 23, cat: "Pasta", name: "Chicken Fettuccine Alfredo", price: 10.00, desc: "Cheese, spaghetti, mushroom, chicken.", addons: pastaAddons },
             { id: 24, cat: "Pasta", name: "Fettuccine Alfredo", price: 7.50, desc: "Cheese, spaghetti, mushroom.", addons: pastaAddons },
             { id: 25, cat: "Pasta", name: "Penne Arrabiata", price: 6.00, desc: "Basil, tomato sauce, cheese, olive.", addons: pastaAddons },
@@ -954,9 +1171,11 @@
             { id: 28, cat: "Pasta", name: "Penne Rose", price: 8.00, desc: "Pink sauce pasta.", addons: pastaAddons },
             { id: 29, cat: "Pasta", name: "Shrimp Broccoli", price: 12.50, desc: "Pasta with shrimp and broccoli.", addons: pastaAddons },
             { id: 30, cat: "Pasta", name: "Barbecue Pasta", price: 8.00, desc: "Pasta with BBQ sauce.", addons: pastaAddons },
+            // Kids Menu
             { id: 31, cat: "Kids Menu", name: "Crispy", price: 6.00, desc: "2 pcs crispy, fries, salad, Pepsi.", addons: [] },
             { id: 32, cat: "Kids Menu", name: "Nuggets", price: 6.00, desc: "4 pcs nuggets, fries, salad, Pepsi.", addons: [] },
             { id: 33, cat: "Kids Menu", name: "Mix Meal", price: 7.50, desc: "2 crispy + 2 nuggets + mini pizza + fries + Pepsi.", addons: [] },
+            // Platters
             { id: 34, cat: "Platters", name: "Crispy Platter", price: 11.00, desc: "Chicken, salad, potato, garlic.", addons: platterAddons },
             { id: 35, cat: "Platters", name: "Nuggets Platter", price: 9.00, desc: "10 pcs nuggets, fries, salad, sauce cocktail.", addons: platterAddons },
             { id: 36, cat: "Platters", name: "Grilled Deboned Chicken", price: 12.00, desc: "Grilled chicken, salad, potato, garlic.", addons: platterAddons },
@@ -971,6 +1190,7 @@
             { id: 45, cat: "Platters", name: "Cordon Bleu", price: 13.50, desc: "Stuffed chicken breast.", addons: platterAddons },
             { id: 46, cat: "Platters", name: "Crispy 1kg", price: 22.00, desc: "1 kg of crispy chicken.", addons: platterAddons },
             { id: 47, cat: "Platters", name: "Taouk 1kg", price: 22.00, desc: "1 kg of Taouk.", addons: platterAddons },
+            // Sandwiches
             { id: 48, cat: "Sandwiches", name: "Batata", price: 2.25, desc: "French fries sandwich.", addons: [] },
             { id: 49, cat: "Sandwiches", name: "Taouk", price: 3.80, desc: "Taouk sandwich.", addons: [{name: "Extra Cheese", price: 1.00}] },
             { id: 50, cat: "Sandwiches", name: "Fransisco", price: 4.50, desc: "Francisco sandwich.", addons: [{name: "Extra Cheese", price: 1.00}] },
@@ -984,9 +1204,11 @@
             { id: 58, cat: "Sandwiches", name: "Shrimp", price: 5.00, desc: "Shrimp sandwich.", addons: [] },
             { id: 59, cat: "Sandwiches", name: "Crab", price: 4.50, desc: "Crab sandwich.", addons: [] },
             { id: 60, cat: "Sandwiches", name: "Samke Hara", price: 5.00, desc: "Spicy fish sandwich.", addons: [] },
+            // Special Sandwiches
             { id: 61, cat: "Special Sandwiches", name: "Turkey Chawarma Chicken", price: 8.00, desc: "Special Turkey Chawarma Chicken.", addons: [] },
             { id: 62, cat: "Special Sandwiches", name: "Turkey Chawarma Beef", price: 8.50, desc: "Special Turkey Chawarma Beef.", addons: [] },
             { id: 63, cat: "Special Sandwiches", name: "Honey Mustard Chicken", price: 5.00, desc: "Chicken with honey mustard.", addons: [] },
+            // Starters
             { id: 64, cat: "Starters", name: "Nachos", price: 5.30, desc: "Crispy nachos.", addons: [{name: "Extra Dip", price: 0.50}] },
             { id: 65, cat: "Starters", name: "Chicken Quesadillas", price: 7.50, desc: "Chicken Quesadillas.", addons: [] },
             { id: 66, cat: "Starters", name: "Wavy Potato", price: 2.00, desc: "Wavy potato.", addons: [] },
@@ -1007,6 +1229,7 @@
             { id: 81, cat: "Starters", name: "Mix Platter", price: 10.00, desc: "Mix platter.", addons: [] },
             { id: 82, cat: "Starters", name: "Mozzarella Stick", price: 6.00, desc: "Mozzarella sticks.", addons: [] },
             { id: 83, cat: "Starters", name: "Fish Finger", price: 5.00, desc: "Fish fingers.", addons: [] },
+            // Salads
             { id: 84, cat: "Salads", name: "Ceasar Salad", price: 4.50, desc: "Lettuce, toast, cheese.", addons: saladAddons },
             { id: 85, cat: "Salads", name: "Chicken Ceasar Salad", price: 6.50, desc: "Lettuce, chicken, toast, cheese.", addons: saladAddons },
             { id: 86, cat: "Salads", name: "Crab Salad", price: 6.50, desc: "Lettuce, avocat, crab, corn, cherry tomato.", addons: saladAddons },
@@ -1016,6 +1239,7 @@
             { id: 90, cat: "Salads", name: "Greek Salad", price: 5.50, desc: "Lettuce, tomato, cucumber, sweet pepper, feta cheese, olive, onion.", addons: saladAddons },
             { id: 91, cat: "Salads", name: "Season Salad", price: 3.00, desc: "Lettuce, tomato, cucumber.", addons: saladAddons },
             { id: 92, cat: "Salads", name: "Panache Salad", price: 8.00, desc: "Panache salad.", addons: saladAddons },
+            // Breakfast & Baguettes
             { id: 93, cat: "Breakfast & Baguettes", name: "Labneh Dish", price: 3.50, desc: "Labneh dish.", addons: [{name: "Extra Bread", price: 0.50}] },
             { id: 94, cat: "Breakfast & Baguettes", name: "Vegetables Dish", price: 1.50, desc: "Vegetables dish.", addons: [] },
             { id: 95, cat: "Breakfast & Baguettes", name: "Labneh + Vegetables", price: 3.50, desc: "Baguette labneh and veg.", addons: [{name: "Toasted", price: 0.00}] },
@@ -1024,11 +1248,13 @@
             { id: 98, cat: "Breakfast & Baguettes", name: "Banana & Chocolate", price: 3.00, desc: "Sweet baguette.", addons: [{name: "Toasted", price: 0.00}] },
             { id: 99, cat: "Breakfast & Baguettes", name: "Jebne w Habash", price: 3.25, desc: "Baguette jebne and habash.", addons: [{name: "Toasted", price: 0.00}] },
             { id: 100, cat: "Breakfast & Baguettes", name: "Ach2awan w Habach", price: 4.00, desc: "Baguette achkawan and habach.", addons: [{name: "Toasted", price: 0.00}] },
+            // Potato Sandwiches
             { id: 101, cat: "Potato Sandwiches", name: "Potato + Vegetables", price: 7.50, desc: "Baked potato with veg.", addons: [{name: "Extra Cheese", price: 1.00}] },
             { id: 102, cat: "Potato Sandwiches", name: "Potato + Habash", price: 8.00, desc: "Baked potato with habash.", addons: [{name: "Extra Cheese", price: 1.00}] },
             { id: 103, cat: "Potato Sandwiches", name: "Potato + Janbon", price: 8.00, desc: "Baked potato with janbon.", addons: [{name: "Extra Cheese", price: 1.00}] },
             { id: 104, cat: "Potato Sandwiches", name: "Potato + Hotdog", price: 8.00, desc: "Baked potato with hotdog.", addons: [{name: "Extra Cheese", price: 1.00}] },
             { id: 105, cat: "Potato Sandwiches", name: "Potato + Mortadella", price: 8.00, desc: "Baked potato with mortadella.", addons: [{name: "Extra Cheese", price: 1.00}] },
+            // Burger
             { id: 106, cat: "Burger", name: "Cheese Burger", price: 8.00, desc: "Cheese burger.", addons: burgerAddons },
             { id: 107, cat: "Burger", name: "Cheesy Burger", price: 8.50, desc: "Cheesy burger.", addons: burgerAddons },
             { id: 108, cat: "Burger", name: "Hamburger", price: 7.00, desc: "Classic hamburger.", addons: burgerAddons },
@@ -1039,6 +1265,7 @@
             { id: 113, cat: "Burger", name: "Crispy Burger", price: 7.00, desc: "Crispy burger.", addons: burgerAddons }
         ];
 
+        // معالجة الصور والفلاتر (تم الإبقاء على كود الصور كما هو في نسختك)
         const menuData = rawItems.map(item => {
             let tags = [];
             if([1, 7, 12, 106, 34, 48].includes(item.id)) tags.push('bestseller');
@@ -1047,8 +1274,9 @@
             if([55, 60, 78].includes(item.id)) tags.push('spicy');
             if([46, 47, 9].includes(item.id)) tags.push('offer');
             
-            // تم التحديث هنا: الآن الكود يسحب الصور من المجلد المحلي بناءً على الـ ID
-            let imgUrl = `images/${item.id}.jpg`;
+            // الكود الأصلي لصور الوجبات
+            let categoryKeyword = item.cat.toLowerCase().replace(/[^a-z]/g, '');
+            let imgUrl = `https://loremflickr.com/600/400/food,${categoryKeyword}?lock=${item.id}`;
 
             return {
                 ...item,
@@ -1156,7 +1384,7 @@
             btn.classList.add('active');
             const target = document.getElementById(`cat-${cat.replace(/\s+/g, '-')}`);
             if(target) {
-                const y = target.getBoundingClientRect().top - 100;
+                const y = target.getBoundingClientRect().top + window.scrollY - 150;
                 window.scrollTo({top: y, behavior: 'smooth'});
             }
         }
@@ -1175,8 +1403,14 @@
 
             categories.forEach(cat => {
                 let items = menuData.filter(i => i.cat === cat);
-                if (activeTag !== 'all') items = items.filter(i => i.tags && i.tags.includes(activeTag));
-                if (term) items = items.filter(i => i.name.toLowerCase().includes(term));
+                
+                if (activeTag !== 'all') {
+                    items = items.filter(i => i.tags && i.tags.includes(activeTag));
+                }
+                
+                if (term) {
+                    items = items.filter(i => i.name.toLowerCase().includes(term));
+                }
                 
                 if(items.length > 0) {
                     let html = `<div class="category-section" id="cat-${cat.replace(/\s+/g, '-')}">
@@ -1197,8 +1431,7 @@
                             <button class="fav-btn ${isFav?'active':''}" onclick="event.stopPropagation(); toggleFav(${item.id}, this)"><i class="fas fa-heart"></i></button>
                             
                             <div class="card-img-wrap">
-                                <!-- هنا تم سحب الصورة المحلية بنجاح -->
-                                <img src="${item.img}" class="card-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80'">
+                                <img src="${item.img}" class="card-img" loading="lazy">
                             </div>
                             
                             <div class="card-body">
@@ -1223,8 +1456,10 @@
 
         function openItem(id) {
             currentItem = menuData.find(i => i.id === id);
-            cQty = 1; cAddons = []; 
+            cQty = 1; 
+            cAddons = []; 
             document.getElementById('m-note').value = "";
+            
             switchTab('details');
 
             document.getElementById('m-img').src = currentItem.img;
@@ -1238,6 +1473,7 @@
                 vSec.style.display = 'block';
                 cVarPrice = currentItem.variants[0].price; 
                 cVarName = currentItem.variants[0].name;
+                
                 document.getElementById('m-variants-list').innerHTML = currentItem.variants.map((v, i) => `
                     <div class="option-row ${i===0?'active':''}" onclick="selVar(this, ${v.price}, '${v.name}')">
                         <span style="font-weight:700; color:var(--text-main);">${v.name}</span>
@@ -1260,10 +1496,13 @@
                         </div>
                         <span style="color:var(--primary); font-weight:700;">+$${a.price.toFixed(2)}</span>
                     </label>`).join('');
-            } else { aSec.style.display = 'none'; }
+            } else { 
+                aSec.style.display = 'none'; 
+            }
 
             loadReviews();
             updModPrice();
+            
             document.getElementById('item-modal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
@@ -1275,6 +1514,7 @@
         
         function switchTab(t) {
             document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+            
             if(t === 'details') {
                 document.getElementById('t-tabDetails').classList.add('active');
                 document.getElementById('tab-details').style.display = 'block';
@@ -1289,17 +1529,26 @@
         function selVar(el, price, name) {
             document.querySelectorAll('#m-variants-list .option-row').forEach(e => e.classList.remove('active'));
             el.classList.add('active');
-            cVarPrice = price; cVarName = name; 
+            cVarPrice = price; 
+            cVarName = name; 
             updModPrice();
         }
 
         function updAddon(cb, name, price) {
-            if(cb.checked) cAddons.push({name: name, price: price});
-            else cAddons = cAddons.filter(a => a.name !== name);
+            if(cb.checked) {
+                cAddons.push({name: name, price: price});
+            } else {
+                cAddons = cAddons.filter(a => a.name !== name);
+            }
             updModPrice();
         }
 
-        function chgQty(val) { if(cQty + val > 0) { cQty += val; updModPrice(); } }
+        function chgQty(val) { 
+            if(cQty + val > 0) { 
+                cQty += val; 
+                updModPrice(); 
+            } 
+        }
         
         function updModPrice() {
             document.getElementById('m-qty').innerText = cQty;
@@ -1310,8 +1559,13 @@
 
         function toggleFav(id, btn) {
             const idx = favs.indexOf(id);
-            if(idx > -1) { favs.splice(idx, 1); btn.classList.remove('active'); } 
-            else { favs.push(id); btn.classList.add('active'); }
+            if(idx > -1) { 
+                favs.splice(idx, 1); 
+                btn.classList.remove('active'); 
+            } else { 
+                favs.push(id); 
+                btn.classList.add('active'); 
+            }
             localStorage.setItem('ashta_favs', JSON.stringify(favs));
         }
 
@@ -1329,23 +1583,35 @@
             const name = document.getElementById('rev-name').value || "Guest";
             const text = document.getElementById('rev-text').value;
             if(!text) return; 
+            
             if(!reviews[currentItem.id]) reviews[currentItem.id] = [];
             
-            reviews[currentItem.id].unshift({ name: name, text: text, star: selStar, date: new Date().toLocaleDateString() });
+            reviews[currentItem.id].unshift({ 
+                name: name, 
+                text: text, 
+                star: selStar, 
+                date: new Date().toLocaleDateString() 
+            });
+            
             localStorage.setItem('ashta_reviews', JSON.stringify(reviews));
             document.getElementById('rev-text').value = '';
+            
             loadReviews(); 
         }
 
         function loadReviews() {
             const list = document.getElementById('reviews-list');
             const revs = reviews[currentItem.id] || [];
+            
             if(revs.length === 0) {
                 list.innerHTML = `<p style="color:var(--text-muted); text-align:center; padding:30px; font-weight:600;">No reviews yet. Be the first!</p>`;
             } else {
                 list.innerHTML = revs.map(r => `
                     <div class="review-box">
-                        <div class="review-head"><strong style="color:var(--text-main); font-size:15px;">${r.name}</strong> <span style="color:var(--text-muted); font-size:12px;">${r.date}</span></div>
+                        <div class="review-head">
+                            <strong style="color:var(--text-main); font-size:15px;">${r.name}</strong> 
+                            <span style="color:var(--text-muted); font-size:12px;">${r.date}</span>
+                        </div>
                         <div class="rating" style="font-size:12px; margin-bottom:10px;">${'<i class="fas fa-star"></i>'.repeat(r.star)}</div>
                         <p style="font-size:14px; color:var(--text-main); line-height:1.5;">${r.text}</p>
                     </div>`).join('');
@@ -1361,19 +1627,36 @@
 
         function addToCart() {
             const unitPrice = cVarPrice + cAddons.reduce((sum, a) => sum + a.price, 0);
+            
             cart.push({
-                id: Date.now(), pid: currentItem.id,
+                id: Date.now(),
+                pid: currentItem.id,
                 name: cVarName ? `${currentItem.name} (${cVarName})` : currentItem.name,
-                qty: cQty, unit: unitPrice, tot: unitPrice * cQty,
+                qty: cQty,
+                unit: unitPrice,
+                tot: unitPrice * cQty,
                 mods: cAddons.map(a => "+ " + a.name).join(', '),
                 note: document.getElementById('m-note').value.trim()
             });
-            saveCart(); closeModal(); showToast(); 
+            
+            saveCart(); 
+            closeModal();
+            showToast(); 
         }
 
-        function saveCart() { localStorage.setItem('ashta_cart', JSON.stringify(cart)); updateCartUI(); }
-        function remCart(id) { cart = cart.filter(c => c.id !== id); saveCart(); }
-        function toggleCart() { document.getElementById('cart-side').classList.toggle('open'); }
+        function saveCart() { 
+            localStorage.setItem('ashta_cart', JSON.stringify(cart)); 
+            updateCartUI(); 
+        }
+
+        function remCart(id) { 
+            cart = cart.filter(c => c.id !== id); 
+            saveCart(); 
+        }
+
+        function toggleCart() { 
+            document.getElementById('cart-side').classList.toggle('open'); 
+        }
 
         function updateCartUI() {
             const list = document.getElementById('cart-items');
@@ -1422,6 +1705,7 @@
             }
         }
 
+        // تم ربط الكود برقم الواتساب اللبناني
         function checkoutWA() {
             if(cart.length === 0) return alert(currentLang === 'ar' ? "السلة فارغة!" : "Cart is empty!");
             
@@ -1431,7 +1715,8 @@
             
             if(!name || !addr) return alert(currentLang === 'ar' ? "يرجى ملء الاسم والعنوان!" : "Please fill Name and Address");
 
-            let msg = `*New Order - Ashta W 3asal* 🍯\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Address:* ${addr}\n\n*Items:*\n`;
+            let msg = `*New Order - Ashta W 3asal* 🍯\n\n`;
+            msg += `*Name:* ${name}\n*Phone:* ${phone}\n*Address:* ${addr}\n\n*Items:*\n`;
             
             cart.forEach(c => {
                 msg += `🔸 ${c.qty}x ${c.name} ($${c.unit.toFixed(2)})\n`;
@@ -1440,10 +1725,15 @@
             });
 
             const sub = cart.reduce((sum, c) => sum + c.tot, 0);
-            msg += `\n----------------\nSubtotal: $${sub.toFixed(2)}\nDelivery: $1.00\n`;
+            msg += `\n----------------\n`;
+            msg += `Subtotal: $${sub.toFixed(2)}\nDelivery: $1.00\n`;
+            
             if(discountVal > 0) msg += `Discount: -$${discountVal.toFixed(2)}\n`;
-            msg += `*Total Due: $${(sub + 1 - discountVal).toFixed(2)}*\n----------------\nPayment: Cash on Delivery.`;
+            
+            msg += `*Total Due: $${(sub + 1 - discountVal).toFixed(2)}*\n`;
+            msg += `----------------\nPayment: Cash on Delivery.`;
 
+            // الرقم اللبناني
             const url = `https://wa.me/96181488315?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank');
         }
