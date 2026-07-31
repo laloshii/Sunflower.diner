@@ -132,6 +132,7 @@
             position: relative;
             margin-top: 60px; 
             padding: 50px 5% 40px;
+            /* الصورة الخارجية الوحيدة المتبقية كخلفية فاخرة */
             background-image: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed; 
             background-size: cover; 
@@ -244,7 +245,7 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* أزرار التواصل الأنيقة */
+        /* أزرار التواصل الأنيقة (تم تحديث الأرقام للرقم اللبناني) */
         .hero-contact-row {
             display: flex;
             gap: 15px;
@@ -414,7 +415,7 @@
         }
         .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--primary); }
 
-        .card-img-wrap { position: relative; height: 180px; overflow: hidden; }
+        .card-img-wrap { position: relative; height: 180px; overflow: hidden; background: var(--border); }
         .card-img { width: 100%; height: 100%; object-fit: cover; }
         .card:hover .card-img { transform: scale(1.05); }
 
@@ -553,7 +554,7 @@
         }
         
         .modal-scroll { overflow-y: auto; flex: 1; padding: 0 0 20px 0; }
-        .modal-img { width: 100%; height: 220px; object-fit: cover; border-radius: 20px 20px 0 0;}
+        .modal-img { width: 100%; height: 220px; object-fit: cover; border-radius: 20px 20px 0 0; background: var(--border);}
         .modal-info { padding: 20px; }
         
         .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 15px; }
@@ -721,7 +722,7 @@
         </div>
     </nav>
 
-    <!-- الواجهة الرئيسية الاحترافية المصححة (Sleek Hero Section) -->
+    <!-- الواجهة الرئيسية الاحترافية (Sleek Hero Section) -->
     <section class="hero" id="hero-bg">
         
         <!-- شعار المطعم بتصميم دائري أنيق -->
@@ -748,10 +749,10 @@
             <div class="info-stat"><i class="fas fa-receipt"></i> <span id="t-fee">Fee: $1</span></div>
         </div>
         
-        <!-- أزرار التواصل (مع الاحتفاظ بالرقم التركي القديم هنا) -->
+        <!-- أزرار التواصل (تم تحديثها جميعاً للرقم اللبناني) -->
         <div class="hero-contact-row">
-            <a href="https://wa.me/905376262192" target="_blank" class="h-btn"><i class="fab fa-whatsapp"></i></a>
-            <a href="tel:+905376262192" class="h-btn"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/96181488315" target="_blank" class="h-btn"><i class="fab fa-whatsapp"></i></a>
+            <a href="tel:+96181488315" class="h-btn"><i class="fas fa-phone"></i></a>
             <a href="#" class="h-btn"><i class="fas fa-map-marker-alt"></i></a>
         </div>
     </section>
@@ -864,8 +865,9 @@
                     <input type="text" id="c-name" placeholder="Name">
                 </div>
                 <div class="input-group">
+                    <!-- تم التحديث للرقم اللبناني كعنصر نائب -->
                     <label id="t-phone">Phone Number</label>
-                    <input type="text" id="c-phone" placeholder="+90 555 000 0000">
+                    <input type="text" id="c-phone" placeholder="+961 81 488 315">
                 </div>
                 <div class="input-group">
                     <label id="t-address">Full Address</label>
@@ -1045,8 +1047,8 @@
             if([55, 60, 78].includes(item.id)) tags.push('spicy');
             if([46, 47, 9].includes(item.id)) tags.push('offer');
             
-            let categoryKeyword = item.cat.toLowerCase().replace(/[^a-z]/g, '');
-            let imgUrl = `https://loremflickr.com/600/400/food,${categoryKeyword}?lock=${item.id}`;
+            // تم التحديث هنا: الآن الكود يسحب الصور من المجلد المحلي بناءً على الـ ID
+            let imgUrl = `images/${item.id}.jpg`;
 
             return {
                 ...item,
@@ -1195,7 +1197,8 @@
                             <button class="fav-btn ${isFav?'active':''}" onclick="event.stopPropagation(); toggleFav(${item.id}, this)"><i class="fas fa-heart"></i></button>
                             
                             <div class="card-img-wrap">
-                                <img src="${item.img}" class="card-img" loading="lazy">
+                                <!-- هنا تم سحب الصورة المحلية بنجاح -->
+                                <img src="${item.img}" class="card-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80'">
                             </div>
                             
                             <div class="card-body">
