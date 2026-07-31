@@ -49,7 +49,7 @@
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, fill 0.3s ease; 
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
         }
         
         html { scroll-behavior: smooth; }
@@ -126,13 +126,13 @@
         .lang-toggle { font-weight: 700; font-size: 14px; }
 
         /* =========================================
-           الواجهة الرئيسية المطورة (Premium Hero Section)
+           الواجهة الرئيسية الجديدة (Classic & Elegant Hero)
            ========================================= */
         .hero {
-            height: 75vh; 
+            height: 70vh; 
             margin-top: 65px; 
             position: relative;
-            background-image: linear-gradient(to bottom, rgba(18, 18, 18, 0.5), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80');
+            background-image: linear-gradient(rgba(20, 15, 10, 0.75), rgba(20, 15, 10, 0.85)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed; 
             background-size: cover; 
             background-position: center;
@@ -142,67 +142,70 @@
             justify-content: center; 
             color: #fff; 
             text-align: center;
-            padding-bottom: 50px;
+            border-bottom: 4px solid var(--primary);
         }
 
-        .hero-logo {
-            width: 110px;
-            height: 110px;
-            object-fit: contain;
-            border-radius: 50%;
-            border: 3px solid var(--primary);
+        /* إطار الشعار الجديد: يضمن ظهور الشعار كاملاً مهما كان شكله */
+        .hero-logo-wrapper {
+            width: 150px;
+            height: 150px;
             background: #fff;
-            padding: 5px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 25px rgba(229, 169, 55, 0.5);
-            animation: float 3.5s ease-in-out infinite;
+            border-radius: 20px; 
+            padding: 10px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
+        
+        .hero-logo-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; 
         }
 
         .hero-title { 
             font-family: var(--font-head); 
-            font-size: 3.8rem; 
-            color: var(--primary); 
-            margin-bottom: 10px; 
-            text-shadow: 2px 2px 15px rgba(0,0,0,0.7); 
-            letter-spacing: 1px;
+            font-size: 3.5rem; 
+            color: #fff; 
+            margin-bottom: 12px; 
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8); 
+            letter-spacing: 2px;
         }
 
+        .hero-title span { color: var(--primary); }
+
         .hero-subtitle { 
-            font-size: 1.2rem; 
-            font-weight: 300; 
-            letter-spacing: 2px; 
+            font-size: 1.1rem; 
+            font-weight: 400; 
+            letter-spacing: 3px; 
             margin-bottom: 35px; 
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            color: #EFE9D9;
+            text-transform: uppercase;
         }
         
-        /* بطاقات زجاجية فاخرة */
         .info-bar { 
             display: flex; 
             gap: 15px; 
             flex-wrap: wrap; 
             justify-content: center; 
-            margin-bottom: 30px; 
-            z-index: 2;
+            margin-bottom: 35px; 
         }
 
         .info-card { 
-            background: rgba(0, 0, 0, 0.4); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-            padding: 12px 22px; 
-            border-radius: 30px; 
-            border: 1px solid rgba(229, 169, 55, 0.3); 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(8px); 
+            -webkit-backdrop-filter: blur(8px);
+            padding: 10px 20px; 
+            border-radius: 8px; 
+            border: 1px solid rgba(229, 169, 55, 0.4); 
             font-size: 14px; 
+            font-weight: 500;
             display: flex; 
             align-items: center; 
             gap: 10px; 
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             color: #fff;
         }
 
@@ -214,39 +217,29 @@
             box-shadow: 0 0 12px #4CAF50; 
         }
 
-        .contact-links { display: flex; gap: 15px; z-index: 2; }
+        .contact-links { display: flex; gap: 15px; }
+        
         .contact-btn { 
-            width: 48px; 
-            height: 48px; 
-            border-radius: 50%; 
-            background: var(--surface); 
-            color: var(--text-main); 
+            width: 45px; 
+            height: 45px; 
+            border-radius: 8px; 
+            background: rgba(255, 255, 255, 0.1); 
+            color: #fff; 
+            border: 1px solid rgba(255,255,255,0.2);
             display: flex; 
             align-items: center; 
             justify-content: center; 
             text-decoration: none; 
-            font-size: 22px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-size: 20px; 
+            backdrop-filter: blur(5px);
             transition: all 0.3s ease;
         }
-        .contact-btn:hover { background: var(--primary); color: #fff; transform: translateY(-5px) scale(1.05); }
-
-        /* التموج الهندسي أسفل الواجهة */
-        .hero-wave {
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
+        
+        .contact-btn:hover { 
+            background: var(--primary); 
+            border-color: var(--primary); 
+            transform: translateY(-3px); 
         }
-        .hero-wave svg {
-            position: relative;
-            display: block;
-            width: calc(100% + 1.3px);
-            height: 60px;
-        }
-        .hero-wave path { fill: var(--bg-color); }
 
         /* =========================================
            شريط العروض المتحرك
@@ -915,10 +908,12 @@
         </div>
     </nav>
 
-    <!-- الواجهة الرئيسية المحسنة (Premium Hero) -->
+    <!-- الواجهة الرئيسية الكلاسيكية الجديدة (Classic Hero) -->
     <section class="hero" id="hero-bg">
-        <img src="logo-ashta.png" alt="Ashta W 3asal Logo" class="hero-logo">
-        <h1 class="hero-title">Ashta W 3asal</h1>
+        <div class="hero-logo-wrapper">
+            <img src="logo-ashta.png" alt="Ashta W 3asal Logo">
+        </div>
+        <h1 class="hero-title"><span>Ashta</span> W 3asal</h1>
         <p class="hero-subtitle" id="t-subtitle">Premium Quality, Authentic Taste</p>
         
         <div class="info-bar">
@@ -928,18 +923,11 @@
             <div class="info-card"><i class="fas fa-receipt" style="color: var(--primary);"></i> <span id="t-fee">Fee: $1</span></div>
         </div>
         
-        <!-- أزرار التواصل مع الاحتفاظ بالرقم القديم كما طلبتِ -->
+        <!-- أزرار التواصل مع الاحتفاظ بالرقم القديم في الواجهة -->
         <div class="contact-links">
-            <a href="https://wa.me/905376262192" target="_blank" class="contact-btn" style="color: #25D366;"><i class="fab fa-whatsapp"></i></a>
-            <a href="tel:+905376262192" class="contact-btn" style="color: var(--primary);"><i class="fas fa-phone"></i></a>
-            <a href="#" class="contact-btn" style="color: #4285F4;"><i class="fas fa-map-marker-alt"></i></a>
-        </div>
-
-        <!-- تموج أسفل الواجهة -->
-        <div class="hero-wave">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,137.9,122.9,209.4,113.6,247.9,108.6,285.4,85.6,321.39,56.44Z"></path>
-            </svg>
+            <a href="https://wa.me/905376262192" target="_blank" class="contact-btn"><i class="fab fa-whatsapp"></i></a>
+            <a href="tel:+905376262192" class="contact-btn"><i class="fas fa-phone"></i></a>
+            <a href="#" class="contact-btn"><i class="fas fa-map-marker-alt"></i></a>
         </div>
     </section>
 
@@ -1674,7 +1662,6 @@
             }
         }
 
-        // تم تحديث رقم الواتساب الخاص بالطلبات (الفاتورة) هنا فقط
         function checkoutWA() {
             if(cart.length === 0) return alert(currentLang === 'ar' ? "السلة فارغة!" : "Cart is empty!");
             
@@ -1702,7 +1689,6 @@
             msg += `*Total Due: $${(sub + 1 - discountVal).toFixed(2)}*\n`;
             msg += `----------------\nPayment: Cash on Delivery.`;
 
-            // الرقم اللبناني الجديد للطلبات
             const url = `https://wa.me/96181488315?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank');
         }
