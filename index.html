@@ -49,7 +49,7 @@
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, fill 0.3s ease; 
         }
         
         html { scroll-behavior: smooth; }
@@ -126,13 +126,13 @@
         .lang-toggle { font-weight: 700; font-size: 14px; }
 
         /* =========================================
-           الواجهة الرئيسية (Hero Section)
+           الواجهة الرئيسية المطورة (Premium Hero Section)
            ========================================= */
         .hero {
-            height: 65vh; 
+            height: 75vh; 
             margin-top: 65px; 
             position: relative;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80');
+            background-image: linear-gradient(to bottom, rgba(18, 18, 18, 0.5), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed; 
             background-size: cover; 
             background-position: center;
@@ -142,62 +142,111 @@
             justify-content: center; 
             color: #fff; 
             text-align: center;
+            padding-bottom: 50px;
         }
 
         .hero-logo {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             object-fit: contain;
             border-radius: 50%;
             border: 3px solid var(--primary);
             background: #fff;
             padding: 5px;
             margin-bottom: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 0 25px rgba(229, 169, 55, 0.5);
+            animation: float 3.5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
         }
 
         .hero-title { 
             font-family: var(--font-head); 
-            font-size: 3.5rem; 
+            font-size: 3.8rem; 
             color: var(--primary); 
             margin-bottom: 10px; 
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5); 
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.7); 
+            letter-spacing: 1px;
         }
 
         .hero-subtitle { 
             font-size: 1.2rem; 
             font-weight: 300; 
             letter-spacing: 2px; 
-            margin-bottom: 30px; 
+            margin-bottom: 35px; 
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         }
         
+        /* بطاقات زجاجية فاخرة */
         .info-bar { 
             display: flex; 
             gap: 15px; 
             flex-wrap: wrap; 
             justify-content: center; 
-            margin-bottom: 25px; 
+            margin-bottom: 30px; 
+            z-index: 2;
         }
 
         .info-card { 
-            background: rgba(255,255,255,0.15); 
-            backdrop-filter: blur(5px); 
-            padding: 10px 20px; 
+            background: rgba(0, 0, 0, 0.4); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            padding: 12px 22px; 
             border-radius: 30px; 
-            border: 1px solid rgba(255,255,255,0.2); 
+            border: 1px solid rgba(229, 169, 55, 0.3); 
             font-size: 14px; 
             display: flex; 
             align-items: center; 
-            gap: 8px; 
+            gap: 10px; 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            color: #fff;
         }
 
         .status-dot { 
             width: 10px; 
             height: 10px; 
             border-radius: 50%; 
-            background: var(--success); 
-            box-shadow: 0 0 10px var(--success); 
+            background: #4CAF50; 
+            box-shadow: 0 0 12px #4CAF50; 
         }
+
+        .contact-links { display: flex; gap: 15px; z-index: 2; }
+        .contact-btn { 
+            width: 48px; 
+            height: 48px; 
+            border-radius: 50%; 
+            background: var(--surface); 
+            color: var(--text-main); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-decoration: none; 
+            font-size: 22px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .contact-btn:hover { background: var(--primary); color: #fff; transform: translateY(-5px) scale(1.05); }
+
+        /* التموج الهندسي أسفل الواجهة */
+        .hero-wave {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .hero-wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 60px;
+        }
+        .hero-wave path { fill: var(--bg-color); }
 
         /* =========================================
            شريط العروض المتحرك
@@ -362,13 +411,7 @@
         }
 
         .card-img-wrap { position: relative; height: 200px; overflow: hidden; }
-        
-        .card-img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            object-position: center; 
-        }
+        .card-img { width: 100%; height: 100%; object-fit: cover; }
         .card:hover .card-img { transform: scale(1.05); }
 
         .fav-btn { 
@@ -512,18 +555,9 @@
         }
         
         .modal-scroll { overflow-y: auto; flex: 1; padding: 0 0 20px 0; }
-        
-        .modal-img { 
-            width: 100%; 
-            height: 230px; 
-            object-fit: cover; 
-            object-position: center; 
-            border-radius: 25px 25px 0 0;
-        }
-        
+        .modal-img { width: 100%; height: 230px; object-fit: cover; border-radius: 25px 25px 0 0;}
         .modal-info { padding: 20px; }
         
-        /* Tabs inside Modal */
         .tabs { 
             display: flex; 
             border-bottom: 2px solid var(--border); 
@@ -545,7 +579,6 @@
             border-bottom: 3px solid var(--primary); 
         }
         
-        /* Options & Reviews sections */
         .custom-section { margin-bottom: 20px; }
         .custom-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--text-main); display: flex; align-items: center; gap: 8px;}
         
@@ -764,62 +797,6 @@
         }
 
         /* =========================================
-           تذييل الموقع (Footer)
-           ========================================= */
-        .footer {
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            padding: 40px 5% 20px;
-            text-align: center;
-            margin-top: 50px;
-        }
-        .footer h3 {
-            font-family: var(--font-head);
-            color: var(--primary);
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .footer p {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .social-links a {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: var(--bg-color);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 20px;
-            transition: 0.3s;
-            box-shadow: var(--shadow-sm);
-        }
-        .social-links a:hover {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-        .footer-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
-            color: var(--text-muted);
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        /* =========================================
            زر السلة العائم و إشعار الإضافة (Toast)
            ========================================= */
         .float-cart { 
@@ -896,7 +873,7 @@
                 search: "Search menu...",
                 filterAll: "All", filterBest: "Bestseller", filterNew: "New", filterVeg: "Vegetarian", filterSpicy: "Spicy", filterOffer: "Offers",
                 tabDetails: "Details", tabReviews: "Reviews",
-                addReview: "Write a Review", submitReview: "Submit to WhatsApp",
+                addReview: "Write a Review", submitReview: "Submit",
                 size: "Size / Variants", addons: "Add-ons", notes: "Special Instructions", notesPlc: "e.g., No onions...",
                 addBtn: "Add to Cart", toastMsg: "Item added to cart successfully!",
                 cartTitle: "Your Order", emptyCart: "Cart is empty.",
@@ -912,7 +889,7 @@
                 search: "ابحث في القائمة...",
                 filterAll: "الكل", filterBest: "الأكثر مبيعاً", filterNew: "جديد", filterVeg: "نباتي", filterSpicy: "حار", filterOffer: "عروض",
                 tabDetails: "التفاصيل", tabReviews: "التقييمات",
-                addReview: "أضف تقييمك", submitReview: "إرسال عبر واتساب",
+                addReview: "أضف تقييمك", submitReview: "إرسال",
                 size: "الحجم / الخيارات", addons: "الإضافات", notes: "ملاحظات خاصة", notesPlc: "مثال: بدون بصل...",
                 addBtn: "إضافة للسلة", toastMsg: "تمت إضافة المنتج للسلة بنجاح!",
                 cartTitle: "طلبك", emptyCart: "السلة فارغة.",
@@ -938,7 +915,7 @@
         </div>
     </nav>
 
-    <!-- الواجهة الرئيسية (Hero) -->
+    <!-- الواجهة الرئيسية المحسنة (Premium Hero) -->
     <section class="hero" id="hero-bg">
         <img src="logo-ashta.png" alt="Ashta W 3asal Logo" class="hero-logo">
         <h1 class="hero-title">Ashta W 3asal</h1>
@@ -946,9 +923,23 @@
         
         <div class="info-bar">
             <div class="info-card"><div class="status-dot"></div> <span id="t-status">OPEN NOW</span> (10 AM - 11 PM)</div>
-            <div class="info-card"><i class="fas fa-motorcycle text-primary"></i> <span id="t-time">30-45 Mins</span></div>
-            <div class="info-card"><i class="fas fa-wallet text-primary"></i> <span id="t-minOrder">Min: $5</span></div>
-            <div class="info-card"><i class="fas fa-receipt text-primary"></i> <span id="t-fee">Fee: $1</span></div>
+            <div class="info-card"><i class="fas fa-motorcycle" style="color: var(--primary);"></i> <span id="t-time">30-45 Mins</span></div>
+            <div class="info-card"><i class="fas fa-wallet" style="color: var(--primary);"></i> <span id="t-minOrder">Min: $5</span></div>
+            <div class="info-card"><i class="fas fa-receipt" style="color: var(--primary);"></i> <span id="t-fee">Fee: $1</span></div>
+        </div>
+        
+        <!-- أزرار التواصل مع الاحتفاظ بالرقم القديم كما طلبتِ -->
+        <div class="contact-links">
+            <a href="https://wa.me/905376262192" target="_blank" class="contact-btn" style="color: #25D366;"><i class="fab fa-whatsapp"></i></a>
+            <a href="tel:+905376262192" class="contact-btn" style="color: var(--primary);"><i class="fas fa-phone"></i></a>
+            <a href="#" class="contact-btn" style="color: #4285F4;"><i class="fas fa-map-marker-alt"></i></a>
+        </div>
+
+        <!-- تموج أسفل الواجهة -->
+        <div class="hero-wave">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,137.9,122.9,209.4,113.6,247.9,108.6,285.4,85.6,321.39,56.44Z"></path>
+            </svg>
         </div>
     </section>
 
@@ -994,13 +985,11 @@
                     <p style="font-size:14px; color:var(--text-muted); margin-top:10px; line-height: 1.5;" id="m-desc">Desc</p>
                 </div>
                 
-                <!-- تبويبات التقييم والتفاصيل -->
                 <div class="tabs">
                     <div class="tab active" onclick="switchTab('details')" id="t-tabDetails">Details</div>
                     <div class="tab" onclick="switchTab('reviews')" id="t-tabReviews">Reviews</div>
                 </div>
 
-                <!-- محتوى تبويب: التفاصيل -->
                 <div id="tab-details" style="padding: 0 20px;">
                     <div id="m-variants-sec" class="custom-section" style="display:none;">
                         <div class="custom-title"><i class="fas fa-list"></i> <span id="t-size">Size / Variants</span></div>
@@ -1016,11 +1005,9 @@
                     </div>
                 </div>
 
-                <!-- محتوى تبويب: التقييمات عبر الواتساب -->
                 <div id="tab-reviews">
                     <div class="review-form">
                         <h3 id="t-addReview" style="color: var(--text-main); margin-bottom:5px;">Write a Review</h3>
-                        <p style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">Your feedback helps us improve our food quality. It will be sent directly to our WhatsApp management.</p>
                         <div class="star-select" id="star-selector">
                             <i class="fas fa-star" data-val="1"></i>
                             <i class="fas fa-star" data-val="2"></i>
@@ -1029,8 +1016,8 @@
                             <i class="fas fa-star" data-val="5"></i>
                         </div>
                         <input type="text" id="rev-name" placeholder="Your Name">
-                        <textarea id="rev-text" placeholder="Your review..." rows="3"></textarea>
-                        <button class="btn-submit" onclick="submitReviewWA()" id="t-subReview" style="background: #25D366;"><i class="fab fa-whatsapp"></i> Submit to WhatsApp</button>
+                        <textarea id="rev-text" placeholder="Your review..." rows="2"></textarea>
+                        <button class="btn-submit" onclick="submitReview()" id="t-subReview">Submit</button>
                     </div>
                     <div id="reviews-list"></div>
                 </div>
@@ -1099,22 +1086,6 @@
         </div>
     </div>
 
-    <!-- تذييل الموقع الاحترافي (Footer) بدلاً من أيقونات الواجهة -->
-    <footer class="footer">
-        <div class="footer-content">
-            <h3>Ashta W 3asal</h3>
-            <p id="t-footer-desc">Premium Quality, Authentic Taste</p>
-            <div class="social-links">
-                <a href="https://wa.me/905376262192" target="_blank" style="color: #25D366;"><i class="fab fa-whatsapp"></i></a>
-                <a href="tel:+905376262192" style="color: var(--primary);"><i class="fas fa-phone"></i></a>
-                <a href="#" style="color: #4285F4;"><i class="fas fa-map-marker-alt"></i></a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2026 Ashta W 3asal. All rights reserved.
-        </div>
-    </footer>
-
     <!-- زر السلة العائم -->
     <div class="float-cart" id="float-cart" onclick="toggleCart()">
         <i class="fas fa-shopping-bag"></i>
@@ -1128,13 +1099,8 @@
 
     <!-- أكواد الجافاسكربت (JavaScript) -->
     <script>
-        // =========================================
-        // قاعدة البيانات (113 صنف)
-        // =========================================
-        
         const categories = ["Shawarma", "Pizza", "Pasta", "Kids Menu", "Platters", "Sandwiches", "Special Sandwiches", "Starters", "Salads", "Breakfast & Baguettes", "Potato Sandwiches", "Burger"];
         
-        // الإضافات
         const shawarmaAddons = [{name: "Extra Toum (Garlic)", price: 0.50}, {name: "Extra Pickles", price: 0.25}, {name: "Extra Meat/Chicken", price: 1.50}, {name: "Extra Cheese", price: 1.00}];
         const pizzaAddons = [{name: "Extra Cheese", price: 1.50}, {name: "Extra Pepperoni", price: 1.50}, {name: "Extra Veggies", price: 1.00}];
         const pastaAddons = [{name: "Extra Parmesan", price: 1.00}, {name: "Extra Chicken", price: 2.00}, {name: "Extra Mushroom", price: 1.00}];
@@ -1142,7 +1108,6 @@
         const platterAddons = [{name: "Extra Bread", price: 0.50}, {name: "Extra Garlic/Sauce", price: 0.50}];
         const saladAddons = [{name: "Extra Dressing", price: 0.50}, {name: "Grilled Chicken", price: 2.00}];
 
-        // مصفوفة الأصناف الخام
         const rawItems = [
             // Shawarma
             { id: 1, cat: "Shawarma", name: "Sandwich Shawarma Djej", price: 3.50, desc: "Classic chicken shawarma wrap.", addons: shawarmaAddons },
@@ -1271,23 +1236,6 @@
             { id: 113, cat: "Burger", name: "Crispy Burger", price: 7.00, desc: "Crispy burger.", addons: burgerAddons }
         ];
 
-        // خريطة لربط معرفات العناصر بالأرقام التسلسلية من 1 إلى 146
-        const imgMap = {
-            1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9, 10:10, 11:11,
-            // تعيين صور البيتزا مع الأخذ بعين الاعتبار تقسيم كل بيتزا إلى 4 أحجام في القائمة
-            12:12, 13:16, 14:20, 15:24, 16:28, 17:32, 18:36, 19:40, 20:44, 21:48, 22:52,
-            23:56, 24:57, 25:58, 26:59, 27:60, 28:61, 29:62, 30:63,
-            31:64, 32:65, 33:66,
-            34:67, 35:68, 36:69, 37:70, 38:71, 39:72, 40:73, 41:74, 42:75, 43:76, 44:77, 45:78, 46:79, 47:80,
-            48:81, 49:82, 50:83, 51:84, 52:85, 53:86, 54:87, 55:88, 56:89, 57:90, 58:91, 59:92, 60:93,
-            61:94, 62:95, 63:96,
-            64:97, 65:98, 66:99, 67:100, 68:101, 69:102, 70:103, 71:104, 72:105, 73:106, 74:107, 75:108, 76:109, 77:110, 78:111, 79:112, 80:113, 81:114, 82:115, 83:116,
-            84:117, 85:118, 86:119, 87:120, 88:121, 89:122, 90:123, 91:124, 92:125,
-            93:126, 94:127, 95:128, 96:129, 97:130, 98:131, 99:132, 100:133,
-            101:134, 102:135, 103:136, 104:137, 105:138,
-            106:139, 107:140, 108:141, 109:142, 110:143, 111:144, 112:145, 113:146
-        };
-
         const menuData = rawItems.map(item => {
             let tags = [];
             if([1, 7, 12, 106, 34, 48].includes(item.id)) tags.push('bestseller');
@@ -1296,7 +1244,8 @@
             if([55, 60, 78].includes(item.id)) tags.push('spicy');
             if([46, 47, 9].includes(item.id)) tags.push('offer');
             
-            let imgUrl = `${imgMap[item.id]}.jpg`;
+            let categoryKeyword = item.cat.toLowerCase().replace(/[^a-z]/g, '');
+            let imgUrl = `https://loremflickr.com/600/400/food,${categoryKeyword}?lock=${item.id}`;
 
             return {
                 ...item,
@@ -1308,9 +1257,6 @@
             };
         });
 
-        // =========================================
-        // متغيرات وحالة التطبيق
-        // =========================================
         let cart = JSON.parse(localStorage.getItem('ashta_cart')) || [];
         let favs = JSON.parse(localStorage.getItem('ashta_favs')) || [];
         let reviews = JSON.parse(localStorage.getItem('ashta_reviews')) || {};
@@ -1336,13 +1282,9 @@
             updateTexts();
         }
 
-        // =========================================
-        // الترجمة وتغيير الثيم
-        // =========================================
         function updateTexts() {
             const dict = i18n[currentLang];
             document.getElementById('t-subtitle').innerText = dict.subtitle;
-            document.getElementById('t-footer-desc').innerText = dict.subtitle;
             document.getElementById('t-status').innerText = dict.statusOpen;
             document.getElementById('t-time').innerText = dict.time;
             document.getElementById('t-minOrder').innerText = dict.minOrder;
@@ -1358,11 +1300,7 @@
             document.getElementById('t-tabDetails').innerText = dict.tabDetails;
             document.getElementById('t-tabReviews').innerText = dict.tabReviews;
             document.getElementById('t-addReview').innerText = dict.addReview;
-            
-            // تحديث زر ارسال التقييم
-            const subRevBtn = document.getElementById('t-subReview');
-            subRevBtn.innerHTML = `<i class="fab fa-whatsapp"></i> ${dict.submitReview}`;
-            
+            document.getElementById('t-subReview').innerText = dict.submitReview;
             document.getElementById('t-size').innerText = dict.size;
             document.getElementById('t-addons').innerText = dict.addons;
             document.getElementById('t-notes').innerText = dict.notes;
@@ -1403,9 +1341,6 @@
             updateTexts();
         }
 
-        // =========================================
-        // عرض القوائم والفلاتر
-        // =========================================
         function renderCategories() {
             const wrap = document.getElementById('cat-container');
             wrap.innerHTML = categories.map((c, i) => 
@@ -1488,9 +1423,6 @@
             });
         }
 
-        // =========================================
-        // النوافذ المنبثقة (Modal) والتقييمات
-        // =========================================
         function openItem(id) {
             currentItem = menuData.find(i => i.id === id);
             cQty = 1; 
@@ -1606,9 +1538,6 @@
             localStorage.setItem('ashta_favs', JSON.stringify(favs));
         }
 
-        // =========================================
-        // التقييمات عبر الواتساب (لتحسين الجودة)
-        // =========================================
         let selStar = 5;
         document.querySelectorAll('.star-select i').forEach(star => {
             star.onclick = function() {
@@ -1619,36 +1548,24 @@
             }
         });
 
-        function submitReviewWA() {
-            const name = document.getElementById('rev-name').value.trim() || "Guest Customer";
-            const text = document.getElementById('rev-text').value.trim();
-            if(!text) {
-                alert(currentLang === 'ar' ? "يرجى كتابة تعليقك قبل الإرسال." : "Please write a comment before submitting.");
-                return; 
-            }
+        function submitReview() {
+            const name = document.getElementById('rev-name').value || "Guest";
+            const text = document.getElementById('rev-text').value;
+            if(!text) return; 
             
-            // حفظ التقييم محلياً لعرضه مباشرة للعميل
             if(!reviews[currentItem.id]) reviews[currentItem.id] = [];
+            
             reviews[currentItem.id].unshift({ 
                 name: name, 
                 text: text, 
                 star: selStar, 
                 date: new Date().toLocaleDateString() 
             });
+            
             localStorage.setItem('ashta_reviews', JSON.stringify(reviews));
             document.getElementById('rev-text').value = '';
+            
             loadReviews(); 
-
-            // تجهيز الرسالة وتحويلها للواتساب
-            let reviewMsg = currentLang === 'ar' ? `*تقييم جديد وملاحظات الجودة* 🌟\n\n` : `*New Review & Quality Feedback* 🌟\n\n`;
-            reviewMsg += currentLang === 'ar' ? `*المنتج:* ${currentItem.name}\n` : `*Product:* ${currentItem.name}\n`;
-            reviewMsg += currentLang === 'ar' ? `*اسم العميل:* ${name}\n` : `*Customer Name:* ${name}\n`;
-            reviewMsg += currentLang === 'ar' ? `*التقييم:* ${selStar} من 5 نجوم\n` : `*Rating:* ${selStar} out of 5 Stars\n`;
-            reviewMsg += currentLang === 'ar' ? `*التعليق:* ${text}\n\n` : `*Feedback:* ${text}\n\n`;
-            reviewMsg += currentLang === 'ar' ? `شكراً لمساعدتنا في تحسين جودة طعامنا!` : `Thank you for helping us improve our food quality!`;
-
-            const waUrl = `https://wa.me/905376262192?text=${encodeURIComponent(reviewMsg)}`;
-            window.open(waUrl, '_blank');
         }
 
         function loadReviews() {
@@ -1670,9 +1587,6 @@
             }
         }
 
-        // =========================================
-        // السلة وإتمام الطلب عبر الواتساب
-        // =========================================
         function showToast() {
             const toast = document.getElementById("toast");
             toast.innerText = i18n[currentLang].toastMsg;
@@ -1760,6 +1674,7 @@
             }
         }
 
+        // تم تحديث رقم الواتساب الخاص بالطلبات (الفاتورة) هنا فقط
         function checkoutWA() {
             if(cart.length === 0) return alert(currentLang === 'ar' ? "السلة فارغة!" : "Cart is empty!");
             
@@ -1787,7 +1702,8 @@
             msg += `*Total Due: $${(sub + 1 - discountVal).toFixed(2)}*\n`;
             msg += `----------------\nPayment: Cash on Delivery.`;
 
-            const url = `https://wa.me/905376262192?text=${encodeURIComponent(msg)}`;
+            // الرقم اللبناني الجديد للطلبات
+            const url = `https://wa.me/96181488315?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank');
         }
     </script>
