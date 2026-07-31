@@ -133,7 +133,7 @@
             position: relative;
             margin-top: 60px; 
             padding: 50px 5% 40px;
-            /* هذه صورة الخلفية الوحيدة التي تسحب من الإنترنت لإعطاء طابع الفخامة */
+            /* صورة خلفية الواجهة (من الإنترنت لتبقى فخمة) */
             background-image: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed; 
             background-size: cover; 
@@ -146,7 +146,6 @@
             text-align: center;
         }
 
-        /* الشعار المستدير الأنيق */
         .hero-logo-circle {
             width: 90px;
             height: 90px;
@@ -166,7 +165,6 @@
             border-radius: 50%;
         }
 
-        /* شارة الحالة النابضة */
         .status-badge {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -213,7 +211,6 @@
             text-transform: uppercase;
         }
 
-        /* شريط المعلومات الزجاجي المدمج */
         .hero-info-glass {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
@@ -245,7 +242,7 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* أزرار التواصل (مرتبطة حصرياً بالرقم اللبناني) */
+        /* أزرار التواصل اللبنانية */
         .hero-contact-row {
             display: flex;
             gap: 15px;
@@ -349,7 +346,7 @@
         }
 
         /* =========================================
-           أقسام المنيو
+           أقسام المنيو (التبويبات العلوية)
            ========================================= */
         .categories-wrapper { 
             padding: 15px 5%; 
@@ -852,7 +849,6 @@
             font-size: 12px; 
         }
 
-        /* إشعار (تمت الإضافة للسلة) */
         #toast {
             visibility: hidden; 
             min-width: 250px; 
@@ -940,12 +936,10 @@
 
     <!-- الواجهة الرئيسية الأنيقة (Sleek Hero) -->
     <section class="hero" id="hero-bg">
-        <!-- الشعار الدائري الأنيق -->
         <div class="hero-logo-circle">
             <img src="logo-ashta.png" alt="Ashta W 3asal Logo">
         </div>
         
-        <!-- حالة المطعم النابضة -->
         <div class="status-badge">
             <div class="pulse-dot"></div>
             <span id="t-status">OPEN NOW</span> <span>(10 AM - 11 PM)</span>
@@ -954,7 +948,6 @@
         <h1 class="hero-title"><span>Ashta</span> W 3asal</h1>
         <p class="hero-subtitle" id="t-subtitle">Premium Quality, Authentic Taste</p>
         
-        <!-- شريط المعلومات الزجاجي المدمج بديل المربعات -->
         <div class="hero-info-glass">
             <div class="info-stat"><i class="fas fa-motorcycle"></i> <span id="t-time">30-45 Mins</span></div>
             <div class="info-divider"></div>
@@ -963,7 +956,7 @@
             <div class="info-stat"><i class="fas fa-receipt"></i> <span id="t-fee">Fee: $1</span></div>
         </div>
         
-        <!-- أزرار التواصل (تم مسح التركي واستبداله بالرقم اللبناني بالكامل) -->
+        <!-- الأرقام اللبنانية -->
         <div class="hero-contact-row">
             <a href="https://wa.me/96181488315" target="_blank" class="h-btn"><i class="fab fa-whatsapp"></i></a>
             <a href="tel:+96181488315" class="h-btn"><i class="fas fa-phone"></i></a>
@@ -971,12 +964,10 @@
         </div>
     </section>
 
-    <!-- شريط العروض المتحرك -->
     <div class="offers-banner">
         <div class="offers-marquee">🍯 Free Delivery on orders above $20! Use code: ASHTA20 | 🔥 10% Off on all Platters this weekend!</div>
     </div>
 
-    <!-- أزرار التحكم (البحث والفلاتر) -->
     <div class="controls-section">
         <div class="search-bar">
             <i class="fas fa-search" style="color: var(--text-muted); margin-top: 3px;"></i>
@@ -992,13 +983,9 @@
         </div>
     </div>
 
-    <!-- حاوية التبويبات (الأقسام) -->
     <div class="categories-wrapper" id="cat-container"></div>
-    
-    <!-- حاوية عرض المنيو بالكامل -->
     <div class="menu-container" id="menu-container"></div>
 
-    <!-- النافذة المنبثقة لعرض تفاصيل وتقييمات المنتج -->
     <div class="modal" id="item-modal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></button>
@@ -1080,7 +1067,6 @@
                 </div>
                 <div class="input-group">
                     <label id="t-phone">Phone Number</label>
-                    <!-- تم تعديل الرقم المرجعي في صندوق رقم الهاتف -->
                     <input type="text" id="c-phone" placeholder="+961 81 488 315">
                 </div>
                 <div class="input-group">
@@ -1128,13 +1114,8 @@
 
     <!-- أكواد الجافاسكربت (JavaScript) -->
     <script>
-        // =========================================
-        // قاعدة البيانات
-        // =========================================
-        
         const categories = ["Shawarma", "Pizza", "Pasta", "Kids Menu", "Platters", "Sandwiches", "Special Sandwiches", "Starters", "Salads", "Breakfast & Baguettes", "Potato Sandwiches", "Burger"];
         
-        // الإضافات
         const shawarmaAddons = [{name: "Extra Toum (Garlic)", price: 0.50}, {name: "Extra Pickles", price: 0.25}, {name: "Extra Meat/Chicken", price: 1.50}, {name: "Extra Cheese", price: 1.00}];
         const pizzaAddons = [{name: "Extra Cheese", price: 1.50}, {name: "Extra Pepperoni", price: 1.50}, {name: "Extra Veggies", price: 1.00}];
         const pastaAddons = [{name: "Extra Parmesan", price: 1.00}, {name: "Extra Chicken", price: 2.00}, {name: "Extra Mushroom", price: 1.00}];
@@ -1142,9 +1123,7 @@
         const platterAddons = [{name: "Extra Bread", price: 0.50}, {name: "Extra Garlic/Sauce", price: 0.50}];
         const saladAddons = [{name: "Extra Dressing", price: 0.50}, {name: "Grilled Chicken", price: 2.00}];
 
-        // مصفوفة الأصناف 
         const rawItems = [
-            // Shawarma
             { id: 1, cat: "Shawarma", name: "Sandwich Shawarma Djej", price: 3.50, desc: "Classic chicken shawarma wrap.", addons: shawarmaAddons },
             { id: 2, cat: "Shawarma", name: "Sandwich Shawarma Lahme", price: 4.00, desc: "Classic meat shawarma wrap.", addons: shawarmaAddons },
             { id: 3, cat: "Shawarma", name: "Sand Shaw Djej w Jebne", price: 4.00, desc: "Chicken shawarma with melted cheese.", addons: shawarmaAddons },
@@ -1156,7 +1135,6 @@
             { id: 9, cat: "Shawarma", name: "Plat Shawarma Mix", price: 7.00, desc: "Mix shawarma platter.", addons: platterAddons },
             { id: 10, cat: "Shawarma", name: "Shawarma Djej 3al Batata", price: 5.00, desc: "Chicken shawarma served over fries.", addons: [{name: "Extra Cheese", price: 1.00}] },
             { id: 11, cat: "Shawarma", name: "Shawarma Lahme 3al Batata", price: 6.20, desc: "Meat shawarma served over fries.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            // Pizza
             { id: 12, cat: "Pizza", name: "Vegetarian Pizza", price: 6.00, desc: "Tomato, olive, sweet pepper, mushroom, cheese.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 6.00, default: true}, {name: "Medium (M)", price: 7.50}, {name: "Large (L)", price: 10.00}, {name: "Family (F)", price: 13.00}] },
             { id: 13, cat: "Pizza", name: "Margarita Pizza", price: 5.00, desc: "Sauce, cheese, basil.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 5.00, default: true}, {name: "Medium (M)", price: 6.50}, {name: "Large (L)", price: 9.00}, {name: "Family (F)", price: 12.00}] },
             { id: 14, cat: "Pizza", name: "Lebanese Pizza", price: 6.50, desc: "Cheese, mushroom, janbon, sweet pepper, olive.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 6.50, default: true}, {name: "Medium (M)", price: 8.50}, {name: "Large (L)", price: 11.00}, {name: "Family (F)", price: 15.00}] },
@@ -1168,7 +1146,6 @@
             { id: 20, cat: "Pizza", name: "Barbecue Pizza", price: 8.00, desc: "BBQ sauce base.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
             { id: 21, cat: "Pizza", name: "Chawarma Pizza", price: 8.00, desc: "Topped with shawarma.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
             { id: 22, cat: "Pizza", name: "Meat Lovers Pizza", price: 8.00, desc: "Loaded with meat.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
-            // Pasta
             { id: 23, cat: "Pasta", name: "Chicken Fettuccine Alfredo", price: 10.00, desc: "Cheese, spaghetti, mushroom, chicken.", addons: pastaAddons },
             { id: 24, cat: "Pasta", name: "Fettuccine Alfredo", price: 7.50, desc: "Cheese, spaghetti, mushroom.", addons: pastaAddons },
             { id: 25, cat: "Pasta", name: "Penne Arrabiata", price: 6.00, desc: "Basil, tomato sauce, cheese, olive.", addons: pastaAddons },
@@ -1177,11 +1154,9 @@
             { id: 28, cat: "Pasta", name: "Penne Rose", price: 8.00, desc: "Pink sauce pasta.", addons: pastaAddons },
             { id: 29, cat: "Pasta", name: "Shrimp Broccoli", price: 12.50, desc: "Pasta with shrimp and broccoli.", addons: pastaAddons },
             { id: 30, cat: "Pasta", name: "Barbecue Pasta", price: 8.00, desc: "Pasta with BBQ sauce.", addons: pastaAddons },
-            // Kids Menu
             { id: 31, cat: "Kids Menu", name: "Crispy", price: 6.00, desc: "2 pcs crispy, fries, salad, Pepsi.", addons: [] },
             { id: 32, cat: "Kids Menu", name: "Nuggets", price: 6.00, desc: "4 pcs nuggets, fries, salad, Pepsi.", addons: [] },
             { id: 33, cat: "Kids Menu", name: "Mix Meal", price: 7.50, desc: "2 crispy + 2 nuggets + mini pizza + fries + Pepsi.", addons: [] },
-            // Platters
             { id: 34, cat: "Platters", name: "Crispy Platter", price: 11.00, desc: "Chicken, salad, potato, garlic.", addons: platterAddons },
             { id: 35, cat: "Platters", name: "Nuggets Platter", price: 9.00, desc: "10 pcs nuggets, fries, salad, sauce cocktail.", addons: platterAddons },
             { id: 36, cat: "Platters", name: "Grilled Deboned Chicken", price: 12.00, desc: "Grilled chicken, salad, potato, garlic.", addons: platterAddons },
@@ -1196,7 +1171,6 @@
             { id: 45, cat: "Platters", name: "Cordon Bleu", price: 13.50, desc: "Stuffed chicken breast.", addons: platterAddons },
             { id: 46, cat: "Platters", name: "Crispy 1kg", price: 22.00, desc: "1 kg of crispy chicken.", addons: platterAddons },
             { id: 47, cat: "Platters", name: "Taouk 1kg", price: 22.00, desc: "1 kg of Taouk.", addons: platterAddons },
-            // Sandwiches
             { id: 48, cat: "Sandwiches", name: "Batata", price: 2.25, desc: "French fries sandwich.", addons: [] },
             { id: 49, cat: "Sandwiches", name: "Taouk", price: 3.80, desc: "Taouk sandwich.", addons: [{name: "Extra Cheese", price: 1.00}] },
             { id: 50, cat: "Sandwiches", name: "Fransisco", price: 4.50, desc: "Francisco sandwich.", addons: [{name: "Extra Cheese", price: 1.00}] },
@@ -1210,11 +1184,9 @@
             { id: 58, cat: "Sandwiches", name: "Shrimp", price: 5.00, desc: "Shrimp sandwich.", addons: [] },
             { id: 59, cat: "Sandwiches", name: "Crab", price: 4.50, desc: "Crab sandwich.", addons: [] },
             { id: 60, cat: "Sandwiches", name: "Samke Hara", price: 5.00, desc: "Spicy fish sandwich.", addons: [] },
-            // Special Sandwiches
             { id: 61, cat: "Special Sandwiches", name: "Turkey Chawarma Chicken", price: 8.00, desc: "Special Turkey Chawarma Chicken.", addons: [] },
             { id: 62, cat: "Special Sandwiches", name: "Turkey Chawarma Beef", price: 8.50, desc: "Special Turkey Chawarma Beef.", addons: [] },
             { id: 63, cat: "Special Sandwiches", name: "Honey Mustard Chicken", price: 5.00, desc: "Chicken with honey mustard.", addons: [] },
-            // Starters
             { id: 64, cat: "Starters", name: "Nachos", price: 5.30, desc: "Crispy nachos.", addons: [{name: "Extra Dip", price: 0.50}] },
             { id: 65, cat: "Starters", name: "Chicken Quesadillas", price: 7.50, desc: "Chicken Quesadillas.", addons: [] },
             { id: 66, cat: "Starters", name: "Wavy Potato", price: 2.00, desc: "Wavy potato.", addons: [] },
@@ -1235,7 +1207,6 @@
             { id: 81, cat: "Starters", name: "Mix Platter", price: 10.00, desc: "Mix platter.", addons: [] },
             { id: 82, cat: "Starters", name: "Mozzarella Stick", price: 6.00, desc: "Mozzarella sticks.", addons: [] },
             { id: 83, cat: "Starters", name: "Fish Finger", price: 5.00, desc: "Fish fingers.", addons: [] },
-            // Salads
             { id: 84, cat: "Salads", name: "Ceasar Salad", price: 4.50, desc: "Lettuce, toast, cheese.", addons: saladAddons },
             { id: 85, cat: "Salads", name: "Chicken Ceasar Salad", price: 6.50, desc: "Lettuce, chicken, toast, cheese.", addons: saladAddons },
             { id: 86, cat: "Salads", name: "Crab Salad", price: 6.50, desc: "Lettuce, avocat, crab, corn, cherry tomato.", addons: saladAddons },
@@ -1245,7 +1216,6 @@
             { id: 90, cat: "Salads", name: "Greek Salad", price: 5.50, desc: "Lettuce, tomato, cucumber, sweet pepper, feta cheese, olive, onion.", addons: saladAddons },
             { id: 91, cat: "Salads", name: "Season Salad", price: 3.00, desc: "Lettuce, tomato, cucumber.", addons: saladAddons },
             { id: 92, cat: "Salads", name: "Panache Salad", price: 8.00, desc: "Panache salad.", addons: saladAddons },
-            // Breakfast & Baguettes
             { id: 93, cat: "Breakfast & Baguettes", name: "Labneh Dish", price: 3.50, desc: "Labneh dish.", addons: [{name: "Extra Bread", price: 0.50}] },
             { id: 94, cat: "Breakfast & Baguettes", name: "Vegetables Dish", price: 1.50, desc: "Vegetables dish.", addons: [] },
             { id: 95, cat: "Breakfast & Baguettes", name: "Labneh + Vegetables", price: 3.50, desc: "Baguette labneh and veg.", addons: [{name: "Toasted", price: 0.00}] },
@@ -1254,13 +1224,11 @@
             { id: 98, cat: "Breakfast & Baguettes", name: "Banana & Chocolate", price: 3.00, desc: "Sweet baguette.", addons: [{name: "Toasted", price: 0.00}] },
             { id: 99, cat: "Breakfast & Baguettes", name: "Jebne w Habash", price: 3.25, desc: "Baguette jebne and habash.", addons: [{name: "Toasted", price: 0.00}] },
             { id: 100, cat: "Breakfast & Baguettes", name: "Ach2awan w Habach", price: 4.00, desc: "Baguette achkawan and habach.", addons: [{name: "Toasted", price: 0.00}] },
-            // Potato Sandwiches
             { id: 101, cat: "Potato Sandwiches", name: "Potato + Vegetables", price: 7.50, desc: "Baked potato with veg.", addons: [{name: "Extra Cheese", price: 1.00}] },
             { id: 102, cat: "Potato Sandwiches", name: "Potato + Habash", price: 8.00, desc: "Baked potato with habash.", addons: [{name: "Extra Cheese", price: 1.00}] },
             { id: 103, cat: "Potato Sandwiches", name: "Potato + Janbon", price: 8.00, desc: "Baked potato with janbon.", addons: [{name: "Extra Cheese", price: 1.00}] },
             { id: 104, cat: "Potato Sandwiches", name: "Potato + Hotdog", price: 8.00, desc: "Baked potato with hotdog.", addons: [{name: "Extra Cheese", price: 1.00}] },
             { id: 105, cat: "Potato Sandwiches", name: "Potato + Mortadella", price: 8.00, desc: "Baked potato with mortadella.", addons: [{name: "Extra Cheese", price: 1.00}] },
-            // Burger
             { id: 106, cat: "Burger", name: "Cheese Burger", price: 8.00, desc: "Cheese burger.", addons: burgerAddons },
             { id: 107, cat: "Burger", name: "Cheesy Burger", price: 8.50, desc: "Cheesy burger.", addons: burgerAddons },
             { id: 108, cat: "Burger", name: "Hamburger", price: 7.00, desc: "Classic hamburger.", addons: burgerAddons },
@@ -1271,7 +1239,6 @@
             { id: 113, cat: "Burger", name: "Crispy Burger", price: 7.00, desc: "Crispy burger.", addons: burgerAddons }
         ];
 
-        // سحب الصور من المجلد المحلي بناءً على طلبك
         const menuData = rawItems.map(item => {
             let tags = [];
             if([1, 7, 12, 106, 34, 48].includes(item.id)) tags.push('bestseller');
@@ -1280,8 +1247,8 @@
             if([55, 60, 78].includes(item.id)) tags.push('spicy');
             if([46, 47, 9].includes(item.id)) tags.push('offer');
             
-            // الكود الآن يسحب فقط من ملفاتك المحلية (مثال: images/1.jpg)
-            let imgUrl = `./images/${item.id}.jpg`;
+            // التعديل السحري هنا: قراءة الصور كملفات منفصلة في نفس المجلد
+            let imgUrl = `${item.id}.jpg`;
 
             return {
                 ...item,
@@ -1436,8 +1403,8 @@
                             <button class="fav-btn ${isFav?'active':''}" onclick="event.stopPropagation(); toggleFav(${item.id}, this)"><i class="fas fa-heart"></i></button>
                             
                             <div class="card-img-wrap">
-                                <!-- هنا أضفنا خاصية onerror، إذا لم يجِد ملف الصورة سيضع صورة احتياطية بدل ظهور شاشة بيضاء مكسورة -->
-                                <img src="${item.img}" class="card-img" loading="lazy" alt="${item.name}" onerror="this.onerror=null; this.src='./logo-ashta.png';">
+                                <!-- الحماية: إذا كانت الصورة المطلوبة غير موجودة سيظهر الشعار مؤقتاً لحماية التصميم -->
+                                <img src="${item.img}" class="card-img" loading="lazy" alt="${item.name}" onerror="this.onerror=null; this.src='logo-ashta.png';">
                             </div>
                             
                             <div class="card-body">
@@ -1469,10 +1436,7 @@
             switchTab('details');
 
             document.getElementById('m-img').src = currentItem.img;
-            // حماية للنافذة المنبثقة إذا كانت الصورة مفقودة
-            document.getElementById('m-img').onerror = function() {
-                this.onerror=null; this.src='./logo-ashta.png';
-            };
+            document.getElementById('m-img').onerror = function() { this.onerror=null; this.src='logo-ashta.png'; };
 
             document.getElementById('m-title').innerText = currentItem.name;
             document.getElementById('m-rate').innerText = currentItem.rate;
