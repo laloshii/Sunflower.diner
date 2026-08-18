@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashta W 3asal - Premium Delivery</title>
+    <title>Lana's Food - Premium Delivery</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #E5A937;
-            --primary-dark: #C68B22;
+            /* تغيير الهوية البصرية إلى اللون الأحمر/القرمزي الدافئ الجذاب للأكل */
+            --primary: #E63946;
+            --primary-dark: #D62828;
             --bg-color: #FFFDF7;
             --surface: #FFFFFF;
             --text-main: #2C1E16;
@@ -54,7 +55,7 @@
         [data-theme="dark"] nav { background: rgba(30, 30, 30, 0.95); }
 
         .nav-logo { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 12px; text-decoration: none; line-height: 1.1; }
-        .nav-logo img { width: 40px; height: 40px; object-fit: contain; border-radius: 50%; border: 1px solid var(--border); background: #fff; }
+        .nav-logo img { width: 40px; height: 40px; object-fit: cover; border-radius: 50%; border: 1px solid var(--border); background: #fff; }
         .nav-actions { display: flex; gap: 12px; align-items: center; }
         .icon-btn { background: var(--bg-color); border: 1px solid var(--border); font-size: 16px; color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; }
         .icon-btn:hover { color: var(--primary); border-color: var(--primary); }
@@ -62,13 +63,14 @@
 
         .hero {
             position: relative; margin-top: 60px; padding: 50px 5% 40px;
-            background-image: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80');
+            /* تم تغيير خلفية الهيرو لتناسب المطاعم بشكل أجمل */
+            background-image: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed; background-size: cover; background-position: center;
             display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; text-align: center;
         }
 
         .hero-logo-circle { width: 90px; height: 90px; background: #fff; border-radius: 50%; padding: 4px; margin-bottom: 20px; box-shadow: 0 5px 25px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; }
-        .hero-logo-circle img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+        .hero-logo-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
         .status-badge {
             background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); padding: 6px 16px; border-radius: 20px;
@@ -154,7 +156,7 @@
         .custom-section { margin-bottom: 15px; }
         .custom-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--text-main); display: flex; align-items: center; gap: 8px;}
         .option-row { display: flex; justify-content: space-between; padding: 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; cursor: pointer; font-size: 14px; }
-        .option-row.active { border-color: var(--primary); background: rgba(229, 169, 55, 0.05); }
+        .option-row.active { border-color: var(--primary); background: rgba(230, 57, 70, 0.05); }
 
         #tab-reviews { display: none; padding: 0 20px; }
         .review-box { border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px; background: var(--bg-color); }
@@ -192,7 +194,7 @@
         .tot-row.grand { font-size: 18px; font-weight: 700; color: var(--text-main); margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px; }
         .btn-whatsapp { width: 100%; background: #25D366; color: #fff; border: none; padding: 15px; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px;}
 
-        .float-cart { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(150%); background: var(--primary); color: #fff; padding: 12px 25px; border-radius: 30px; display: flex; align-items: center; gap: 15px; z-index: 900; cursor: pointer; font-weight: 700; font-size: 15px; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 5px 20px rgba(229, 169, 55, 0.4); white-space: nowrap; }
+        .float-cart { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(150%); background: var(--primary); color: #fff; padding: 12px 25px; border-radius: 30px; display: flex; align-items: center; gap: 15px; z-index: 900; cursor: pointer; font-weight: 700; font-size: 15px; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4); white-space: nowrap; }
         .float-cart.visible { transform: translateX(-50%) translateY(0); }
         .badge-count { background: #fff; color: var(--primary); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; }
 
@@ -229,7 +231,7 @@
     </script>
 
     <nav>
-        <a href="#" class="nav-logo" onclick="window.scrollTo(0,0)"><img src="logo-ashta.png" alt="Logo">Ashta W 3asal</a>
+        <a href="#" class="nav-logo" onclick="window.scrollTo(0,0)"><img src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?auto=format&fit=crop&w=150&q=80" alt="Logo">Lana's Food</a>
         <div class="nav-actions">
             <button class="icon-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="theme-icon"></i></button>
             <button class="icon-btn lang-toggle" onclick="toggleLang()" id="lang-btn">AR</button>
@@ -238,9 +240,9 @@
     </nav>
 
     <section class="hero" id="hero-bg">
-        <div class="hero-logo-circle"><img src="logo-ashta.png" alt="Ashta W 3asal Logo"></div>
+        <div class="hero-logo-circle"><img src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?auto=format&fit=crop&w=150&q=80" alt="Lana's Food Logo"></div>
         <div class="status-badge"><div class="pulse-dot"></div><span id="t-status">OPEN NOW</span> <span>(10 AM - 11 PM)</span></div>
-        <h1 class="hero-title"><span>Ashta</span> W 3asal</h1>
+        <h1 class="hero-title"><span>Lana's</span> Food</h1>
         <p class="hero-subtitle" id="t-subtitle">Premium Quality, Authentic Taste</p>
         <div class="hero-info-glass">
             <div class="info-stat"><i class="fas fa-motorcycle"></i> <span id="t-time">30-45 Mins</span></div>
@@ -250,13 +252,13 @@
             <div class="info-stat"><i class="fas fa-receipt"></i> <span id="t-fee">Fee: $1</span></div>
         </div>
         <div class="hero-contact-row">
-            <a href="https://wa.me/96181488315" target="_blank" class="h-btn"><i class="fab fa-whatsapp"></i></a>
-            <a href="tel:+96181488315" class="h-btn"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/905376262192" target="_blank" class="h-btn"><i class="fab fa-whatsapp"></i></a>
+            <a href="tel:+905376262192" class="h-btn"><i class="fas fa-phone"></i></a>
             <a href="#" class="h-btn"><i class="fas fa-map-marker-alt"></i></a>
         </div>
     </section>
 
-    <div class="offers-banner"><div class="offers-marquee">🍯 Free Delivery on orders above $20! Use code: ASHTA20 | 🔥 10% Off on all Platters this weekend!</div></div>
+    <div class="offers-banner"><div class="offers-marquee">🍯 Free Delivery on orders above $20! Use code: LANA20 | 🔥 10% Off on all Platters this weekend!</div></div>
 
     <div class="controls-section">
         <div class="search-bar"><i class="fas fa-search" style="color: var(--text-muted); margin-top: 3px;"></i><input type="text" id="searchInput" placeholder="Search menu..." onkeyup="filterMenu()"></div>
@@ -312,9 +314,9 @@
             <div id="cart-items"></div>
             <div class="checkout-form">
                 <div class="input-group"><label id="t-name">Full Name</label><input type="text" id="c-name" placeholder="Name"></div>
-                <div class="input-group"><label id="t-phone">Phone Number</label><input type="text" id="c-phone" placeholder="+961 81 488 315"></div>
+                <div class="input-group"><label id="t-phone">Phone Number</label><input type="text" id="c-phone" placeholder="+90 537 626 21 92"></div>
                 <div class="input-group"><label id="t-address">Full Address</label><textarea id="c-address" rows="2" placeholder="Street, Building, Door..."></textarea></div>
-                <div class="input-group"><label>Discount Code (Try ASHTA20)</label><div style="display:flex; gap:10px;"><input type="text" id="c-coupon" placeholder="Code"><button onclick="applyCoupon()" style="background:var(--primary); color:#fff; border:none; padding:0 15px; border-radius:8px; cursor:pointer; font-weight:bold;">Apply</button></div></div>
+                <div class="input-group"><label>Discount Code (Try LANA20)</label><div style="display:flex; gap:10px;"><input type="text" id="c-coupon" placeholder="Code"><button onclick="applyCoupon()" style="background:var(--primary); color:#fff; border:none; padding:0 15px; border-radius:8px; cursor:pointer; font-weight:bold;">Apply</button></div></div>
             </div>
         </div>
         <div class="totals">
@@ -339,11 +341,6 @@
         const platterAddons = [{name: "Extra Bread", price: 0.50}, {name: "Extra Garlic/Sauce", price: 0.50}];
         const saladAddons = [{name: "Extra Dressing", price: 0.50}, {name: "Grilled Chicken", price: 2.00}];
 
-        /*
-           التصحيح السحري هنا:
-           قمنا بتعديل قيم الـ id لتتطابق بالضبط مع أسماء الصور الـ 146 الموجودة لديك، 
-           بحيث قمنا بقفز أرقام الأحجام المحذوفة للبيتزا.
-        */
         const rawItems = [
             { id: 1, cat: "Shawarma", name: "Sandwich Shawarma Djej", price: 3.50, desc: "Classic chicken shawarma wrap.", addons: shawarmaAddons },
             { id: 2, cat: "Shawarma", name: "Sandwich Shawarma Lahme", price: 4.00, desc: "Classic meat shawarma wrap.", addons: shawarmaAddons },
@@ -357,7 +354,6 @@
             { id: 10, cat: "Shawarma", name: "Shawarma Djej 3al Batata", price: 5.00, desc: "Chicken shawarma served over fries.", addons: [{name: "Extra Cheese", price: 1.00}] },
             { id: 11, cat: "Shawarma", name: "Shawarma Lahme 3al Batata", price: 6.20, desc: "Meat shawarma served over fries.", addons: [{name: "Extra Cheese", price: 1.00}] },
             
-            // قفزات البيتزا لتعويض الأحجام 
             { id: 12, cat: "Pizza", name: "Vegetarian Pizza", price: 6.00, desc: "Tomato, olive, sweet pepper, mushroom, cheese.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 6.00, default: true}, {name: "Medium (M)", price: 7.50}, {name: "Large (L)", price: 10.00}, {name: "Family (F)", price: 13.00}] },
             { id: 16, cat: "Pizza", name: "Margarita Pizza", price: 5.00, desc: "Sauce, cheese, basil.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 5.00, default: true}, {name: "Medium (M)", price: 6.50}, {name: "Large (L)", price: 9.00}, {name: "Family (F)", price: 12.00}] },
             { id: 20, cat: "Pizza", name: "Lebanese Pizza", price: 6.50, desc: "Cheese, mushroom, janbon, sweet pepper, olive.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 6.50, default: true}, {name: "Medium (M)", price: 8.50}, {name: "Large (L)", price: 11.00}, {name: "Family (F)", price: 15.00}] },
@@ -370,7 +366,6 @@
             { id: 48, cat: "Pizza", name: "Chawarma Pizza", price: 8.00, desc: "Topped with shawarma.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
             { id: 52, cat: "Pizza", name: "Meat Lovers Pizza", price: 8.00, desc: "Loaded with meat.", addons: pizzaAddons, variants: [{name: "Small (S)", price: 8.00, default: true}, {name: "Medium (M)", price: 10.00}, {name: "Large (L)", price: 13.50}, {name: "Family (F)", price: 16.00}] },
             
-            // باقي القوائم مُزاحة 33 خطوة لتطابق صورك بالضبط
             { id: 56, cat: "Pasta", name: "Chicken Fettuccine Alfredo", price: 10.00, desc: "Cheese, spaghetti, mushroom, chicken.", addons: pastaAddons },
             { id: 57, cat: "Pasta", name: "Fettuccine Alfredo", price: 7.50, desc: "Cheese, spaghetti, mushroom.", addons: pastaAddons },
             { id: 58, cat: "Pasta", name: "Penne Arrabiata", price: 6.00, desc: "Basil, tomato sauce, cheese, olive.", addons: pastaAddons },
@@ -481,7 +476,6 @@
             if([55, 60, 78].includes(item.id)) tags.push('spicy');
             if([46, 47, 9].includes(item.id)) tags.push('offer');
             
-            // قراءة الصور كملفات منفصلة في نفس المجلد
             let imgUrl = `${item.id}.jpg`;
 
             return {
@@ -494,9 +488,10 @@
             };
         });
 
-        let cart = JSON.parse(localStorage.getItem('ashta_cart')) || [];
-        let favs = JSON.parse(localStorage.getItem('ashta_favs')) || [];
-        let reviews = JSON.parse(localStorage.getItem('ashta_reviews')) || {};
+        // تم تغيير المفاتيح لتبدأ بـ lanas_ لضمان قاعدة بيانات نظيفة
+        let cart = JSON.parse(localStorage.getItem('lanas_cart')) || [];
+        let favs = JSON.parse(localStorage.getItem('lanas_favs')) || [];
+        let reviews = JSON.parse(localStorage.getItem('lanas_reviews')) || {};
         
         let activeTag = 'all';
         let currentItem = null;
@@ -637,7 +632,7 @@
                             <button class="fav-btn ${isFav?'active':''}" onclick="event.stopPropagation(); toggleFav(${item.id}, this)"><i class="fas fa-heart"></i></button>
                             
                             <div class="card-img-wrap">
-                                <img src="${item.img}" class="card-img" loading="lazy" alt="${item.name}" onerror="this.onerror=null; this.src='logo-ashta.png';">
+                                <img src="${item.img}" class="card-img" loading="lazy" alt="${item.name}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1495195134817-aeb325a55b65?auto=format&fit=crop&w=150&q=80';">
                             </div>
                             
                             <div class="card-body">
@@ -669,7 +664,7 @@
             switchTab('details');
 
             document.getElementById('m-img').src = currentItem.img;
-            document.getElementById('m-img').onerror = function() { this.onerror=null; this.src='logo-ashta.png'; };
+            document.getElementById('m-img').onerror = function() { this.onerror=null; this.src='https://images.unsplash.com/photo-1495195134817-aeb325a55b65?auto=format&fit=crop&w=150&q=80'; };
 
             document.getElementById('m-title').innerText = currentItem.name;
             document.getElementById('m-rate').innerText = currentItem.rate;
@@ -774,7 +769,7 @@
                 favs.push(id); 
                 btn.classList.add('active'); 
             }
-            localStorage.setItem('ashta_favs', JSON.stringify(favs));
+            localStorage.setItem('lanas_favs', JSON.stringify(favs));
         }
 
         let selStar = 5;
@@ -801,7 +796,7 @@
                 date: new Date().toLocaleDateString() 
             });
             
-            localStorage.setItem('ashta_reviews', JSON.stringify(reviews));
+            localStorage.setItem('lanas_reviews', JSON.stringify(reviews));
             document.getElementById('rev-text').value = '';
             
             loadReviews(); 
@@ -853,7 +848,7 @@
         }
 
         function saveCart() { 
-            localStorage.setItem('ashta_cart', JSON.stringify(cart)); 
+            localStorage.setItem('lanas_cart', JSON.stringify(cart)); 
             updateCartUI(); 
         }
 
@@ -902,7 +897,7 @@
 
         function applyCoupon() {
             const code = document.getElementById('c-coupon').value.toUpperCase();
-            if(code === "ASHTA20" && cart.length > 0) {
+            if(code === "LANA20" && cart.length > 0) {
                 const sub = cart.reduce((sum, c) => sum + c.tot, 0);
                 discountVal = sub * 0.2; 
                 document.getElementById('disc-row').style.display = 'flex';
@@ -922,7 +917,7 @@
             
             if(!name || !addr) return alert(currentLang === 'ar' ? "يرجى ملء الاسم والعنوان!" : "Please fill Name and Address");
 
-            let msg = `*New Order - Ashta W 3asal* 🍯\n\n`;
+            let msg = `*New Order - Lana's Food* 🍔\n\n`;
             msg += `*Name:* ${name}\n*Phone:* ${phone}\n*Address:* ${addr}\n\n*Items:*\n`;
             
             cart.forEach(c => {
@@ -940,7 +935,7 @@
             msg += `*Total Due: $${(sub + 1 - discountVal).toFixed(2)}*\n`;
             msg += `----------------\nPayment: Cash on Delivery.`;
 
-            const url = `https://wa.me/96181488315?text=${encodeURIComponent(msg)}`;
+            const url = `https://wa.me/905376262192?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank');
         }
     </script>
