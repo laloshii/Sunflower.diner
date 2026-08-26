@@ -107,24 +107,26 @@
             line-height: 1.1; 
         }
         
-        /* تعديل الشعار الصغير في الـ Nav ليعبئ الفراغ */
+        /* الحاوية الدائرية للشعار في شريط التنقل */
         .nav-logo-wrap {
             width: 40px; 
             height: 40px; 
             border-radius: 50%; 
             overflow: hidden; 
             border: 1px solid var(--border); 
-            background: #fff; 
+            background: #000; /* خلفية متناسقة في حال تأخر التحميل */
             display: flex; 
             align-items: center; 
             justify-content: center;
         }
 
+        /* تعديلات عرض الصورة لتناسب الأبعاد الطولية الجديدة */
         .nav-logo-wrap img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; 
-            transform: scale(1.55); /* زوم داخلي لإخفاء الحواف */
+            object-fit: cover; /* يملأ العرض ويقص الطول الزائد */
+            object-position: center; /* يركز على منتصف الصورة */
+            transform: scale(1.08); /* تكبير طفيف جداً لإخفاء الحواف السوداء الجانبية */
         }
         
         .nav-actions { 
@@ -173,25 +175,28 @@
             text-align: center;
         }
 
-        /* تعديل الشعار الكبير ليعبئ الفراغ بالكامل */
+        /* حاوية الشعار الكبيرة */
         .hero-logo-circle { 
-            width: 100px; /* تم التكبير قليلاً ليكون أجمل */
+            width: 100px; 
             height: 100px; 
-            background: #fff; 
+            background: #000; 
             border-radius: 50%; 
+            padding: 0; 
             margin-bottom: 20px; 
             box-shadow: 0 5px 25px rgba(0,0,0,0.5); 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            overflow: hidden; /* ضروري لقص أي أطراف تخرج عن الدائرة */
+            overflow: hidden; 
         }
         
+        /* قص الصورة الجديدة بشكل مثالي */
         .hero-logo-circle img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* يملأ المساحة بالكامل */
-            transform: scale(1.55); /* هذا السطر سيجبر الصورة على التمدد وإخفاء الفراغات المحيطة بها */
+            object-fit: cover; /* يملأ الدائرة بالعرض ويقص السواد من الأعلى والأسفل */
+            object-position: center; 
+            transform: scale(1.08); /* تكبير بنسبة 8% لإخفاء الحدود الجانبية المتبقية */
         }
 
         .status-badge {
@@ -1097,7 +1102,8 @@
     <nav>
         <a href="#" class="nav-logo" onclick="window.scrollTo(0,0)">
             <div class="nav-logo-wrap">
-                <img src="Logo.jpg" alt="Logo">
+                <!-- تم تغيير اسم الصورة هنا -->
+                <img src="Logo1.jpg" alt="Logo">
             </div>
             Shawarma Station
         </a>
@@ -1110,7 +1116,8 @@
 
     <section class="hero" id="hero-bg">
         <div class="hero-logo-circle">
-            <img src="Logo.jpg" alt="Shawarma Station Logo">
+            <!-- تم تغيير اسم الصورة هنا -->
+            <img src="Logo1.jpg" alt="Shawarma Station Logo">
         </div>
         <div class="status-badge">
             <div class="pulse-dot"></div><span id="t-status">OPEN NOW</span> <span>(10 AM - 11 PM)</span>
@@ -1235,7 +1242,7 @@
                     <textarea id="c-address" rows="2" placeholder="Street, Building, Door..."></textarea>
                 </div>
                 <div class="input-group">
-                    <!-- تم تعديل كود الخصم في التلميحات هنا -->
+                    <!-- تم تعديل كود الخصم هنا -->
                     <label>Discount Code (Try SHAWARMA)</label>
                     <div style="display:flex; gap:10px;">
                         <input type="text" id="c-coupon" placeholder="Code">
@@ -1600,7 +1607,8 @@
                             <button class="fav-btn ${isFav?'active':''}" onclick="event.stopPropagation(); toggleFav(${item.id}, this)"><i class="fas fa-heart"></i></button>
                             
                             <div class="card-img-wrap">
-                                <img src="${item.img}" class="card-img" loading="lazy" alt="${item.name}" onerror="this.onerror=null; this.src='Logo.jpg';">
+                                <!-- تم تغيير اسم الصورة الاحتياطية هنا -->
+                                <img src="${item.img}" class="card-img" loading="lazy" alt="${item.name}" onerror="this.onerror=null; this.src='Logo1.jpg';">
                             </div>
                             
                             <div class="card-body">
@@ -1635,7 +1643,7 @@
             
             document.getElementById('m-img').onerror = function() { 
                 this.onerror = null; 
-                this.src = 'Logo.jpg'; 
+                this.src = 'Logo1.jpg'; /* تم تغيير الصورة هنا أيضًا */
             };
 
             document.getElementById('m-title').innerText = currentItem.name;
@@ -1868,7 +1876,7 @@
         }
 
         function applyCoupon() {
-            // تم التعديل إلى SHAWARMA
+            // كود الخصم هو SHAWARMA
             const code = document.getElementById('c-coupon').value.toUpperCase();
             if(code === "SHAWARMA" && cart.length > 0) {
                 const sub = cart.reduce((sum, c) => sum + c.tot, 0);
