@@ -107,14 +107,24 @@
             line-height: 1.1; 
         }
         
-        .nav-logo img { 
+        /* تعديل الشعار الصغير في الـ Nav ليعبئ الفراغ */
+        .nav-logo-wrap {
             width: 40px; 
             height: 40px; 
-            object-fit: cover; 
             border-radius: 50%; 
+            overflow: hidden; 
             border: 1px solid var(--border); 
             background: #fff; 
-            padding: 0;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+        }
+
+        .nav-logo-wrap img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transform: scale(1.55); /* زوم داخلي لإخفاء الحواف */
         }
         
         .nav-actions { 
@@ -163,26 +173,25 @@
             text-align: center;
         }
 
-        /* تعديل تعبئة الشعار هنا */
+        /* تعديل الشعار الكبير ليعبئ الفراغ بالكامل */
         .hero-logo-circle { 
-            width: 90px; 
-            height: 90px; 
+            width: 100px; /* تم التكبير قليلاً ليكون أجمل */
+            height: 100px; 
             background: #fff; 
             border-radius: 50%; 
-            padding: 0; /* تمت إزالة الـ padding لكي يعبئ الشعار كامل الدائرة */
             margin-bottom: 20px; 
             box-shadow: 0 5px 25px rgba(0,0,0,0.5); 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            overflow: hidden; /* يضمن عدم خروج الصورة عن الإطار الدائري */
+            overflow: hidden; /* ضروري لقص أي أطراف تخرج عن الدائرة */
         }
         
         .hero-logo-circle img { 
             width: 100%; 
             height: 100%; 
             object-fit: cover; /* يملأ المساحة بالكامل */
-            border-radius: 50%; 
+            transform: scale(1.55); /* هذا السطر سيجبر الصورة على التمدد وإخفاء الفراغات المحيطة بها */
         }
 
         .status-badge {
@@ -818,14 +827,13 @@
             justify-content: space-between;
         }
 
-        /* تعديل ظهور أزرار السلة للهاتف */
         .cart-sidebar { 
             position: fixed; 
             top: 0; 
             right: -100%; 
             width: 100%; 
             max-width: 400px; 
-            height: 100dvh; /* تم التعديل من 100vh إلى 100dvh ليتناسب مع شاشات الهواتف تماماً */
+            height: 100dvh; 
             background: var(--surface); 
             z-index: 2001; 
             box-shadow: -5px 0 30px rgba(0,0,0,0.1); 
@@ -934,7 +942,6 @@
         }
         
         .totals { 
-            /* تم زيادة الـ padding السفلي لرفع الزر للأعلى لكي لا يختفي تحت أزرار الهاتف */
             padding: 15px 20px 35px 20px; 
             background: var(--bg-color); 
             border-top: 1px solid var(--border); 
@@ -958,7 +965,6 @@
             padding-top: 10px; 
         }
         
-        /* لم يتم تغيير شكل زر الواتساب */
         .btn-whatsapp { 
             width: 100%; 
             background: #25D366; 
@@ -1090,7 +1096,10 @@
 
     <nav>
         <a href="#" class="nav-logo" onclick="window.scrollTo(0,0)">
-            <img src="Logo.jpg" alt="Logo">Shawarma Station
+            <div class="nav-logo-wrap">
+                <img src="Logo.jpg" alt="Logo">
+            </div>
+            Shawarma Station
         </a>
         <div class="nav-actions">
             <button class="icon-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="theme-icon"></i></button>
@@ -1122,8 +1131,9 @@
         </div>
     </section>
 
+    <!-- تم تعديل كود الخصم في الشريط الإعلاني -->
     <div class="offers-banner">
-        <div class="offers-marquee">🍯 Free Delivery on orders above $20! Use code: LANA20 | 🔥 10% Off on all Platters this weekend!</div>
+        <div class="offers-marquee">🍯 Free Delivery on orders above $20! Use code: SHAWARMA | 🔥 10% Off on all Platters this weekend!</div>
     </div>
 
     <div class="controls-section">
@@ -1225,7 +1235,8 @@
                     <textarea id="c-address" rows="2" placeholder="Street, Building, Door..."></textarea>
                 </div>
                 <div class="input-group">
-                    <label>Discount Code (Try LANA20)</label>
+                    <!-- تم تعديل كود الخصم في التلميحات هنا -->
+                    <label>Discount Code (Try SHAWARMA)</label>
                     <div style="display:flex; gap:10px;">
                         <input type="text" id="c-coupon" placeholder="Code">
                         <button onclick="applyCoupon()" style="background:var(--primary); color:#fff; border:none; padding:0 15px; border-radius:8px; cursor:pointer; font-weight:bold;">Apply</button>
@@ -1446,7 +1457,6 @@
             };
         });
 
-        // تغيير أسماء المتغيرات في قاعدة البيانات المحلية لعدم التضارب
         let cart = JSON.parse(localStorage.getItem('shawarma_cart')) || [];
         let favs = JSON.parse(localStorage.getItem('shawarma_favs')) || [];
         let reviews = JSON.parse(localStorage.getItem('shawarma_reviews')) || {};
@@ -1858,8 +1868,9 @@
         }
 
         function applyCoupon() {
+            // تم التعديل إلى SHAWARMA
             const code = document.getElementById('c-coupon').value.toUpperCase();
-            if(code === "LANA20" && cart.length > 0) {
+            if(code === "SHAWARMA" && cart.length > 0) {
                 const sub = cart.reduce((sum, c) => sum + c.tot, 0);
                 discountVal = sub * 0.2; 
                 document.getElementById('disc-row').style.display = 'flex';
@@ -1879,7 +1890,6 @@
             
             if(!name || !addr) return alert(currentLang === 'ar' ? "يرجى ملء الاسم والعنوان!" : "Please fill Name and Address");
 
-            // تم تغيير اسم المطعم في الرسالة
             let msg = `*New Order - Shawarma Station* 🍔\n\n`;
             msg += `*Name:* ${name}\n*Phone:* ${phone}\n*Address:* ${addr}\n\n*Items:*\n`;
             
