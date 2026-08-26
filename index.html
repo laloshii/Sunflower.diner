@@ -90,6 +90,7 @@
             box-shadow: var(--shadow-sm); 
             backdrop-filter: blur(10px); 
             -webkit-backdrop-filter: blur(10px);
+            height: 60px; /* تحديد ارتفاع ثابت لسهولة التموضع */
         }
         
         [data-theme="dark"] nav { 
@@ -108,9 +109,9 @@
             line-height: 1.1; 
         }
         
-        /* الدائرة المصغرة للوغو في شريط التنقل - تم إصلاح القص */
+        /* اللوغو العلوي المصغر */
         .nav-logo-wrap {
-            width: 45px; 
+            width: 45px; /* تكبير طفيف ليكون أوضح */
             height: 45px; 
             border-radius: 50%; 
             overflow: hidden; 
@@ -119,7 +120,6 @@
             display: flex; 
             align-items: center; 
             justify-content: center;
-            flex-shrink: 0;
         }
 
         .nav-logo-wrap img { 
@@ -127,7 +127,7 @@
             height: 100%; 
             object-fit: cover; 
             object-position: center; 
-            transform: scale(1.02); /* تكبير طفيف جداً للمحافظة على الشعار دون قص */
+            transform: scale(2.2); /* زوم قوي جداً لمسح الأطراف السوداء نهائياً */
         }
         
         .nav-actions { 
@@ -160,7 +160,6 @@
             font-size: 13px; 
         }
 
-        /* القسم الرئيسي الترحيبي */
         .hero {
             position: relative; 
             margin-top: 60px; 
@@ -177,10 +176,10 @@
             text-align: center;
         }
 
-        /* اللوغو الكبير الدائري - معبأ بالكامل */
+        /* اللوغو الأساسي في واجهة الموقع */
         .hero-logo-circle { 
-            width: 110px; 
-            height: 110px; 
+            width: 120px; /* تكبير الحجم ليكون بارزاً وأجمل */
+            height: 120px; 
             background: #000; 
             border-radius: 50%; 
             margin-bottom: 20px; 
@@ -189,7 +188,6 @@
             align-items: center; 
             justify-content: center; 
             overflow: hidden; 
-            border: 2px solid rgba(255,255,255,0.2); /* إضافة إطار خفيف كجمالية */
         }
         
         .hero-logo-circle img { 
@@ -197,7 +195,7 @@
             height: 100%; 
             object-fit: cover; 
             object-position: center; 
-            transform: scale(1.02); /* تكبير طفيف للمحافظة على أبعاد الشعار كاملة */
+            transform: scale(2.2); /* زوم قوي جداً لمسح الأطراف السوداء نهائياً */
         }
 
         .status-badge {
@@ -335,9 +333,9 @@
             100% { transform: translateX(-100%); } 
         }
 
-        /* قسم البحث والفلاتر - (غير مثبت لينزل مع الصفحة) */
+        /* شريط البحث والفلاتر (أصبح غير مثبت وينزل مع التصفح) */
         .controls-section { 
-            position: relative; /* تم إزالة التثبيت بناءً على طلبك */
+            position: relative; /* تم إزالة الـ sticky من هنا */
             background: var(--bg-color); 
             padding: 15px 5%; 
             border-bottom: 1px solid var(--border); 
@@ -350,7 +348,6 @@
             padding: 12px 20px; 
             border: 1px solid var(--border); 
             margin-bottom: 15px; 
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
         }
         
         .search-bar input { 
@@ -389,27 +386,21 @@
             border-color: var(--primary); 
         }
 
-        /* شريط الأقسام - تم جعله مثبت (Sticky) ليرافق المستخدم */
+        /* شريط الأقسام (البيتزا، الشاورما، الخ) أصبح هو المثبت (Sticky) */
         .categories-wrapper { 
             position: sticky;
-            top: 60px; /* المسافة تحت شريط التنقل العلوي */
-            background: rgba(255, 255, 255, 0.95); 
-            z-index: 98;
+            top: 60px; /* يلتصق مباشرة تحت شريط التنقل العلوي */
+            background: var(--surface); 
+            z-index: 99; /* يبقى فوق المحتوى أثناء التمرير */
             padding: 12px 5%; 
             display: flex; 
             gap: 20px; 
             overflow-x: auto; 
             border-bottom: 1px solid var(--border); 
             scrollbar-width: none; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* ظل خفيف احترافي عند التمرير */
         }
         
-        [data-theme="dark"] .categories-wrapper { 
-            background: rgba(30, 30, 30, 0.95); 
-        }
-
         .cat-btn { 
             background: none; 
             border: none; 
@@ -418,7 +409,7 @@
             color: var(--text-muted); 
             cursor: pointer; 
             white-space: nowrap; 
-            padding-bottom: 6px; 
+            padding-bottom: 4px; 
             position: relative; 
         }
         
@@ -429,7 +420,7 @@
         .cat-btn.active::after { 
             content: ''; 
             position: absolute; 
-            bottom: -2px; 
+            bottom: -5px; 
             left: 0; 
             width: 100%; 
             height: 3px; 
@@ -443,10 +434,10 @@
             padding: 0 5%; 
         }
         
-        /* ضبط هوامش الأقسام لتتوافق مع الشريط المثبت الجديد */
+        /* ضبط مسافة التمرير لكي لا يختفي العنوان خلف الشريط المثبت */
         .category-section { 
             margin-bottom: 50px; 
-            scroll-margin-top: 130px; /* تعويض مساحة شريط التنقل + شريط الأقسام */
+            scroll-margin-top: 130px; 
         }
         
         .cat-title { 
@@ -626,7 +617,6 @@
             color: #fff; 
         }
 
-        /* نافذة تفاصيل الصنف (Modal) */
         .modal { 
             position: fixed; 
             top: 0; 
@@ -845,7 +835,6 @@
             justify-content: space-between;
         }
 
-        /* سلة المشتريات الجانبية */
         .cart-sidebar { 
             position: fixed; 
             top: 0; 
@@ -1154,7 +1143,7 @@
         <div class="offers-marquee">🍯 Free Delivery on orders above $20! Use code: SHAWARMA | 🔥 10% Off on all Platters this weekend!</div>
     </div>
 
-    <!-- قسم البحث والفلاتر (تم إزالة التثبيت منه لينزل مع الصفحة طبيعياً) -->
+    <!-- شريط البحث والفلاتر (تم إزالة خاصية التثبيت لكي يمرر مع الصفحة) -->
     <div class="controls-section">
         <div class="search-bar">
             <i class="fas fa-search" style="color: var(--text-muted); margin-top: 3px;"></i>
@@ -1170,7 +1159,7 @@
         </div>
     </div>
 
-    <!-- شريط الأقسام (تم جعله مثبت Sticky ليبقى مع المستخدم أثناء النزول) -->
+    <!-- شريط الأقسام (البيتزا والبرغر) الذي تم تثبيته بالكامل -->
     <div class="categories-wrapper" id="cat-container"></div>
     
     <div class="menu-container" id="menu-container"></div>
@@ -1457,35 +1446,6 @@
             { id: 146, cat: "Burger", name: "Crispy Burger", price: 7.00, desc: "Crispy burger.", addons: burgerAddons }
         ];
 
-        // دالة ذكية تقوم باختيار صورة حقيقية بناءً على نوع واسم الطعام
-        function getFoodImage(name, cat) {
-            const n = name.toLowerCase();
-            if (cat === "Pizza") return "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80";
-            if (cat === "Burger") return "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80";
-            if (cat === "Salads") return "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80";
-            if (cat === "Pasta") return "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&q=80";
-            if (n.includes("batata") || n.includes("fries") || n.includes("wedges")) return "https://images.unsplash.com/photo-1576107222617-c356ce08b0b9?w=600&q=80";
-            
-            if (n.includes("djej") || n.includes("chicken") || n.includes("taouk")) {
-                if (cat === "Shawarma") return "https://images.unsplash.com/photo-1645696301019-35ad9f8fb811?w=600&q=80"; // شاورما دجاج
-                if (cat === "Platters") return "https://images.unsplash.com/photo-1532550907401-8501c15f00c6?w=600&q=80"; // طبق دجاج
-                return "https://images.unsplash.com/photo-1619860860774-1e2017658561?w=600&q=80"; // سندويش دجاج
-            }
-            if (n.includes("lahme") || n.includes("meat") || n.includes("beef") || n.includes("fajita")) {
-                if (cat === "Shawarma") return "https://images.unsplash.com/photo-1528736235302-52922df5c122?w=600&q=80"; // شاورما لحم
-                return "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=600&q=80"; // سندويش لحم
-            }
-            if (n.includes("crispy") || n.includes("nuggets")) return "https://images.unsplash.com/photo-1562967914-608f82629710?w=600&q=80";
-            if (n.includes("shrimp") || n.includes("crab") || n.includes("samke")) return "https://images.unsplash.com/photo-1599084993091-1cb8807181a2?w=600&q=80"; 
-            if (n.includes("labneh") || n.includes("halloum") || n.includes("jebne") || cat === "Breakfast & Baguettes") return "https://images.unsplash.com/photo-1509315570881-229202eb86ae?w=600&q=80";
-            
-            if (cat === "Platters") return "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80";
-            if (cat === "Sandwiches" || cat === "Shawarma") return "https://images.unsplash.com/photo-1626804475297-41609ea004eb?w=600&q=80";
-            
-            // الصورة الاحتياطية العامة في حال لم يتطابق مع شيء
-            return "https://images.unsplash.com/photo-1495195134817-aeb325a55b65?w=600&q=80";
-        }
-
         const menuData = rawItems.map(item => {
             let tags = [];
             if([1, 7, 12, 106, 34, 48].includes(item.id)) tags.push('bestseller');
@@ -1494,8 +1454,7 @@
             if([55, 60, 78].includes(item.id)) tags.push('spicy');
             if([46, 47, 9].includes(item.id)) tags.push('offer');
             
-            // استخدام الدالة الذكية لجلب الصورة
-            let imgUrl = getFoodImage(item.name, item.cat);
+            let imgUrl = `${item.id}.jpg`;
 
             return {
                 ...item,
@@ -1603,7 +1562,6 @@
             btn.classList.add('active');
             const target = document.getElementById(`cat-${cat.replace(/\s+/g, '-')}`);
             if(target) {
-                // ضبط مسافة النزول لتتناسب مع شريط الأقسام المثبت
                 const y = target.getBoundingClientRect().top + window.scrollY - 130;
                 window.scrollTo({top: y, behavior: 'smooth'});
             }
