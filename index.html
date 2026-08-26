@@ -10,7 +10,6 @@
 
     <style>
         :root {
-            /* الهوية البصرية */
             --primary: #E63946;
             --primary-dark: #D62828;
             --bg-color: #FFFDF7;
@@ -107,26 +106,24 @@
             line-height: 1.1; 
         }
         
-        /* الحاوية الدائرية للشعار في شريط التنقل */
         .nav-logo-wrap {
             width: 40px; 
             height: 40px; 
             border-radius: 50%; 
             overflow: hidden; 
             border: 1px solid var(--border); 
-            background: #000; /* خلفية متناسقة في حال تأخر التحميل */
+            background: #000; 
             display: flex; 
             align-items: center; 
             justify-content: center;
         }
 
-        /* تعديلات عرض الصورة لتناسب الأبعاد الطولية الجديدة */
         .nav-logo-wrap img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* يملأ العرض ويقص الطول الزائد */
-            object-position: center; /* يركز على منتصف الصورة */
-            transform: scale(1.08); /* تكبير طفيف جداً لإخفاء الحواف السوداء الجانبية */
+            object-fit: cover; 
+            object-position: center; 
+            transform: scale(1.35); 
         }
         
         .nav-actions { 
@@ -175,13 +172,12 @@
             text-align: center;
         }
 
-        /* حاوية الشعار الكبيرة */
+        /* تم تكبير الشعار هنا ليملا الدائرة تماماً بدون أي فراغات سوداء */
         .hero-logo-circle { 
-            width: 100px; 
-            height: 100px; 
+            width: 105px; 
+            height: 105px; 
             background: #000; 
             border-radius: 50%; 
-            padding: 0; 
             margin-bottom: 20px; 
             box-shadow: 0 5px 25px rgba(0,0,0,0.5); 
             display: flex; 
@@ -190,13 +186,12 @@
             overflow: hidden; 
         }
         
-        /* قص الصورة الجديدة بشكل مثالي */
         .hero-logo-circle img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* يملأ الدائرة بالعرض ويقص السواد من الأعلى والأسفل */
+            object-fit: cover; 
             object-position: center; 
-            transform: scale(1.08); /* تكبير بنسبة 8% لإخفاء الحدود الجانبية المتبقية */
+            transform: scale(1.35); /* تكبير قوي ومثالي لملء الدائرة تماماً */
         }
 
         .status-badge {
@@ -334,6 +329,7 @@
             100% { transform: translateX(-100%); } 
         }
 
+        /* شريط التحكم والبحث */
         .controls-section { 
             position: sticky; 
             top: 60px; 
@@ -389,14 +385,19 @@
             border-color: var(--primary); 
         }
 
+        /* شريط الأقسام أصبح مثبتاً (Sticky) تحت شريط البحث والتحكم ليبقى مع المستخدم أينما تنقل */
         .categories-wrapper { 
-            padding: 15px 5%; 
+            position: sticky;
+            top: 135px; /* يرتفع بناءً على موقع شريط التحكم العلوي */
             background: var(--surface); 
+            z-index: 98;
+            padding: 12px 5%; 
             display: flex; 
             gap: 20px; 
             overflow-x: auto; 
             border-bottom: 1px solid var(--border); 
             scrollbar-width: none; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
         
         .cat-btn { 
@@ -407,7 +408,7 @@
             color: var(--text-muted); 
             cursor: pointer; 
             white-space: nowrap; 
-            padding-bottom: 8px; 
+            padding-bottom: 4px; 
             position: relative; 
         }
         
@@ -418,7 +419,7 @@
         .cat-btn.active::after { 
             content: ''; 
             position: absolute; 
-            bottom: -1px; 
+            bottom: -5px; 
             left: 0; 
             width: 100%; 
             height: 3px; 
@@ -434,7 +435,7 @@
         
         .category-section { 
             margin-bottom: 50px; 
-            scroll-margin-top: 180px; 
+            scroll-margin-top: 210px; /* تم تعديل الهامش ليتناسب مع الشريط المثبت */
         }
         
         .cat-title { 
@@ -1102,7 +1103,6 @@
     <nav>
         <a href="#" class="nav-logo" onclick="window.scrollTo(0,0)">
             <div class="nav-logo-wrap">
-                <!-- تم تغيير اسم الصورة هنا -->
                 <img src="Logo1.jpg" alt="Logo">
             </div>
             Shawarma Station
@@ -1116,7 +1116,6 @@
 
     <section class="hero" id="hero-bg">
         <div class="hero-logo-circle">
-            <!-- تم تغيير اسم الصورة هنا -->
             <img src="Logo1.jpg" alt="Shawarma Station Logo">
         </div>
         <div class="status-badge">
@@ -1138,7 +1137,6 @@
         </div>
     </section>
 
-    <!-- تم تعديل كود الخصم في الشريط الإعلاني -->
     <div class="offers-banner">
         <div class="offers-marquee">🍯 Free Delivery on orders above $20! Use code: SHAWARMA | 🔥 10% Off on all Platters this weekend!</div>
     </div>
@@ -1158,7 +1156,9 @@
         </div>
     </div>
 
+    <!-- شريط الأقسام المثبت (Sticky Categories) -->
     <div class="categories-wrapper" id="cat-container"></div>
+    
     <div class="menu-container" id="menu-container"></div>
 
     <div class="modal" id="item-modal">
@@ -1242,7 +1242,6 @@
                     <textarea id="c-address" rows="2" placeholder="Street, Building, Door..."></textarea>
                 </div>
                 <div class="input-group">
-                    <!-- تم تعديل كود الخصم هنا -->
                     <label>Discount Code (Try SHAWARMA)</label>
                     <div style="display:flex; gap:10px;">
                         <input type="text" id="c-coupon" placeholder="Code">
@@ -1560,7 +1559,7 @@
             btn.classList.add('active');
             const target = document.getElementById(`cat-${cat.replace(/\s+/g, '-')}`);
             if(target) {
-                const y = target.getBoundingClientRect().top + window.scrollY - 150;
+                const y = target.getBoundingClientRect().top + window.scrollY - 180;
                 window.scrollTo({top: y, behavior: 'smooth'});
             }
         }
@@ -1607,7 +1606,6 @@
                             <button class="fav-btn ${isFav?'active':''}" onclick="event.stopPropagation(); toggleFav(${item.id}, this)"><i class="fas fa-heart"></i></button>
                             
                             <div class="card-img-wrap">
-                                <!-- تم تغيير اسم الصورة الاحتياطية هنا -->
                                 <img src="${item.img}" class="card-img" loading="lazy" alt="${item.name}" onerror="this.onerror=null; this.src='Logo1.jpg';">
                             </div>
                             
@@ -1643,7 +1641,7 @@
             
             document.getElementById('m-img').onerror = function() { 
                 this.onerror = null; 
-                this.src = 'Logo1.jpg'; /* تم تغيير الصورة هنا أيضًا */
+                this.src = 'Logo1.jpg'; 
             };
 
             document.getElementById('m-title').innerText = currentItem.name;
@@ -1876,7 +1874,6 @@
         }
 
         function applyCoupon() {
-            // كود الخصم هو SHAWARMA
             const code = document.getElementById('c-coupon').value.toUpperCase();
             if(code === "SHAWARMA" && cart.length > 0) {
                 const sub = cart.reduce((sum, c) => sum + c.tot, 0);
